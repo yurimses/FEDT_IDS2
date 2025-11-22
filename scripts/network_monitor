@@ -1,0 +1,13 @@
+#!/bin/bash
+
+INTERFACE=$1      
+IP_ALVO=$2     
+PORTA=$3             
+ARQUIVO_SAIDA=$4
+COMANDO=$5
+
+# echo "Iniciando captura na interface ${INTERFACE}..."
+# echo "Filtrando: IP ${IP_ALVO}, porta ${PORTA}, protocolo TCP"
+# echo "Arquivo de saída: ${ARQUIVO_SAIDA}"
+
+tcpdump -i "${INTERFACE}" -s 0 -w "${ARQUIVO_SAIDA}" "tcp and host ${IP_ALVO} and port ${PORTA}"

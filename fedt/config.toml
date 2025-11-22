@@ -1,0 +1,40 @@
+[paths]
+base_path = '.'
+results_folder = 'results'
+logs_folder = 'logs'
+scripts_path = 'scripts'
+client_script_path = 'fedt/client.py'
+dataset_path = 'energydata_complete.csv'
+
+[settings]
+number_of_jobs = 12
+number_of_clients = 20
+number_of_rounds = 40
+aggregation_strategy = "random"
+
+[settings.sequence]
+many_simulations = false
+number_of_simulations = 10
+aggregation_strategies = ['random', 'best_trees', 'threshold', 'best_forests']
+
+[settings.client]
+timeout = 420
+debug = true
+
+[settings.server]
+IP = "0.0.0.0"
+port = "50051"
+pearson_threshold = 0.3 # 0.34
+number_of_trees_in_start = 10
+increase_of_trees_per_round = 10
+validate_dataset_size = 1000
+print_every_trees_sent = 50
+timeout = 360
+debug = true
+
+[dataset]
+train_test_split_size = 0.25
+percentage_value_of_samples_per_client = 20
+
+[scripts]
+network_interface = "eth0"

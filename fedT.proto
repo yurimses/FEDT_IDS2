@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package fedT;
+
+service FedT {
+    rpc aggregate_trees (stream Forest_CLient) returns (stream Forest_Server);
+    rpc get_server_model (Request_Server) returns (stream Forest_Server);
+    rpc get_server_settings (Request_Server) returns (Server_Settings);
+    rpc end_of_transmission (Request_Server) returns (OK);
+}
+
+message Request_Server {
+    int32 client_ID = 1;
+}
+
+message Server_Settings {
+    int32 trees_by_client = 1;
+    int32 current_round = 2;
+}
+
+message Forest_CLient {
+    int32 client_ID = 1;
+    bytes serialised_tree = 2;
+}
+
+message Forest_Server {
+    bytes serialised_tree = 1;
+}
+
+message OK {
+    int32 ok = 1;
+}

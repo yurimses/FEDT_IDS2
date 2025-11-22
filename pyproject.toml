@@ -1,0 +1,35 @@
+[build-system]
+requires = [
+    "setuptools>=68.0", 
+    "wheel"
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fedt"
+version = "0.1.0"
+description = "Federated Learning for Decision Trees"
+authors = [{ name = "Julio C. Oliveira", email = "julio3.oliveir@gmail.com" }]
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=2.3.3",
+    "pandas>=2.2.3",
+    "scikit-learn>=1.7.2",
+    "protobuf>=6.33.0",
+    "grpcio>=1.76.0",
+    "grpcio-tools>=1.76.0",
+    "mypy-protobuf>=3.6.0",
+    "colorlog>=6.10.1",
+    "psutil>=7.1.3"
+]
+
+[project.scripts]
+fedt = "fedt.cli:main"
+fedt-network = "scripts.network_monitor:main"
+fedt-cpu-ram = "scripts.cpu_and_ram_monitor:main"
+
+[tool.setuptools]
+packages = ["fedt", "scripts"]
+
+[tool.setuptools.package-data]
+fedt = ["config.toml"]
