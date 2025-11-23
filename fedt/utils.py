@@ -7,7 +7,8 @@ from fedt.settings import (
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.ensemble import RandomForestClassifier # [CLASSIF]
+from sklearn.datasets import fetch_openml  # [CLASSIF]
 
 import pickle
 import tempfile
@@ -27,7 +28,7 @@ import psutil
 
 import signal, os
 
-def set_initial_params(model: RandomForestRegressor, X_train, y_train):
+def set_initial_params(model: RandomForestClassifier, X_train, y_train): # [CLASSIF]
     """
     ### Função:
     Setar os parâmetros iniciais do modelo, treinando a floresta com apenas 3 amostras.
@@ -41,8 +42,8 @@ def set_initial_params(model: RandomForestRegressor, X_train, y_train):
     model.fit(X_train, y_train)
 
 def set_model_params(
-    model: RandomForestRegressor, params: list
-) -> RandomForestRegressor:
+    model: RandomForestClassifier, params: list
+) -> RandomForestClassifier: # [CLASSIF]
     """
     ### Função:
     Setar os parâmetros do modelo.
@@ -55,7 +56,7 @@ def set_model_params(
     model.estimators_ = params
     return model
 
-def get_model_parameters(model: RandomForestRegressor):
+def get_model_parameters(model: RandomForestClassifier) -> list: # [CLASSIF]
     """
     ### Função:
     Obter as árvores do modelo.
@@ -79,57 +80,57 @@ def load_dataset():
     - Data Test: As features para testar o modelo.
     - Label Test: Os targets para testar o modelo
     """
-    energy_data_complete = pd.read_csv(dataset_path)
-    columns_for_training = []
-    temperature_columns = [f"T{i}" for i in range(1, 10)]
-    humidity_columns = [f"RH_{i}" for i in range(1, 10)]
-
-    for temperature in temperature_columns:
-        columns_for_training.append(temperature)
-        
-    for humidity in humidity_columns:
-        columns_for_training.append(humidity)
-        
-    columns_for_training.append("T_out")
-    columns_for_training.append("RH_out")
-    columns_for_training.append("Press_mm_hg")
-    columns_for_training.append("Visibility")
-
-    data = energy_data_complete[columns_for_training]
-    label = energy_data_complete["Appliances"]
-    
-    return data, label
+    # [CLASSIF] Dataset alterado para MNIST (classificação de dígitos)
+    mnist = fetch_openml("mnist_784", version=1, as_frame=False)  # [CLASSIF]
+    data = mnist.data.astype(np.float32) / 255.0  # [CLASSIF]
+    label = mnist.target.astype(int)  # [CLASSIF]
+    return data, label  # [CLASSIF]
 
 def load_house_client():
     rng = np.random.default_rng()
-
     X, y = load_dataset()
 
-    number_of_samples = int((len(X)*percentage_value_of_samples_per_client)/100)
+    number_of_samples = int((len(X) * percentage_value_of_samples_per_client) / 100)
 
     idxs = rng.choice(X.shape[0], size=number_of_samples, replace=False)
-    X = X.iloc[idxs]
-    y = y.iloc[idxs]
+    X = X[idxs]  # [CLASSIF]
+    y = y[idxs]  # [CLASSIF]
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+    # [CLASSIF] Divisão estratificada para manter a proporção de classes
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, stratify=y
+    )  # [CLASSIF]
     return X_train, y_train, X_test, y_test
 
 def load_dataset_for_server() -> list:
     """
     ### Função:
-    Carregar o dataset com apenas 3 amostras, 
-    servirá para inicializar o server e garantir que os parâmetros entre server e cliente serão compativeis.
+    Carregar um subconjunto mínimo do dataset que contenha todas as classes presentes no problema.  # [CLASSIF]
+    Isso inicializa o modelo do servidor de forma compatível com qualquer dataset de classificação,   # [CLASSIF]
+    sem assumir um número fixo de amostras ou classes.                                                # [CLASSIF]
     ### Args:
     - None.
     ### Returns:
     - Data Train: As features.
     - Label Train: Os targets. 
     """
-    data, label  = load_dataset()
+    data, label = load_dataset()  # [CLASSIF]
 
-    data_train, _, label_train, _ = train_test_split(data, label, test_size=0.2)
+    # [CLASSIF] Converte rótulos para array NumPy para tratamento genérico
+    label_array = np.asarray(label)  # [CLASSIF]
 
-    return data_train[0:2], label_train[0:2]
+    # [CLASSIF] Para cada classe, escolhe um índice representativo (primeira ocorrência)
+    unique_classes, first_indices = np.unique(label_array, return_index=True)  # [CLASSIF]
+
+    # [CLASSIF] Suporta tanto DataFrames quanto arrays NumPy
+    if hasattr(data, "iloc"):  # DataFrame / Series  # [CLASSIF]
+        data_init = data.iloc[first_indices]  # [CLASSIF]
+    else:
+        data_init = np.asarray(data)[first_indices]  # [CLASSIF]
+
+    label_init = label_array[first_indices]  # [CLASSIF]
+
+    return data_init, label_init  # [CLASSIF]
 
 def load_server_side_validation_data():
     """
@@ -142,9 +143,12 @@ def load_server_side_validation_data():
     - Data Valid: As features para validação.
     - Label Valid: Os targets para validação. 
     """
+    # [CLASSIF] Dados de validação para classificação com MNIST
     data, label  = load_dataset()
 
-    _, data_valid, _, label_valid = train_test_split(data, label, test_size=0.2)
+    _, data_valid, _, label_valid = train_test_split(
+        data, label, test_size=0.2, stratify=label
+    )  # [CLASSIF]
     return data_valid[-validate_dataset_size:], label_valid[-validate_dataset_size:]
 
 def serialise_tree(tree_model) -> bytes:

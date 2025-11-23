@@ -18,7 +18,7 @@ from fedt.utils import format_time
 from fedt import fedT_pb2
 from fedt import fedT_pb2_grpc
 
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.ensemble import RandomForestClassifier #[CLASSIF]
 from client_utils import HouseClient
 
 import argparse
@@ -121,7 +121,7 @@ async def run():
             del server_trees_serialised
             gc.collect()
 
-            server_model = RandomForestRegressor(
+            server_model = RandomForestClassifier( #[CLASSIF]
                 n_estimators=trees_by_client,
                 max_depth=3,
                 warm_start=True
@@ -133,8 +133,9 @@ async def run():
             client = HouseClient(trees_by_client, dataset, ID)
             fit_time = time.time() - fit_start_time
 
-            (absolute_error, squared_error, (pearson_corr, p_value), best_trees) = client.evaluate(server_model)
-            logger.info(f"\nModelo Inicial:\nAbsolute Error: {absolute_error:.3f}\nSquared Error: {squared_error:.3f}\nPearson: {pearson_corr:.3f}")
+            (f1_value, mcc_value, best_trees) = client.evaluate(server_model)  #[CLASSIF]
+            logger.info(f"\nModelo Inicial:\nF1 Score: {f1_value:.3f}\nMCC: {mcc_value:.3f}")  #[CLASSIF]
+
 
             serialise_trees = await loop.run_in_executor(
                 executor,
@@ -168,13 +169,13 @@ async def run():
 
 
             evaluate_start_time = time.time()
-            (absolute_error, squared_error, (pearson_corr, p_value), best_trees) = await loop.run_in_executor(
+            (f1_value, mcc_value, best_trees) = await loop.run_in_executor( #[CLASSIF]
                 executor,
                 client.evaluate,
                 server_model
             )
             evaluate_time = time.time() - evaluate_start_time
-            logger.info(f"\nModelo Final:\nAbsolute Error: {absolute_error:.3f}\nSquared Error: {squared_error:.3f}\nPearson: {pearson_corr:.3f}")
+            logger.info(f"\nModelo Final:\nF1-Score: {f1_value:.3f}\nMCC: {mcc_value:.3f}")  #[CLASSIF]
 
             round_end_time = time.time()
             round_time = round_end_time - round_start_time
@@ -196,8 +197,8 @@ async def run():
                 "fit_time": fit_time,
                 "client_serialise_trees_size": client_serialise_trees_size,
                 "final_server_serialise_trees_size": final_server_serialise_trees_size,
-                "squared_error": squared_error,
-                "pearson_corr": pearson_corr,
+                "f1_score": f1_value,  #[CLASSIF]
+                "mcc": mcc_value,  #[CLASSIF]
                 "round_time": round_time,
                 "round_start_time": round_start_time,
                 "round_end_time": round_end_time,

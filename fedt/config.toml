@@ -8,9 +8,9 @@ dataset_path = 'energydata_complete.csv'
 
 [settings]
 number_of_jobs = 12
-number_of_clients = 20
-number_of_rounds = 40
-aggregation_strategy = "random"
+number_of_clients = 4
+number_of_rounds = 5
+aggregation_strategy = "best_forests"
 
 [settings.sequence]
 many_simulations = false
@@ -24,7 +24,7 @@ debug = true
 [settings.server]
 IP = "0.0.0.0"
 port = "50051"
-pearson_threshold = 0.3 # 0.34
+mcc_threshold = 0.3 # 0.34 # [CLASSIF]
 number_of_trees_in_start = 10
 increase_of_trees_per_round = 10
 validate_dataset_size = 1000

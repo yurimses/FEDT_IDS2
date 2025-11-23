@@ -8,7 +8,7 @@ import gc
 import grpc
 import grpc.aio as grpc_aio
 
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.ensemble import RandomForestClassifier #[CLASSIF]
 
 from fedt.settings import (
     server_config, number_of_jobs, number_of_clients, 
@@ -91,7 +91,7 @@ class FedT(fedT_pb2_grpc.FedTServicer):
 
         self.executor = ThreadPoolExecutor(max_workers=number_of_jobs)
 
-        self.model = RandomForestRegressor(
+        self.model = RandomForestClassifier( # [CLASSIF]
             n_estimators=self.get_number_of_trees_per_client(),
             max_depth=3,
             warm_start=True
@@ -108,7 +108,7 @@ class FedT(fedT_pb2_grpc.FedTServicer):
     def get_number_of_trees_per_client(self):
         return self.round * server_config["increase_of_trees_per_round"] + server_config["number_of_trees_in_start"]
 
-    def aggregate_strategy(self, best_forests: list[RandomForestRegressor], threshold=server_config["pearson_threshold"]):
+    def aggregate_strategy(self, best_forests: list[RandomForestClassifier], threshold=server_config["mcc_threshold"]): # [CLASSIF]
         match self.aggregation_strategy:
             case 'random':
                 self.model.estimators_ = self.strategy.aggregate_fit_random_trees_strategy(best_forests)
@@ -290,7 +290,7 @@ class FedT(fedT_pb2_grpc.FedTServicer):
         del self.model, self.global_trees, self.strategy
         gc.collect()
 
-        self.model = RandomForestRegressor(n_estimators=self.get_number_of_trees_per_client())
+        self.model = RandomForestClassifier(n_estimators=self.get_number_of_trees_per_client()) #[CLASSIF]
         data_train, label_train = utils.load_dataset_for_server()
         utils.set_initial_params(self.model, data_train, label_train)
 
