@@ -1,14 +1,14 @@
 from fedt.settings import (
     dataset_path, percentage_value_of_samples_per_client, 
     validate_dataset_size, aggregation_strategies, 
-    results_folder, logs_folder
+    results_folder, logs_folder, label_target # [CLASS]
     )
 
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier # [CLASSIF]
-from sklearn.datasets import fetch_openml  # [CLASSIF]
+from sklearn.preprocessing import LabelEncoder  # [CLASS]
 
 import pickle
 import tempfile
@@ -80,11 +80,22 @@ def load_dataset():
     - Data Test: As features para testar o modelo.
     - Label Test: Os targets para testar o modelo
     """
-    # [CLASSIF] Dataset alterado para MNIST (classificação de dígitos)
-    mnist = fetch_openml("mnist_784", version=1, as_frame=False)  # [CLASSIF]
-    data = mnist.data.astype(np.float32) / 255.0  # [CLASSIF]
-    label = mnist.target.astype(int)  # [CLASSIF]
-    return data, label  # [CLASSIF]
+    df = pd.read_csv(dataset_path)  # [CLASS]
+    if label_target not in df.columns:  # [CLASS]
+        raise ValueError(f"Coluna de rótulo '{label_target}' não encontrada no dataset.")  # [CLASS]
+
+    y_series = df[label_target]  # [CLASS]
+
+    # [CLASS] Se for rótulo binário, converte direto para int; senão, faz encoding para inteiros
+    if label_target == "Attack_label":  # [CLASS]
+        y = y_series.astype(int).to_numpy()  # [CLASS]
+    else:  # [CLASS]
+        le = LabelEncoder()  # [CLASS]
+        y = le.fit_transform(y_series.astype(str))  # [CLASS]
+
+    X = df.drop(columns=["Attack_label", "Attack_type", "Attack_type_6"], errors="ignore")  # [CLASS]
+    X = X.astype(np.float32)  # [CLASS]
+    return X.to_numpy(), y  # [CLASS]
 
 def load_house_client():
     rng = np.random.default_rng()

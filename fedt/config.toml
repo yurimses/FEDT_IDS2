@@ -4,13 +4,13 @@ results_folder = 'results'
 logs_folder = 'logs'
 scripts_path = 'scripts'
 client_script_path = 'fedt/client.py'
-dataset_path = 'energydata_complete.csv'
+dataset_path = 'ML-EdgeIIoT-FEDT.csv' # [CLASSIF]
 
 [settings]
 number_of_jobs = 12
-number_of_clients = 4
+number_of_clients = 10
 number_of_rounds = 5
-aggregation_strategy = "best_forests"
+aggregation_strategy = "best_trees"
 
 [settings.sequence]
 many_simulations = false
@@ -35,6 +35,7 @@ debug = true
 [dataset]
 train_test_split_size = 0.25
 percentage_value_of_samples_per_client = 20
+label_target = "Attack_type"  # [CLASS]  # opções: "Attack_label", "Attack_type_6", "Attack_type"
 
 [scripts]
 network_interface = "eth0"

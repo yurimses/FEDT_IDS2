@@ -61,5 +61,6 @@ validate_dataset_size = config["settings"]["server"]["validate_dataset_size"]
 
 train_test_split_size = config["dataset"]["train_test_split_size"]
 percentage_value_of_samples_per_client = config["dataset"]["percentage_value_of_samples_per_client"]
+label_target = config["dataset"].get("label_target", "Attack_label")  # [CLASS]
 
 network_interface = config["scripts"]["network_interface"]
