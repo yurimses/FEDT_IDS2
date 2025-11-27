@@ -163,9 +163,9 @@ async def run():
             client = HouseClient(trees_by_client, dataset, ID)
             fit_time = time.time() - fit_start_time
 
-            (f1_value, mcc_value, accuracy_value, precision_value, recall_value, best_trees) = client.evaluate(server_model)  #[CLASSIF]
+            (f1_value, mcc_value, accuracy_value, precision_value, recall_value, cm_norm, best_trees) = client.evaluate(server_model)  #[CLASSIF]
             logger.info(f"\nModelo Inicial:\nAcurácia: {accuracy_value:.3f}\nRecall: {recall_value:.3f}\nPrecision: {precision_value:.3f}\nF1 Score: {f1_value:.3f}\nMCC: {mcc_value:.3f}")  #[CLASSIF]
-            
+            logger.info(f"Matriz de confusão normalizada (cliente {ID}):\n{cm_norm}")  #[CLASSIF]
 
 
             serialise_trees = await loop.run_in_executor(
@@ -200,13 +200,14 @@ async def run():
 
 
             evaluate_start_time = time.time()
-            (f1_value, mcc_value, accuracy_value, precision_value, recall_value, best_trees) = await loop.run_in_executor( #[CLASSIF]
+            (f1_value, mcc_value, accuracy_value, precision_value, recall_value, cm_norm, best_trees) = await loop.run_in_executor( #[CLASSIF]
                 executor,
                 client.evaluate,
                 server_model
             )
             evaluate_time = time.time() - evaluate_start_time
             logger.info(f"\nModelo Inicial:\nAcurácia: {accuracy_value:.3f}\nRecall: {recall_value:.3f}\nPrecision: {precision_value:.3f}\nF1 Score: {f1_value:.3f}\nMCC: {mcc_value:.3f}")  #[CLASSIF]
+            logger.info(f"Matriz de confusão normalizada (cliente {ID}):\n{cm_norm}")  #[CLASSIF]
 
             round_end_time = time.time()
             round_time = round_end_time - round_start_time
@@ -233,6 +234,7 @@ async def run():
                 "accuracy": accuracy_value,  # [CLASSIF]
                 "precision": precision_value,  # [CLASSIF]
                 "recall": recall_value,  # [CLASSIF]
+                "confusion_matrix": cm_norm.tolist(),  # [CLASSIF]
                 "round_time": round_time,
                 "round_start_time": round_start_time,
                 "round_end_time": round_end_time,

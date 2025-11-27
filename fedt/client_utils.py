@@ -4,7 +4,7 @@ import numpy as np
 from sklearn.ensemble import RandomForestClassifier #[CLASSIF]
 
 
-from sklearn.metrics import f1_score, matthews_corrcoef, accuracy_score, precision_score, recall_score  #[CLASSIF]
+from sklearn.metrics import f1_score, matthews_corrcoef, accuracy_score, precision_score, recall_score, confusion_matrix  #[CLASSIF]
 from scipy.stats import pearsonr
 
 from fedt import utils
@@ -83,6 +83,10 @@ class HouseClient():
 
         local_recall = recall_score(y_true, local_pred, average="macro", zero_division=0)  # [CLASSIF]
         global_recall = recall_score(y_true, global_pred, average="macro", zero_division=0)  # [CLASSIF]
+
+        # [CLASSIF] Matriz de confusão normalizada (linha = classe verdadeira, coluna = predição)
+        local_cm_norm = confusion_matrix(y_true, local_pred, normalize="true")  # [CLASSIF]
+        global_cm_norm = confusion_matrix(y_true, global_pred, normalize="true")  # [CLASSIF]
         
         # [CLASSIF] Seleção: F1 como métrica primária, MCC como critério secundário
         use_global = False  # [CLASSIF]
@@ -98,6 +102,7 @@ class HouseClient():
             accuracy_value = global_accuracy  # [CLASSIF]
             precision_value = global_precision  # [CLASSIF]
             recall_value = global_recall  # [CLASSIF]
+            cm_norm = global_cm_norm  # [CLASSIF]
             self.trees = global_model_trees  # [CLASSIF]
             utils.set_model_params(self.local_model, self.trees)  # [CLASSIF]
         else:  # [CLASSIF]
@@ -106,6 +111,7 @@ class HouseClient():
             accuracy_value = local_accuracy  # [CLASSIF]
             precision_value = local_precision  # [CLASSIF]
             recall_value = local_recall  # [CLASSIF]
+            cm_norm = local_cm_norm  # [CLASSIF]
 
         # [CLASSIF] DEBUG: contar erros das predições escolhidas (local ou global)
         y_pred_escolhido = local_pred if not use_global else global_pred  # [CLASSIF]
@@ -119,6 +125,7 @@ class HouseClient():
             accuracy_value,
             precision_value,
             recall_value,
+            cm_norm,
             self.trees,
         )  # [CLASSIF]
 
