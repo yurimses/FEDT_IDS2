@@ -138,8 +138,9 @@ async def run():
             client = HouseClient(trees_by_client, dataset, ID)
             fit_time = time.time() - fit_start_time
 
-            (f1_value, mcc_value, best_trees) = client.evaluate(server_model)  #[CLASSIF]
-            logger.info(f"\nModelo Inicial:\nF1 Score: {f1_value:.3f}\nMCC: {mcc_value:.3f}")  #[CLASSIF]
+            (f1_value, mcc_value, accuracy_value, precision_value, recall_value, best_trees) = client.evaluate(server_model)  #[CLASSIF]
+            logger.info(f"\nModelo Inicial:\nAcurácia: {accuracy_value:.3f}\nRecall: {recall_value:.3f}\nPrecision: {precision_value:.3f}\nF1 Score: {f1_value:.3f}\nMCC: {mcc_value:.3f}")  #[CLASSIF]
+            
 
 
             serialise_trees = await loop.run_in_executor(
@@ -174,13 +175,13 @@ async def run():
 
 
             evaluate_start_time = time.time()
-            (f1_value, mcc_value, best_trees) = await loop.run_in_executor( #[CLASSIF]
+            (f1_value, mcc_value, accuracy_value, precision_value, recall_value, best_trees) = await loop.run_in_executor( #[CLASSIF]
                 executor,
                 client.evaluate,
                 server_model
             )
             evaluate_time = time.time() - evaluate_start_time
-            logger.info(f"\nModelo Final:\nF1-Score: {f1_value:.3f}\nMCC: {mcc_value:.3f}")  #[CLASSIF]
+            logger.info(f"\nModelo Inicial:\nAcurácia: {accuracy_value:.3f}\nRecall: {recall_value:.3f}\nPrecision: {precision_value:.3f}\nF1 Score: {f1_value:.3f}\nMCC: {mcc_value:.3f}")  #[CLASSIF]
 
             round_end_time = time.time()
             round_time = round_end_time - round_start_time
@@ -204,6 +205,9 @@ async def run():
                 "final_server_serialise_trees_size": final_server_serialise_trees_size,
                 "f1_score": f1_value,  #[CLASSIF]
                 "mcc": mcc_value,  #[CLASSIF]
+                "accuracy": accuracy_value,  # [CLASSIF]
+                "precision": precision_value,  # [CLASSIF]
+                "recall": recall_value,  # [CLASSIF]
                 "round_time": round_time,
                 "round_start_time": round_start_time,
                 "round_end_time": round_end_time,

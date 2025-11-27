@@ -4,7 +4,7 @@ import numpy as np
 from sklearn.ensemble import RandomForestClassifier #[CLASSIF]
 
 
-from sklearn.metrics import f1_score, matthews_corrcoef  #[CLASSIF]
+from sklearn.metrics import f1_score, matthews_corrcoef, accuracy_score, precision_score, recall_score  #[CLASSIF]
 from scipy.stats import pearsonr
 
 from fedt import utils
@@ -68,6 +68,16 @@ class HouseClient():
 
         local_mcc = matthews_corrcoef(y_true, local_pred)  # [CLASSIF]
         global_mcc = matthews_corrcoef(y_true, global_pred)  # [CLASSIF]
+
+        # [CLASSIF] Métricas adicionais: acurácia, precision e recall (macro)
+        local_accuracy = accuracy_score(y_true, local_pred)  # [CLASSIF]
+        global_accuracy = accuracy_score(y_true, global_pred)  # [CLASSIF]
+
+        local_precision = precision_score(y_true, local_pred, average="macro", zero_division=0)  # [CLASSIF]
+        global_precision = precision_score(y_true, global_pred, average="macro", zero_division=0)  # [CLASSIF]
+
+        local_recall = recall_score(y_true, local_pred, average="macro", zero_division=0)  # [CLASSIF]
+        global_recall = recall_score(y_true, global_pred, average="macro", zero_division=0)  # [CLASSIF]
         
         # [CLASSIF] Seleção: F1 como métrica primária, MCC como critério secundário
         use_global = False  # [CLASSIF]
@@ -80,13 +90,26 @@ class HouseClient():
         if use_global:  # [CLASSIF]
             f1_value = global_f1  # [CLASSIF]
             mcc_value = global_mcc  # [CLASSIF]
+            accuracy_value = global_accuracy  # [CLASSIF]
+            precision_value = global_precision  # [CLASSIF]
+            recall_value = global_recall  # [CLASSIF]
             self.trees = global_model_trees  # [CLASSIF]
             utils.set_model_params(self.local_model, self.trees)  # [CLASSIF]
         else:  # [CLASSIF]
             f1_value = local_f1  # [CLASSIF]
             mcc_value = local_mcc  # [CLASSIF]
+            accuracy_value = local_accuracy  # [CLASSIF]
+            precision_value = local_precision  # [CLASSIF]
+            recall_value = local_recall  # [CLASSIF]
 
-        return f1_value, mcc_value, self.trees  # [CLASSIF]
+        return (
+            f1_value,
+            mcc_value,
+            accuracy_value,
+            precision_value,
+            recall_value,
+            self.trees,
+        )  # [CLASSIF]
 
 
     def evaluate_inference_time(self, number_of_samples):

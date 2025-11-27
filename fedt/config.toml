@@ -43,7 +43,7 @@ ccp_alpha = 0.0  # [CLASSIF] parâmetro de poda por custo-complexidade (post-pru
 [dataset]
 train_test_split_size = 0.25
 percentage_value_of_samples_per_client = 20
-label_target = "Attack_type"  # [CLASS]  # opções: "Attack_label", "Attack_type_6", "Attack_type"
+label_target = "Attack_label"  # [CLASS]  # opções: "Attack_label", "Attack_type_6", "Attack_type"
 
 [scripts]
 network_interface = "eth0"
