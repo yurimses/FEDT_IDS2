@@ -12,7 +12,8 @@ from sklearn.ensemble import RandomForestClassifier #[CLASSIF]
 
 from fedt.settings import (
     server_config, number_of_jobs, number_of_clients, 
-    imported_aggregation_strategy, number_of_rounds, many_simulations
+    imported_aggregation_strategy, number_of_rounds, many_simulations,
+    max_depth, min_samples_leaf, min_samples_split, max_features, ccp_alpha  # [CLASSIF]
 )
 from fedt.fedforest import FedForest
 from fedt import utils
@@ -93,7 +94,11 @@ class FedT(fedT_pb2_grpc.FedTServicer):
 
         self.model = RandomForestClassifier( # [CLASSIF]
             n_estimators=self.get_number_of_trees_per_client(),
-            max_depth=3,
+            max_depth=max_depth,  # [CLASSIF]
+            min_samples_leaf=min_samples_leaf,  # [CLASSIF]
+            min_samples_split=min_samples_split,  # [CLASSIF]
+            max_features=max_features,  # [CLASSIF]
+            ccp_alpha=ccp_alpha,  # [CLASSIF]
             warm_start=True
         )
         data_train, label_train = utils.load_dataset_for_server()
@@ -290,7 +295,14 @@ class FedT(fedT_pb2_grpc.FedTServicer):
         del self.model, self.global_trees, self.strategy
         gc.collect()
 
-        self.model = RandomForestClassifier(n_estimators=self.get_number_of_trees_per_client()) #[CLASSIF]
+        self.model = RandomForestClassifier(  # [CLASSIF]
+            n_estimators=self.get_number_of_trees_per_client(),
+            max_depth=max_depth,  # [CLASSIF]
+            min_samples_leaf=min_samples_leaf,  # [CLASSIF]
+            min_samples_split=min_samples_split,  # [CLASSIF]
+            max_features=max_features,  # [CLASSIF]
+            ccp_alpha=ccp_alpha,  # [CLASSIF]
+        )
         data_train, label_train = utils.load_dataset_for_server()
         utils.set_initial_params(self.model, data_train, label_train)
 

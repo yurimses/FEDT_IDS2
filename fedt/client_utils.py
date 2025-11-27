@@ -1,4 +1,4 @@
-from fedt.settings import results_folder
+from fedt.settings import results_folder, max_depth, min_samples_leaf, min_samples_split, max_features, ccp_alpha  # [CLASSIF]
 
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier #[CLASSIF]
@@ -21,7 +21,14 @@ class HouseClient():
         self.X_train, self.y_train, self.X_test, self.y_test = dataset
 
         # Initialize local model and set initial_parameters
-        self.local_model = RandomForestClassifier(n_estimators=trees_by_client) #[CLASSIF]
+        self.local_model = RandomForestClassifier(  # [CLASSIF]
+            n_estimators=trees_by_client,
+            max_depth=max_depth,  # [CLASSIF]
+            min_samples_leaf=min_samples_leaf,  # [CLASSIF]
+            min_samples_split=min_samples_split,  # [CLASSIF]
+            max_features=max_features,  # [CLASSIF]
+            ccp_alpha=ccp_alpha,  # [CLASSIF]
+        )
         utils.set_initial_params(self.local_model, self.X_train, self.y_train) 
         self.trees = self.local_model.estimators_
         self.ID = ID

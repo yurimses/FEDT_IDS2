@@ -8,7 +8,7 @@ dataset_path = 'ML-EdgeIIoT-FEDT.csv' # [CLASSIF]
 
 [settings]
 number_of_jobs = 12
-number_of_clients = 10
+number_of_clients = 5
 number_of_rounds = 5
 aggregation_strategy = "best_trees"
 
@@ -31,6 +31,14 @@ validate_dataset_size = 1000
 print_every_trees_sent = 50
 timeout = 360
 debug = true
+
+[settings.classification]
+# [CLASSIF] Hiperparâmetros de poda para as árvores de decisão da RandomForest
+max_depth = 3  # [CLASSIF] profundidade máxima das árvores (pre-pruning)
+min_samples_leaf = 1  # [CLASSIF] mínimo de amostras por folha (pre-pruning)
+min_samples_split = 2  # [CLASSIF] mínimo de amostras para dividir um nó (pre-pruning)
+max_features = "sqrt"  # [CLASSIF] fração de atributos considerados em cada split
+ccp_alpha = 0.0  # [CLASSIF] parâmetro de poda por custo-complexidade (post-pruning)
 
 [dataset]
 train_test_split_size = 0.25

@@ -10,7 +10,8 @@ import grpc.aio as grpc_aio
 from fedt.settings import (
     server_ip, server_port, number_of_rounds, 
     client_timeout, client_debug, 
-    imported_aggregation_strategy, many_simulations
+    imported_aggregation_strategy, many_simulations,
+    max_depth, min_samples_leaf, min_samples_split, max_features, ccp_alpha  # [CLASSIF]
 )
 from fedt import utils
 from fedt.utils import create_specific_result_folder
@@ -123,7 +124,11 @@ async def run():
 
             server_model = RandomForestClassifier( #[CLASSIF]
                 n_estimators=trees_by_client,
-                max_depth=3,
+                max_depth=max_depth,  # [CLASSIF]
+                min_samples_leaf=min_samples_leaf,  # [CLASSIF]
+                min_samples_split=min_samples_split,  # [CLASSIF]
+                max_features=max_features,  # [CLASSIF]
+                ccp_alpha=ccp_alpha,  # [CLASSIF]
                 warm_start=True
             )
             server_model.fit(dataset[0], dataset[1])

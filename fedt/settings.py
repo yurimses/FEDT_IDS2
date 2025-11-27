@@ -63,4 +63,12 @@ train_test_split_size = config["dataset"]["train_test_split_size"]
 percentage_value_of_samples_per_client = config["dataset"]["percentage_value_of_samples_per_client"]
 label_target = config["dataset"].get("label_target", "Attack_label")  # [CLASS]
 
+# [CLASSIF] Hiperparâmetros de poda para as árvores de decisão da RandomForest
+max_depth = config["settings"]["classification"]["max_depth"]  # [CLASSIF] profundidade máxima das árvores (pre-pruning)
+min_samples_leaf = config["settings"]["classification"]["min_samples_leaf"]  # [CLASSIF] mínimo de amostras por folha (pre-pruning)
+min_samples_split = config["settings"]["classification"]["min_samples_split"]  # [CLASSIF] mínimo de amostras para dividir um nó (pre-pruning)
+max_features = config["settings"]["classification"]["max_features"]  # [CLASSIF] fração de atributos considerados em cada split
+ccp_alpha = config["settings"]["classification"]["ccp_alpha"]  # [CLASSIF] parâmetro de poda por custo-complexidade (post-pruning)
+
+
 network_interface = config["scripts"]["network_interface"]
