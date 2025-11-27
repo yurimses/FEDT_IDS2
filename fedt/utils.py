@@ -1,7 +1,8 @@
 from fedt.settings import (
-    dataset_path, percentage_value_of_samples_per_client, 
+    dataset_path,  
     validate_dataset_size, aggregation_strategies, 
-    results_folder, logs_folder, label_target # [CLASS]
+    results_folder, logs_folder, label_target, # [CLASS]
+    number_of_clients, partition_type, non_iid_alpha,
     )
 
 import numpy as np
@@ -9,6 +10,8 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier # [CLASSIF]
 from sklearn.preprocessing import LabelEncoder  # [CLASS]
+from datasets import Dataset  # [CLASSIF]
+from flwr_datasets.partitioner import IidPartitioner, DirichletPartitioner  # [CLASSIF]
 
 import pickle
 import tempfile
@@ -97,19 +100,46 @@ def load_dataset():
     X = X.astype(np.float32)  # [CLASS]
     return X.to_numpy(), y  # [CLASS]
 
-def load_house_client():
-    rng = np.random.default_rng()
-    X, y = load_dataset()
+def load_house_client(client_id: int):  # [CLASSIF]
+    """
+    Carrega a partição do dataset para um cliente específico usando os Partitioners do Flower.  # [CLASSIF]
+    """  # [CLASSIF]
+    X, y = load_dataset()  # [CLASSIF]
 
-    number_of_samples = int((len(X) * percentage_value_of_samples_per_client) / 100)
+    # [CLASSIF] Constrói um Dataset do Hugging Face a partir de X e y
+    data = {"features": X.tolist(), "label": y.tolist()}  # [CLASSIF]
+    hf_dataset = Dataset.from_dict(data)  # [CLASSIF]
 
-    idxs = rng.choice(X.shape[0], size=number_of_samples, replace=False)
-    X = X[idxs]  # [CLASSIF]
-    y = y[idxs]  # [CLASSIF]
+    # [CLASSIF] Seleciona o tipo de particionamento (iid ou non-iid)
+    pt = partition_type.lower() if isinstance(partition_type, str) else "iid"  # [CLASSIF]
+    if pt == "iid":  # [CLASSIF]
+        partitioner = IidPartitioner(num_partitions=number_of_clients)  # [CLASSIF]
+    elif pt in ("non-iid", "non_iid", "noniid"):  # [CLASSIF]
+        partitioner = DirichletPartitioner(  # [CLASSIF]
+            num_partitions=number_of_clients,
+            partition_by="label",
+            alpha=non_iid_alpha,
+        )
+    else:
+        raise ValueError(f"Tipo de particionamento inválido: {partition_type}")  # [CLASSIF]
 
-    # [CLASSIF] Divisão estratificada para manter a proporção de classes
+    # [CLASSIF] Associa o dataset ao partitioner e carrega a partição do cliente
+    partitioner.dataset = hf_dataset  # [CLASSIF]
+
+    if client_id < 0 or client_id >= number_of_clients:  # [CLASSIF]
+        raise ValueError(
+            f"client_id {client_id} fora do intervalo [0, {number_of_clients - 1}]"
+        )  # [CLASSIF]
+
+    client_partition = partitioner.load_partition(partition_id=client_id)  # [CLASSIF]
+
+    # [CLASSIF] Converte de volta para NumPy
+    X_client = np.array(client_partition["features"], dtype=np.float32)  # [CLASSIF]
+    y_client = np.array(client_partition["label"])  # [CLASSIF]
+
+    # [CLASSIF] Divisão estratificada para manter a proporção de classes por cliente
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, stratify=y
+        X_client, y_client, test_size=0.2, stratify=y_client
     )  # [CLASSIF]
     return X_train, y_train, X_test, y_test
 

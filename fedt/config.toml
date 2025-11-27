@@ -20,6 +20,7 @@ aggregation_strategies = ['random', 'best_trees', 'threshold', 'best_forests']
 [settings.client]
 timeout = 420
 debug = true
+print_class_distribution = true  # [CLASSIF] exibe (true) ou não (false) a distribuição de classes por cliente
 
 [settings.server]
 IP = "0.0.0.0"
@@ -42,8 +43,9 @@ ccp_alpha = 0.0  # [CLASSIF] parâmetro de poda por custo-complexidade (post-pru
 
 [dataset]
 train_test_split_size = 0.25
-percentage_value_of_samples_per_client = 20
 label_target = "Attack_label"  # [CLASS]  # opções: "Attack_label", "Attack_type_6", "Attack_type"
+partition_type = "non-iid"  # [CLASSIF] tipo de particionamento do Flower: "iid" ou "non-iid"
+non_iid_alpha = 0.6  # [CLASSIF] parâmetro alpha da Dirichlet para o particionamento non-iid
 
 [scripts]
 network_interface = "eth0"

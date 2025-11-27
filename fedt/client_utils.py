@@ -62,6 +62,11 @@ class HouseClient():
             # [CLASSIF] Fallback: se não houver árvores globais, reutiliza a predição local.
             global_pred = local_pred  # [CLASSIF]
 
+        # DEBUG YURI: erros separadamente para local e global
+        # erros_local = np.sum(local_pred != y_true)  # [CLASSIF]
+        # erros_global = np.sum(global_pred != y_true)  # [CLASSIF]
+        # print(f"[DEBUG CLASSIF] Cliente {self.ID} - Erros local: {erros_local}, global: {erros_global}")  # [CLASSIF]
+
         # [CLASSIF] Métricas de classificação
         local_f1 = f1_score(y_true, local_pred, average="macro")  # [CLASSIF]
         global_f1 = f1_score(y_true, global_pred, average="macro")  # [CLASSIF]
@@ -101,6 +106,12 @@ class HouseClient():
             accuracy_value = local_accuracy  # [CLASSIF]
             precision_value = local_precision  # [CLASSIF]
             recall_value = local_recall  # [CLASSIF]
+
+        # [CLASSIF] DEBUG: contar erros das predições escolhidas (local ou global)
+        y_pred_escolhido = local_pred if not use_global else global_pred  # [CLASSIF]
+        erros = np.sum(y_pred_escolhido != y_true)  # [CLASSIF]
+        total = len(y_true)  # [CLASSIF]
+        # print(f"[DEBUG CLASSIF] Cliente {self.ID} - Erros: {erros}/{total}")  # [CLASSIF]
 
         return (
             f1_value,

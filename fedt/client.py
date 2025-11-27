@@ -4,6 +4,8 @@ import os
 import json
 import gc 
 
+import numpy as np
+
 import grpc
 import grpc.aio as grpc_aio
 
@@ -11,7 +13,8 @@ from fedt.settings import (
     server_ip, server_port, number_of_rounds, 
     client_timeout, client_debug, 
     imported_aggregation_strategy, many_simulations,
-    max_depth, min_samples_leaf, min_samples_split, max_features, ccp_alpha  # [CLASSIF]
+    max_depth, min_samples_leaf, min_samples_split, max_features, ccp_alpha, # [CLASSIF]
+    print_class_distribution,  # [CLASSIF]  
 )
 from fedt import utils
 from fedt.utils import create_specific_result_folder
@@ -82,7 +85,29 @@ async def run():
     async with grpc_aio.insecure_channel(f"{server_ip}:{server_port}") as channel:
         stub = fedT_pb2_grpc.FedTStub(channel)
 
-        dataset = utils.load_house_client()
+        dataset = utils.load_house_client(ID)  # [CLASSIF]
+
+        # [CLASSIF] Mostrar desproporção de classes por cliente (train/test),
+        # controlado pela flag print_class_distribution no config.toml
+        if print_class_distribution:  # [CLASSIF]
+            X_train, y_train, X_test, y_test = dataset  # [CLASSIF]
+            classes_train, counts_train = np.unique(y_train, return_counts=True)  # [CLASSIF]
+            classes_test, counts_test = np.unique(y_test, return_counts=True)  # [CLASSIF]
+
+            total_train = counts_train.sum()  # [CLASSIF]
+            total_test = counts_test.sum()  # [CLASSIF]
+
+            proportions_train = (counts_train / total_train).round(4)  # [CLASSIF]
+            proportions_test = (counts_test / total_test).round(4)  # [CLASSIF]
+
+            logger.info(
+                f"[CLASSIF] Cliente {ID} – distribuição y_train (classe, contagem, proporção): "
+                f"{list(zip(classes_train.tolist(), counts_train.tolist(), proportions_train.tolist()))}"
+            )  # [CLASSIF]
+            logger.info(
+                f"[CLASSIF] Cliente {ID} – distribuição y_test (classe, contagem, proporção): "
+                f"{list(zip(classes_test.tolist(), counts_test.tolist(), proportions_test.tolist()))}"
+            )  # [CLASSIF]
 
         for round_idx in range(number_of_rounds):
             round_start_time = time.time()

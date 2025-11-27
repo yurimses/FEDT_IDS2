@@ -53,6 +53,7 @@ aggregation_strategies = config["settings"]["sequence"]["aggregation_strategies"
 
 client_timeout = config["settings"]["client"]["timeout"]
 client_debug = config["settings"]["client"]["debug"]
+print_class_distribution = config["settings"]["client"].get("print_class_distribution", False)  # [CLASSIF]
 
 server_config = config["settings"]["server"]
 server_ip = config["settings"]["server"]["IP"]
@@ -60,8 +61,9 @@ server_port = config["settings"]["server"]["port"]
 validate_dataset_size = config["settings"]["server"]["validate_dataset_size"]
 
 train_test_split_size = config["dataset"]["train_test_split_size"]
-percentage_value_of_samples_per_client = config["dataset"]["percentage_value_of_samples_per_client"]
 label_target = config["dataset"].get("label_target", "Attack_label")  # [CLASS]
+partition_type = config["dataset"].get("partition_type", "iid")  # [CLASSIF]
+non_iid_alpha = config["dataset"].get("non_iid_alpha", 0.3)  # [CLASSIF]
 
 # [CLASSIF] Hiperparâmetros de poda para as árvores de decisão da RandomForest
 max_depth = config["settings"]["classification"]["max_depth"]  # [CLASSIF] profundidade máxima das árvores (pre-pruning)
