@@ -53,7 +53,7 @@ TARGET_STRINGS = ["--client-id", "fedt run server"]
 LOG_FILE = logs_folder / f"cpu_and_ram_{user}_{strategy}_{simulation_number}.json"
 CHECK_INTERVAL = 0.5
 SAVE_INTERVAL = 50
-
+NUM_LOGICAL_CORES = psutil.cpu_count(logical=True) or 1  # [CLASSIF]
 
 def monitor_specific_pid(pid):
     """Monitorar apenas um PID específico."""
@@ -72,7 +72,8 @@ def monitor_specific_pid(pid):
 
     while proc.is_running():
         try:
-            cpu = proc.cpu_percent(interval=None)
+            # cpu = proc.cpu_percent(interval=None)
+            cpu = proc.cpu_percent(interval=None) / NUM_LOGICAL_CORES  # [CLASSIF]
             mem = proc.memory_info().rss / (1024 * 1024)
             threads = proc.num_threads()
             timestamp = time.time()
@@ -129,7 +130,8 @@ def monitor_by_patterns():
                         continue
 
                     pid = proc.pid
-                    cpu = proc.cpu_percent(interval=None)
+                    # cpu = proc.cpu_percent(interval=None)
+                    cpu = proc.cpu_percent(interval=None) / NUM_LOGICAL_CORES  # [CLASSIF]
                     mem = proc.memory_info().rss / (1024 * 1024)
                     threads = proc.num_threads()
                     timestamp = time.time()

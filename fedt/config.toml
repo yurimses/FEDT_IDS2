@@ -8,8 +8,8 @@ dataset_path = 'ML-EdgeIIoT-FEDT.csv' # [CLASSIF]
 
 [settings]
 number_of_jobs = 12
-number_of_clients = 5
-number_of_rounds = 5
+number_of_clients = 10
+number_of_rounds = 30
 aggregation_strategy = "best_trees"
 
 [settings.sequence]
@@ -43,9 +43,9 @@ ccp_alpha = 0.0  # [CLASSIF] parâmetro de poda por custo-complexidade (post-pru
 
 [dataset]
 train_test_split_size = 0.25
-label_target = "Attack_label"  # [CLASS]  # opções: "Attack_label", "Attack_type_6", "Attack_type"
-partition_type = "non-iid"  # [CLASSIF] tipo de particionamento do Flower: "iid" ou "non-iid"
-non_iid_alpha = 0.6  # [CLASSIF] parâmetro alpha da Dirichlet para o particionamento non-iid
+label_target = "Attack_type_6"  # [CLASS]  # opções: "Attack_label", "Attack_type_6", "Attack_type"
+partition_type = "iid"  # [CLASSIF] tipo de particionamento do Flower: "iid" ou "non-iid"
+non_iid_alpha = 0.3  # [CLASSIF] parâmetro alpha da Dirichlet para o particionamento non-iid
 
 [scripts]
 network_interface = "eth0"
