@@ -5,6 +5,7 @@ import json
 import gc 
 
 import numpy as np
+import pandas as pd
 
 import grpc
 import grpc.aio as grpc_aio
@@ -15,6 +16,7 @@ from fedt.settings import (
     imported_aggregation_strategy, many_simulations,
     max_depth, min_samples_leaf, min_samples_split, max_features, ccp_alpha, # [CLASSIF]
     print_class_distribution,  # [CLASSIF]  
+    dataset_path, label_target,
 )
 from fedt import utils
 from fedt.utils import create_specific_result_folder
@@ -58,6 +60,49 @@ logger = utils.setup_logger(
     level=log_level
 )
 
+_CLASS_NAMES_FOR_CONFUSION = None  # [CLASSIF]
+
+
+def _get_class_names_for_confusion(num_classes):  # [CLASSIF]
+    """[CLASSIF] Retorna nomes de classes na mesma ordem da matriz de confusão."""  # [CLASSIF]
+    global _CLASS_NAMES_FOR_CONFUSION  # [CLASSIF]
+
+    if _CLASS_NAMES_FOR_CONFUSION is not None:  # [CLASSIF]
+        return _CLASS_NAMES_FOR_CONFUSION  # [CLASSIF]
+
+    try:  # [CLASSIF]
+        df_full = pd.read_csv(dataset_path)  # [CLASSIF]
+        label_col = str(label_target)  # [CLASSIF]
+        candidates = []  # [CLASSIF]
+
+        # [CLASSIF] Para rótulo binário, tenta colunas mais descritivas
+        if label_col == "Attack_label":  # [CLASSIF]
+            for desc_col in ("Attack_type_6", "Attack_type"):  # [CLASSIF]
+                if desc_col in df_full.columns and df_full[desc_col].nunique(dropna=True) == num_classes:  # [CLASSIF]
+                    candidates.append(desc_col)  # [CLASSIF]
+
+        if label_col in df_full.columns and df_full[label_col].nunique(dropna=True) == num_classes:  # [CLASSIF]
+            candidates.append(label_col)  # [CLASSIF]
+
+        for col in df_full.columns:  # [CLASSIF]
+            if col in candidates:  # [CLASSIF]
+                continue  # [CLASSIF]
+            if df_full[col].nunique(dropna=True) == num_classes:  # [CLASSIF]
+                candidates.append(col)  # [CLASSIF]
+
+        for col in candidates:  # [CLASSIF]
+            y_series = df_full[col].astype(str)  # [CLASSIF]
+            uniques = sorted(y_series.dropna().unique())  # [CLASSIF]
+            if len(uniques) == num_classes:  # [CLASSIF]
+                _CLASS_NAMES_FOR_CONFUSION = list(uniques)  # [CLASSIF]
+                return _CLASS_NAMES_FOR_CONFUSION  # [CLASSIF]
+
+        _CLASS_NAMES_FOR_CONFUSION = None  # [CLASSIF]
+        return None  # [CLASSIF]
+    except Exception as e:  # [CLASSIF]
+        logger.warning(f"[CLASSIF] Falha ao obter nomes de classe para matriz de confusão: {e}")  # [CLASSIF]
+        return None  # [CLASSIF]
+
 
 def send_stream_trees(serialise_trees:bytes, client_ID:int):
     async def _gen():
@@ -87,10 +132,23 @@ async def run():
 
         dataset = utils.load_house_client(ID)  # [CLASSIF]
 
-        # [CLASSIF] Mostrar desproporção de classes por cliente (train/test),
+         # [CLASSIF] Mostrar desproporção de classes por cliente (train/test),
         # controlado pela flag print_class_distribution no config.toml
         if print_class_distribution:  # [CLASSIF]
             X_train, y_train, X_test, y_test = dataset  # [CLASSIF]
+
+            # [CLASSIF] Usa pandas para obter estatísticas descritivas das classes
+            y_train_series = pd.Series(y_train, name="y_train")  # [CLASSIF]
+            y_test_series = pd.Series(y_test, name="y_test")  # [CLASSIF]
+
+            logger.info(
+                f"[CLASSIF] Cliente {ID} – y_train.describe():\n{y_train_series.describe()}"
+            )  # [CLASSIF]
+            logger.info(
+                f"[CLASSIF] Cliente {ID} – y_test.describe():\n{y_test_series.describe()}"
+            )  # [CLASSIF]
+
+            # [CLASSIF] Distribuição básica (código da classe, contagem e proporção)
             classes_train, counts_train = np.unique(y_train, return_counts=True)  # [CLASSIF]
             classes_test, counts_test = np.unique(y_test, return_counts=True)  # [CLASSIF]
 
@@ -100,13 +158,41 @@ async def run():
             proportions_train = (counts_train / total_train).round(4)  # [CLASSIF]
             proportions_test = (counts_test / total_test).round(4)  # [CLASSIF]
 
+            df_train = pd.DataFrame(  # [CLASSIF]
+                {
+                    "classe_codigo": classes_train,
+                    "contagem": counts_train,
+                    "proporcao": proportions_train,
+                }
+            ).set_index("classe_codigo")  # [CLASSIF]
+
+            df_test = pd.DataFrame(  # [CLASSIF]
+                {
+                    "classe_codigo": classes_test,
+                    "contagem": counts_test,
+                    "proporcao": proportions_test,
+                }
+            ).set_index("classe_codigo")  # [CLASSIF]
+
+            # [CLASSIF] Tenta mapear o código da classe para o nome original (por ex., Attack_type_6)
+            try:  # [CLASSIF]
+                df_full = pd.read_csv(dataset_path)  # [CLASSIF]
+                if label_target in df_full.columns:  # [CLASSIF]
+                    all_classes = sorted(  # [CLASSIF]
+                        map(str, df_full[label_target].dropna().unique())
+                    )  # [CLASSIF]
+                    code_to_name = {code: name for code, name in enumerate(all_classes)}  # [CLASSIF]
+
+                    df_train["classe_nome"] = df_train.index.map(code_to_name).astype("string")  # [CLASSIF]
+                    df_test["classe_nome"] = df_test.index.map(code_to_name).astype("string")  # [CLASSIF]
+            except Exception as e:  # [CLASSIF]
+                logger.warning(f"[CLASSIF] Falha ao mapear códigos de classe para nomes: {e}")  # [CLASSIF]
+
             logger.info(
-                f"[CLASSIF] Cliente {ID} – distribuição y_train (classe, contagem, proporção): "
-                f"{list(zip(classes_train.tolist(), counts_train.tolist(), proportions_train.tolist()))}"
+                f"[CLASSIF] Cliente {ID} – distribuição y_train (classe → contagem/proporção[/nome]):\n{df_train}"
             )  # [CLASSIF]
             logger.info(
-                f"[CLASSIF] Cliente {ID} – distribuição y_test (classe, contagem, proporção): "
-                f"{list(zip(classes_test.tolist(), counts_test.tolist(), proportions_test.tolist()))}"
+                f"[CLASSIF] Cliente {ID} – distribuição y_test (classe → contagem/proporção[/nome]):\n{df_test}"
             )  # [CLASSIF]
 
         for round_idx in range(number_of_rounds):
@@ -235,6 +321,7 @@ async def run():
                 "precision": precision_value,  # [CLASSIF]
                 "recall": recall_value,  # [CLASSIF]
                 "confusion_matrix": cm_norm.tolist(),  # [CLASSIF]
+                "confusion_matrix_labels": _get_class_names_for_confusion(len(cm_norm)),  # [CLASSIF]
                 "round_time": round_time,
                 "round_start_time": round_start_time,
                 "round_end_time": round_end_time,
