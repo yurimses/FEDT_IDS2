@@ -7,6 +7,13 @@ from collections import defaultdict
 import tomllib  # [CLASSIF]
 import pandas as pd  # [CLASSIF]
 from fedt.settings import dataset_path as SETTINGS_DATASET_PATH, label_target as SETTINGS_LABEL_TARGET  # [CLASSIF]
+from graphics_style import (
+    LABEL_FONT_SIZE,
+    LABEL_FONT_WEIGHT,
+    CONFUSION_MATRIX_CELL_SIZE,
+    CONFUSION_MATRIX_TEXT_SIZE,
+    apply_default_plot_style,
+)
 
 
 # ==========================
@@ -37,6 +44,7 @@ CPU_FILE = Path("/home/yuri/FEDT_IDS2/logs/cpu_ram/best_trees/cpu_and_ram_yuri_b
 FIG_DIR = Path("/home/yuri/FEDT_IDS2/figures")
 FIG_DIR.mkdir(parents=True, exist_ok=True)
 
+apply_default_plot_style(plt)
 
 # ==========================
 # FUNÇÕES AUXILIARES
@@ -285,8 +293,8 @@ def plot_f1_and_accuracy(rounds, f1_mean, f1_std, acc_mean, acc_std, output_dir:
     plt.figure()
     plt.errorbar(round_labels, f1_mean, yerr=f1_std, fmt="-o", capsize=5)
     plt.xlabel("Round")
-    plt.ylabel("F1")
-    plt.title("F1")
+    plt.ylabel("F1-Score")
+    # plt.title("F1")
     plt.savefig(output_dir / "fig1_f1_mean.png", dpi=300, bbox_inches="tight")
     plt.close()
 
@@ -295,7 +303,7 @@ def plot_f1_and_accuracy(rounds, f1_mean, f1_std, acc_mean, acc_std, output_dir:
     plt.errorbar(round_labels, acc_mean, yerr=acc_std, fmt="-o", capsize=5)
     plt.xlabel("Round")
     plt.ylabel("Accuracy")
-    plt.title("Accuracy")
+    # plt.title("Accuracy")
     plt.savefig(output_dir / "fig2_accuracy_mean.png", dpi=300, bbox_inches="tight")
     plt.close()
 
@@ -361,8 +369,8 @@ def plot_f1_and_accuracy_per_client_and_mean(client_files, output_dir: Path):
         label="Mean (clients)",
     )
     plt.xlabel("Round")
-    plt.ylabel("F1")
-    plt.title("F1 per client and mean")
+    plt.ylabel("F1-Score")
+    # plt.title("F1 per client and mean")
     plt.legend(ncol=2)
     plt.savefig(output_dir / "fig10_f1_clients_and_mean.png", dpi=300, bbox_inches="tight")
     plt.close()
@@ -382,7 +390,7 @@ def plot_f1_and_accuracy_per_client_and_mean(client_files, output_dir: Path):
     )
     plt.xlabel("Round")
     plt.ylabel("Accuracy")
-    plt.title("Accuracy per client and mean")
+    # plt.title("Accuracy per client and mean")
     plt.legend(ncol=2)
     plt.savefig(output_dir / "fig11_accuracy_clients_and_mean.png", dpi=300, bbox_inches="tight")
     plt.close()
@@ -409,7 +417,7 @@ def plot_round_times(rounds, train_mean, train_std, server_rounds, aggregation_t
         plt.plot(server_labels, aggregation_time, "-s", label="Aggregation time (server)")
     plt.xlabel("Round")
     plt.ylabel("Time (s)")
-    plt.title("Client training and server aggregation time per round")
+    # plt.title("Client training and server aggregation time per round")
     plt.legend()
     plt.savefig(output_dir / "fig3_client_train_and_server_agg_time.png", dpi=300, bbox_inches="tight")
     plt.close()
@@ -426,7 +434,7 @@ def plot_cpu_and_memory(series, output_dir: Path):
         plt.plot(v_client["t"], v_client["cpu"])
         plt.xlabel("Time (s)")
         plt.ylabel("CPU usage (%)")
-        plt.title("Client CPU usage over time")
+        # plt.title("Client CPU usage over time")
         plt.savefig(output_dir / "fig4_cpu_client_vs_time.png", dpi=300, bbox_inches="tight")
         plt.close()
 
@@ -437,7 +445,7 @@ def plot_cpu_and_memory(series, output_dir: Path):
         plt.plot(v_server["t"], v_server["cpu"])
         plt.xlabel("Time (s)")
         plt.ylabel("CPU usage (%)")
-        plt.title("Server CPU usage over time")
+        # plt.title("Server CPU usage over time")
         plt.savefig(output_dir / "fig4_cpu_server_vs_time.png", dpi=300, bbox_inches="tight")
         plt.close()
 
@@ -447,7 +455,7 @@ def plot_cpu_and_memory(series, output_dir: Path):
         plt.plot(v["t"], v["mem"], label=label)
     plt.xlabel("Time (s)")
     plt.ylabel("Memory (MB)")
-    plt.title("Memory usage over time")
+    # plt.title("Memory usage over time")
     plt.legend()
     plt.savefig(output_dir / "fig5_memory_vs_time.png", dpi=300, bbox_inches="tight")
     plt.close()
@@ -464,7 +472,7 @@ def plot_inference_time(rounds, infer_mean, infer_std, output_dir: Path):
     plt.errorbar(round_labels, infer_mean, yerr=infer_std, fmt="-o", capsize=5)
     plt.xlabel("Round")
     plt.ylabel("Inference time (s)")
-    plt.title("Inference time per round (mean clients)")
+    # plt.title("Inference time per round (mean clients)")
     plt.savefig(output_dir / "fig6_inference_time_per_round.png", dpi=300, bbox_inches="tight")
     plt.close()
 
@@ -481,7 +489,7 @@ def plot_cpu_usage_per_round(rounds, client_cpu, server_cpu, output_dir: Path):
     plt.plot(round_labels, server_cpu, "-s", label="Server")
     plt.xlabel("Round")
     plt.ylabel("CPU usage (%)")
-    plt.title("CPU usage per round")
+    # plt.title("CPU usage per round")
     plt.legend()
     plt.savefig(output_dir / "fig7_cpu_usage_per_round.png", dpi=300, bbox_inches="tight")
     plt.close()
@@ -531,7 +539,7 @@ def plot_last_round_metrics_bar(client_files, output_dir: Path):
     colors = ["tab:blue", "tab:orange", "tab:green", "tab:red"]
 
     plt.figure()
-    plt.bar(
+    bars = plt.bar(
         x,
         values,
         yerr=errors,
@@ -540,15 +548,32 @@ def plot_last_round_metrics_bar(client_files, output_dir: Path):
         edgecolor="black",
         linewidth=1.0,
     )
-    plt.xticks(x, labels)
+    for bar, value, err in zip(bars, values, errors):
+        height = bar.get_height()
+        plt.text(
+            bar.get_x() + bar.get_width() / 2,
+            height + max(err, 0.01),
+            f"{value:.2f}",
+            ha="center",
+            va="bottom",
+            fontsize=LABEL_FONT_SIZE,
+            fontweight=LABEL_FONT_WEIGHT,
+        )
+    plt.xticks(x, labels, fontsize=LABEL_FONT_SIZE, fontweight=LABEL_FONT_WEIGHT)
+    plt.yticks(fontsize=LABEL_FONT_SIZE, fontweight=LABEL_FONT_WEIGHT)
     plt.ylim(0.0, 1.05)
-    plt.ylabel("Score")
-    if last_round is not None:
-        plt.title(f"Metrics (round {last_round + 1})")
-    else:
-        plt.title("Metrics")
+    plt.ylabel("Score", fontsize=LABEL_FONT_SIZE, fontweight=LABEL_FONT_WEIGHT)
+    # if last_round is not None:
+    #     plt.title(
+    #         f"Metrics (round {last_round + 1})",
+    #         fontsize=LABEL_FONT_SIZE,
+    #         fontweight=LABEL_FONT_WEIGHT,
+    #     )
+    # else:
+    #     plt.title("Metrics", fontsize=LABEL_FONT_SIZE, fontweight=LABEL_FONT_WEIGHT)
     plt.savefig(output_dir / "fig8_metrics.png", dpi=300, bbox_inches="tight")
     plt.close()
+
 
 def _plot_metric_boxplots_clients_by_round(  # [CLASSIF]
     rounds_data, selected_rounds, metric_key, metric_label, fig_name, output_dir: Path
@@ -622,7 +647,7 @@ def _plot_metric_boxplots_clients_by_round(  # [CLASSIF]
         n_rows,
         n_cols,
         figsize=(5.0 * n_cols, 4.0 * n_rows),
-        sharey=True,
+        sharey=False,
     )  # [CLASSIF]
     axes = axes.flatten()  # [CLASSIF]
 
@@ -653,18 +678,19 @@ def _plot_metric_boxplots_clients_by_round(  # [CLASSIF]
             ax.set_visible(False)  # [CLASSIF]
             continue  # [CLASSIF]
 
-        ax.boxplot(data, showmeans=True, vert=True)  # [CLASSIF]
+        ax.boxplot(data, showmeans=False, vert=True)  # [CLASSIF]
         ax.set_xticks(range(1, len(client_labels) + 1))  # [CLASSIF]
         ax.set_xticklabels(client_labels, rotation=45)  # [CLASSIF]
         ax.set_ylabel(metric_label)  # [CLASSIF]
-        ax.set_title(label_str)  # [CLASSIF]
+        # ax.set_title(label_str)  # [CLASSIF]
         ax.set_ylim(y_lower, y_upper)  # [CLASSIF]
+        ax.grid(True, linestyle="--", linewidth=0.5, alpha=0.5)  # [CLASSIF]
 
     # esconde subplots sobrando, se houver menos de 4 intervalos  # [CLASSIF]
     for j in range(len(intervals), len(axes)):  # [CLASSIF]
         axes[j].set_visible(False)  # [CLASSIF]
 
-    fig.suptitle(f"{metric_label} – comparison across clients (round intervals)")  # [CLASSIF]
+    # fig.suptitle(f"{metric_label} – comparison across clients (round intervals)")  # [CLASSIF]
     fig.tight_layout(rect=[0, 0.03, 1, 0.95])  # [CLASSIF]
     fig.savefig(output_dir / fig_name, dpi=300, bbox_inches="tight")  # [CLASSIF]
     plt.close(fig)  # [CLASSIF]
@@ -780,7 +806,9 @@ def plot_confusion_matrices_clients(client_files, output_dir: Path):
     cols = min(5, n)
     rows = math.ceil(n / cols)
 
-    fig, axes = plt.subplots(rows, cols, figsize=(4 * cols, 4.5 * rows))
+    fig_width = CONFUSION_MATRIX_CELL_SIZE * cols
+    fig_height = (CONFUSION_MATRIX_CELL_SIZE + 0.5) * rows
+    fig, axes = plt.subplots(rows, cols, figsize=(fig_width, fig_height))
 
     if rows == 1 and cols == 1:
         axes = [[axes]]
@@ -827,7 +855,7 @@ def plot_confusion_matrices_clients(client_files, output_dir: Path):
                     ha="center",
                     va="center",
                     color=text_color,
-                    fontsize=8,
+                    fontsize=CONFUSION_MATRIX_TEXT_SIZE,
                 )  # [CLASSIF]
 
     # esconder eixos sobrando
@@ -837,12 +865,12 @@ def plot_confusion_matrices_clients(client_files, output_dir: Path):
         ax = axes[r][c]
         ax.axis("off")
 
-    plt.subplots_adjust(hspace=0.5, wspace=0.8, right=0.88)
+    plt.subplots_adjust(hspace=0.6, wspace=0.6, right=0.88)
 
     cbar_ax = fig.add_axes([0.90, 0.15, 0.02, 0.7])
     fig.colorbar(ims[-1], cax=cbar_ax)
 
-    fig.suptitle("Confusion Matrices (last round of each client)")
+    # fig.suptitle("Confusion Matrices (last round of each client)")
     fig.savefig(output_dir / "fig9_confusion_matrices_clients.png", dpi=300, bbox_inches="tight")
     plt.close(fig)
 

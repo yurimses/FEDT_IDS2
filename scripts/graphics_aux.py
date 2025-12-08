@@ -4,6 +4,16 @@ from statistics import mean, pstdev
 import math
 import matplotlib.pyplot as plt
 from collections import defaultdict
+import tomllib  # [CLASSIF]
+import pandas as pd  # [CLASSIF]
+from fedt.settings import dataset_path as SETTINGS_DATASET_PATH, label_target as SETTINGS_LABEL_TARGET  # [CLASSIF]
+from graphics_style import (
+    LABEL_FONT_SIZE,
+    LABEL_FONT_WEIGHT,
+    CONFUSION_MATRIX_CELL_SIZE,
+    CONFUSION_MATRIX_TEXT_SIZE,
+    apply_default_plot_style,
+)
 
 
 # ==========================
@@ -34,6 +44,7 @@ CPU_FILE = Path("/home/yuri/FEDT_IDS2/logs/cpu_ram/best_trees/cpu_and_ram_yuri_b
 FIG_DIR = Path("/home/yuri/FEDT_IDS2/figures")
 FIG_DIR.mkdir(parents=True, exist_ok=True)
 
+apply_default_plot_style(plt)
 
 # ==========================
 # FUNÇÕES AUXILIARES
@@ -51,10 +62,10 @@ def aggregate_client_metrics(client_files):
         "f1": [f1_c0, f1_c1, ...],
         "acc": [acc_c0, acc_c1, ...],
         "round_time": [rt_c0, rt_c1, ...],
-        "fit_time": [ft_c0, ft_c1, ...],
-        "inference_time": [it_c0, it_c1, ...],
-        "round_start": [t0_c0, t0_c1, ...],
-        "round_end": [t1_c0, t1_c1, ...],
+        "fit_time": [],
+        "inference_time": [],
+        "round_start": [],
+        "round_end": [],
     }
     """
     rounds_data = {}
@@ -273,7 +284,6 @@ def compute_cpu_usage_per_round(rounds_data, cpu_log_path: Path):
 # ==========================
 
 def plot_f1_and_accuracy(rounds, f1_mean, f1_std, acc_mean, acc_std, output_dir: Path):
-    # converter rounds 0,1,2 -> 1,2,3 no eixo x
     if not rounds:
         return
 
@@ -529,7 +539,7 @@ def plot_last_round_metrics_bar(client_files, output_dir: Path):
     colors = ["tab:blue", "tab:orange", "tab:green", "tab:red"]
 
     plt.figure()
-    plt.bar(
+    bars = plt.bar(
         x,
         values,
         yerr=errors,
@@ -538,15 +548,316 @@ def plot_last_round_metrics_bar(client_files, output_dir: Path):
         edgecolor="black",
         linewidth=1.0,
     )
-    plt.xticks(x, labels)
+    for bar, value, err in zip(bars, values, errors):
+        height = bar.get_height()
+        plt.text(
+            bar.get_x() + bar.get_width() / 2,
+            height + max(err, 0.01),
+            f"{value:.2f}",
+            ha="center",
+            va="bottom",
+            fontsize=LABEL_FONT_SIZE,
+            fontweight=LABEL_FONT_WEIGHT,
+        )
+    plt.xticks(x, labels, fontsize=LABEL_FONT_SIZE, fontweight=LABEL_FONT_WEIGHT)
     plt.ylim(0.0, 1.05)
-    plt.ylabel("Score")
+    plt.ylabel("Score", fontsize=LABEL_FONT_SIZE, fontweight=LABEL_FONT_WEIGHT)
     if last_round is not None:
-        plt.title(f"Metrics (round {last_round + 1})")
+        plt.title(
+            f"Metrics (round {last_round + 1})",
+            fontsize=LABEL_FONT_SIZE,
+            fontweight=LABEL_FONT_WEIGHT,
+        )
     else:
-        plt.title("Metrics")
+        plt.title("Metrics", fontsize=LABEL_FONT_SIZE, fontweight=LABEL_FONT_WEIGHT)
     plt.savefig(output_dir / "fig8_metrics.png", dpi=300, bbox_inches="tight")
     plt.close()
+
+# def plot_last_round_metrics_bar(client_files, output_dir: Path):
+#     """Gráfico de barras com média e desvio padrão de Accuracy, Recall, Precision e F1 no último round."""
+#     from statistics import mean as _mean, pstdev as _pstdev
+
+#     acc_vals, prec_vals, rec_vals, f1_vals = [], [], [], []
+#     last_round = None
+#     acc_per_round = defaultdict(list)  # [CLASSIF]
+#     prec_per_round = defaultdict(list)  # [CLASSIF]
+#     rec_per_round = defaultdict(list)  # [CLASSIF]
+#     f1_per_round = defaultdict(list)  # [CLASSIF]
+
+#     for path in client_files:
+#         if not path.exists():
+#             continue
+#         data = load_json(path)
+#         if not data:
+#             continue
+#         round_ids = [int(r) for r in data.keys()]
+#         for r in round_ids:  # [CLASSIF]
+#             m_r = data[str(r)]  # [CLASSIF]
+#             acc_per_round[r].append(m_r["accuracy"])  # [CLASSIF]
+#             prec_per_round[r].append(m_r["precision"])  # [CLASSIF]
+#             rec_per_round[r].append(m_r["recall"])  # [CLASSIF]
+#             f1_per_round[r].append(m_r["f1_score"])  # [CLASSIF]
+#         r_last = max(round_ids)
+#         if last_round is None or r_last > last_round:
+#             last_round = r_last
+#         m = data[str(r_last)]
+#         acc_vals.append(m["accuracy"])
+#         prec_vals.append(m["precision"])
+#         rec_vals.append(m["recall"])
+#         f1_vals.append(m["f1_score"])
+
+#     if not acc_vals:
+#         return
+
+#     acc_mean = _mean(acc_vals)
+#     prec_mean = _mean(prec_vals)
+#     rec_mean = _mean(rec_vals)
+#     f1_mean = _mean(f1_vals)
+
+#     acc_means_over_rounds = []  # [CLASSIF]
+#     prec_means_over_rounds = []  # [CLASSIF]
+#     rec_means_over_rounds = []  # [CLASSIF]
+#     f1_means_over_rounds = []  # [CLASSIF]
+
+#     for r in sorted(acc_per_round.keys()):  # [CLASSIF]
+#         vals_r = acc_per_round[r]  # [CLASSIF]
+#         if vals_r:  # [CLASSIF]
+#             acc_means_over_rounds.append(_mean(vals_r))  # [CLASSIF]
+
+#     for r in sorted(prec_per_round.keys()):  # [CLASSIF]
+#         vals_r = prec_per_round[r]  # [CLASSIF]
+#         if vals_r:  # [CLASSIF]
+#             prec_means_over_rounds.append(_mean(vals_r))  # [CLASSIF]
+
+#     for r in sorted(rec_per_round.keys()):  # [CLASSIF]
+#         vals_r = rec_per_round[r]  # [CLASSIF]
+#         if vals_r:  # [CLASSIF]
+#             rec_means_over_rounds.append(_mean(vals_r))  # [CLASSIF]
+
+#     for r in sorted(f1_per_round.keys()):  # [CLASSIF]
+#         vals_r = f1_per_round[r]  # [CLASSIF]
+#         if vals_r:  # [CLASSIF]
+#             f1_means_over_rounds.append(_mean(vals_r))  # [CLASSIF]
+
+#     acc_std = _pstdev(acc_means_over_rounds) if len(acc_means_over_rounds) > 1 else 0.0  # [CLASSIF]
+#     prec_std = _pstdev(prec_means_over_rounds) if len(prec_means_over_rounds) > 1 else 0.0  # [CLASSIF]
+#     rec_std = _pstdev(rec_means_over_rounds) if len(rec_means_over_rounds) > 1 else 0.0  # [CLASSIF]
+#     f1_std = _pstdev(f1_means_over_rounds) if len(f1_means_over_rounds) > 1 else 0.0  # [CLASSIF]
+
+#     labels = ["Accuracy", "Recall", "Precision", "F1-score"]
+#     values = [acc_mean, rec_mean, prec_mean, f1_mean]
+#     errors = [acc_std, rec_std, prec_std, f1_std]
+#     x = range(len(labels))
+
+#     colors = ["tab:blue", "tab:orange", "tab:green", "tab:red"]
+
+#     plt.figure()
+#     plt.bar(
+#         x,
+#         values,
+#         yerr=errors,
+#         capsize=5,
+#         color=colors,
+#         edgecolor="black",
+#         linewidth=1.0,
+#     )
+#     plt.xticks(x, labels)
+#     plt.ylim(0.0, 1.05)
+#     plt.ylabel("Score")
+#     if last_round is not None:
+#         plt.title(f"Metrics (round {last_round + 1})")
+#     else:
+#         plt.title("Metrics")
+#     plt.savefig(output_dir / "fig8_metrics.png", dpi=300, bbox_inches="tight")
+#     plt.close()
+
+
+def _plot_metric_boxplots_clients_by_round(  # [CLASSIF]
+    rounds_data, selected_rounds, metric_key, metric_label, fig_name, output_dir: Path
+):  # [CLASSIF]
+    """
+    [CLASSIF] Gera uma figura com 4 subplots (2x2), um para cada
+    intervalo de rounds:
+
+      - [1–10], [11–20], [21–30], [31–40]
+
+    (assumindo que selected_rounds = [10, 20, 30, 40]).
+
+    Em cada subplot:
+      - eixo X: clientes (C1, C2, ..., Cn);
+      - eixo Y: valores da métrica (F1 ou Accuracy);
+      - cada boxplot de cliente usa todos os valores desse cliente
+        dentro do intervalo de rounds correspondente.  # [CLASSIF]
+    """  # [CLASSIF]
+    if not rounds_data or not selected_rounds:  # [CLASSIF]
+        return  # [CLASSIF]
+
+    # usamos selected_rounds como últimos rounds de cada intervalo (1-based):
+    # 10 -> [1–10], 20 -> [11–20], etc.  # [CLASSIF]
+    unique_ends = sorted(set(selected_rounds))[:4]  # [CLASSIF]
+    if not unique_ends:  # [CLASSIF]
+        return  # [CLASSIF]
+
+    intervals = []  # lista de (start_idx, end_idx, label_str)  # [CLASSIF]
+    for end_disp in unique_ends:  # [CLASSIF]
+        start_disp = max(1, end_disp - 9)  # 10 rounds por intervalo  # [CLASSIF]
+        start_idx = start_disp - 1  # 0-based  # [CLASSIF]
+        end_idx = end_disp - 1  # 0-based  # [CLASSIF]
+        # label_str = f"Rounds {start_disp}-{end_disp}"  # [CLASSIF]
+        label_str = f"Round {end_disp}"  # [CLASSIF]
+        intervals.append((start_idx, end_idx, label_str))  # [CLASSIF]
+
+    # número de clientes = máximo comprimento da lista de métricas em qualquer round  # [CLASSIF]
+    n_clients = 0  # [CLASSIF]
+    for r_metrics in rounds_data.values():  # [CLASSIF]
+        n_clients = max(n_clients, len(r_metrics.get(metric_key, [])))  # [CLASSIF]
+    if n_clients == 0:  # [CLASSIF]
+        return  # [CLASSIF]
+
+    # calcula limites globais de Y para dar "zoom" na faixa relevante  # [CLASSIF]
+    global_vals = []  # [CLASSIF]
+    for start_idx, end_idx, _ in intervals:  # [CLASSIF]
+        for r in range(start_idx, end_idx + 1):  # [CLASSIF]
+            metrics_r = rounds_data.get(r)  # [CLASSIF]
+            if not metrics_r:  # [CLASSIF]
+                continue  # [CLASSIF]
+            vals_r = metrics_r.get(metric_key) or []  # [CLASSIF]
+            for cid in range(min(n_clients, len(vals_r))):  # [CLASSIF]
+                v = vals_r[cid]  # [CLASSIF]
+                if v is not None:  # [CLASSIF]
+                    global_vals.append(v)  # [CLASSIF]
+
+    if not global_vals:  # [CLASSIF]
+        return  # [CLASSIF]
+
+    y_min = min(global_vals)  # [CLASSIF]
+    y_max = max(global_vals)  # [CLASSIF]
+    if y_min == y_max:  # [CLASSIF]
+        y_margin = 0.001  # [CLASSIF]
+    else:  # [CLASSIF]
+        y_margin = 0.1 * (y_max - y_min)  # [CLASSIF]
+    y_lower = max(0.0, y_min - y_margin)  # [CLASSIF]
+    y_upper = min(1.0, y_max + y_margin)  # [CLASSIF]
+
+    n_rows, n_cols = 2, 2  # [CLASSIF]
+    fig, axes = plt.subplots(  # [CLASSIF]
+        n_rows,
+        n_cols,
+        figsize=(5.0 * n_cols, 4.0 * n_rows),
+        sharey=False,
+    )  # [CLASSIF]
+    axes = axes.flatten()  # [CLASSIF]
+
+    for idx, (start_idx, end_idx, label_str) in enumerate(intervals):  # [CLASSIF]
+        if idx >= len(axes):  # [CLASSIF]
+            break  # [CLASSIF]
+        ax = axes[idx]  # [CLASSIF]
+
+        # constrói série de valores por cliente ao longo do intervalo  # [CLASSIF]
+        data = []  # [CLASSIF]
+        client_labels = []  # [CLASSIF]
+        for cid in range(n_clients):  # [CLASSIF]
+            series = []  # [CLASSIF]
+            for r in range(start_idx, end_idx + 1):  # [CLASSIF]
+                metrics_r = rounds_data.get(r)  # [CLASSIF]
+                if not metrics_r:  # [CLASSIF]
+                    continue  # [CLASSIF]
+                vals_r = metrics_r.get(metric_key) or []  # [CLASSIF]
+                if cid < len(vals_r):  # [CLASSIF]
+                    v = vals_r[cid]  # [CLASSIF]
+                    if v is not None:  # [CLASSIF]
+                        series.append(v)  # [CLASSIF]
+            if series:  # [CLASSIF]
+                data.append(series)  # [CLASSIF]
+                client_labels.append(f"C{cid+1}")  # [CLASSIF]
+
+        if not data:  # [CLASSIF]
+            ax.set_visible(False)  # [CLASSIF]
+            continue  # [CLASSIF]
+
+        ax.boxplot(data, showmeans=False, vert=True)  # [CLASSIF]
+        ax.set_xticks(range(1, len(client_labels) + 1))  # [CLASSIF]
+        ax.set_xticklabels(client_labels, rotation=45)  # [CLASSIF]
+        ax.set_ylabel(metric_label)  # [CLASSIF]
+        ax.set_title(label_str)  # [CLASSIF]
+        ax.set_ylim(y_lower, y_upper)  # [CLASSIF]
+        ax.grid(True, linestyle="--", linewidth=0.5, alpha=0.5)  # [CLASSIF]
+
+    # esconde subplots sobrando, se houver menos de 4 intervalos  # [CLASSIF]
+    for j in range(len(intervals), len(axes)):  # [CLASSIF]
+        axes[j].set_visible(False)  # [CLASSIF]
+
+    fig.suptitle(f"{metric_label} – comparison across clients (round intervals)")  # [CLASSIF]
+    fig.tight_layout(rect=[0, 0.03, 1, 0.95])  # [CLASSIF]
+    fig.savefig(output_dir / fig_name, dpi=300, bbox_inches="tight")  # [CLASSIF]
+    plt.close(fig)  # [CLASSIF]
+
+def plot_f1_and_accuracy_boxplots_clients_by_round(  # [CLASSIF]
+    rounds_data, selected_rounds, output_dir: Path
+):  # [CLASSIF]
+    """
+    [CLASSIF] Wrapper que gera:
+      - uma figura de boxplots para F1 (fig12);
+      - uma figura de boxplots para Accuracy (fig13);
+    ambas com 4 subplots (rounds 10, 20, 30, 40) comparando clientes.  # [CLASSIF]
+    """  # [CLASSIF]
+    _plot_metric_boxplots_clients_by_round(  # [CLASSIF]
+        rounds_data,
+        selected_rounds,
+        "f1",
+        "F1-score",
+        "fig12_f1_clients_box_rounds_10_20_30_40.png",
+        output_dir,
+    )  # [CLASSIF]
+
+    _plot_metric_boxplots_clients_by_round(  # [CLASSIF]
+        rounds_data,
+        selected_rounds,
+        "acc",
+        "Accuracy",
+        "fig13_acc_clients_box_rounds_10_20_30_40.png",
+        output_dir,
+    )  # [CLASSIF]
+
+
+def _get_class_names_for_confusion(num_classes):  # [CLASSIF]
+    """
+    [CLASSIF] Recupera os nomes das classes a partir do dataset em uso
+    (dataset_path / label_target definidos em fedt.settings).  # [CLASSIF]
+    """  # [CLASSIF]
+    try:  # [CLASSIF]
+        df = pd.read_csv(SETTINGS_DATASET_PATH)  # [CLASSIF]
+
+        label_col = str(SETTINGS_LABEL_TARGET)  # [CLASSIF]
+        candidates = []  # [CLASSIF]
+
+        # 1) prioriza colunas mais informativas para rótulos binários  # [CLASSIF]
+        if label_col == "Attack_label":  # [CLASSIF]
+            for desc_col in ("Attack_type_6", "Attack_type"):  # [CLASSIF]
+                if desc_col in df.columns and df[desc_col].nunique(dropna=True) == num_classes:  # [CLASSIF]
+                    candidates.append(desc_col)  # [CLASSIF]
+
+        # 2) coluna de rótulo propriamente dita (caso multi-classe)  # [CLASSIF]
+        if label_col in df.columns and df[label_col].nunique(dropna=True) == num_classes:  # [CLASSIF]
+            candidates.append(label_col)  # [CLASSIF]
+
+        # 3) fallback genérico: outras colunas com a mesma cardinalidade  # [CLASSIF]
+        for col in df.columns:  # [CLASSIF]
+            if col in candidates:  # [CLASSIF]
+                continue  # [CLASSIF]
+            if df[col].nunique(dropna=True) == num_classes:  # [CLASSIF]
+                candidates.append(col)  # [CLASSIF]
+
+        # 4) extrai nomes ordenados (mesma ordem usada pelo LabelEncoder)  # [CLASSIF]
+        for col in candidates:  # [CLASSIF]
+            y_series = df[col].astype(str)  # [CLASSIF]
+            uniques = sorted(y_series.dropna().unique())  # [CLASSIF]
+            if len(uniques) == num_classes:  # [CLASSIF]
+                return list(uniques)  # [CLASSIF]
+
+        return None  # [CLASSIF]
+    except Exception:  # [CLASSIF]
+        return None  # [CLASSIF]
 
 
 def plot_confusion_matrices_clients(client_files, output_dir: Path):
@@ -556,6 +867,7 @@ def plot_confusion_matrices_clients(client_files, output_dir: Path):
     """
     cms = []
     labels = []
+    json_class_names = None  # [CLASSIF]
 
     for path in client_files:
         if not path.exists():
@@ -565,9 +877,16 @@ def plot_confusion_matrices_clients(client_files, output_dir: Path):
             continue
         round_ids = [int(r) for r in data.keys()]
         r_last = max(round_ids)
-        cm = data[str(r_last)].get("confusion_matrix")
+        m_last = data[str(r_last)]  # [CLASSIF]
+        cm = m_last.get("confusion_matrix")
         if cm is None:
             continue
+
+        # [CLASSIF] Tenta obter nomes de classes diretamente do JSON (se existirem)
+        if json_class_names is None:  # [CLASSIF]
+            names_from_json = m_last.get("confusion_matrix_labels")  # [CLASSIF]
+            if isinstance(names_from_json, list):  # [CLASSIF]
+                json_class_names = names_from_json  # [CLASSIF]
 
         cms.append(cm)
         parent_name = path.parent.name  # ex.: 'client-id-0'
@@ -584,9 +903,10 @@ def plot_confusion_matrices_clients(client_files, output_dir: Path):
     cols = min(5, n)
     rows = math.ceil(n / cols)
 
-    fig, axes = plt.subplots(rows, cols, figsize=(4 * cols, 4.5 * rows))
+    fig_width = CONFUSION_MATRIX_CELL_SIZE * cols
+    fig_height = (CONFUSION_MATRIX_CELL_SIZE + 0.5) * rows
+    fig, axes = plt.subplots(rows, cols, figsize=(fig_width, fig_height))
 
-    # organiza axes como matriz 2D
     if rows == 1 and cols == 1:
         axes = [[axes]]
     elif rows == 1:
@@ -595,6 +915,13 @@ def plot_confusion_matrices_clients(client_files, output_dir: Path):
         axes = [[ax] for ax in axes]
 
     num_classes = len(cms[0])
+
+    # [CLASSIF] Prioriza nomes vindos do JSON; se não houver, usa heurística anterior
+    if isinstance(json_class_names, list) and len(json_class_names) == num_classes:  # [CLASSIF]
+        class_names = json_class_names  # [CLASSIF]
+    else:  # [CLASSIF]
+        class_names = _get_class_names_for_confusion(num_classes)  # [CLASSIF]
+    middle_row = num_classes // 2  # [CLASSIF]
 
     ims = []
     for idx, cm in enumerate(cms):
@@ -606,8 +933,27 @@ def plot_confusion_matrices_clients(client_files, output_dir: Path):
         ax.set_title(labels[idx])
         ax.set_xlabel("Predicted")
         ax.set_ylabel("True")
-        ax.set_xticks(range(num_classes))
-        ax.set_yticks(range(num_classes))
+        ax.set_xticks(range(num_classes))  # [CLASSIF]
+        ax.set_yticks(range(num_classes))  # [CLASSIF]
+        if class_names is not None:  # [CLASSIF]
+            ax.set_xticklabels(class_names, rotation=45, ha="right")  # [CLASSIF]
+            ax.set_yticklabels(class_names)  # [CLASSIF]
+
+        # escreve o valor numérico em cada célula  # [CLASSIF]
+        for i in range(num_classes):  # [CLASSIF]
+            for j in range(num_classes):  # [CLASSIF]
+                val = cm[i][j]  # [CLASSIF]
+                # diagonal (classe correta) em preto, demais em branco  # [CLASSIF]
+                text_color = "black" if i == j else "white"  # [CLASSIF]
+                ax.text(  # [CLASSIF]
+                    j,
+                    i,
+                    f"{val:.2f}",
+                    ha="center",
+                    va="center",
+                    color=text_color,
+                    fontsize=CONFUSION_MATRIX_TEXT_SIZE,
+                )  # [CLASSIF]
 
     # esconder eixos sobrando
     for idx in range(len(cms), rows * cols):
@@ -616,10 +962,8 @@ def plot_confusion_matrices_clients(client_files, output_dir: Path):
         ax = axes[r][c]
         ax.axis("off")
 
-    # espaçamento e espaço para colorbar
-    plt.subplots_adjust(hspace=0.5, wspace=0.3, right=0.88)
+    plt.subplots_adjust(hspace=0.5, wspace=0.8, right=0.88)
 
-    # colorbar na lateral direita
     cbar_ax = fig.add_axes([0.90, 0.15, 0.02, 0.7])
     fig.colorbar(ims[-1], cax=cbar_ax)
 
@@ -633,7 +977,6 @@ def plot_confusion_matrices_clients(client_files, output_dir: Path):
 # ==========================
 
 def main():
-    # 1) Métricas dos clientes
     rounds_data = aggregate_client_metrics(CLIENT_FILES)
     (
         rounds,
@@ -647,16 +990,12 @@ def main():
         infer_std,
     ) = summarize_rounds(rounds_data)
 
-    # 2) Métricas do servidor
     server_rounds, trees_by_client, aggregation_time, avg_exec_time = load_server_metrics(SERVER_FILE)
 
-    # 3) Séries de CPU/RAM (para gráficos no tempo)
     cpu_series = load_cpu_ram_series(CPU_FILE)
 
-    # 4) CPU por round (clientes e servidor)
     cpu_rounds, client_cpu_per_round, server_cpu_per_round = compute_cpu_usage_per_round(rounds_data, CPU_FILE)
 
-    # 5) Plots
     plot_f1_and_accuracy(rounds, f1_mean, f1_std, acc_mean, acc_std, FIG_DIR)
     plot_f1_and_accuracy_per_client_and_mean(CLIENT_FILES, FIG_DIR)
     plot_round_times(rounds, train_mean, train_std, server_rounds, aggregation_time, FIG_DIR)
@@ -666,6 +1005,7 @@ def main():
         plot_cpu_usage_per_round(cpu_rounds, client_cpu_per_round, server_cpu_per_round, FIG_DIR)
     plot_last_round_metrics_bar(CLIENT_FILES, FIG_DIR)
     plot_confusion_matrices_clients(CLIENT_FILES, FIG_DIR)
+    plot_f1_and_accuracy_boxplots_clients_by_round(rounds_data, [10, 20, 30, 40], FIG_DIR)  # [CLASSIF]
 
 
 if __name__ == "__main__":
