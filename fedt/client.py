@@ -71,27 +71,42 @@ def _get_class_names_for_confusion(num_classes):  # [CLASSIF]
         return _CLASS_NAMES_FOR_CONFUSION  # [CLASSIF]
 
     try:  # [CLASSIF]
-        df_full = pd.read_csv(dataset_path)  # [CLASSIF]
+        # [CLASSIF] Lê apenas o cabeçalho (barato) para decidir quais colunas carregar
+        header = pd.read_csv(dataset_path, nrows=0)  # [CLASSIF]
         label_col = str(label_target)  # [CLASSIF]
-        candidates = []  # [CLASSIF]
+        available_cols = set(header.columns)  # [CLASSIF]
 
-        # [CLASSIF] Para rótulo binário, tenta colunas mais descritivas
+        # [CLASSIF] Carrega o mínimo possível: coluna alvo + possíveis colunas descritivas
+        usecols = []  # [CLASSIF]
+        if label_col in available_cols:  # [CLASSIF]
+            usecols.append(label_col)  # [CLASSIF]
+
+        # [CLASSIF] Para rótulo binário, tenta colunas mais descritivas (se existirem)
         if label_col == "Attack_label":  # [CLASSIF]
             for desc_col in ("Attack_type_6", "Attack_type"):  # [CLASSIF]
-                if desc_col in df_full.columns and df_full[desc_col].nunique(dropna=True) == num_classes:  # [CLASSIF]
+                if desc_col in available_cols:  # [CLASSIF]
+                    usecols.append(desc_col)  # [CLASSIF]
+
+        # [CLASSIF] Se nenhuma coluna relevante existe, não há como inferir nomes
+        if not usecols:  # [CLASSIF]
+            _CLASS_NAMES_FOR_CONFUSION = None  # [CLASSIF]
+            return None  # [CLASSIF]
+
+        df_small = pd.read_csv(dataset_path, usecols=list(dict.fromkeys(usecols)))  # [CLASSIF]
+
+        candidates = []  # [CLASSIF]
+        if label_col == "Attack_label":  # [CLASSIF]
+            for desc_col in ("Attack_type_6", "Attack_type"):  # [CLASSIF]
+                if desc_col in df_small.columns and df_small[desc_col].nunique(dropna=True) == num_classes:  # [CLASSIF]
                     candidates.append(desc_col)  # [CLASSIF]
 
-        if label_col in df_full.columns and df_full[label_col].nunique(dropna=True) == num_classes:  # [CLASSIF]
+        if label_col in df_small.columns and df_small[label_col].nunique(dropna=True) == num_classes:  # [CLASSIF]
             candidates.append(label_col)  # [CLASSIF]
 
-        for col in df_full.columns:  # [CLASSIF]
-            if col in candidates:  # [CLASSIF]
-                continue  # [CLASSIF]
-            if df_full[col].nunique(dropna=True) == num_classes:  # [CLASSIF]
-                candidates.append(col)  # [CLASSIF]
+        # [CLASSIF] OBS: removido o scan de "todas as colunas" para evitar carregar o CSV inteiro na memória.
 
         for col in candidates:  # [CLASSIF]
-            y_series = df_full[col].astype(str)  # [CLASSIF]
+            y_series = df_small[col].astype(str)  # [CLASSIF]
             uniques = sorted(y_series.dropna().unique())  # [CLASSIF]
             if len(uniques) == num_classes:  # [CLASSIF]
                 _CLASS_NAMES_FOR_CONFUSION = list(uniques)  # [CLASSIF]
@@ -176,7 +191,7 @@ async def run():
 
             # [CLASSIF] Tenta mapear o código da classe para o nome original (por ex., Attack_type_6)
             try:  # [CLASSIF]
-                df_full = pd.read_csv(dataset_path)  # [CLASSIF]
+                df_full = pd.read_csv(dataset_path, usecols=[label_target])  # [CLASSIF]
                 if label_target in df_full.columns:  # [CLASSIF]
                     all_classes = sorted(  # [CLASSIF]
                         map(str, df_full[label_target].dropna().unique())

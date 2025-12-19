@@ -10,8 +10,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier # [CLASSIF]
 from sklearn.preprocessing import LabelEncoder  # [CLASS]
-from datasets import Dataset  # [CLASSIF]
-from flwr_datasets.partitioner import IidPartitioner, DirichletPartitioner  # [CLASSIF]
+
 
 import pickle
 import tempfile
@@ -96,50 +95,107 @@ def load_dataset():
         le = LabelEncoder()  # [CLASS]
         y = le.fit_transform(y_series.astype(str))  # [CLASS]
 
-    X = df.drop(columns=["Attack_label", "Attack_type", "Attack_type_6"], errors="ignore")  # [CLASS]
+    # [CLASSIF] Remove o target e quaisquer colunas auxiliares de rótulo "Attack_*"
+    drop_cols = [label_target] + [c for c in df.columns if c.startswith("Attack_") and c != label_target]  # [CLASSIF]
+    X = df.drop(columns=drop_cols, errors="ignore")  # [CLASSIF]
+
+    # [CLASSIF] Garante que todas as features sejam numéricas (este dataset possui colunas categóricas como Protocol/Service)
+    for col in X.columns:  # [CLASSIF]
+        if X[col].dtype == "object":  # [CLASSIF]
+            X[col] = pd.factorize(X[col].astype(str), sort=True)[0]  # [CLASSIF]
+
     X = X.astype(np.float32)  # [CLASS]
     return X.to_numpy(), y  # [CLASS]
 
+def _partition_indices_iid(n_samples: int, num_partitions: int, seed: int = 42):  # [CLASSIF]
+    """[CLASSIF] Particionamento IID por índices (embaralha e divide em partes quase iguais)."""  # [CLASSIF]
+    rng = np.random.default_rng(seed)  # [CLASSIF]
+    indices = rng.permutation(n_samples)  # [CLASSIF]
+    return [arr.astype(int, copy=False) for arr in np.array_split(indices, num_partitions)]  # [CLASSIF]
+
+
+def _partition_indices_dirichlet(  # [CLASSIF]
+    y: np.ndarray, num_partitions: int, alpha: float, seed: int = 42, min_partition_size: int = 1  # [CLASSIF]
+):  # [CLASSIF]
+    """  # [CLASSIF]
+    [CLASSIF] Particionamento Non-IID label-based via Dirichlet(alpha).  # [CLASSIF]
+    A cada classe, amostras são distribuídas entre clientes segundo uma probabilidade ~ Dirichlet(alpha).  # [CLASSIF]
+    """  # [CLASSIF]
+    rng = np.random.default_rng(seed)  # [CLASSIF]
+    y = np.asarray(y)  # [CLASSIF]
+    classes = np.unique(y)  # [CLASSIF]
+
+    # [CLASSIF] Tenta algumas vezes para evitar partições vazias (equivalente à ideia de min_partition_size).  # [CLASSIF]
+    for _ in range(10):  # [CLASSIF]
+        parts = [[] for _ in range(num_partitions)]  # [CLASSIF]
+
+        for c in classes:  # [CLASSIF]
+            cls_idx = np.flatnonzero(y == c)  # [CLASSIF]
+            cls_idx = rng.permutation(cls_idx)  # [CLASSIF]
+            n_c = len(cls_idx)  # [CLASSIF]
+            if n_c == 0:  # [CLASSIF]
+                continue  # [CLASSIF]
+
+            probs = rng.dirichlet(np.repeat(alpha, num_partitions))  # [CLASSIF]
+            counts = rng.multinomial(n_c, probs)  # [CLASSIF]
+
+            start = 0  # [CLASSIF]
+            for pid, cnt in enumerate(counts):  # [CLASSIF]
+                if cnt > 0:  # [CLASSIF]
+                    parts[pid].append(cls_idx[start : start + cnt])  # [CLASSIF]
+                start += cnt  # [CLASSIF]
+
+        parts = [np.concatenate(p) if len(p) else np.array([], dtype=int) for p in parts]  # [CLASSIF]
+
+        if min_partition_size <= 1 or all(len(p) >= min_partition_size for p in parts):  # [CLASSIF]
+            return [rng.permutation(p) if len(p) else p for p in parts]  # [CLASSIF]
+
+    # [CLASSIF] Fallback: retorna a última tentativa mesmo sem satisfazer min_partition_size.  # [CLASSIF]
+    return [rng.permutation(p) if len(p) else p for p in parts]  # [CLASSIF]
+
+
 def load_house_client(client_id: int):  # [CLASSIF]
     """
-    Carrega a partição do dataset para um cliente específico usando os Partitioners do Flower.  # [CLASSIF]
+    [CLASSIF] Carrega a partição do dataset para um cliente específico (iid ou non-iid),
+    evitando converter X/y para listas Python (isso estoura memória em datasets grandes).  # [CLASSIF]
     """  # [CLASSIF]
     X, y = load_dataset()  # [CLASSIF]
 
-    # [CLASSIF] Constrói um Dataset do Hugging Face a partir de X e y
-    data = {"features": X.tolist(), "label": y.tolist()}  # [CLASSIF]
-    hf_dataset = Dataset.from_dict(data)  # [CLASSIF]
+    if client_id < 0 or client_id >= number_of_clients:  # [CLASSIF]
+        raise ValueError(  # [CLASSIF]
+            f"client_id {client_id} fora do intervalo [0, {number_of_clients - 1}]"  # [CLASSIF]
+        )  # [CLASSIF]
 
-    # [CLASSIF] Seleciona o tipo de particionamento (iid ou non-iid)
+    # [CLASSIF] Seleciona o tipo de particionamento (iid ou non-iid)  # [CLASSIF]
     pt = partition_type.lower() if isinstance(partition_type, str) else "iid"  # [CLASSIF]
     if pt == "iid":  # [CLASSIF]
-        partitioner = IidPartitioner(num_partitions=number_of_clients)  # [CLASSIF]
+        partitions = _partition_indices_iid(len(y), number_of_clients, seed=42)  # [CLASSIF]
     elif pt in ("non-iid", "non_iid", "noniid"):  # [CLASSIF]
-        partitioner = DirichletPartitioner(  # [CLASSIF]
-            num_partitions=number_of_clients,
-            partition_by="label",
-            alpha=non_iid_alpha,
-        )
+        partitions = _partition_indices_dirichlet(  # [CLASSIF]
+            y=np.asarray(y),  # [CLASSIF]
+            num_partitions=number_of_clients,  # [CLASSIF]
+            alpha=float(non_iid_alpha),  # [CLASSIF]
+            seed=42,  # [CLASSIF]
+            min_partition_size=1,  # [CLASSIF]
+        )  # [CLASSIF]
     else:
         raise ValueError(f"Tipo de particionamento inválido: {partition_type}")  # [CLASSIF]
 
-    # [CLASSIF] Associa o dataset ao partitioner e carrega a partição do cliente
-    partitioner.dataset = hf_dataset  # [CLASSIF]
+    client_idx = partitions[client_id]  # [CLASSIF]
+    if client_idx.size == 0:  # [CLASSIF]
+        raise ValueError(f"Partição vazia para client_id={client_id}. Ajuste alpha/num_clients.")  # [CLASSIF]
 
-    if client_id < 0 or client_id >= number_of_clients:  # [CLASSIF]
-        raise ValueError(
-            f"client_id {client_id} fora do intervalo [0, {number_of_clients - 1}]"
-        )  # [CLASSIF]
+    X_client = X[client_idx]  # [CLASSIF]
+    y_client = np.asarray(y)[client_idx]  # [CLASSIF]
 
-    client_partition = partitioner.load_partition(partition_id=client_id)  # [CLASSIF]
+    # [CLASSIF] Divisão estratificada quando possível; caso contrário, faz split simples para evitar erro.  # [CLASSIF]
+    stratify_arg = y_client  # [CLASSIF]
+    uniq, cnt = np.unique(y_client, return_counts=True)  # [CLASSIF]
+    if uniq.size < 2 or np.min(cnt) < 2:  # [CLASSIF]
+        stratify_arg = None  # [CLASSIF]
 
-    # [CLASSIF] Converte de volta para NumPy
-    X_client = np.array(client_partition["features"], dtype=np.float32)  # [CLASSIF]
-    y_client = np.array(client_partition["label"])  # [CLASSIF]
-
-    # [CLASSIF] Divisão estratificada para manter a proporção de classes por cliente
-    X_train, X_test, y_train, y_test = train_test_split(
-        X_client, y_client, test_size=0.2, stratify=y_client
+    X_train, X_test, y_train, y_test = train_test_split(  # [CLASSIF]
+        X_client, y_client, test_size=0.2, stratify=stratify_arg  # [CLASSIF]
     )  # [CLASSIF]
     return X_train, y_train, X_test, y_test
 
