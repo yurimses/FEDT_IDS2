@@ -136,6 +136,15 @@ class FedT(fedT_pb2_grpc.FedTServicer):
                 self.model.estimators_ = self.strategy.aggregate_fit_best_trees_threshold_strategy(best_forests, threshold)
             case 'best_forests':
                 self.model.estimators_ = self.strategy.aggregate_fit_best_forest_strategy(best_forests)
+            case 'class_coverage':
+                # Nova estratégia: garante cobertura por classe
+                trees_per_class = server_config.get("trees_per_class", 3)
+                total_trees_ratio = server_config.get("total_trees_ratio", 0.5)
+                self.model.estimators_ = self.strategy.aggregate_fit_best_trees_with_class_coverage_strategy(
+                    best_forests, 
+                    trees_per_class=trees_per_class,
+                    total_trees_ratio=total_trees_ratio
+                )
             case _:
                 self.model.estimators_ = self.strategy.aggregate_fit_random_trees_strategy(best_forests)
 

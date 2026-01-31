@@ -14,12 +14,18 @@ dataset_path = 'ML-EdgeIIoT-FEDT.csv' # [CLASSIF]
 number_of_jobs = 12
 number_of_clients = 10
 number_of_rounds = 20
-aggregation_strategy = "best_trees"
+aggregation_strategy = "class_coverage"
+# Estratégias disponíveis:
+# - 'random': seleciona árvores aleatoriamente
+# - 'best_trees': seleciona top 50% árvores por macro-F1
+# - 'threshold': seleciona árvores com MCC >= threshold
+# - 'best_forests': seleciona a melhor floresta completa
+# - 'class_coverage': garante cobertura por classe (recomendado para Non-IID)
 
 [settings.sequence]
 many_simulations = false
 number_of_simulations = 10
-aggregation_strategies = ['random', 'best_trees', 'threshold', 'best_forests']
+aggregation_strategies = ['random', 'best_trees', 'threshold', 'best_forests', 'class_coverage']
 
 [settings.client]
 timeout = 420
@@ -37,6 +43,10 @@ print_every_trees_sent = 50
 timeout = 360
 debug = true
 
+# Parâmetros para estratégia 'class_coverage'
+trees_per_class = 3  # número de árvores especialistas por classe
+total_trees_ratio = 0.5  # proporção total de árvores a manter
+
 [settings.classification]
 # [CLASSIF] Hiperparâmetros de poda para as árvores de decisão da RandomForest
 max_depth = 20  # [CLASSIF] profundidade máxima das árvores (pre-pruning)
@@ -53,8 +63,8 @@ label_target = "Attack_type_6"  # [CLASS]  # opções: "Attack_label", "Attack_t
 #label_target = "Attack_type_5"  # [CLASSIF] # opções: "Attack_label", WUSTL-IIoT preprocessed
 #label_target = "Attack_type_8"   # [CLASSIF] # CIC-IoT
 #partition_type = "iid"
-partition_type = "non_iid"  
-#partition_type = "non_iid_allclasses"  # [CLASSIF] non-IID mas garante todas as classes em todos os clientes
+#partition_type = "non_iid"  
+partition_type = "non_iid_allclasses"  # [CLASSIF] non-IID mas garante todas as classes em todos os clientes
 non_iid_alpha = 0.3  # [CLASSIF] parâmetro alpha da Dirichlet para o particionamento non-iid
 min_samples_per_class = 10  # [CLASSIF] mínimo de amostras por classe/cliente (usado em non_iid_allclasses)
 partition_seed = 42  # Seed para replicabilidade do particionamento (IID e NON-IID) e do train/test split
