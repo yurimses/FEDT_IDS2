@@ -4,8 +4,8 @@ results_folder = 'results'
 logs_folder = 'logs'
 scripts_path = 'scripts'
 client_script_path = 'fedt/client.py'
-#dataset_path = 'ML-EdgeIIoT-FEDT.csv' # [CLASSIF]
-dataset_path = 'ton_iot_preprocessed.csv' # [CLASSIF]
+dataset_path = 'ML-EdgeIIoT-FEDT.csv' # [CLASSIF]
+#dataset_path = 'ton_iot_preprocessed.csv' # [CLASSIF]
 #dataset_path = 'X-IIoTID_preprocessed.csv' # [CLASSIF]
 #dataset_path = 'wustl_iiot_preprocessed.csv'  # [CLASSIF]
 #dataset_path = 'cic_iot_preprocessed.csv' # [CLASSIF]
@@ -13,7 +13,7 @@ dataset_path = 'ton_iot_preprocessed.csv' # [CLASSIF]
 [settings]
 number_of_jobs = 12
 number_of_clients = 10
-number_of_rounds = 40
+number_of_rounds = 20
 aggregation_strategy = "best_trees"
 
 [settings.sequence]
@@ -47,14 +47,15 @@ ccp_alpha = 0.0  # [CLASSIF] parâmetro de poda por custo-complexidade (post-pru
 
 [dataset]
 train_test_split_size = 0.25
-#label_target = "Attack_type_6"  # [CLASS]  # opções: "Attack_label", "Attack_type_6", "Attack_type" # EdgeIIoT
-label_target = "Attack_type_10" # opções: "Attack_label", "Attack_type_10" # TON_IOT
+label_target = "Attack_type_6"  # [CLASS]  # opções: "Attack_label", "Attack_type_6", "Attack_type" # EdgeIIoT
+#label_target = "Attack_type_10" # opções: "Attack_label", "Attack_type_10" # TON_IOT
 #label_target = "Attack_type_9"  # opções: "Attack_label", "Attack_type_9", Attack_type_18 # X-IIoTID
 #label_target = "Attack_type_5"  # [CLASSIF] # opções: "Attack_label", WUSTL-IIoT preprocessed
 #label_target = "Attack_type_8"   # [CLASSIF] # CIC-IoT
-# partition_type = "iid"
+#partition_type = "iid"
 partition_type = "non_iid"  
 non_iid_alpha = 0.3  # [CLASSIF] parâmetro alpha da Dirichlet para o particionamento non-iid
+partition_seed = 42  # Seed para replicabilidade do particionamento (IID e NON-IID) e do train/test split
 
 [scripts]
 network_interface = "eth0"

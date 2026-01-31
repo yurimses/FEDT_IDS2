@@ -34,35 +34,35 @@ CONFUSION_MATRIX_COLORBAR_TICK_SIZE = 18
 
 # Arquivos dos clientes
 CLIENT_FILES = [
-    Path("/home/yuri/FEDT_IDS2/results/best_trees_IID/client-id-0/edgeiot/best_trees_client-id-0_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees_IID/client-id-1/edgeiot/best_trees_client-id-1_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees_IID/client-id-2/edgeiot/best_trees_client-id-2_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees_IID/client-id-3/edgeiot/best_trees_client-id-3_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees_IID/client-id-4/edgeiot/best_trees_client-id-4_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees_IID/client-id-5/edgeiot/best_trees_client-id-5_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees_IID/client-id-6/edgeiot/best_trees_client-id-6_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees_IID/client-id-7/edgeiot/best_trees_client-id-7_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees_IID/client-id-8/edgeiot/best_trees_client-id-8_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees_IID/client-id-9/edgeiot/best_trees_client-id-9_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-0/edgeiot/best_trees_client-id-0_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-1/edgeiot/best_trees_client-id-1_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-2/edgeiot/best_trees_client-id-2_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-3/edgeiot/best_trees_client-id-3_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-4/edgeiot/best_trees_client-id-4_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-5/edgeiot/best_trees_client-id-5_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-6/edgeiot/best_trees_client-id-6_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-7/edgeiot/best_trees_client-id-7_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-8/edgeiot/best_trees_client-id-8_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-9/edgeiot/best_trees_client-id-9_1.json"),
 ]
 
 # Arquivo do servidor
-SERVER_FILE = Path("/home/yuri/FEDT_IDS2/results/best_trees_IID/server/edgeiot/best_trees_server_1.json")
-# Arquivo de monitoramento de CPU/RAM
-CPU_FILE = Path("/home/yuri/FEDT_IDS2/logs/cpu_ram/best_trees_IID/edgeiot/cpu_and_ram_yuri_best_trees_0.json")
+SERVER_FILE = Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/server/edgeiot/best_trees_server_1.json")
+# Arquivo de monitoramento de CPU/RAM IID
+CPU_FILE = Path("/home/yuri/FEDT_IDS2/logs/cpu_ram/ML-EdgeIIoT-FEDT/iid/best_trees/cpu_and_ram_yuri_best_trees_0.json")
 
 # Arquivos dos clientes NON-IID
 CLIENT_FILES_NONIID = [
-    Path("/home/yuri/FEDT_IDS2/results/best_trees_NONIID/client-id-0/edgeiot/best_trees_client-id-0_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees_NONIID/client-id-1/edgeiot/best_trees_client-id-1_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees_NONIID/client-id-2/edgeiot/best_trees_client-id-2_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees_NONIID/client-id-3/edgeiot/best_trees_client-id-3_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees_NONIID/client-id-4/edgeiot/best_trees_client-id-4_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees_NONIID/client-id-5/edgeiot/best_trees_client-id-5_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees_NONIID/client-id-6/edgeiot/best_trees_client-id-6_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees_NONIID/client-id-7/edgeiot/best_trees_client-id-7_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees_NONIID/client-id-8/edgeiot/best_trees_client-id-8_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees_NONIID/client-id-9/edgeiot/best_trees_client-id-9_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/noniid/client-id-0/edgeiot/best_trees_client-id-0_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/noniid/client-id-1/edgeiot/best_trees_client-id-1_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/noniid/client-id-2/edgeiot/best_trees_client-id-2_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/noniid/client-id-3/edgeiot/best_trees_client-id-3_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/noniid/client-id-4/edgeiot/best_trees_client-id-4_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/noniid/client-id-5/edgeiot/best_trees_client-id-5_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/noniid/client-id-6/edgeiot/best_trees_client-id-6_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/noniid/client-id-7/edgeiot/best_trees_client-id-7_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/noniid/client-id-8/edgeiot/best_trees_client-id-8_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/noniid/client-id-9/edgeiot/best_trees_client-id-9_1.json"),
 ]
 
 # Pasta onde as figuras serão salvas

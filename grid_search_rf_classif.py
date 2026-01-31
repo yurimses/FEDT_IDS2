@@ -10,7 +10,7 @@ from sklearn.model_selection import GridSearchCV, StratifiedKFold
 
 def run_grid_search():  # [CLASSIF]
     
-    X, y = load_dataset()  # [CLASSIF]
+    X, y, _, _ = load_dataset()  # [CLASSIF]
 
     rf = RandomForestClassifier(
         n_estimators=100,  

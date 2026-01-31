@@ -130,8 +130,20 @@ def send_stream_trees(serialise_trees:bytes, client_ID:int):
     return _gen()
 
 async def run():
+    # Extrai dataset_name e partition_type das configurações
+    from pathlib import Path
+    from fedt.settings import partition_type as pt_setting
+    
+    dataset_name = Path(dataset_path).stem
+    partition_type_str = pt_setting.lower() if isinstance(pt_setting, str) else "iid"
+    
     base_file_name = f"{aggregation_strategy}_client-id-{ID}"
-    results_folder = create_specific_result_folder(aggregation_strategy, f"client-id-{ID}") 
+    results_folder = utils.create_specific_result_folder_with_dataset(
+        aggregation_strategy, 
+        dataset_name, 
+        partition_type_str, 
+        f"client-id-{ID}"
+    )
     existing_files = [
         file for file in os.listdir(results_folder)
         if file.startswith(base_file_name) and file.endswith(".json")

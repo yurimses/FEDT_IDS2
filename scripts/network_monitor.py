@@ -1,5 +1,5 @@
-from fedt.settings import scripts_folder, server_ip, server_port, network_interface
-from fedt.utils import create_specific_logs_folder, setup_logger
+from fedt.settings import scripts_folder, server_ip, server_port, network_interface, dataset_path, partition_type as pt_setting
+from fedt.utils import create_specific_logs_folder_with_dataset, setup_logger
 
 import subprocess
 
@@ -41,7 +41,11 @@ logger = setup_logger(
     level=logging.INFO
 )
 
-logs_folder = create_specific_logs_folder(strategy, "network")
+# Extrai dataset_name e partition_type das configurações
+dataset_name = Path(dataset_path).stem
+partition_type_str = pt_setting.lower() if isinstance(pt_setting, str) else "iid"
+
+logs_folder = create_specific_logs_folder_with_dataset(dataset_name, partition_type_str, strategy, "network")
 
 script = scripts_folder / "network_monitor" 
 interface = network_interface

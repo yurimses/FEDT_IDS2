@@ -1,4 +1,7 @@
-from fedt.settings import results_folder, max_depth, min_samples_leaf, min_samples_split, max_features, ccp_alpha  # [CLASSIF]
+from fedt.settings import (
+    results_folder, max_depth, min_samples_leaf, min_samples_split, 
+    max_features, ccp_alpha, ALL_LABELS  # [CLASSIF]
+)
 
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier #[CLASSIF]
@@ -13,6 +16,9 @@ import warnings
 from scipy.stats import ConstantInputWarning
 
 warnings.filterwarnings("ignore", category=ConstantInputWarning)
+
+# [CLASSIF] ALL_LABELS é importado de settings.py e inferido automaticamente do dataset
+# configurado em config.toml (dataset_path + label_target)
 
 class HouseClient():
 
@@ -68,8 +74,8 @@ class HouseClient():
         # print(f"[DEBUG CLASSIF] Cliente {self.ID} - Erros local: {erros_local}, global: {erros_global}")  # [CLASSIF]
 
         # [CLASSIF] Métricas de classificação
-        local_f1 = f1_score(y_true, local_pred, average="macro")  # [CLASSIF]
-        global_f1 = f1_score(y_true, global_pred, average="macro")  # [CLASSIF]
+        local_f1 = f1_score(y_true, local_pred, labels=ALL_LABELS, average="macro", zero_division=0)  # [CLASSIF]
+        global_f1 = f1_score(y_true, global_pred, labels=ALL_LABELS, average="macro", zero_division=0)  # [CLASSIF]
 
         local_mcc = matthews_corrcoef(y_true, local_pred)  # [CLASSIF]
         global_mcc = matthews_corrcoef(y_true, global_pred)  # [CLASSIF]
@@ -78,15 +84,15 @@ class HouseClient():
         local_accuracy = accuracy_score(y_true, local_pred)  # [CLASSIF]
         global_accuracy = accuracy_score(y_true, global_pred)  # [CLASSIF]
 
-        local_precision = precision_score(y_true, local_pred, average="macro", zero_division=0)  # [CLASSIF]
-        global_precision = precision_score(y_true, global_pred, average="macro", zero_division=0)  # [CLASSIF]
+        local_precision = precision_score(y_true, local_pred, labels=ALL_LABELS, average="macro", zero_division=0)  # [CLASSIF]
+        global_precision = precision_score(y_true, global_pred, labels=ALL_LABELS, average="macro", zero_division=0)  # [CLASSIF]
 
-        local_recall = recall_score(y_true, local_pred, average="macro", zero_division=0)  # [CLASSIF]
-        global_recall = recall_score(y_true, global_pred, average="macro", zero_division=0)  # [CLASSIF]
+        local_recall = recall_score(y_true, local_pred, labels=ALL_LABELS, average="macro", zero_division=0)  # [CLASSIF]
+        global_recall = recall_score(y_true, global_pred, labels=ALL_LABELS, average="macro", zero_division=0)  # [CLASSIF]
 
         # [CLASSIF] Matriz de confusão normalizada (linha = classe verdadeira, coluna = predição)
-        local_cm_norm = confusion_matrix(y_true, local_pred, normalize="true")  # [CLASSIF]
-        global_cm_norm = confusion_matrix(y_true, global_pred, normalize="true")  # [CLASSIF]
+        local_cm_norm = confusion_matrix(y_true, local_pred, labels=ALL_LABELS, normalize="true")  # [CLASSIF]
+        global_cm_norm = confusion_matrix(y_true, global_pred, labels=ALL_LABELS, normalize="true")  # [CLASSIF]
         
         # [CLASSIF] Seleção: F1 como métrica primária, MCC como critério secundário
         use_global = False  # [CLASSIF]

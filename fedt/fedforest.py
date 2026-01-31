@@ -12,6 +12,10 @@ from scipy.stats import ConstantInputWarning
 warnings.filterwarnings("ignore", category=ConstantInputWarning)
 
 from fedt import utils
+from fedt.settings import ALL_LABELS  # [CLASSIF]
+
+# [CLASSIF] ALL_LABELS é importado de settings.py e inferido automaticamente do dataset
+# configurado em config.toml (dataset_path + label_target)
 
 class FedForest():
     def __init__(self, model: RandomForestClassifier) -> None: # [CLASSIF]
@@ -47,7 +51,7 @@ class FedForest():
                 continue  # [CLASSIF]
 
             y_pred = self._predict_forest_majority(forest, data_valid)  # [CLASSIF]
-            f1 = f1_score(label_valid, y_pred, average="macro")  # [CLASSIF]
+            f1 = f1_score(label_valid, y_pred, labels=ALL_LABELS, average="macro", zero_division=0)  # [CLASSIF]
             if f1 > best_f1:  # [CLASSIF]
                 best_f1 = f1  # [CLASSIF]
                 best_forest = forest  # [CLASSIF]
@@ -69,7 +73,7 @@ class FedForest():
 
         def _f1_for_tree(tree):  # [CLASSIF]
             y_pred = tree.predict(X_valid)  # [CLASSIF]
-            return f1_score(y_valid, y_pred, average="macro")  # [CLASSIF]
+            return f1_score(y_valid, y_pred, labels=ALL_LABELS, average="macro", zero_division=0)  # [CLASSIF]
 
         for forest in best_forests:  # [CLASSIF]
             forest_trees = list(forest)  # [CLASSIF]

@@ -2,7 +2,8 @@ import psutil
 import time
 import json
 
-from fedt.utils import create_specific_logs_folder, setup_logger, get_process_cmd, find_target_processes
+from fedt.utils import create_specific_logs_folder_with_dataset, setup_logger, get_process_cmd, find_target_processes
+from fedt.settings import dataset_path, partition_type as pt_setting
 
 from pathlib import Path
 import logging
@@ -46,7 +47,11 @@ logger = setup_logger(
     level=logging.INFO
 )
 
-logs_folder = create_specific_logs_folder(strategy, "cpu_ram")
+# Extrai dataset_name e partition_type das configurações
+dataset_name = Path(dataset_path).stem
+partition_type_str = pt_setting.lower() if isinstance(pt_setting, str) else "iid"
+
+logs_folder = create_specific_logs_folder_with_dataset(dataset_name, partition_type_str, strategy, "cpu_ram")
 
 # Lista de padrões a monitorar (usado apenas quando pid não é fornecido)
 TARGET_STRINGS = ["--client-id", "fedt run server"]

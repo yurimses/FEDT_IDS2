@@ -62,8 +62,20 @@ class FedT(fedT_pb2_grpc.FedTServicer):
         if many_simulations:
             self.aggregation_strategy = input_aggregation_strategy
 
+        # Extrai dataset_name e partition_type das configurações
+        from pathlib import Path
+        from fedt.settings import dataset_path, partition_type as pt_setting
+        
+        dataset_name = Path(dataset_path).stem
+        partition_type_str = pt_setting.lower() if isinstance(pt_setting, str) else "iid"
+
         base_file_name = f"{self.aggregation_strategy}_server"
-        self.results_folder = create_specific_result_folder(self.aggregation_strategy, "server")
+        self.results_folder = utils.create_specific_result_folder_with_dataset(
+            self.aggregation_strategy, 
+            dataset_name, 
+            partition_type_str, 
+            "server"
+        )
         existing_files = [
             file for file in os.listdir(self.results_folder)
             if file.startswith(base_file_name) and file.endswith(".json")

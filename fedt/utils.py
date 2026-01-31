@@ -2,7 +2,8 @@ from fedt.settings import (
     dataset_path,  
     validate_dataset_size, aggregation_strategies, 
     results_folder, logs_folder, label_target, # [CLASS]
-    number_of_clients, partition_type, non_iid_alpha,
+    number_of_clients, partition_type, non_iid_alpha, partition_seed,
+    partitions_folder,
     )
 
 import numpy as np
@@ -81,6 +82,8 @@ def load_dataset():
     - Label Train: Os targets para treinar o modelo.
     - Data Test: As features para testar o modelo.
     - Label Test: Os targets para testar o modelo
+    - Feature Names: Os nomes das features originais
+    - Label Name: O nome da coluna de rótulo
     """
     df = pd.read_csv(dataset_path)  # [CLASS]
     if label_target not in df.columns:  # [CLASS]
@@ -99,13 +102,16 @@ def load_dataset():
     drop_cols = [label_target] + [c for c in df.columns if c.startswith("Attack_") and c != label_target]  # [CLASSIF]
     X = df.drop(columns=drop_cols, errors="ignore")  # [CLASSIF]
 
+    # [CLASSIF] Salva os nomes das features antes de converter para numpy
+    feature_names = list(X.columns)  # [CLASSIF]
+
     # [CLASSIF] Garante que todas as features sejam numéricas (este dataset possui colunas categóricas como Protocol/Service)
     for col in X.columns:  # [CLASSIF]
         if X[col].dtype == "object":  # [CLASSIF]
             X[col] = pd.factorize(X[col].astype(str), sort=True)[0]  # [CLASSIF]
 
     X = X.astype(np.float32)  # [CLASS]
-    return X.to_numpy(), y  # [CLASS]
+    return X.to_numpy(), y, feature_names, label_target  # [CLASS]
 
 def _partition_indices_iid(n_samples: int, num_partitions: int, seed: int = 42):  # [CLASSIF]
     """[CLASSIF] Particionamento IID por índices (embaralha e divide em partes quase iguais)."""  # [CLASSIF]
@@ -159,7 +165,7 @@ def load_house_client(client_id: int):  # [CLASSIF]
     [CLASSIF] Carrega a partição do dataset para um cliente específico (iid ou non-iid),
     evitando converter X/y para listas Python (isso estoura memória em datasets grandes).  # [CLASSIF]
     """  # [CLASSIF]
-    X, y = load_dataset()  # [CLASSIF]
+    X, y, feature_names, label_name = load_dataset()  # [CLASSIF]
 
     if client_id < 0 or client_id >= number_of_clients:  # [CLASSIF]
         raise ValueError(  # [CLASSIF]
@@ -169,13 +175,13 @@ def load_house_client(client_id: int):  # [CLASSIF]
     # [CLASSIF] Seleciona o tipo de particionamento (iid ou non-iid)  # [CLASSIF]
     pt = partition_type.lower() if isinstance(partition_type, str) else "iid"  # [CLASSIF]
     if pt == "iid":  # [CLASSIF]
-        partitions = _partition_indices_iid(len(y), number_of_clients, seed=42)  # [CLASSIF]
+        partitions = _partition_indices_iid(len(y), number_of_clients, seed=int(partition_seed))  # [CLASSIF]
     elif pt in ("non-iid", "non_iid", "noniid"):  # [CLASSIF]
         partitions = _partition_indices_dirichlet(  # [CLASSIF]
             y=np.asarray(y),  # [CLASSIF]
             num_partitions=number_of_clients,  # [CLASSIF]
             alpha=float(non_iid_alpha),  # [CLASSIF]
-            seed=42,  # [CLASSIF]
+            seed=int(partition_seed),  # [CLASSIF]
             min_partition_size=1,  # [CLASSIF]
         )  # [CLASSIF]
     else:
@@ -195,9 +201,62 @@ def load_house_client(client_id: int):  # [CLASSIF]
         stratify_arg = None  # [CLASSIF]
 
     X_train, X_test, y_train, y_test = train_test_split(  # [CLASSIF]
-        X_client, y_client, test_size=0.2, stratify=stratify_arg  # [CLASSIF]
+        X_client, y_client, test_size=0.2, stratify=stratify_arg, random_state=int(partition_seed)  # [CLASSIF]
     )  # [CLASSIF]
+    
+    # Salva as partições no disco
+    _save_partition(client_id, X_train, y_train, X_test, y_test, pt, feature_names, label_name)
+    
     return X_train, y_train, X_test, y_test
+
+
+def _save_partition(client_id: int, X_train, y_train, X_test, y_test, partition_type_str: str, feature_names: list, label_name: str):
+    """
+    Salva as partições de treino e teste de um cliente em formato CSV.
+    Organiza por: partitions/{dataset_name}/{partition_type}/client_{id}/
+    """
+    # Extrai o nome do dataset do caminho do arquivo
+    dataset_name = Path(dataset_path).stem
+    
+    # Cria o caminho da pasta: partitions/{dataset_name}/{partition_type}/
+    partition_dir = partitions_folder / dataset_name / partition_type_str / f"client_{client_id}"
+    partition_dir.mkdir(parents=True, exist_ok=True)
+    
+    # Salva train e test em arquivos CSV separados
+    train_path = partition_dir / "train.csv"
+    test_path = partition_dir / "test.csv"
+    
+    # Cria DataFrames com X e y combinados, usando os nomes das features
+    train_df = pd.DataFrame(X_train, columns=feature_names)
+    train_df[label_name] = y_train
+    train_df.to_csv(train_path, index=False)
+    
+    test_df = pd.DataFrame(X_test, columns=feature_names)
+    test_df[label_name] = y_test
+    test_df.to_csv(test_path, index=False)
+    
+    # Salva também metadados em JSON
+    import json
+    metadata = {
+        "client_id": client_id,
+        "dataset": dataset_name,
+        "partition_type": partition_type_str,
+        "partition_seed": int(partition_seed),
+        "label_name": label_name,
+        "feature_names": feature_names,
+        "num_features": len(feature_names),
+        "train_samples": len(X_train),
+        "test_samples": len(X_test),
+        "train_shape": list(X_train.shape),
+        "test_shape": list(X_test.shape),
+        "num_classes": len(np.unique(y_train)),
+        "train_class_distribution": {int(k): int(v) for k, v in zip(*np.unique(y_train, return_counts=True))},
+        "test_class_distribution": {int(k): int(v) for k, v in zip(*np.unique(y_test, return_counts=True))},
+    }
+    
+    metadata_path = partition_dir / "metadata.json"
+    with open(metadata_path, "w") as f:
+        json.dump(metadata, f, indent=2)
 
 def load_dataset_for_server() -> list:
     """
@@ -211,7 +270,7 @@ def load_dataset_for_server() -> list:
     - Data Train: As features.
     - Label Train: Os targets. 
     """
-    data, label = load_dataset()  # [CLASSIF]
+    data, label, feature_names, label_name = load_dataset()  # [CLASSIF]
 
     # [CLASSIF] Converte rótulos para array NumPy para tratamento genérico
     label_array = np.asarray(label)  # [CLASSIF]
@@ -241,7 +300,7 @@ def load_server_side_validation_data():
     - Label Valid: Os targets para validação. 
     """
     # [CLASSIF] Dados de validação para classificação com MNIST
-    data, label  = load_dataset()
+    data, label, _, _ = load_dataset()
 
     _, data_valid, _, label_valid = train_test_split(
         data, label, test_size=0.2, stratify=label
@@ -363,8 +422,20 @@ def create_specific_result_folder(strategy, base_name):
     subpath.mkdir(parents=True, exist_ok=True)
     return subpath
 
+def create_specific_result_folder_with_dataset(strategy, dataset_name, partition_type, base_name):
+    """Cria pasta de resultados com estrutura: results/{strategy}/{dataset_name}/{partition_type}/{base_name}"""
+    subpath = results_folder / strategy / dataset_name / partition_type / base_name
+    subpath.mkdir(parents=True, exist_ok=True)
+    return subpath
+
 def create_specific_logs_folder(strategy, base_name):
     subpath = logs_folder / base_name / strategy
+    subpath.mkdir(parents=True, exist_ok=True)
+    return subpath
+
+def create_specific_logs_folder_with_dataset(dataset_name, partition_type, strategy, base_name):
+    """Cria pasta de logs com estrutura: logs/{base_name}/{dataset_name}/{partition_type}/{strategy}"""
+    subpath = logs_folder / base_name / dataset_name / partition_type / strategy
     subpath.mkdir(parents=True, exist_ok=True)
     return subpath
 

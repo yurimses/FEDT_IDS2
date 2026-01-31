@@ -41,6 +41,7 @@ logs_folder = (base_path / config["paths"]["logs_folder"]).resolve()
 scripts_folder = (base_path / config["paths"]["scripts_path"]).resolve()
 client_script_path = (base_path / config["paths"]["client_script_path"]).resolve()
 dataset_path = (base_path / config["paths"]["dataset_path"]).resolve()
+partitions_folder = (base_path / "partitions").resolve()
 
 number_of_jobs = config["settings"]["number_of_jobs"]
 number_of_clients = config["settings"]["number_of_clients"]
@@ -64,6 +65,7 @@ train_test_split_size = config["dataset"]["train_test_split_size"]
 label_target = config["dataset"].get("label_target", "Attack_label")  # [CLASS]
 partition_type = config["dataset"].get("partition_type", "iid")  # [CLASSIF]
 non_iid_alpha = config["dataset"].get("non_iid_alpha", 0.3)  # [CLASSIF]
+partition_seed = config["dataset"].get("partition_seed", 42)  # Seed para replicabilidade
 
 # [CLASSIF] Hiperparâmetros de poda para as árvores de decisão da RandomForest
 max_depth = config["settings"]["classification"]["max_depth"]  # [CLASSIF] profundidade máxima das árvores (pre-pruning)
@@ -74,3 +76,42 @@ ccp_alpha = config["settings"]["classification"]["ccp_alpha"]  # [CLASSIF] parâ
 
 
 network_interface = config["scripts"]["network_interface"]
+
+# [CLASSIF] Extração automática das classes do dataset
+def _get_all_labels():
+    """[CLASSIF] Extrai automaticamente todas as classes únicas do dataset.
+    
+    Retorna uma lista ordenada de labels [0, 1, 2, ..., N-1] onde N é o número
+    de classes no dataset. Esta função lê apenas a coluna de labels do dataset
+    para minimizar o uso de memória.
+    
+    O retorno é sempre numérico (range de 0 a N-1) porque o código usa
+    LabelEncoder para converter labels string em inteiros sequenciais.
+    
+    Returns:
+        list: Lista ordenada de todos os labels únicos do dataset como inteiros [0, 1, ..., N-1]
+    """
+    try:
+        import pandas as pd
+        # Lê apenas a coluna de labels para economizar memória
+        df = pd.read_csv(dataset_path, usecols=[label_target])
+        
+        # Conta o número de classes únicas
+        n_classes = df[label_target].nunique()
+        
+        # Retorna range [0, 1, 2, ..., n_classes-1]
+        # Isso corresponde ao que LabelEncoder faz em utils.load_dataset()
+        return list(range(n_classes))
+    except Exception as e:
+        # Fallback: se houver erro, retorna None e deixa o código decidir
+        import warnings
+        warnings.warn(
+            f"Não foi possível extrair ALL_LABELS automaticamente: {e}. "
+            f"Considere definir ALL_LABELS manualmente.",
+            RuntimeWarning
+        )
+        return None
+
+# [CLASSIF] ALL_LABELS: conjunto global de labels para métricas comparáveis
+# É inferido automaticamente do dataset configurado em config.toml
+ALL_LABELS = _get_all_labels()
