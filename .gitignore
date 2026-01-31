@@ -208,3 +208,9 @@ __marimo__/
 
 # FEDT_IDS2 - Partitions folder
 partitions/
+
+# FEDT_IDS2 - Preprocessed datasets
+cic_iot_preprocessed.csv
+ton_iot_preprocessed.csv
+wustl_iiot_preprocessed.csv
+X-IIoTID_preprocessed.csv
