@@ -50,7 +50,6 @@ CLIENT_FILES = [
 SERVER_FILE = Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/non_iid/server/best_trees_server_1.json")
 # Arquivo de monitoramento de CPU/RAM IID
 CPU_FILE = Path("/home/yuri/FEDT_IDS2/logs/cpu_ram/ML-EdgeIIoT-FEDT/non_iid/best_trees/cpu_and_ram_yuri_best_trees_0.json")
-
 # Pasta onde as figuras serão salvas
 FIG_DIR = Path("/home/yuri/FEDT_IDS2/figures/best_trees/edgeiot/non_iid")
 FIG_DIR.mkdir(parents=True, exist_ok=True)

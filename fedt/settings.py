@@ -65,6 +65,7 @@ train_test_split_size = config["dataset"]["train_test_split_size"]
 label_target = config["dataset"].get("label_target", "Attack_label")  # [CLASS]
 partition_type = config["dataset"].get("partition_type", "iid")  # [CLASSIF]
 non_iid_alpha = config["dataset"].get("non_iid_alpha", 0.3)  # [CLASSIF]
+min_samples_per_class = config["dataset"].get("min_samples_per_class", 10)  # [CLASSIF]
 partition_seed = config["dataset"].get("partition_seed", 42)  # Seed para replicabilidade
 
 # [CLASSIF] Hiperparâmetros de poda para as árvores de decisão da RandomForest

@@ -54,7 +54,9 @@ label_target = "Attack_type_6"  # [CLASS]  # opções: "Attack_label", "Attack_t
 #label_target = "Attack_type_8"   # [CLASSIF] # CIC-IoT
 #partition_type = "iid"
 partition_type = "non_iid"  
+#partition_type = "non_iid_allclasses"  # [CLASSIF] non-IID mas garante todas as classes em todos os clientes
 non_iid_alpha = 0.3  # [CLASSIF] parâmetro alpha da Dirichlet para o particionamento non-iid
+min_samples_per_class = 10  # [CLASSIF] mínimo de amostras por classe/cliente (usado em non_iid_allclasses)
 partition_seed = 42  # Seed para replicabilidade do particionamento (IID e NON-IID) e do train/test split
 
 [scripts]

@@ -267,7 +267,8 @@ async def run():
                 min_samples_split=min_samples_split,  # [CLASSIF]
                 max_features=max_features,  # [CLASSIF]
                 ccp_alpha=ccp_alpha,  # [CLASSIF]
-                warm_start=True
+                class_weight='balanced',  # [CLASSIF] Balanceia automaticamente classes desbalanceadas
+                #warm_start=True  # [CLASSIF] Mantém árvores existentes ao chamar fit() 
             )
             server_model.fit(dataset[0], dataset[1])
             server_model.estimators_ = server_trees_deserialise

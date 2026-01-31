@@ -3,6 +3,7 @@ from fedt.settings import (
     validate_dataset_size, aggregation_strategies, 
     results_folder, logs_folder, label_target, # [CLASS]
     number_of_clients, partition_type, non_iid_alpha, partition_seed,
+    min_samples_per_class,  # [CLASSIF]
     partitions_folder,
     )
 
@@ -160,6 +161,74 @@ def _partition_indices_dirichlet(  # [CLASSIF]
     return [rng.permutation(p) if len(p) else p for p in parts]  # [CLASSIF]
 
 
+def _partition_indices_dirichlet_allclasses(  # [CLASSIF]
+    y: np.ndarray, num_partitions: int, alpha: float, seed: int = 42, min_samples_per_class: int = 10  # [CLASSIF]
+):  # [CLASSIF]
+    """  # [CLASSIF]
+    [CLASSIF] Particionamento Non-IID via Dirichlet(alpha) com GARANTIA de todas as classes em cada partição.  # [CLASSIF]
+    
+    Algoritmo híbrido:  # [CLASSIF]
+    1. Gera distribuição Dirichlet inicial (mantém heterogeneidade)  # [CLASSIF]
+    2. Redistribui amostras para garantir min_samples_per_class de cada classe em cada partição  # [CLASSIF]
+    3. Mantém características non-IID mas evita partições sem classes específicas  # [CLASSIF]
+    """  # [CLASSIF]
+    rng = np.random.default_rng(seed)  # [CLASSIF]
+    y = np.asarray(y)  # [CLASSIF]
+    classes = np.unique(y)  # [CLASSIF]
+    n_classes = len(classes)  # [CLASSIF]
+    
+    # [CLASSIF] Verificar se há amostras suficientes  # [CLASSIF]
+    for c in classes:  # [CLASSIF]
+        n_samples_class = np.sum(y == c)  # [CLASSIF]
+        min_needed = min_samples_per_class * num_partitions  # [CLASSIF]
+        if n_samples_class < min_needed:  # [CLASSIF]
+            import warnings  # [CLASSIF]
+            warnings.warn(  # [CLASSIF]
+                f"Classe {c} tem apenas {n_samples_class} amostras, "  # [CLASSIF]
+                f"mas precisa de {min_needed} para garantir {min_samples_per_class} por partição. "  # [CLASSIF]
+                f"Reduzindo para {n_samples_class // num_partitions} amostras por partição.",  # [CLASSIF]
+                RuntimeWarning  # [CLASSIF]
+            )  # [CLASSIF]
+            min_samples_per_class = max(1, n_samples_class // num_partitions)  # [CLASSIF]
+    
+    # [CLASSIF] Fase 1: Distribuição Dirichlet base  # [CLASSIF]
+    parts_indices = {pid: [] for pid in range(num_partitions)}  # [CLASSIF]
+    
+    for c in classes:  # [CLASSIF]
+        cls_idx = np.flatnonzero(y == c)  # [CLASSIF]
+        cls_idx = rng.permutation(cls_idx)  # [CLASSIF]
+        n_c = len(cls_idx)  # [CLASSIF]
+        
+        # [CLASSIF] Reservar min_samples_per_class para cada partição primeiro  # [CLASSIF]
+        reserved_per_partition = min(min_samples_per_class, n_c // num_partitions)  # [CLASSIF]
+        reserved_total = reserved_per_partition * num_partitions  # [CLASSIF]
+        remaining = n_c - reserved_total  # [CLASSIF]
+        
+        # [CLASSIF] Distribuir amostras reservadas uniformemente  # [CLASSIF]
+        idx = 0  # [CLASSIF]
+        for pid in range(num_partitions):  # [CLASSIF]
+            parts_indices[pid].append(cls_idx[idx:idx + reserved_per_partition])  # [CLASSIF]
+            idx += reserved_per_partition  # [CLASSIF]
+        
+        # [CLASSIF] Distribuir amostras restantes via Dirichlet (mantém heterogeneidade)  # [CLASSIF]
+        if remaining > 0:  # [CLASSIF]
+            probs = rng.dirichlet(np.repeat(alpha, num_partitions))  # [CLASSIF]
+            counts = rng.multinomial(remaining, probs)  # [CLASSIF]
+            
+            for pid, cnt in enumerate(counts):  # [CLASSIF]
+                if cnt > 0:  # [CLASSIF]
+                    parts_indices[pid].append(cls_idx[idx:idx + cnt])  # [CLASSIF]
+                    idx += cnt  # [CLASSIF]
+    
+    # [CLASSIF] Concatenar e embaralhar índices de cada partição  # [CLASSIF]
+    parts = [  # [CLASSIF]
+        rng.permutation(np.concatenate(parts_indices[pid])) if parts_indices[pid] else np.array([], dtype=int)  # [CLASSIF]
+        for pid in range(num_partitions)  # [CLASSIF]
+    ]  # [CLASSIF]
+    
+    return parts  # [CLASSIF]
+
+
 def load_house_client(client_id: int):  # [CLASSIF]
     """
     [CLASSIF] Carrega a partição do dataset para um cliente específico (iid ou non-iid),
@@ -183,6 +252,14 @@ def load_house_client(client_id: int):  # [CLASSIF]
             alpha=float(non_iid_alpha),  # [CLASSIF]
             seed=int(partition_seed),  # [CLASSIF]
             min_partition_size=1,  # [CLASSIF]
+        )  # [CLASSIF]
+    elif pt in ("non-iid-allclasses", "non_iid_allclasses", "noniid_allclasses"):  # [CLASSIF]
+        partitions = _partition_indices_dirichlet_allclasses(  # [CLASSIF]
+            y=np.asarray(y),  # [CLASSIF]
+            num_partitions=number_of_clients,  # [CLASSIF]
+            alpha=float(non_iid_alpha),  # [CLASSIF]
+            seed=int(partition_seed),  # [CLASSIF]
+            min_samples_per_class=int(min_samples_per_class),  # [CLASSIF]
         )  # [CLASSIF]
     else:
         raise ValueError(f"Tipo de particionamento inválido: {partition_type}")  # [CLASSIF]
