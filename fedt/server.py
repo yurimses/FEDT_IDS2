@@ -111,7 +111,7 @@ class FedT(fedT_pb2_grpc.FedTServicer):
             min_samples_split=min_samples_split,  # [CLASSIF]
             max_features=max_features,  # [CLASSIF]
             ccp_alpha=ccp_alpha,  # [CLASSIF]
-            class_weight='balanced',  # [CLASSIF] Balanceia automaticamente classes desbalanceadas
+            class_weight='balanced_subsample',  # [CLASSIF] Balanceia automaticamente classes desbalanceadas
             #warm_start=True  # [CLASSIF] Mantém árvores existentes ao chamar fit() novamente (não crítico aqui, pois sobrescrevemos estimators_)
         )
         data_train, label_train = utils.load_dataset_for_server()

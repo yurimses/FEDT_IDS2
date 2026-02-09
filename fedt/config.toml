@@ -44,8 +44,8 @@ timeout = 360
 debug = true
 
 # Parâmetros para estratégia 'class_coverage'
-trees_per_class = 3  # número de árvores especialistas por classe
-total_trees_ratio = 0.5  # proporção total de árvores a manter
+trees_per_class = 5  # número de árvores especialistas por classe
+total_trees_ratio = 0.3  # proporção total de árvores a manter
 
 [settings.classification]
 # [CLASSIF] Hiperparâmetros de poda para as árvores de decisão da RandomForest
