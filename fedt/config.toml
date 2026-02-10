@@ -14,7 +14,7 @@ dataset_path = 'ML-EdgeIIoT-FEDT.csv' # [CLASSIF]
 number_of_jobs = 12
 number_of_clients = 10
 number_of_rounds = 20
-aggregation_strategy = "class_coverage"
+aggregation_strategy = "best_trees"
 # Estratégias disponíveis:
 # - 'random': seleciona árvores aleatoriamente
 # - 'best_trees': seleciona top 50% árvores por macro-F1
@@ -64,10 +64,15 @@ label_target = "Attack_type_6"  # [CLASS]  # opções: "Attack_label", "Attack_t
 #label_target = "Attack_type_8"   # [CLASSIF] # CIC-IoT
 #partition_type = "iid"
 #partition_type = "non_iid"  
-partition_type = "non_iid_allclasses"  # [CLASSIF] non-IID mas garante todas as classes em todos os clientes
+#partition_type = "non_iid_allclasses"  # [CLASSIF] non-IID mas garante todas as classes em todos os clientes (min de 10 amostras)
+partition_type = "dominant_client"  # [CLASSIF] Um cliente dominante com X% dos dados, resto em non_iid_allclasses
 non_iid_alpha = 0.3  # [CLASSIF] parâmetro alpha da Dirichlet para o particionamento non-iid
 min_samples_per_class = 10  # [CLASSIF] mínimo de amostras por classe/cliente (usado em non_iid_allclasses)
 partition_seed = 42  # Seed para replicabilidade do particionamento (IID e NON-IID) e do train/test split
+
+# [CLASSIF] Parâmetros para estratégia 'dominant_client'
+dominant_client_id = 0  # ID do cliente que terá a maior porcentagem dos dados
+dominant_client_percentage = 0.7  # Porcentagem de dados que o cliente dominante receberá (0.0 a 1.0, ex: 0.7 = 70%)
 
 [scripts]
 network_interface = "eth0"

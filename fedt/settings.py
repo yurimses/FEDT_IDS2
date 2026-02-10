@@ -67,6 +67,9 @@ partition_type = config["dataset"].get("partition_type", "iid")  # [CLASSIF]
 non_iid_alpha = config["dataset"].get("non_iid_alpha", 0.3)  # [CLASSIF]
 min_samples_per_class = config["dataset"].get("min_samples_per_class", 10)  # [CLASSIF]
 partition_seed = config["dataset"].get("partition_seed", 42)  # Seed para replicabilidade
+# [CLASSIF] Parâmetros para estratégia 'dominant_client'
+dominant_client_id = config["dataset"].get("dominant_client_id", 0)  # [CLASSIF]
+dominant_client_percentage = config["dataset"].get("dominant_client_percentage", 0.7)  # [CLASSIF]
 
 # [CLASSIF] Hiperparâmetros de poda para as árvores de decisão da RandomForest
 max_depth = config["settings"]["classification"]["max_depth"]  # [CLASSIF] profundidade máxima das árvores (pre-pruning)
