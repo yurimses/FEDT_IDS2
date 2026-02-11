@@ -170,7 +170,12 @@ class FedT(fedT_pb2_grpc.FedTServicer):
             await asyncio.sleep(0.2)
 
             async with self.lock:
-                enough = ( len(self.trees_warehouse) >= self.clientes_esperados )
+                # --- Unlearning: ajusta clientes_esperados dinamicamente no início do round --- [UNLEARNING]
+                clientes_esperados_atual = self.clientes_esperados
+                if self.unlearning_enabled and self.round >= self.unlearning_round:
+                    clientes_esperados_atual = number_of_clients - 1
+                
+                enough = ( len(self.trees_warehouse) >= clientes_esperados_atual )
                 should_start = ( self.aggregation_realised == 0 and enough )
 
                 if should_start:
