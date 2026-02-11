@@ -74,5 +74,8 @@ partition_seed = 42  # Seed para replicabilidade do particionamento (IID e NON-I
 dominant_client_id = 0  # ID do cliente que terá a maior porcentagem dos dados
 dominant_client_percentage = 0.7  # Porcentagem de dados que o cliente dominante receberá (0.0 a 1.0, ex: 0.7 = 70%)
 
+# [UNLEARNING] Parâmetros para machine unlearning
+unlearning_round = 10  # Round após o qual o cliente dominante é esquecido e bloqueado
+
 [scripts]
 network_interface = "eth0"

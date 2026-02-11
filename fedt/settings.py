@@ -71,6 +71,9 @@ partition_seed = config["dataset"].get("partition_seed", 42)  # Seed para replic
 dominant_client_id = config["dataset"].get("dominant_client_id", 0)  # [CLASSIF]
 dominant_client_percentage = config["dataset"].get("dominant_client_percentage", 0.7)  # [CLASSIF]
 
+# [UNLEARNING] Parâmetros para machine unlearning
+unlearning_round = config["dataset"].get("unlearning_round", 10)  # [UNLEARNING]
+
 # [CLASSIF] Hiperparâmetros de poda para as árvores de decisão da RandomForest
 max_depth = config["settings"]["classification"]["max_depth"]  # [CLASSIF] profundidade máxima das árvores (pre-pruning)
 min_samples_leaf = config["settings"]["classification"]["min_samples_leaf"]  # [CLASSIF] mínimo de amostras por folha (pre-pruning)
