@@ -17,6 +17,7 @@ from fedt.settings import (
     max_depth, min_samples_leaf, min_samples_split, max_features, ccp_alpha, # [CLASSIF]
     print_class_distribution,  # [CLASSIF]  
     dataset_path, label_target,
+    dominant_client_id, unlearning_enabled, unlearning_round  # [UNLEARNING]
 )
 from fedt import utils
 from fedt.utils import create_specific_result_folder
@@ -223,6 +224,11 @@ async def run():
             )  # [CLASSIF]
 
         for round_idx in range(number_of_rounds):
+            # --- Unlearning: cliente dominante para de se comunicar após unlearning_round --- [UNLEARNING]
+            if unlearning_enabled and ID == dominant_client_id and round_idx >= unlearning_round:
+                logger.warning(f"[UNLEARNING] Cliente dominante (ID={ID}) encerrado após round {unlearning_round-1}. Não participa mais do treinamento.")
+                break
+                
             round_start_time = time.time()
             logger.warning(f"Round: {round_idx}")
 

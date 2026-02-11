@@ -14,7 +14,7 @@ from fedt.settings import (
     server_config, number_of_jobs, number_of_clients, 
     imported_aggregation_strategy, number_of_rounds, many_simulations,
     max_depth, min_samples_leaf, min_samples_split, max_features, ccp_alpha,  # [CLASSIF]
-    dominant_client_id, unlearning_round  # [UNLEARNING]
+    dominant_client_id, unlearning_enabled, unlearning_round  # [UNLEARNING]
 )
 from fedt.fedforest import FedForest
 from fedt import utils
@@ -64,6 +64,7 @@ class FedT(fedT_pb2_grpc.FedTServicer):
             self.aggregation_strategy = input_aggregation_strategy
 
         # --- Unlearning config --- [UNLEARNING]
+        self.unlearning_enabled = unlearning_enabled
         self.dominant_client_id = dominant_client_id
         self.unlearning_round = unlearning_round
         self.unlearning_done = False
@@ -135,7 +136,7 @@ class FedT(fedT_pb2_grpc.FedTServicer):
 
     def aggregate_strategy(self, best_forests: list[RandomForestClassifier], threshold=server_config["mcc_threshold"]): # [CLASSIF]
         # --- Unlearning: remove trees from dominant client after unlearning_round --- [UNLEARNING]
-        if self.round >= self.unlearning_round and not self.unlearning_done:
+        if self.unlearning_enabled and self.round >= self.unlearning_round and not self.unlearning_done:
             # Remove all trees from dominant client
             best_forests = [forest for idx, forest in enumerate(best_forests)
                            if self.trees_warehouse[idx][0] != self.dominant_client_id]
@@ -204,7 +205,7 @@ class FedT(fedT_pb2_grpc.FedTServicer):
         async for request in request_iterator:
             client_ID = request.client_ID
             # --- Unlearning: bloqueia comunicação do cliente dominante após round --- [UNLEARNING]
-            if self.round >= self.unlearning_round and client_ID == self.dominant_client_id:
+            if self.unlearning_enabled and self.round >= self.unlearning_round and client_ID == self.dominant_client_id:
                 logger.warning(f"[UNLEARNING] Ignorando árvores do cliente dominante (ID={client_ID}) após round {self.round}.")
                 return  # Não processa mais árvores desse cliente
             client_serialised_trees.append(request.serialised_tree)
@@ -284,7 +285,7 @@ class FedT(fedT_pb2_grpc.FedTServicer):
             
             # --- Unlearning: ajusta clientes_esperados dinamicamente --- [UNLEARNING]
             clientes_esperados_atual = self.clientes_esperados
-            if self.round >= self.unlearning_round:
+            if self.unlearning_enabled and self.round >= self.unlearning_round:
                 clientes_esperados_atual = number_of_clients - 1
                 
             logger.info(f"O cliente {request.client_ID} finalizou round. Clientes respondidos: {self.clientes_respondidos}/{clientes_esperados_atual}")
@@ -365,7 +366,7 @@ class FedT(fedT_pb2_grpc.FedTServicer):
         self.aggregation_time = 0.0
         
         # --- Unlearning: resetar clientes_esperados dinamicamente --- [UNLEARNING]
-        if self.round >= self.unlearning_round:
+        if self.unlearning_enabled and self.round >= self.unlearning_round:
             self.clientes_esperados = number_of_clients - 1
         else:
             self.clientes_esperados = number_of_clients

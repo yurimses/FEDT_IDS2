@@ -72,6 +72,7 @@ dominant_client_id = config["dataset"].get("dominant_client_id", 0)  # [CLASSIF]
 dominant_client_percentage = config["dataset"].get("dominant_client_percentage", 0.7)  # [CLASSIF]
 
 # [UNLEARNING] Parâmetros para machine unlearning
+unlearning_enabled = config["dataset"].get("unlearning_enabled", False)  # [UNLEARNING]
 unlearning_round = config["dataset"].get("unlearning_round", 10)  # [UNLEARNING]
 
 # [CLASSIF] Hiperparâmetros de poda para as árvores de decisão da RandomForest
