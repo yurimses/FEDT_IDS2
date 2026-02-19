@@ -122,7 +122,8 @@ class FedT(fedT_pb2_grpc.FedTServicer):
             class_weight='balanced_subsample',  # [CLASSIF] Balanceia automaticamente classes desbalanceadas
             #warm_start=True  # [CLASSIF] Mantém árvores existentes ao chamar fit() novamente (não crítico aqui, pois sobrescrevemos estimators_)
         )
-        data_train, label_train = utils.load_dataset_for_server()
+        # [UNLEARNING] Passa blocked_clients para excluir dados desses clientes
+        data_train, label_train = utils.load_dataset_for_server(excluded_clients=self.blocked_clients if self.blocked_clients else None)
         utils.set_initial_params(self.model, data_train, label_train)
 
         self.global_trees = self.model.estimators_
@@ -357,7 +358,8 @@ class FedT(fedT_pb2_grpc.FedTServicer):
             max_features=max_features,  # [CLASSIF]
             ccp_alpha=ccp_alpha,  # [CLASSIF]
         )
-        data_train, label_train = utils.load_dataset_for_server()
+        # [UNLEARNING] Passa blocked_clients para excluir dados desses clientes
+        data_train, label_train = utils.load_dataset_for_server(excluded_clients=self.blocked_clients if self.blocked_clients else None)
         utils.set_initial_params(self.model, data_train, label_train)
 
         self.global_trees = self.model.estimators_

@@ -13,7 +13,7 @@ dataset_path = 'ML-EdgeIIoT-FEDT.csv' # [CLASSIF]
 [settings]
 number_of_jobs = 12
 number_of_clients = 10
-number_of_rounds = 20
+number_of_rounds = 40
 aggregation_strategy = "best_trees"
 # Estratégias disponíveis:
 # - 'random': seleciona árvores aleatoriamente

@@ -473,18 +473,60 @@ def _save_partition(client_id: int, X_train, y_train, X_test, y_test, partition_
     with open(metadata_path, "w") as f:
         json.dump(metadata, f, indent=2)
 
-def load_dataset_for_server() -> list:
+def load_dataset_for_server(excluded_clients=None) -> list:
     """
     ### Função:
-    Carregar um subconjunto mínimo do dataset que contenha todas as classes presentes no problema.  # [CLASSIF]
-    Isso inicializa o modelo do servidor de forma compatível com qualquer dataset de classificação,   # [CLASSIF]
-    sem assumir um número fixo de amostras ou classes.                                                # [CLASSIF]
+    Carregar um subconjunto mínimo do dataset que contenha todas as classes presentes no problema.
+    Se excluded_clients for especificado, usa apenas dados dos clientes NÃO excluídos.
+    
     ### Args:
-    - None.
+    - excluded_clients: Set de IDs de clientes a excluir (ex: {0} para unlearning)
+    
     ### Returns:
     - Data Train: As features.
     - Label Train: Os targets. 
     """
+    # [UNLEARNING] Se há clientes excluídos, carrega dados apenas dos clientes restantes
+    if excluded_clients is not None and len(excluded_clients) > 0:
+        # Extrai dataset_name e partition_type das configurações
+        dataset_name = Path(dataset_path).stem
+        pt = partition_type.lower() if isinstance(partition_type, str) else "iid"
+        
+        partition_base = partitions_folder / dataset_name / pt
+        
+        # Coleta todos os dados de treino dos clientes NÃO excluídos
+        all_train_data = []
+        all_train_labels = []
+        
+        for client_id in range(number_of_clients):
+            if client_id in excluded_clients:
+                continue  # Pula o cliente excluído
+            
+            train_path = partition_base / f"client_{client_id}" / "train.csv"
+            if train_path.exists():
+                df = pd.read_csv(train_path)
+                # Separa features e label
+                y_col = df.columns[-1]  # Última coluna é o label
+                X_client = df.drop(columns=[y_col]).values
+                y_client = df[y_col].values
+                
+                all_train_data.append(X_client)
+                all_train_labels.append(y_client)
+        
+        if all_train_data:
+            # Concatena todos os dados
+            X_train = np.vstack(all_train_data)
+            y_train = np.concatenate(all_train_labels)
+            
+            # Para cada classe, escolhe um índice representativo (primeira ocorrência)
+            unique_classes, first_indices = np.unique(y_train, return_index=True)
+            
+            return X_train[first_indices], y_train[first_indices]
+        else:
+            # Fallback: usa dataset completo se não houver partições
+            pass
+    
+    # [CLASSIF] Comportamento padrão: usa dataset completo
     data, label, feature_names, label_name = load_dataset()  # [CLASSIF]
 
     # [CLASSIF] Converte rótulos para array NumPy para tratamento genérico
@@ -503,18 +545,68 @@ def load_dataset_for_server() -> list:
 
     return data_init, label_init  # [CLASSIF]
 
-def load_server_side_validation_data():
+def load_server_side_validation_data(excluded_clients=None):
     """
     ### Função:
-    Carregar o dataset com apenas 1000 amostras, 
-    servirá para carregar os dados de validação para testar a performance do modelo.
+    Carregar dados de validação do servidor. Se excluded_clients for especificado,
+    usa apenas os dados dos clientes NÃO excluídos (para machine unlearning).
+    
     ### Args:
-    - None.
+    - excluded_clients: Set de IDs de clientes a excluir (ex: {0} para unlearning)
+    
     ### Returns:
     - Data Valid: As features para validação.
     - Label Valid: Os targets para validação. 
     """
-    # [CLASSIF] Dados de validação para classificação com MNIST
+    # [UNLEARNING] Se há clientes excluídos, carrega dados apenas dos clientes restantes
+    if excluded_clients is not None and len(excluded_clients) > 0:
+        # Extrai dataset_name e partition_type das configurações
+        dataset_name = Path(dataset_path).stem
+        pt = partition_type.lower() if isinstance(partition_type, str) else "iid"
+        
+        partition_base = partitions_folder / dataset_name / pt
+        
+        # Coleta todos os dados de teste dos clientes NÃO excluídos
+        all_test_data = []
+        all_test_labels = []
+        
+        for client_id in range(number_of_clients):
+            if client_id in excluded_clients:
+                continue  # Pula o cliente excluído
+            
+            test_path = partition_base / f"client_{client_id}" / "test.csv"
+            if test_path.exists():
+                df = pd.read_csv(test_path)
+                # Separa features e label
+                y_col = df.columns[-1]  # Última coluna é o label
+                X_client = df.drop(columns=[y_col]).values
+                y_client = df[y_col].values
+                
+                all_test_data.append(X_client)
+                all_test_labels.append(y_client)
+        
+        if all_test_data:
+            # Concatena todos os dados
+            X_valid = np.vstack(all_test_data)
+            y_valid = np.concatenate(all_test_labels)
+            
+            logger = logging.getLogger("SERVER")
+            logger.debug(f"[UNLEARNING] Carregadas {len(X_valid)} amostras de validação de {len(all_test_data)} clientes (excluindo {excluded_clients})")
+            
+            # Limita ao tamanho configurado (se maior)
+            if len(X_valid) > validate_dataset_size:
+                X_valid = X_valid[-validate_dataset_size:]
+                y_valid = y_valid[-validate_dataset_size:]
+                logger.debug(f"[UNLEARNING] Truncado para {validate_dataset_size} amostras (limite configurado)")
+            
+            return X_valid, y_valid
+        else:
+            # Fallback: usa dataset completo se não houver partições
+            logger = logging.getLogger("SERVER")
+            logger.warning(f"[UNLEARNING] Fallback: partições não encontradas, usando dataset completo")
+            pass
+    
+    # [CLASSIF] Comportamento padrão: usa dataset completo
     data, label, _, _ = load_dataset()
 
     _, data_valid, _, label_valid = train_test_split(
