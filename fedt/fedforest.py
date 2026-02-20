@@ -18,8 +18,9 @@ from fedt.settings import ALL_LABELS  # [CLASSIF]
 # configurado em config.toml (dataset_path + label_target)
 
 class FedForest():
-    def __init__(self, model: RandomForestClassifier) -> None: # [CLASSIF]
-        self.model = model 
+    def __init__(self, model: RandomForestClassifier, excluded_clients=None) -> None: # [CLASSIF]
+        self.model = model
+        self.excluded_clients = excluded_clients  # [UNLEARNING] 
 
     def _predict_forest_majority(self, forest: list[DecisionTreeClassifier], X):  # [CLASSIF]
         """
@@ -42,7 +43,7 @@ class FedForest():
 
     def aggregate_fit_best_forest_strategy(self, best_forests: list[list[DecisionTreeClassifier]]):  # [CLASSIF]
         # [CLASSIF] Versão de classificação: escolhe a floresta com maior F1-Score macro em um conjunto de validação.
-        data_valid, label_valid = utils.load_server_side_validation_data()  # [CLASSIF]
+        data_valid, label_valid = utils.load_server_side_validation_data(excluded_clients=self.excluded_clients)  # [CLASSIF]
         best_f1 = float("-inf")  # [CLASSIF]
         best_forest = None  # [CLASSIF]
 
@@ -65,7 +66,7 @@ class FedForest():
     
     def aggregate_fit_best_trees_strategy(self, best_forests: list[list[DecisionTreeClassifier]]): # [CLASSIF]
         # [CLASSIF] Versão de classificação: ordena as árvores por F1-Score macro em dados de validação.
-        X_valid, y_valid = utils.load_server_side_validation_data()  # [CLASSIF]
+        X_valid, y_valid = utils.load_server_side_validation_data(excluded_clients=self.excluded_clients)  # [CLASSIF]
         best_trees = []  # [CLASSIF]
         best_trees_ratio = int(len(best_forests[0]) * 0.5)  # numero de melhores arvores por floresta  # [CLASSIF]
 
@@ -91,7 +92,7 @@ class FedForest():
         Essa estratégia avalia as árvores de cada floresta com métricas de classificação.  # [CLASSIF]
         Seleciona apenas as árvores cujo MCC é maior ou igual ao threshold.  # [CLASSIF]
         """  # [CLASSIF]
-        X_valid, y_valid = utils.load_server_side_validation_data()  # [CLASSIF]
+        X_valid, y_valid = utils.load_server_side_validation_data(excluded_clients=self.excluded_clients)  # [CLASSIF]
         best_trees = []  # [CLASSIF]
 
         for forest in best_forests:  # [CLASSIF]
@@ -145,7 +146,7 @@ class FedForest():
         Returns:
             Lista de árvores selecionadas com cobertura garantida por classe
         """
-        X_valid, y_valid = utils.load_server_side_validation_data()  # [CLASSIF]
+        X_valid, y_valid = utils.load_server_side_validation_data(excluded_clients=self.excluded_clients)  # [CLASSIF]
         
         # Agregar todas as árvores em uma única lista
         all_trees = []  # [CLASSIF]

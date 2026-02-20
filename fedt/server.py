@@ -127,7 +127,8 @@ class FedT(fedT_pb2_grpc.FedTServicer):
         utils.set_initial_params(self.model, data_train, label_train)
 
         self.global_trees = self.model.estimators_
-        self.strategy = FedForest(self.model)
+        # [UNLEARNING] Passa blocked_clients para FedForest evitar vazamento em validação
+        self.strategy = FedForest(self.model, excluded_clients=self.blocked_clients if self.blocked_clients else None)
 
     def attach_shutdown_event(self, event):
         self.shutdown_event = event
@@ -142,6 +143,8 @@ class FedT(fedT_pb2_grpc.FedTServicer):
             best_forests = [forest for idx, forest in enumerate(best_forests)
                            if self.trees_warehouse[idx][0] != self.dominant_client_id]
             self.blocked_clients.add(self.dominant_client_id)
+            # [UNLEARNING] Atualiza excluded_clients em FedForest para evitar vazamento em validação
+            self.strategy.excluded_clients = self.blocked_clients
             self.unlearning_done = True
             logger.warning(f"[UNLEARNING] Árvores do cliente dominante (ID={self.dominant_client_id}) removidas após round {self.round}.")
 
