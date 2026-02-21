@@ -40,32 +40,81 @@ CONFUSION_MATRIX_TITLE_SIZE = 18
 CONFUSION_MATRIX_COLORBAR_TICK_SIZE = 18
 
 # ==========================
-# CONFIGURAÇÃO DE ARQUIVOS
+# CONFIGURAÇÃO DE ARQUIVOS (AUTO-DETECT)
 # ==========================
 
-# Arquivos dos clientes - UNLEARNING (dominant_client)
+def get_dataset_name_from_config():
+    """Extrai o nome do dataset da configuração."""
+    from pathlib import Path
+    config_path = Path("/home/yuri/FEDT_IDS2/fedt/config.toml")
+    if config_path.exists():
+        import tomllib
+        with open(config_path, 'rb') as f:
+            config = tomllib.load(f)
+        dataset_path = config.get('settings', {}).get('common', {}).get('dataset_path', '')
+        if dataset_path:
+            dataset_name = Path(dataset_path).stem
+            return dataset_name
+    return None
+
+# Detectar dataset automaticamente
+DATASET_NAME = get_dataset_name_from_config()
+print(f"[CONFIG] Dataset detectado: {DATASET_NAME}")
+
+# Caminho base dos resultados
+RESULTS_BASE = Path("/home/yuri/FEDT_IDS2/results/best_trees")
+
+# Encontrar o diretório correto do dataset
+def find_dataset_result_dir():
+    """Procura pelo diretório do dataset com dominant_client."""
+    if DATASET_NAME:
+        # Tentar por nome do dataset
+        potential_dirs = [
+            RESULTS_BASE / f"{DATASET_NAME}" / "dominant_client",
+            RESULTS_BASE / f"{DATASET_NAME}_preprocessed" / "dominant_client",
+            RESULTS_BASE / "ML-EdgeIIoT-FEDT" / "dominant_client",  # Fallback padrão
+        ]
+        for d in potential_dirs:
+            if d.exists():
+                return d, DATASET_NAME
+    
+    # Fallback: procurar por qualquer dominant_client recente
+    all_dominant = list(RESULTS_BASE.glob("*/dominant_client"))
+    if all_dominant:
+        # Extrai o nome do dataset do caminho
+        dataset_dir = all_dominant[0]
+        inferred_dataset = dataset_dir.parent.name
+        return dataset_dir, inferred_dataset
+    
+    return None, "edgeiot"
+
+DATASET_DIR, INFERRED_DATASET = find_dataset_result_dir()
+if DATASET_DIR:
+    print(f"[CONFIG] Caminho de resultados: {DATASET_DIR}")
+    print(f"[CONFIG] Dataset: {INFERRED_DATASET}")
+else:
+    print("[ERRO] Não foi possível encontrar diretório de resultados com dominant_client")
+    DATASET_DIR = RESULTS_BASE / "ML-EdgeIIoT-FEDT" / "dominant_client"  # Fallback
+    INFERRED_DATASET = "edgeiot"
+
+# Construir caminhos dos arquivos dos clientes
 CLIENT_FILES = [
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/dominant_client/client-id-0/best_trees_client-id-0_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/dominant_client/client-id-1/best_trees_client-id-1_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/dominant_client/client-id-2/best_trees_client-id-2_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/dominant_client/client-id-3/best_trees_client-id-3_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/dominant_client/client-id-4/best_trees_client-id-4_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/dominant_client/client-id-5/best_trees_client-id-5_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/dominant_client/client-id-6/best_trees_client-id-6_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/dominant_client/client-id-7/best_trees_client-id-7_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/dominant_client/client-id-8/best_trees_client-id-8_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/dominant_client/client-id-9/best_trees_client-id-9_1.json"),
+    DATASET_DIR / f"client-id-{i}" / f"best_trees_client-id-{i}_1.json"
+    for i in range(10)
 ]
 
 # Arquivo do servidor
-SERVER_FILE = Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/dominant_client/server/best_trees_server_1.json")
+SERVER_FILE = DATASET_DIR / "server" / "best_trees_server_1.json"
 
 # Arquivo de monitoramento de CPU/RAM
-CPU_FILE = Path("/home/yuri/FEDT_IDS2/logs/cpu_ram/ML-EdgeIIoT-FEDT/dominant_client/best_trees/cpu_and_ram_yuri_best_trees_0.json")
+dataset_for_log = INFERRED_DATASET if INFERRED_DATASET else "ML-EdgeIIoT-FEDT"
+CPU_FILE = Path(f"/home/yuri/FEDT_IDS2/logs/cpu_ram/{dataset_for_log}/dominant_client/best_trees/cpu_and_ram_yuri_best_trees_0.json")
 
 # Pasta onde as figuras serão salvas
-FIG_DIR = Path("/home/yuri/FEDT_IDS2/figures/best_trees/edgeiot_unlearning/")
+FIG_DIR = Path(f"/home/yuri/FEDT_IDS2/figures/best_trees/{INFERRED_DATASET}_unlearning/")
 FIG_DIR.mkdir(parents=True, exist_ok=True)
+
+print(f"[CONFIG] Pasta de figuras: {FIG_DIR}")
 
 # ==========================
 # FUNÇÕES AUXILIARES
@@ -886,9 +935,28 @@ def main():
     
     # Detectar ponto de unlearning
     unlearning_round, client_counts = detect_unlearning_point(CLIENT_FILES)
-    print(f"\n✓ Ponto de unlearning detectado: Round {unlearning_round}")
-    print(f"  - Clientes antes: {max(client_counts.get(r, 0) for r in range(0, unlearning_round+1) if r in client_counts)}")
-    print(f"  - Clientes depois: {min(client_counts.get(r, 0) for r in range(unlearning_round, 40) if r in client_counts)}")
+    
+    # Diagnóstico se unlearning_round é None
+    if unlearning_round is None:
+        print(f"\n⚠ AVISO: Ponto de unlearning NÃO detectado automaticamente!")
+        print(f"  - Arquivos JSON fornecidos:")
+        for path in CLIENT_FILES:
+            exists = "✓" if path.exists() else "✗"
+            print(f"    {exists} {path}")
+        
+        print(f"\n  - Rounds encontrados: {sorted(client_counts.keys())}")
+        print(f"  - Contagem de clientes por round: {dict(sorted(client_counts.items()))}")
+        
+        # Tentar usar unlearning_round da config
+        print(f"\n  → Usando unlearning_round=20 da configuração...")
+        unlearning_round = 20
+    else:
+        print(f"\n✓ Ponto de unlearning detectado: Round {unlearning_round}")
+        if unlearning_round in client_counts and len(client_counts) > unlearning_round:
+            clients_before = client_counts.get(unlearning_round - 1, 0) if unlearning_round > 0 else client_counts.get(0, 0)
+            clients_after = client_counts.get(unlearning_round + 1, 0)
+            print(f"  - Clientes antes: {clients_before}")
+            print(f"  - Clientes depois: {clients_after}")
     
     rounds_data = aggregate_client_metrics(CLIENT_FILES)
     (

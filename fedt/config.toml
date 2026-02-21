@@ -4,11 +4,12 @@ results_folder = 'results'
 logs_folder = 'logs'
 scripts_path = 'scripts'
 client_script_path = 'fedt/client.py'
-dataset_path = 'ML-EdgeIIoT-FEDT.csv' # [CLASSIF]
+#dataset_path = 'ML-EdgeIIoT-FEDT.csv' # [CLASSIF]
 #dataset_path = 'ton_iot_preprocessed.csv' # [CLASSIF]
 #dataset_path = 'X-IIoTID_preprocessed.csv' # [CLASSIF]
 #dataset_path = 'wustl_iiot_preprocessed.csv'  # [CLASSIF]
 #dataset_path = 'cic_iot_preprocessed.csv' # [CLASSIF]
+dataset_path = 'adult_preprocessed.csv' # [CLASSIF] [Unlearning]
 
 [settings]
 number_of_jobs = 12
@@ -57,11 +58,12 @@ ccp_alpha = 0.0  # [CLASSIF] parâmetro de poda por custo-complexidade (post-pru
 
 [dataset]
 train_test_split_size = 0.25
-label_target = "Attack_type_6"  # [CLASS]  # opções: "Attack_label", "Attack_type_6", "Attack_type" # EdgeIIoT
+#label_target = "Attack_type_6"  # [CLASS]  # opções: "Attack_label", "Attack_type_6", "Attack_type" # EdgeIIoT
 #label_target = "Attack_type_10" # opções: "Attack_label", "Attack_type_10" # TON_IOT
 #label_target = "Attack_type_9"  # opções: "Attack_label", "Attack_type_9", Attack_type_18 # X-IIoTID
 #label_target = "Attack_type_5"  # [CLASSIF] # opções: "Attack_label", WUSTL-IIoT preprocessed
 #label_target = "Attack_type_8"   # [CLASSIF] # CIC-IoT
+label_target = "income" # [CLASSIF] # adult
 #partition_type = "iid"
 #partition_type = "non_iid"  
 #partition_type = "non_iid_allclasses"  # [CLASSIF] non-IID mas garante todas as classes em todos os clientes (min de 10 amostras)
@@ -76,7 +78,7 @@ dominant_client_percentage = 0.7  # Porcentagem de dados que o cliente dominante
 
 # [UNLEARNING] Parâmetros para machine unlearning
 unlearning_enabled = true  # Ativa ou desativa o machine unlearning
-unlearning_round = 10  # Round após o qual o cliente dominante é esquecido e bloqueado
+unlearning_round = 20  # Round após o qual o cliente dominante é esquecido e bloqueado
 
 [scripts]
 network_interface = "eth0"
