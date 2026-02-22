@@ -21,16 +21,16 @@ plt.rcParams.update({
 
 # Arquivos dos clientes FEDT
 CLIENT_FILES_FEDT = [
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-0/best_trees_client-id-0_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-1/best_trees_client-id-1_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-2/best_trees_client-id-2_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-3/best_trees_client-id-3_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-4/best_trees_client-id-4_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-5/best_trees_client-id-5_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-6/best_trees_client-id-6_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-7/best_trees_client-id-7_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-8/best_trees_client-id-8_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-9/best_trees_client-id-9_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/non_iid_allclasses/client-id-0/best_trees_client-id-0_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/non_iid_allclasses/client-id-1/best_trees_client-id-1_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/non_iid_allclasses/client-id-2/best_trees_client-id-2_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/non_iid_allclasses/client-id-3/best_trees_client-id-3_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/non_iid_allclasses/client-id-4/best_trees_client-id-4_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/non_iid_allclasses/client-id-5/best_trees_client-id-5_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/non_iid_allclasses/client-id-6/best_trees_client-id-6_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/non_iid_allclasses/client-id-7/best_trees_client-id-7_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/non_iid_allclasses/client-id-8/best_trees_client-id-8_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/non_iid_allclasses/client-id-9/best_trees_client-id-9_1.json"),
 ]
 
 # Pasta onde as figuras serão salvas
@@ -39,8 +39,8 @@ FIG_DIR.mkdir(parents=True, exist_ok=True)
 
 # Baselines CSV paths
 BASELINES = {
-    "FeatureCloud-RF": Path("/home/yuri/FEDT_IDS2/fedtxbaselines/featureCloud-RF/IID_aggregated_metrics.csv"),
-    "Flex-Trees": Path("/home/yuri/FEDT_IDS2/fedtxbaselines/flex-trees/IID_aggregated_metrics.csv"),
+    "FeatureCloud": Path("/home/yuri/FEDT_IDS2/fedtxbaselines/featureCloud/non_iid_aggregated_metrics.csv"),
+    "Flex-Trees": Path("/home/yuri/FEDT_IDS2/fedtxbaselines/flex-trees/non_iid_aggregated_metrics.csv"),
 }
 
 # ==========================
@@ -125,29 +125,26 @@ def load_baseline_metrics(csv_path: Path):
     
     df = pd.read_csv(csv_path)
     
-    # Mapear nomes das métricas no CSV para nossos nomes padrão
-    metric_mapping = {
-        'Local_Accuracy': 'accuracy',
-        'Local_Precision': 'precision',
-        'Local_Recall': 'recall',
-        'Local_F1': 'f1',
-        'Accuracy': 'accuracy',
-        'Precision': 'precision',
-        'Recall': 'recall',
-        'F1': 'f1',
-    }
+    # Verificar se 'Std_Dev' existe, senão usar 0.0 como padrão
+    has_std_dev = 'Std_Dev' in df.columns
     
     metrics = {}
     for idx, row in df.iterrows():
         metric_name = row['Metric']
         mean_val = row['Mean']
-        std_val = row.get('Std_Dev', 0.0) if 'Std_Dev' in row else 0.0
+        std_val = row['Std_Dev'] if has_std_dev else 0.0
         
-        # Mapear para nome padrão
-        for csv_name, std_name in metric_mapping.items():
-            if csv_name in metric_name:
-                metrics[std_name] = (mean_val, std_val)
-                break
+        # Mapear para nome padrão - remove prefixo "Local_" ou "Global_"
+        clean_metric = metric_name.replace('Local_', '').replace('Global_', '').lower()
+        
+        if clean_metric == 'accuracy':
+            metrics['accuracy'] = (mean_val, std_val)
+        elif clean_metric == 'precision':
+            metrics['precision'] = (mean_val, std_val)
+        elif clean_metric == 'recall':
+            metrics['recall'] = (mean_val, std_val)
+        elif clean_metric == 'f1':
+            metrics['f1'] = (mean_val, std_val)
     
     if 'accuracy' in metrics and 'precision' in metrics and 'recall' in metrics and 'f1' in metrics:
         acc_mean, acc_std = metrics['accuracy']
