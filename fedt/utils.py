@@ -698,7 +698,7 @@ def setup_logger(name, log_file, level=logging.INFO):
 
     # --- FORMATADOR PADRÃO PARA O ARQUIVO ---
     log_file_path = logs_folder  / log_file
-    file_handler = logging.FileHandler(log_file_path)
+    file_handler = logging.FileHandler(log_file_path, encoding='utf-8')  # [WINDOWS] UTF-8 encoding
     file_formatter = logging.Formatter(
         "%(asctime)s [%(levelname)s] [%(name)s] %(message)s"
     )
