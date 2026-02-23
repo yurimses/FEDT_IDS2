@@ -757,16 +757,27 @@ def get_process_cmd(proc):
         return None
 
 def find_target_processes(targets):
-    """Retorna um dicionário {target_string: [Process, ...]} para cada target encontrado."""
+    """Retorna um dicionário {target_string: [Process, ...]} para cada target encontrado.
+    
+    Para compatibilidade Windows/Linux, procura pelos componentes da string target
+    na linha de comando, ao invés de exigir correspondência exata.
+    """
     matches = {t: [] for t in targets}
     for proc in psutil.process_iter(attrs=['pid', 'cmdline']):
         cmd = get_process_cmd(proc)
         if not cmd:
             continue
         for t in targets:
+            # Busca exata ou flexível para compatibilidade Windows
             if t in cmd:
                 matches[t].append(proc)
                 break
+            # Para "fedt run server", verifica se os componentes estão presentes
+            elif t == "fedt run server":
+                cmd_lower = cmd.lower()
+                if "run" in cmd_lower and "server" in cmd_lower and "fedt" in cmd_lower:
+                    matches[t].append(proc)
+                    break
     return matches
 
 def kill_processes(processes, name):
