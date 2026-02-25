@@ -34,25 +34,25 @@ CONFUSION_MATRIX_COLORBAR_TICK_SIZE = 18
 
 # Arquivos dos clientes
 CLIENT_FILES = [
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-0/best_trees_client-id-0_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-1/best_trees_client-id-1_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-2/best_trees_client-id-2_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-3/best_trees_client-id-3_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-4/best_trees_client-id-4_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-5/best_trees_client-id-5_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-6/best_trees_client-id-6_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-7/best_trees_client-id-7_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-8/best_trees_client-id-8_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-9/best_trees_client-id-9_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-0/best_trees_client-id-0_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-1/best_trees_client-id-1_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-2/best_trees_client-id-2_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-3/best_trees_client-id-3_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-4/best_trees_client-id-4_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-5/best_trees_client-id-5_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-6/best_trees_client-id-6_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-7/best_trees_client-id-7_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-8/best_trees_client-id-8_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-9/best_trees_client-id-9_1.json"),
 ]
 
 # Arquivo do servidor
-SERVER_FILE = Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/server/best_trees_server_1.json")
+SERVER_FILE = Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/server/best_trees_server_1.json")
 # Arquivo de monitoramento de CPU/RAM IID
-CPU_FILE = Path("/home/yuri/FEDT_IDS2/logs/cpu_ram/ton_iot_preprocessed/non_iid_allclasses/best_trees/cpu_and_ram_yuri_best_trees_0.json")
+CPU_FILE = Path("/home/yuri/FEDT_IDS2/logs/cpu_ram/bank_full/dominant_client/best_trees/cpu_and_ram_yuri_best_trees_0.json")
 
 # Pasta onde as figuras serão salvas
-FIG_DIR = Path("/home/yuri/FEDT_IDS2/figures/best_trees/ton_iot_preprocessed/non_iid_allclasses/")
+FIG_DIR = Path("/home/yuri/FEDT_IDS2/figures/best_trees/bank_full/dominant_client/")
 FIG_DIR.mkdir(parents=True, exist_ok=True)
 
 # ==========================

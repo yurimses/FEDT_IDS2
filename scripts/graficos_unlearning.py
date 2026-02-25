@@ -88,30 +88,36 @@ def find_dataset_result_dir():
     
     return None, "edgeiot"
 
-DATASET_DIR, INFERRED_DATASET = find_dataset_result_dir()
-if DATASET_DIR:
+DATASET_DIR = RESULTS_BASE / "bank_full" / "dominant_client"
+INFERRED_DATASET = "bank_full"
+if DATASET_DIR.exists():
     print(f"[CONFIG] Caminho de resultados: {DATASET_DIR}")
     print(f"[CONFIG] Dataset: {INFERRED_DATASET}")
 else:
-    print("[ERRO] Não foi possível encontrar diretório de resultados com dominant_client")
-    DATASET_DIR = RESULTS_BASE / "ML-EdgeIIoT-FEDT" / "dominant_client"  # Fallback
-    INFERRED_DATASET = "edgeiot"
+    print("[ERRO] Diretório de resultados não encontrado para bank_full/dominant_client")
 
 # Construir caminhos dos arquivos dos clientes
 CLIENT_FILES = [
-    DATASET_DIR / f"client-id-{i}" / f"best_trees_client-id-{i}_1.json"
-    for i in range(10)
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/adult_preprocessed/dominant_client/client-id-0/best_trees_client-id-0_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/adult_preprocessed/dominant_client/client-id-1/best_trees_client-id-1_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/adult_preprocessed/dominant_client/client-id-2/best_trees_client-id-2_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/adult_preprocessed/dominant_client/client-id-3/best_trees_client-id-3_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/adult_preprocessed/dominant_client/client-id-4/best_trees_client-id-4_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/adult_preprocessed/dominant_client/client-id-5/best_trees_client-id-5_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/adult_preprocessed/dominant_client/client-id-6/best_trees_client-id-6_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/adult_preprocessed/dominant_client/client-id-7/best_trees_client-id-7_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/adult_preprocessed/dominant_client/client-id-8/best_trees_client-id-8_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/adult_preprocessed/dominant_client/client-id-9/best_trees_client-id-9_1.json"),
 ]
 
 # Arquivo do servidor
-SERVER_FILE = DATASET_DIR / "server" / "best_trees_server_1.json"
+SERVER_FILE = Path("/home/yuri/FEDT_IDS2/results/best_trees/adult_preprocessed/dominant_client/server/best_trees_server_1.json")
 
-# Arquivo de monitoramento de CPU/RAM
-dataset_for_log = INFERRED_DATASET if INFERRED_DATASET else "ML-EdgeIIoT-FEDT"
-CPU_FILE = Path(f"/home/yuri/FEDT_IDS2/logs/cpu_ram/{dataset_for_log}/dominant_client/best_trees/cpu_and_ram_yuri_best_trees_0.json")
+# Arquivo de monitoramento de CPU/RAM IID
+CPU_FILE = Path("/home/yuri/FEDT_IDS2/logs/cpu_ram/adult_preprocessed/dominant_client/best_trees/cpu_and_ram_yuri_best_trees_0.json")
 
 # Pasta onde as figuras serão salvas
-FIG_DIR = Path(f"/home/yuri/FEDT_IDS2/figures/best_trees/{INFERRED_DATASET}_unlearning/")
+FIG_DIR = Path("/home/yuri/FEDT_IDS2/figures/best_trees/adult_preprocessed/dominant_client/")
 FIG_DIR.mkdir(parents=True, exist_ok=True)
 
 print(f"[CONFIG] Pasta de figuras: {FIG_DIR}")
