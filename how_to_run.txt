@@ -1,0 +1,5 @@
+﻿fedt-cpu-ram --strategy best_trees --sim-number 0 --user yuri
+
+fedt run server
+
+fedt run clients
