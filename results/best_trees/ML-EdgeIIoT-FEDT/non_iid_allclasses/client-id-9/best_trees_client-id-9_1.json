@@ -1,0 +1,3002 @@
+{
+    "0": {
+        "trees_by_client": 10,
+        "first_server_serialise_trees_size": 9501,
+        "fit_time": 0.1220095157623291,
+        "client_serialise_trees_size": 177548,
+        "final_server_serialise_trees_size": 836123,
+        "f1_score": 0.9352785342765303,
+        "mcc": 0.9531231623170627,
+        "accuracy": 0.9934944237918215,
+        "precision": 0.9598328318288197,
+        "recall": 0.9286661661661663,
+        "confusion_matrix": [
+            [
+                0.996996996996997,
+                0.0,
+                0.003003003003003003,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 3.003452777862549,
+        "round_start_time": 1771785358.060347,
+        "round_end_time": 1771785361.0637999,
+        "evaluate_time": 0.03647637367248535,
+        "inference_time": 0.002165079116821289
+    },
+    "1": {
+        "trees_by_client": 20,
+        "first_server_serialise_trees_size": 9360,
+        "fit_time": 0.24208307266235352,
+        "client_serialise_trees_size": 325234,
+        "final_server_serialise_trees_size": 1669425,
+        "f1_score": 0.9262308571453078,
+        "mcc": 0.934674676258129,
+        "accuracy": 0.9907063197026023,
+        "precision": 0.9462608987256874,
+        "recall": 0.9281656656656656,
+        "confusion_matrix": [
+            [
+                0.993993993993994,
+                0.0,
+                0.006006006006006006,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 2.2918050289154053,
+        "round_start_time": 1771785376.3326886,
+        "round_end_time": 1771785378.6244936,
+        "evaluate_time": 0.0828542709350586,
+        "inference_time": 0.0062601566314697266
+    },
+    "2": {
+        "trees_by_client": 30,
+        "first_server_serialise_trees_size": 19038,
+        "fit_time": 0.5319688320159912,
+        "client_serialise_trees_size": 507993,
+        "final_server_serialise_trees_size": 2543664,
+        "f1_score": 0.9352785342765303,
+        "mcc": 0.9531231623170627,
+        "accuracy": 0.9934944237918215,
+        "precision": 0.9598328318288197,
+        "recall": 0.9286661661661663,
+        "confusion_matrix": [
+            [
+                0.996996996996997,
+                0.0,
+                0.003003003003003003,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 3.5240821838378906,
+        "round_start_time": 1771785393.7560272,
+        "round_end_time": 1771785397.2801094,
+        "evaluate_time": 0.11612057685852051,
+        "inference_time": 0.006552696228027344
+    },
+    "3": {
+        "trees_by_client": 40,
+        "first_server_serialise_trees_size": 28089,
+        "fit_time": 0.8376834392547607,
+        "client_serialise_trees_size": 669665,
+        "final_server_serialise_trees_size": 3258375,
+        "f1_score": 0.932135243348058,
+        "mcc": 0.9468566857895816,
+        "accuracy": 0.9925650557620818,
+        "precision": 0.9549608691174957,
+        "recall": 0.9284993326659993,
+        "confusion_matrix": [
+            [
+                0.995995995995996,
+                0.0,
+                0.004004004004004004,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 4.520709037780762,
+        "round_start_time": 1771785412.3799694,
+        "round_end_time": 1771785416.9006784,
+        "evaluate_time": 0.15610623359680176,
+        "inference_time": 0.009646892547607422
+    },
+    "4": {
+        "trees_by_client": 50,
+        "first_server_serialise_trees_size": 37835,
+        "fit_time": 0.7925138473510742,
+        "client_serialise_trees_size": 850649,
+        "final_server_serialise_trees_size": 4086166,
+        "f1_score": 0.9291220634078997,
+        "mcc": 0.9407084205707065,
+        "accuracy": 0.991635687732342,
+        "precision": 0.9504497797630126,
+        "recall": 0.9283324991658325,
+        "confusion_matrix": [
+            [
+                0.994994994994995,
+                0.0,
+                0.005005005005005005,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 5.401203155517578,
+        "round_start_time": 1771785432.0069816,
+        "round_end_time": 1771785437.4081848,
+        "evaluate_time": 0.12927675247192383,
+        "inference_time": 0.00882101058959961
+    },
+    "5": {
+        "trees_by_client": 60,
+        "first_server_serialise_trees_size": 47285,
+        "fit_time": 1.007382869720459,
+        "client_serialise_trees_size": 1031604,
+        "final_server_serialise_trees_size": 4957843,
+        "f1_score": 0.9352785342765303,
+        "mcc": 0.9531231623170627,
+        "accuracy": 0.9934944237918215,
+        "precision": 0.9598328318288197,
+        "recall": 0.9286661661661663,
+        "confusion_matrix": [
+            [
+                0.996996996996997,
+                0.0,
+                0.003003003003003003,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 6.014025449752808,
+        "round_start_time": 1771785452.510954,
+        "round_end_time": 1771785458.5249794,
+        "evaluate_time": 0.15046358108520508,
+        "inference_time": 0.010202884674072266
+    },
+    "6": {
+        "trees_by_client": 70,
+        "first_server_serialise_trees_size": 56954,
+        "fit_time": 1.0780210494995117,
+        "client_serialise_trees_size": 1205558,
+        "final_server_serialise_trees_size": 5755380,
+        "f1_score": 0.932135243348058,
+        "mcc": 0.9468566857895816,
+        "accuracy": 0.9925650557620818,
+        "precision": 0.9549608691174957,
+        "recall": 0.9284993326659993,
+        "confusion_matrix": [
+            [
+                0.995995995995996,
+                0.0,
+                0.004004004004004004,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 7.17933988571167,
+        "round_start_time": 1771785473.6619945,
+        "round_end_time": 1771785480.8413343,
+        "evaluate_time": 0.175553560256958,
+        "inference_time": 0.011307477951049805
+    },
+    "7": {
+        "trees_by_client": 80,
+        "first_server_serialise_trees_size": 66398,
+        "fit_time": 1.2024989128112793,
+        "client_serialise_trees_size": 1390318,
+        "final_server_serialise_trees_size": 6599468,
+        "f1_score": 0.932135243348058,
+        "mcc": 0.9468566857895816,
+        "accuracy": 0.9925650557620818,
+        "precision": 0.9549608691174957,
+        "recall": 0.9284993326659993,
+        "confusion_matrix": [
+            [
+                0.995995995995996,
+                0.0,
+                0.004004004004004004,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 7.4312050342559814,
+        "round_start_time": 1771785495.9729426,
+        "round_end_time": 1771785503.4041476,
+        "evaluate_time": 0.18021821975708008,
+        "inference_time": 0.012220621109008789
+    },
+    "8": {
+        "trees_by_client": 90,
+        "first_server_serialise_trees_size": 75950,
+        "fit_time": 1.4000136852264404,
+        "client_serialise_trees_size": 1566272,
+        "final_server_serialise_trees_size": 7438105,
+        "f1_score": 0.932135243348058,
+        "mcc": 0.9468566857895816,
+        "accuracy": 0.9925650557620818,
+        "precision": 0.9549608691174957,
+        "recall": 0.9284993326659993,
+        "confusion_matrix": [
+            [
+                0.995995995995996,
+                0.0,
+                0.004004004004004004,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 8.076097011566162,
+        "round_start_time": 1771785518.5285535,
+        "round_end_time": 1771785526.6046505,
+        "evaluate_time": 0.14584064483642578,
+        "inference_time": 0.00916743278503418
+    },
+    "9": {
+        "trees_by_client": 100,
+        "first_server_serialise_trees_size": 85074,
+        "fit_time": 1.7755093574523926,
+        "client_serialise_trees_size": 1723956,
+        "final_server_serialise_trees_size": 8220901,
+        "f1_score": 0.9304242086083739,
+        "mcc": 0.9418889939610408,
+        "accuracy": 0.991635687732342,
+        "precision": 0.9482758620689656,
+        "recall": 0.936498998998999,
+        "confusion_matrix": [
+            [
+                0.993993993993994,
+                0.0,
+                0.006006006006006006,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 9.04957628250122,
+        "round_start_time": 1771785541.6832726,
+        "round_end_time": 1771785550.732849,
+        "evaluate_time": 0.15909624099731445,
+        "inference_time": 0.014116048812866211
+    },
+    "10": {
+        "trees_by_client": 110,
+        "first_server_serialise_trees_size": 94873,
+        "fit_time": 1.906393051147461,
+        "client_serialise_trees_size": 1896591,
+        "final_server_serialise_trees_size": 9082709,
+        "f1_score": 0.9352785342765303,
+        "mcc": 0.9531231623170627,
+        "accuracy": 0.9934944237918215,
+        "precision": 0.9598328318288197,
+        "recall": 0.9286661661661663,
+        "confusion_matrix": [
+            [
+                0.996996996996997,
+                0.0,
+                0.003003003003003003,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 9.795355081558228,
+        "round_start_time": 1771785565.8519762,
+        "round_end_time": 1771785575.6473312,
+        "evaluate_time": 0.2226555347442627,
+        "inference_time": 0.013171195983886719
+    },
+    "11": {
+        "trees_by_client": 120,
+        "first_server_serialise_trees_size": 104484,
+        "fit_time": 1.836313247680664,
+        "client_serialise_trees_size": 2033482,
+        "final_server_serialise_trees_size": 9695901,
+        "f1_score": 0.9262308571453078,
+        "mcc": 0.934674676258129,
+        "accuracy": 0.9907063197026023,
+        "precision": 0.9462608987256874,
+        "recall": 0.9281656656656656,
+        "confusion_matrix": [
+            [
+                0.993993993993994,
+                0.0,
+                0.006006006006006006,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 10.748396635055542,
+        "round_start_time": 1771785590.7709706,
+        "round_end_time": 1771785601.5193672,
+        "evaluate_time": 0.23196101188659668,
+        "inference_time": 0.017310619354248047
+    },
+    "12": {
+        "trees_by_client": 130,
+        "first_server_serialise_trees_size": 113543,
+        "fit_time": 2.102644443511963,
+        "client_serialise_trees_size": 2231899,
+        "final_server_serialise_trees_size": 10607381,
+        "f1_score": 0.9262308571453078,
+        "mcc": 0.934674676258129,
+        "accuracy": 0.9907063197026023,
+        "precision": 0.9462608987256874,
+        "recall": 0.9281656656656656,
+        "confusion_matrix": [
+            [
+                0.993993993993994,
+                0.0,
+                0.006006006006006006,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 11.186728715896606,
+        "round_start_time": 1771785616.6639767,
+        "round_end_time": 1771785627.8507054,
+        "evaluate_time": 0.21051931381225586,
+        "inference_time": 0.015395164489746094
+    },
+    "13": {
+        "trees_by_client": 140,
+        "first_server_serialise_trees_size": 122908,
+        "fit_time": 2.4459681510925293,
+        "client_serialise_trees_size": 2434893,
+        "final_server_serialise_trees_size": 11476550,
+        "f1_score": 0.9291220634078997,
+        "mcc": 0.9407084205707065,
+        "accuracy": 0.991635687732342,
+        "precision": 0.9504497797630126,
+        "recall": 0.9283324991658325,
+        "confusion_matrix": [
+            [
+                0.994994994994995,
+                0.0,
+                0.005005005005005005,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 12.722568035125732,
+        "round_start_time": 1771785642.9631999,
+        "round_end_time": 1771785655.685768,
+        "evaluate_time": 0.28499293327331543,
+        "inference_time": 0.013151168823242188
+    },
+    "14": {
+        "trees_by_client": 150,
+        "first_server_serialise_trees_size": 132858,
+        "fit_time": 2.4306693077087402,
+        "client_serialise_trees_size": 2605300,
+        "final_server_serialise_trees_size": 11048648,
+        "f1_score": 0.932135243348058,
+        "mcc": 0.9468566857895816,
+        "accuracy": 0.9925650557620818,
+        "precision": 0.9549608691174957,
+        "recall": 0.9284993326659993,
+        "confusion_matrix": [
+            [
+                0.995995995995996,
+                0.0,
+                0.004004004004004004,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 12.58422565460205,
+        "round_start_time": 1771785670.809992,
+        "round_end_time": 1771785683.3942177,
+        "evaluate_time": 0.20764732360839844,
+        "inference_time": 0.01320338249206543
+    },
+    "15": {
+        "trees_by_client": 160,
+        "first_server_serialise_trees_size": 141656,
+        "fit_time": 2.480620861053467,
+        "client_serialise_trees_size": 2720771,
+        "final_server_serialise_trees_size": 13037283,
+        "f1_score": 0.9262308571453078,
+        "mcc": 0.934674676258129,
+        "accuracy": 0.9907063197026023,
+        "precision": 0.9462608987256874,
+        "recall": 0.9281656656656656,
+        "confusion_matrix": [
+            [
+                0.993993993993994,
+                0.0,
+                0.006006006006006006,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 15.231083869934082,
+        "round_start_time": 1771785698.4960465,
+        "round_end_time": 1771785713.7271304,
+        "evaluate_time": 0.14940667152404785,
+        "inference_time": 0.011872529983520508
+    },
+    "16": {
+        "trees_by_client": 170,
+        "first_server_serialise_trees_size": 152193,
+        "fit_time": 2.3466293811798096,
+        "client_serialise_trees_size": 2887315,
+        "final_server_serialise_trees_size": 13830546,
+        "f1_score": 0.9262308571453078,
+        "mcc": 0.934674676258129,
+        "accuracy": 0.9907063197026023,
+        "precision": 0.9462608987256874,
+        "recall": 0.9281656656656656,
+        "confusion_matrix": [
+            [
+                0.993993993993994,
+                0.0,
+                0.006006006006006006,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 13.63762879371643,
+        "round_start_time": 1771785728.7942097,
+        "round_end_time": 1771785742.4318385,
+        "evaluate_time": 0.30495643615722656,
+        "inference_time": 0.020505428314208984
+    },
+    "17": {
+        "trees_by_client": 180,
+        "first_server_serialise_trees_size": 161007,
+        "fit_time": 2.4482502937316895,
+        "client_serialise_trees_size": 3084360,
+        "final_server_serialise_trees_size": 14876272,
+        "f1_score": 0.9291220634078997,
+        "mcc": 0.9407084205707065,
+        "accuracy": 0.991635687732342,
+        "precision": 0.9504497797630126,
+        "recall": 0.9283324991658325,
+        "confusion_matrix": [
+            [
+                0.994994994994995,
+                0.0,
+                0.005005005005005005,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 15.536823987960815,
+        "round_start_time": 1771785757.5359774,
+        "round_end_time": 1771785773.0728014,
+        "evaluate_time": 0.3017756938934326,
+        "inference_time": 0.018730878829956055
+    },
+    "18": {
+        "trees_by_client": 190,
+        "first_server_serialise_trees_size": 170020,
+        "fit_time": 2.79427433013916,
+        "client_serialise_trees_size": 3259533,
+        "final_server_serialise_trees_size": 15486032,
+        "f1_score": 0.932135243348058,
+        "mcc": 0.9468566857895816,
+        "accuracy": 0.9925650557620818,
+        "precision": 0.9549608691174957,
+        "recall": 0.9284993326659993,
+        "confusion_matrix": [
+            [
+                0.995995995995996,
+                0.0,
+                0.004004004004004004,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 16.506370067596436,
+        "round_start_time": 1771785788.194936,
+        "round_end_time": 1771785804.701306,
+        "evaluate_time": 0.3254721164703369,
+        "inference_time": 0.0226900577545166
+    },
+    "19": {
+        "trees_by_client": 200,
+        "first_server_serialise_trees_size": 178721,
+        "fit_time": 3.150390148162842,
+        "client_serialise_trees_size": 3456005,
+        "final_server_serialise_trees_size": 16444667,
+        "f1_score": 0.9262308571453078,
+        "mcc": 0.934674676258129,
+        "accuracy": 0.9907063197026023,
+        "precision": 0.9462608987256874,
+        "recall": 0.9281656656656656,
+        "confusion_matrix": [
+            [
+                0.993993993993994,
+                0.0,
+                0.006006006006006006,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 16.48017930984497,
+        "round_start_time": 1771785819.801858,
+        "round_end_time": 1771785836.2820373,
+        "evaluate_time": 0.341005802154541,
+        "inference_time": 0.030521869659423828
+    },
+    "20": {
+        "trees_by_client": 210,
+        "first_server_serialise_trees_size": 189331,
+        "fit_time": 3.2070305347442627,
+        "client_serialise_trees_size": 3594908,
+        "final_server_serialise_trees_size": 17179599,
+        "f1_score": 0.9262308571453078,
+        "mcc": 0.934674676258129,
+        "accuracy": 0.9907063197026023,
+        "precision": 0.9462608987256874,
+        "recall": 0.9281656656656656,
+        "confusion_matrix": [
+            [
+                0.993993993993994,
+                0.0,
+                0.006006006006006006,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 17.5027437210083,
+        "round_start_time": 1771785851.4691474,
+        "round_end_time": 1771785868.9718912,
+        "evaluate_time": 0.365772008895874,
+        "inference_time": 0.024515628814697266
+    },
+    "21": {
+        "trees_by_client": 220,
+        "first_server_serialise_trees_size": 198545,
+        "fit_time": 3.2674379348754883,
+        "client_serialise_trees_size": 3739644,
+        "final_server_serialise_trees_size": 17943111,
+        "f1_score": 0.9291220634078997,
+        "mcc": 0.9407084205707065,
+        "accuracy": 0.991635687732342,
+        "precision": 0.9504497797630126,
+        "recall": 0.9283324991658325,
+        "confusion_matrix": [
+            [
+                0.994994994994995,
+                0.0,
+                0.005005005005005005,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 18.16291618347168,
+        "round_start_time": 1771785884.0709555,
+        "round_end_time": 1771785902.2338717,
+        "evaluate_time": 0.319472074508667,
+        "inference_time": 0.01678299903869629
+    },
+    "22": {
+        "trees_by_client": 230,
+        "first_server_serialise_trees_size": 208211,
+        "fit_time": 3.4996719360351562,
+        "client_serialise_trees_size": 3975496,
+        "final_server_serialise_trees_size": 18821098,
+        "f1_score": 0.9291220634078997,
+        "mcc": 0.9407084205707065,
+        "accuracy": 0.991635687732342,
+        "precision": 0.9504497797630126,
+        "recall": 0.9283324991658325,
+        "confusion_matrix": [
+            [
+                0.994994994994995,
+                0.0,
+                0.005005005005005005,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 20.1913845539093,
+        "round_start_time": 1771785917.3628318,
+        "round_end_time": 1771785937.5542164,
+        "evaluate_time": 0.2097153663635254,
+        "inference_time": 0.015856504440307617
+    },
+    "23": {
+        "trees_by_client": 240,
+        "first_server_serialise_trees_size": 217606,
+        "fit_time": 3.166727066040039,
+        "client_serialise_trees_size": 4110912,
+        "final_server_serialise_trees_size": 19964908,
+        "f1_score": 0.9291220634078997,
+        "mcc": 0.9407084205707065,
+        "accuracy": 0.991635687732342,
+        "precision": 0.9504497797630126,
+        "recall": 0.9283324991658325,
+        "confusion_matrix": [
+            [
+                0.994994994994995,
+                0.0,
+                0.005005005005005005,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 19.92014479637146,
+        "round_start_time": 1771785952.6319816,
+        "round_end_time": 1771785972.5521264,
+        "evaluate_time": 0.3841269016265869,
+        "inference_time": 0.018042564392089844
+    },
+    "24": {
+        "trees_by_client": 250,
+        "first_server_serialise_trees_size": 227327,
+        "fit_time": 3.671005964279175,
+        "client_serialise_trees_size": 4237988,
+        "final_server_serialise_trees_size": 20425798,
+        "f1_score": 0.9262308571453078,
+        "mcc": 0.934674676258129,
+        "accuracy": 0.9907063197026023,
+        "precision": 0.9462608987256874,
+        "recall": 0.9281656656656656,
+        "confusion_matrix": [
+            [
+                0.993993993993994,
+                0.0,
+                0.006006006006006006,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 20.816461324691772,
+        "round_start_time": 1771785987.6599526,
+        "round_end_time": 1771786008.476414,
+        "evaluate_time": 0.39946937561035156,
+        "inference_time": 0.0436861515045166
+    },
+    "25": {
+        "trees_by_client": 260,
+        "first_server_serialise_trees_size": 236241,
+        "fit_time": 3.805232524871826,
+        "client_serialise_trees_size": 4472924,
+        "final_server_serialise_trees_size": 21217790,
+        "f1_score": 0.9262308571453078,
+        "mcc": 0.934674676258129,
+        "accuracy": 0.9907063197026023,
+        "precision": 0.9462608987256874,
+        "recall": 0.9281656656656656,
+        "confusion_matrix": [
+            [
+                0.993993993993994,
+                0.0,
+                0.006006006006006006,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 21.48305630683899,
+        "round_start_time": 1771786023.611951,
+        "round_end_time": 1771786045.0950074,
+        "evaluate_time": 0.43961358070373535,
+        "inference_time": 0.030169248580932617
+    },
+    "26": {
+        "trees_by_client": 270,
+        "first_server_serialise_trees_size": 246686,
+        "fit_time": 3.7631828784942627,
+        "client_serialise_trees_size": 4661759,
+        "final_server_serialise_trees_size": 22177588,
+        "f1_score": 0.932135243348058,
+        "mcc": 0.9468566857895816,
+        "accuracy": 0.9925650557620818,
+        "precision": 0.9549608691174957,
+        "recall": 0.9284993326659993,
+        "confusion_matrix": [
+            [
+                0.995995995995996,
+                0.0,
+                0.004004004004004004,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 23.01744556427002,
+        "round_start_time": 1771786060.2069385,
+        "round_end_time": 1771786083.224384,
+        "evaluate_time": 0.3903324604034424,
+        "inference_time": 0.03334164619445801
+    },
+    "27": {
+        "trees_by_client": 280,
+        "first_server_serialise_trees_size": 255687,
+        "fit_time": 4.1760289669036865,
+        "client_serialise_trees_size": 4809679,
+        "final_server_serialise_trees_size": 23010022,
+        "f1_score": 0.9291220634078997,
+        "mcc": 0.9407084205707065,
+        "accuracy": 0.991635687732342,
+        "precision": 0.9504497797630126,
+        "recall": 0.9283324991658325,
+        "confusion_matrix": [
+            [
+                0.994994994994995,
+                0.0,
+                0.005005005005005005,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 24.763813257217407,
+        "round_start_time": 1771786098.3234804,
+        "round_end_time": 1771786123.0872936,
+        "evaluate_time": 0.26217126846313477,
+        "inference_time": 0.019986867904663086
+    },
+    "28": {
+        "trees_by_client": 290,
+        "first_server_serialise_trees_size": 264260,
+        "fit_time": 3.6596341133117676,
+        "client_serialise_trees_size": 5055775,
+        "final_server_serialise_trees_size": 23999612,
+        "f1_score": 0.9262308571453078,
+        "mcc": 0.934674676258129,
+        "accuracy": 0.9907063197026023,
+        "precision": 0.9462608987256874,
+        "recall": 0.9281656656656656,
+        "confusion_matrix": [
+            [
+                0.993993993993994,
+                0.0,
+                0.006006006006006006,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 24.245951175689697,
+        "round_start_time": 1771786138.1695418,
+        "round_end_time": 1771786162.415493,
+        "evaluate_time": 0.4502904415130615,
+        "inference_time": 0.03651070594787598
+    },
+    "29": {
+        "trees_by_client": 300,
+        "first_server_serialise_trees_size": 273830,
+        "fit_time": 4.366708993911743,
+        "client_serialise_trees_size": 5175604,
+        "final_server_serialise_trees_size": 24981081,
+        "f1_score": 0.9291220634078997,
+        "mcc": 0.9407084205707065,
+        "accuracy": 0.991635687732342,
+        "precision": 0.9504497797630126,
+        "recall": 0.9283324991658325,
+        "confusion_matrix": [
+            [
+                0.994994994994995,
+                0.0,
+                0.005005005005005005,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 25.523683786392212,
+        "round_start_time": 1771786177.567499,
+        "round_end_time": 1771786203.0911827,
+        "evaluate_time": 0.4850316047668457,
+        "inference_time": 0.03154158592224121
+    },
+    "30": {
+        "trees_by_client": 310,
+        "first_server_serialise_trees_size": 283508,
+        "fit_time": 4.693240404129028,
+        "client_serialise_trees_size": 5371119,
+        "final_server_serialise_trees_size": 25344010,
+        "f1_score": 0.9291220634078997,
+        "mcc": 0.9407084205707065,
+        "accuracy": 0.991635687732342,
+        "precision": 0.9504497797630126,
+        "recall": 0.9283324991658325,
+        "confusion_matrix": [
+            [
+                0.994994994994995,
+                0.0,
+                0.005005005005005005,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 25.93112850189209,
+        "round_start_time": 1771786218.2371812,
+        "round_end_time": 1771786244.1683097,
+        "evaluate_time": 0.4372861385345459,
+        "inference_time": 0.03455305099487305
+    },
+    "31": {
+        "trees_by_client": 320,
+        "first_server_serialise_trees_size": 293432,
+        "fit_time": 4.987185955047607,
+        "client_serialise_trees_size": 5467139,
+        "final_server_serialise_trees_size": 26511857,
+        "f1_score": 0.9262308571453078,
+        "mcc": 0.934674676258129,
+        "accuracy": 0.9907063197026023,
+        "precision": 0.9462608987256874,
+        "recall": 0.9281656656656656,
+        "confusion_matrix": [
+            [
+                0.993993993993994,
+                0.0,
+                0.006006006006006006,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 26.198670625686646,
+        "round_start_time": 1771786259.2970834,
+        "round_end_time": 1771786285.495754,
+        "evaluate_time": 0.44646763801574707,
+        "inference_time": 0.026821136474609375
+    },
+    "32": {
+        "trees_by_client": 330,
+        "first_server_serialise_trees_size": 302638,
+        "fit_time": 4.75580620765686,
+        "client_serialise_trees_size": 5707008,
+        "final_server_serialise_trees_size": 26956614,
+        "f1_score": 0.9262308571453078,
+        "mcc": 0.934674676258129,
+        "accuracy": 0.9907063197026023,
+        "precision": 0.9462608987256874,
+        "recall": 0.9281656656656656,
+        "confusion_matrix": [
+            [
+                0.993993993993994,
+                0.0,
+                0.006006006006006006,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 26.79615545272827,
+        "round_start_time": 1771786300.6228151,
+        "round_end_time": 1771786327.4189706,
+        "evaluate_time": 0.46329402923583984,
+        "inference_time": 0.04360246658325195
+    },
+    "33": {
+        "trees_by_client": 340,
+        "first_server_serialise_trees_size": 312072,
+        "fit_time": 4.8448615074157715,
+        "client_serialise_trees_size": 5808952,
+        "final_server_serialise_trees_size": 28304368,
+        "f1_score": 0.9291220634078997,
+        "mcc": 0.9407084205707065,
+        "accuracy": 0.991635687732342,
+        "precision": 0.9504497797630126,
+        "recall": 0.9283324991658325,
+        "confusion_matrix": [
+            [
+                0.994994994994995,
+                0.0,
+                0.005005005005005005,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 29.553465604782104,
+        "round_start_time": 1771786342.5820832,
+        "round_end_time": 1771786372.1355488,
+        "evaluate_time": 0.29462242126464844,
+        "inference_time": 0.022915124893188477
+    },
+    "34": {
+        "trees_by_client": 350,
+        "first_server_serialise_trees_size": 321388,
+        "fit_time": 4.374193906784058,
+        "client_serialise_trees_size": 5914176,
+        "final_server_serialise_trees_size": 28805790,
+        "f1_score": 0.9291220634078997,
+        "mcc": 0.9407084205707065,
+        "accuracy": 0.991635687732342,
+        "precision": 0.9504497797630126,
+        "recall": 0.9283324991658325,
+        "confusion_matrix": [
+            [
+                0.994994994994995,
+                0.0,
+                0.005005005005005005,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 28.560762643814087,
+        "round_start_time": 1771786387.2229607,
+        "round_end_time": 1771786415.7837234,
+        "evaluate_time": 0.5629377365112305,
+        "inference_time": 0.0338289737701416
+    },
+    "35": {
+        "trees_by_client": 360,
+        "first_server_serialise_trees_size": 330873,
+        "fit_time": 5.4789674282073975,
+        "client_serialise_trees_size": 6110646,
+        "final_server_serialise_trees_size": 29505318,
+        "f1_score": 0.9291220634078997,
+        "mcc": 0.9407084205707065,
+        "accuracy": 0.991635687732342,
+        "precision": 0.9504497797630126,
+        "recall": 0.9283324991658325,
+        "confusion_matrix": [
+            [
+                0.994994994994995,
+                0.0,
+                0.005005005005005005,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 30.04542326927185,
+        "round_start_time": 1771786430.9739513,
+        "round_end_time": 1771786461.0193746,
+        "evaluate_time": 0.5408668518066406,
+        "inference_time": 0.03793644905090332
+    },
+    "36": {
+        "trees_by_client": 370,
+        "first_server_serialise_trees_size": 339768,
+        "fit_time": 5.490016937255859,
+        "client_serialise_trees_size": 6337003,
+        "final_server_serialise_trees_size": 30270524,
+        "f1_score": 0.932135243348058,
+        "mcc": 0.9468566857895816,
+        "accuracy": 0.9925650557620818,
+        "precision": 0.9549608691174957,
+        "recall": 0.9284993326659993,
+        "confusion_matrix": [
+            [
+                0.995995995995996,
+                0.0,
+                0.004004004004004004,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 29.045107126235962,
+        "round_start_time": 1771786476.1488004,
+        "round_end_time": 1771786505.1939075,
+        "evaluate_time": 0.40552687644958496,
+        "inference_time": 0.03016519546508789
+    },
+    "37": {
+        "trees_by_client": 380,
+        "first_server_serialise_trees_size": 349695,
+        "fit_time": 5.747045040130615,
+        "client_serialise_trees_size": 6492617,
+        "final_server_serialise_trees_size": 31253350,
+        "f1_score": 0.932135243348058,
+        "mcc": 0.9468566857895816,
+        "accuracy": 0.9925650557620818,
+        "precision": 0.9549608691174957,
+        "recall": 0.9284993326659993,
+        "confusion_matrix": [
+            [
+                0.995995995995996,
+                0.0,
+                0.004004004004004004,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 32.13961124420166,
+        "round_start_time": 1771786520.3131943,
+        "round_end_time": 1771786552.4528055,
+        "evaluate_time": 0.5466878414154053,
+        "inference_time": 0.04216790199279785
+    },
+    "38": {
+        "trees_by_client": 390,
+        "first_server_serialise_trees_size": 360301,
+        "fit_time": 5.6596784591674805,
+        "client_serialise_trees_size": 6678545,
+        "final_server_serialise_trees_size": 32313246,
+        "f1_score": 0.9262308571453078,
+        "mcc": 0.934674676258129,
+        "accuracy": 0.9907063197026023,
+        "precision": 0.9462608987256874,
+        "recall": 0.9281656656656656,
+        "confusion_matrix": [
+            [
+                0.993993993993994,
+                0.0,
+                0.006006006006006006,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 31.227815628051758,
+        "round_start_time": 1771786567.586948,
+        "round_end_time": 1771786598.8147635,
+        "evaluate_time": 0.5430114269256592,
+        "inference_time": 0.04453730583190918
+    },
+    "39": {
+        "trees_by_client": 400,
+        "first_server_serialise_trees_size": 368990,
+        "fit_time": 6.326532602310181,
+        "client_serialise_trees_size": 6907301,
+        "final_server_serialise_trees_size": 32767124,
+        "f1_score": 0.9291220634078997,
+        "mcc": 0.9407084205707065,
+        "accuracy": 0.991635687732342,
+        "precision": 0.9504497797630126,
+        "recall": 0.9283324991658325,
+        "confusion_matrix": [
+            [
+                0.994994994994995,
+                0.0,
+                0.005005005005005005,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.05,
+                0.0,
+                0.95,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.375,
+                0.0,
+                0.625,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "DoS/DDoS",
+            "Info_Gathering",
+            "Injection",
+            "MITM",
+            "Malware",
+            "Normal"
+        ],
+        "round_time": 32.31540060043335,
+        "round_start_time": 1771786613.9639902,
+        "round_end_time": 1771786646.2793908,
+        "evaluate_time": 0.6125595569610596,
+        "inference_time": 0.04381394386291504
+    }
+}

@@ -34,6 +34,7 @@ class HouseClient():
             min_samples_split=min_samples_split,  # [CLASSIF]
             max_features=max_features,  # [CLASSIF]
             ccp_alpha=ccp_alpha,  # [CLASSIF]
+            class_weight="balanced_subsample",  # [CLASSIF] lidar com classes desbalanceadas
         )
         utils.set_initial_params(self.local_model, self.X_train, self.y_train) 
         self.trees = self.local_model.estimators_

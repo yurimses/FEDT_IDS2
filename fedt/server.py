@@ -13,7 +13,8 @@ from sklearn.ensemble import RandomForestClassifier #[CLASSIF]
 from fedt.settings import (
     server_config, number_of_jobs, number_of_clients, 
     imported_aggregation_strategy, number_of_rounds, many_simulations,
-    max_depth, min_samples_leaf, min_samples_split, max_features, ccp_alpha  # [CLASSIF]
+    max_depth, min_samples_leaf, min_samples_split, max_features, ccp_alpha,  # [CLASSIF]
+    dominant_client_id, unlearning_enabled, unlearning_round  # [UNLEARNING]
 )
 from fedt.fedforest import FedForest
 from fedt import utils
@@ -61,6 +62,13 @@ class FedT(fedT_pb2_grpc.FedTServicer):
         self.aggregation_strategy = imported_aggregation_strategy
         if many_simulations:
             self.aggregation_strategy = input_aggregation_strategy
+
+        # --- Unlearning config --- [UNLEARNING]
+        self.unlearning_enabled = unlearning_enabled
+        self.dominant_client_id = dominant_client_id
+        self.unlearning_round = unlearning_round
+        self.unlearning_done = False
+        self.blocked_clients = set()
 
         # Extrai dataset_name e partition_type das configurações
         from pathlib import Path
@@ -111,14 +119,16 @@ class FedT(fedT_pb2_grpc.FedTServicer):
             min_samples_split=min_samples_split,  # [CLASSIF]
             max_features=max_features,  # [CLASSIF]
             ccp_alpha=ccp_alpha,  # [CLASSIF]
-            class_weight='balanced',  # [CLASSIF] Balanceia automaticamente classes desbalanceadas
+            class_weight='balanced_subsample',  # [CLASSIF] Balanceia automaticamente classes desbalanceadas
             #warm_start=True  # [CLASSIF] Mantém árvores existentes ao chamar fit() novamente (não crítico aqui, pois sobrescrevemos estimators_)
         )
-        data_train, label_train = utils.load_dataset_for_server()
+        # [UNLEARNING] Passa blocked_clients para excluir dados desses clientes
+        data_train, label_train = utils.load_dataset_for_server(excluded_clients=self.blocked_clients if self.blocked_clients else None)
         utils.set_initial_params(self.model, data_train, label_train)
 
         self.global_trees = self.model.estimators_
-        self.strategy = FedForest(self.model)
+        # [UNLEARNING] Passa blocked_clients para FedForest evitar vazamento em validação
+        self.strategy = FedForest(self.model, excluded_clients=self.blocked_clients if self.blocked_clients else None)
 
     def attach_shutdown_event(self, event):
         self.shutdown_event = event
@@ -127,6 +137,17 @@ class FedT(fedT_pb2_grpc.FedTServicer):
         return self.round * server_config["increase_of_trees_per_round"] + server_config["number_of_trees_in_start"]
 
     def aggregate_strategy(self, best_forests: list[RandomForestClassifier], threshold=server_config["mcc_threshold"]): # [CLASSIF]
+        # --- Unlearning: remove trees from dominant client after unlearning_round --- [UNLEARNING]
+        if self.unlearning_enabled and self.round >= self.unlearning_round and not self.unlearning_done:
+            # Remove all trees from dominant client
+            best_forests = [forest for idx, forest in enumerate(best_forests)
+                           if self.trees_warehouse[idx][0] != self.dominant_client_id]
+            self.blocked_clients.add(self.dominant_client_id)
+            # [UNLEARNING] Atualiza excluded_clients em FedForest para evitar vazamento em validação
+            self.strategy.excluded_clients = self.blocked_clients
+            self.unlearning_done = True
+            logger.warning(f"[UNLEARNING] Árvores do cliente dominante (ID={self.dominant_client_id}) removidas após round {self.round}.")
+
         match self.aggregation_strategy:
             case 'random':
                 self.model.estimators_ = self.strategy.aggregate_fit_random_trees_strategy(best_forests)
@@ -136,6 +157,15 @@ class FedT(fedT_pb2_grpc.FedTServicer):
                 self.model.estimators_ = self.strategy.aggregate_fit_best_trees_threshold_strategy(best_forests, threshold)
             case 'best_forests':
                 self.model.estimators_ = self.strategy.aggregate_fit_best_forest_strategy(best_forests)
+            case 'class_coverage':
+                # Nova estratégia: garante cobertura por classe
+                trees_per_class = server_config.get("trees_per_class", 3)
+                total_trees_ratio = server_config.get("total_trees_ratio", 0.5)
+                self.model.estimators_ = self.strategy.aggregate_fit_best_trees_with_class_coverage_strategy(
+                    best_forests, 
+                    trees_per_class=trees_per_class,
+                    total_trees_ratio=total_trees_ratio
+                )
             case _:
                 self.model.estimators_ = self.strategy.aggregate_fit_random_trees_strategy(best_forests)
 
@@ -144,7 +174,12 @@ class FedT(fedT_pb2_grpc.FedTServicer):
             await asyncio.sleep(0.2)
 
             async with self.lock:
-                enough = ( len(self.trees_warehouse) >= self.clientes_esperados )
+                # --- Unlearning: ajusta clientes_esperados dinamicamente no início do round --- [UNLEARNING]
+                clientes_esperados_atual = self.clientes_esperados
+                if self.unlearning_enabled and self.round >= self.unlearning_round:
+                    clientes_esperados_atual = number_of_clients - 1
+                
+                enough = ( len(self.trees_warehouse) >= clientes_esperados_atual )
                 should_start = ( self.aggregation_realised == 0 and enough )
 
                 if should_start:
@@ -178,6 +213,10 @@ class FedT(fedT_pb2_grpc.FedTServicer):
 
         async for request in request_iterator:
             client_ID = request.client_ID
+            # --- Unlearning: bloqueia comunicação do cliente dominante após round --- [UNLEARNING]
+            if self.unlearning_enabled and self.round >= self.unlearning_round and client_ID == self.dominant_client_id:
+                logger.warning(f"[UNLEARNING] Ignorando árvores do cliente dominante (ID={client_ID}) após round {self.round}.")
+                return  # Não processa mais árvores desse cliente
             client_serialised_trees.append(request.serialised_tree)
 
         loop = asyncio.get_running_loop()
@@ -252,9 +291,15 @@ class FedT(fedT_pb2_grpc.FedTServicer):
                 end_time
             )
             self.clientes_respondidos += 1
-            logger.info(f"O cliente {request.client_ID} finalizou round. Clientes respondidos: {self.clientes_respondidos}/{number_of_clients}")
+            
+            # --- Unlearning: ajusta clientes_esperados dinamicamente --- [UNLEARNING]
+            clientes_esperados_atual = self.clientes_esperados
+            if self.unlearning_enabled and self.round >= self.unlearning_round:
+                clientes_esperados_atual = number_of_clients - 1
+                
+            logger.info(f"O cliente {request.client_ID} finalizou round. Clientes respondidos: {self.clientes_respondidos}/{clientes_esperados_atual}")
 
-            if self.clientes_respondidos == number_of_clients:
+            if self.clientes_respondidos == clientes_esperados_atual:
                 logger.info("Todos os clientes finalizaram.")
 
                 for i in self.runtime_clients:
@@ -316,7 +361,8 @@ class FedT(fedT_pb2_grpc.FedTServicer):
             max_features=max_features,  # [CLASSIF]
             ccp_alpha=ccp_alpha,  # [CLASSIF]
         )
-        data_train, label_train = utils.load_dataset_for_server()
+        # [UNLEARNING] Passa blocked_clients para excluir dados desses clientes
+        data_train, label_train = utils.load_dataset_for_server(excluded_clients=self.blocked_clients if self.blocked_clients else None)
         utils.set_initial_params(self.model, data_train, label_train)
 
         self.global_trees = self.model.estimators_
@@ -328,6 +374,12 @@ class FedT(fedT_pb2_grpc.FedTServicer):
         self.aggregation_realised = 0
         self.runtime_clients = []
         self.aggregation_time = 0.0
+        
+        # --- Unlearning: resetar clientes_esperados dinamicamente --- [UNLEARNING]
+        if self.unlearning_enabled and self.round >= self.unlearning_round:
+            self.clientes_esperados = number_of_clients - 1
+        else:
+            self.clientes_esperados = number_of_clients
 
 
 async def run_server(input_aggregation_strategy=None):

@@ -229,10 +229,113 @@ def _partition_indices_dirichlet_allclasses(  # [CLASSIF]
     return parts  # [CLASSIF]
 
 
+def _partition_indices_dominant_client(  # [CLASSIF]
+    y: np.ndarray,  # [CLASSIF]
+    num_partitions: int,  # [CLASSIF]
+    dominant_client_id: int,  # [CLASSIF]
+    dominant_percentage: float,  # [CLASSIF]
+    alpha: float,  # [CLASSIF]
+    seed: int = 42,  # [CLASSIF]
+    min_samples_per_class: int = 10  # [CLASSIF]
+):  # [CLASSIF]
+    """  # [CLASSIF]
+    [CLASSIF] Particionamento com um cliente dominante + resto em non_iid_allclasses.  # [CLASSIF]
+    
+    Um cliente específico (dominant_client_id) recebe dominant_percentage% de TODAS as classes.  # [CLASSIF]
+    Os dados remanescentes são distribuídos entre os outros clientes usando non_iid_allclasses.  # [CLASSIF]
+    
+    Algoritmo:  # [CLASSIF]
+    1. Para cada classe, aloca dominant_percentage% para o cliente dominante  # [CLASSIF]
+    2. Distribui os dados remanescentes com non_iid_allclasses para os demais clientes  # [CLASSIF]
+    3. Garante min_samples_per_class em cada partição (quando possível)  # [CLASSIF]
+    """  # [CLASSIF]
+    rng = np.random.default_rng(seed)  # [CLASSIF]
+    y = np.asarray(y)  # [CLASSIF]
+    classes = np.unique(y)  # [CLASSIF]
+    
+    if dominant_client_id < 0 or dominant_client_id >= num_partitions:  # [CLASSIF]
+        raise ValueError(  # [CLASSIF]
+            f"dominant_client_id {dominant_client_id} fora do intervalo [0, {num_partitions - 1}]"  # [CLASSIF]
+        )  # [CLASSIF]
+    
+    if dominant_percentage <= 0 or dominant_percentage >= 1.0:  # [CLASSIF]
+        raise ValueError(  # [CLASSIF]
+            f"dominant_percentage deve estar entre 0 e 1. Recebido: {dominant_percentage}"  # [CLASSIF]
+        )  # [CLASSIF]
+    
+    # [CLASSIF] Inicializa dicionário para índices do cliente dominante e dos restantes  # [CLASSIF]
+    dominant_indices = []  # [CLASSIF]
+    remaining_y = []  # [CLASSIF]
+    remaining_idx_mapping = []  # Mapa de índices originais para restantes  # [CLASSIF]
+    
+    # [CLASSIF] Para cada classe, aloca dominant_percentage% para o cliente dominante  # [CLASSIF]
+    for c in classes:  # [CLASSIF]
+        cls_idx = np.flatnonzero(y == c)  # [CLASSIF]
+        cls_idx = rng.permutation(cls_idx)  # [CLASSIF]
+        n_c = len(cls_idx)  # [CLASSIF]
+        
+        # [CLASSIF] Calcula quantas amostras da classe vão para o cliente dominante  # [CLASSIF]
+        n_dominant = max(1, int(np.round(n_c * dominant_percentage)))  # [CLASSIF]
+        n_dominant = min(n_dominant, n_c - 1)  # Garante pelo menos 1 amostra para os demais  # [CLASSIF]
+        
+        # [CLASSIF] Aloca amostras para o cliente dominante  # [CLASSIF]
+        dominant_indices.append(cls_idx[:n_dominant])  # [CLASSIF]
+        
+        # [CLASSIF] Amostras restantes vão para particionamento não-IID  # [CLASSIF]
+        for idx in cls_idx[n_dominant:]:  # [CLASSIF]
+            remaining_y.append(int(c))  # [CLASSIF]
+            remaining_idx_mapping.append(int(idx))  # [CLASSIF]
+    
+    # [CLASSIF] Concatena índices do cliente dominante  # [CLASSIF]
+    dominant_part = rng.permutation(np.concatenate(dominant_indices)) if dominant_indices else np.array([], dtype=int)  # [CLASSIF]
+    
+    # [CLASSIF] Particiona os dados remanescentes com non_iid_allclasses  # [CLASSIF]
+    remaining_y = np.asarray(remaining_y)  # [CLASSIF]
+    remaining_idx_mapping = np.asarray(remaining_idx_mapping, dtype=int)  # [CLASSIF]
+    
+    # [CLASSIF] Número de partições para os dados remanescentes (excluindo cliente dominante)  # [CLASSIF]
+    num_remaining_partitions = num_partitions - 1  # [CLASSIF]
+    
+    if num_remaining_partitions > 0 and len(remaining_y) > 0:  # [CLASSIF]
+        # [CLASSIF] Particiona índices remanescentes com non_iid_allclasses  # [CLASSIF]
+        remaining_partitions_local = _partition_indices_dirichlet_allclasses(  # [CLASSIF]
+            y=remaining_y,  # [CLASSIF]
+            num_partitions=num_remaining_partitions,  # [CLASSIF]
+            alpha=alpha,  # [CLASSIF]
+            seed=seed + 1,  # [CLASSIF] Seed diferente para evitar duplicação  # [CLASSIF]
+            min_samples_per_class=min_samples_per_class,  # [CLASSIF]
+        )  # [CLASSIF]
+        
+        # [CLASSIF] Mapeia índices locais (nos dados remanescentes) para índices globais  # [CLASSIF]
+        remaining_partitions_global = [  # [CLASSIF]
+            remaining_idx_mapping[part] if len(part) > 0 else np.array([], dtype=int)  # [CLASSIF]
+            for part in remaining_partitions_local  # [CLASSIF]
+        ]  # [CLASSIF]
+    else:  # [CLASSIF]
+        remaining_partitions_global = [np.array([], dtype=int) for _ in range(num_remaining_partitions)]  # [CLASSIF]
+    
+    # [CLASSIF] Monta as partições finais: cliente dominante + partições do resto  # [CLASSIF]
+    parts = [None] * num_partitions  # [CLASSIF]
+    parts[dominant_client_id] = dominant_part  # [CLASSIF]
+    
+    # [CLASSIF] Insere as partições restantes nos slots corretos (pulando o cliente dominante)  # [CLASSIF]
+    remaining_idx = 0  # [CLASSIF]
+    for pid in range(num_partitions):  # [CLASSIF]
+        if pid != dominant_client_id:  # [CLASSIF]
+            parts[pid] = remaining_partitions_global[remaining_idx]  # [CLASSIF]
+            remaining_idx += 1  # [CLASSIF]
+    
+    return parts  # [CLASSIF]
+
+
 def load_house_client(client_id: int):  # [CLASSIF]
     """
-    [CLASSIF] Carrega a partição do dataset para um cliente específico (iid ou non-iid),
-    evitando converter X/y para listas Python (isso estoura memória em datasets grandes).  # [CLASSIF]
+    [CLASSIF] Carrega a partição do dataset para um cliente específico (iid ou non-iid).
+    
+    Estratégia corrigida:
+    1. Particiona TODOS OS ÍNDICES do dataset em train (80%) e test (20%)
+    2. Depois particiona cada subset (train e test) entre os clientes
+    3. Isto garante zero sobreposição entre train/test e entre clientes
     """  # [CLASSIF]
     X, y, feature_names, label_name = load_dataset()  # [CLASSIF]
 
@@ -241,45 +344,80 @@ def load_house_client(client_id: int):  # [CLASSIF]
             f"client_id {client_id} fora do intervalo [0, {number_of_clients - 1}]"  # [CLASSIF]
         )  # [CLASSIF]
 
-    # [CLASSIF] Seleciona o tipo de particionamento (iid ou non-iid)  # [CLASSIF]
-    pt = partition_type.lower() if isinstance(partition_type, str) else "iid"  # [CLASSIF]
-    if pt == "iid":  # [CLASSIF]
-        partitions = _partition_indices_iid(len(y), number_of_clients, seed=int(partition_seed))  # [CLASSIF]
-    elif pt in ("non-iid", "non_iid", "noniid"):  # [CLASSIF]
-        partitions = _partition_indices_dirichlet(  # [CLASSIF]
-            y=np.asarray(y),  # [CLASSIF]
-            num_partitions=number_of_clients,  # [CLASSIF]
-            alpha=float(non_iid_alpha),  # [CLASSIF]
-            seed=int(partition_seed),  # [CLASSIF]
-            min_partition_size=1,  # [CLASSIF]
-        )  # [CLASSIF]
-    elif pt in ("non-iid-allclasses", "non_iid_allclasses", "noniid_allclasses"):  # [CLASSIF]
-        partitions = _partition_indices_dirichlet_allclasses(  # [CLASSIF]
-            y=np.asarray(y),  # [CLASSIF]
-            num_partitions=number_of_clients,  # [CLASSIF]
-            alpha=float(non_iid_alpha),  # [CLASSIF]
-            seed=int(partition_seed),  # [CLASSIF]
-            min_samples_per_class=int(min_samples_per_class),  # [CLASSIF]
-        )  # [CLASSIF]
-    else:
-        raise ValueError(f"Tipo de particionamento inválido: {partition_type}")  # [CLASSIF]
-
-    client_idx = partitions[client_id]  # [CLASSIF]
-    if client_idx.size == 0:  # [CLASSIF]
-        raise ValueError(f"Partição vazia para client_id={client_id}. Ajuste alpha/num_clients.")  # [CLASSIF]
-
-    X_client = X[client_idx]  # [CLASSIF]
-    y_client = np.asarray(y)[client_idx]  # [CLASSIF]
-
-    # [CLASSIF] Divisão estratificada quando possível; caso contrário, faz split simples para evitar erro.  # [CLASSIF]
-    stratify_arg = y_client  # [CLASSIF]
-    uniq, cnt = np.unique(y_client, return_counts=True)  # [CLASSIF]
+    # [CLASSIF] PASSO 1: Dividir ÍNDICES em train/test GLOBALMENTE  # [CLASSIF]
+    y_arr = np.asarray(y)  # [CLASSIF]
+    n_samples = len(y_arr)  # [CLASSIF]
+    
+    # [CLASSIF] Criar índices de train/test usando stratificação  # [CLASSIF]
+    all_indices = np.arange(n_samples)  # [CLASSIF]
+    stratify_arg = y_arr  # [CLASSIF]
+    uniq, cnt = np.unique(y_arr, return_counts=True)  # [CLASSIF]
     if uniq.size < 2 or np.min(cnt) < 2:  # [CLASSIF]
         stratify_arg = None  # [CLASSIF]
-
-    X_train, X_test, y_train, y_test = train_test_split(  # [CLASSIF]
-        X_client, y_client, test_size=0.2, stratify=stratify_arg, random_state=int(partition_seed)  # [CLASSIF]
+    
+    # [CLASSIF] Split de índices (80% train, 20% test)  # [CLASSIF]
+    train_indices_global, test_indices_global = train_test_split(  # [CLASSIF]
+        all_indices, test_size=0.2, stratify=stratify_arg, random_state=int(partition_seed)  # [CLASSIF]
     )  # [CLASSIF]
+    
+    # [CLASSIF] PASSO 2: Particionar cada subset entre os clientes  # [CLASSIF]
+    pt = partition_type.lower() if isinstance(partition_type, str) else "iid"  # [CLASSIF]
+    
+    y_train_global = y_arr[train_indices_global]  # [CLASSIF]
+    y_test_global = y_arr[test_indices_global]  # [CLASSIF]
+    
+    # [CLASSIF] Particiona índices RELATIVOS a cada subset  # [CLASSIF]
+    if pt == "iid":  # [CLASSIF]
+        train_local_partitions = _partition_indices_iid(len(y_train_global), number_of_clients, seed=int(partition_seed))  # [CLASSIF]
+        test_local_partitions = _partition_indices_iid(len(y_test_global), number_of_clients, seed=int(partition_seed) + 999)  # [CLASSIF]
+    elif pt in ("non-iid", "non_iid", "noniid"):  # [CLASSIF]
+        train_local_partitions = _partition_indices_dirichlet(  # [CLASSIF]
+            y=y_train_global, num_partitions=number_of_clients, alpha=float(non_iid_alpha),  # [CLASSIF]
+            seed=int(partition_seed), min_partition_size=1  # [CLASSIF]
+        )  # [CLASSIF]
+        test_local_partitions = _partition_indices_dirichlet(  # [CLASSIF]
+            y=y_test_global, num_partitions=number_of_clients, alpha=float(non_iid_alpha),  # [CLASSIF]
+            seed=int(partition_seed) + 999, min_partition_size=1  # [CLASSIF]
+        )  # [CLASSIF]
+    elif pt in ("non-iid-allclasses", "non_iid_allclasses", "noniid_allclasses"):  # [CLASSIF]
+        train_local_partitions = _partition_indices_dirichlet_allclasses(  # [CLASSIF]
+            y=y_train_global, num_partitions=number_of_clients, alpha=float(non_iid_alpha),  # [CLASSIF]
+            seed=int(partition_seed), min_samples_per_class=int(min_samples_per_class)  # [CLASSIF]
+        )  # [CLASSIF]
+        test_local_partitions = _partition_indices_dirichlet_allclasses(  # [CLASSIF]
+            y=y_test_global, num_partitions=number_of_clients, alpha=float(non_iid_alpha),  # [CLASSIF]
+            seed=int(partition_seed) + 999, min_samples_per_class=int(min_samples_per_class)  # [CLASSIF]
+        )  # [CLASSIF]
+    elif pt in ("dominant-client", "dominant_client", "dominantclient"):  # [CLASSIF]
+        from fedt.settings import dominant_client_id as dce_id, dominant_client_percentage as dce_pct  # [CLASSIF]
+        train_local_partitions = _partition_indices_dominant_client(  # [CLASSIF]
+            y=y_train_global, num_partitions=number_of_clients,  # [CLASSIF]
+            dominant_client_id=int(dce_id), dominant_percentage=float(dce_pct),  # [CLASSIF]
+            alpha=float(non_iid_alpha), seed=int(partition_seed),  # [CLASSIF]
+            min_samples_per_class=int(min_samples_per_class)  # [CLASSIF]
+        )  # [CLASSIF]
+        test_local_partitions = _partition_indices_dominant_client(  # [CLASSIF]
+            y=y_test_global, num_partitions=number_of_clients,  # [CLASSIF]
+            dominant_client_id=int(dce_id), dominant_percentage=float(dce_pct),  # [CLASSIF]
+            alpha=float(non_iid_alpha), seed=int(partition_seed) + 999,  # [CLASSIF]
+            min_samples_per_class=int(min_samples_per_class)  # [CLASSIF]
+        )  # [CLASSIF]
+    else:  # [CLASSIF]
+        raise ValueError(f"Tipo de particionamento inválido: {partition_type}")  # [CLASSIF]
+
+    # [CLASSIF] PASSO 3: Mapear índices locais para índices globais  # [CLASSIF]
+    train_local_indices_client = train_local_partitions[client_id]  # [CLASSIF]
+    test_local_indices_client = test_local_partitions[client_id]  # [CLASSIF]
+    
+    # [CLASSIF] Converter de índices locais (dentro do subset) para índices globais (dataset completo)  # [CLASSIF]
+    train_global_indices_client = train_indices_global[train_local_indices_client]  # [CLASSIF]
+    test_global_indices_client = test_indices_global[test_local_indices_client]  # [CLASSIF]
+    
+    # [CLASSIF] Extrair dados using índices globais  # [CLASSIF]
+    X_train = X[train_global_indices_client]  # [CLASSIF]
+    y_train = y_arr[train_global_indices_client]  # [CLASSIF]
+    X_test = X[test_global_indices_client]  # [CLASSIF]
+    y_test = y_arr[test_global_indices_client]  # [CLASSIF]
     
     # Salva as partições no disco
     _save_partition(client_id, X_train, y_train, X_test, y_test, pt, feature_names, label_name)
@@ -335,18 +473,60 @@ def _save_partition(client_id: int, X_train, y_train, X_test, y_test, partition_
     with open(metadata_path, "w") as f:
         json.dump(metadata, f, indent=2)
 
-def load_dataset_for_server() -> list:
+def load_dataset_for_server(excluded_clients=None) -> list:
     """
     ### Função:
-    Carregar um subconjunto mínimo do dataset que contenha todas as classes presentes no problema.  # [CLASSIF]
-    Isso inicializa o modelo do servidor de forma compatível com qualquer dataset de classificação,   # [CLASSIF]
-    sem assumir um número fixo de amostras ou classes.                                                # [CLASSIF]
+    Carregar um subconjunto mínimo do dataset que contenha todas as classes presentes no problema.
+    Se excluded_clients for especificado, usa apenas dados dos clientes NÃO excluídos.
+    
     ### Args:
-    - None.
+    - excluded_clients: Set de IDs de clientes a excluir (ex: {0} para unlearning)
+    
     ### Returns:
     - Data Train: As features.
     - Label Train: Os targets. 
     """
+    # [UNLEARNING] Se há clientes excluídos, carrega dados apenas dos clientes restantes
+    if excluded_clients is not None and len(excluded_clients) > 0:
+        # Extrai dataset_name e partition_type das configurações
+        dataset_name = Path(dataset_path).stem
+        pt = partition_type.lower() if isinstance(partition_type, str) else "iid"
+        
+        partition_base = partitions_folder / dataset_name / pt
+        
+        # Coleta todos os dados de treino dos clientes NÃO excluídos
+        all_train_data = []
+        all_train_labels = []
+        
+        for client_id in range(number_of_clients):
+            if client_id in excluded_clients:
+                continue  # Pula o cliente excluído
+            
+            train_path = partition_base / f"client_{client_id}" / "train.csv"
+            if train_path.exists():
+                df = pd.read_csv(train_path)
+                # Separa features e label
+                y_col = df.columns[-1]  # Última coluna é o label
+                X_client = df.drop(columns=[y_col]).values
+                y_client = df[y_col].values
+                
+                all_train_data.append(X_client)
+                all_train_labels.append(y_client)
+        
+        if all_train_data:
+            # Concatena todos os dados
+            X_train = np.vstack(all_train_data)
+            y_train = np.concatenate(all_train_labels)
+            
+            # Para cada classe, escolhe um índice representativo (primeira ocorrência)
+            unique_classes, first_indices = np.unique(y_train, return_index=True)
+            
+            return X_train[first_indices], y_train[first_indices]
+        else:
+            # Fallback: usa dataset completo se não houver partições
+            pass
+    
+    # [CLASSIF] Comportamento padrão: usa dataset completo
     data, label, feature_names, label_name = load_dataset()  # [CLASSIF]
 
     # [CLASSIF] Converte rótulos para array NumPy para tratamento genérico
@@ -365,18 +545,68 @@ def load_dataset_for_server() -> list:
 
     return data_init, label_init  # [CLASSIF]
 
-def load_server_side_validation_data():
+def load_server_side_validation_data(excluded_clients=None):
     """
     ### Função:
-    Carregar o dataset com apenas 1000 amostras, 
-    servirá para carregar os dados de validação para testar a performance do modelo.
+    Carregar dados de validação do servidor. Se excluded_clients for especificado,
+    usa apenas os dados dos clientes NÃO excluídos (para machine unlearning).
+    
     ### Args:
-    - None.
+    - excluded_clients: Set de IDs de clientes a excluir (ex: {0} para unlearning)
+    
     ### Returns:
     - Data Valid: As features para validação.
     - Label Valid: Os targets para validação. 
     """
-    # [CLASSIF] Dados de validação para classificação com MNIST
+    # [UNLEARNING] Se há clientes excluídos, carrega dados apenas dos clientes restantes
+    if excluded_clients is not None and len(excluded_clients) > 0:
+        # Extrai dataset_name e partition_type das configurações
+        dataset_name = Path(dataset_path).stem
+        pt = partition_type.lower() if isinstance(partition_type, str) else "iid"
+        
+        partition_base = partitions_folder / dataset_name / pt
+        
+        # Coleta todos os dados de teste dos clientes NÃO excluídos
+        all_test_data = []
+        all_test_labels = []
+        
+        for client_id in range(number_of_clients):
+            if client_id in excluded_clients:
+                continue  # Pula o cliente excluído
+            
+            test_path = partition_base / f"client_{client_id}" / "test.csv"
+            if test_path.exists():
+                df = pd.read_csv(test_path)
+                # Separa features e label
+                y_col = df.columns[-1]  # Última coluna é o label
+                X_client = df.drop(columns=[y_col]).values
+                y_client = df[y_col].values
+                
+                all_test_data.append(X_client)
+                all_test_labels.append(y_client)
+        
+        if all_test_data:
+            # Concatena todos os dados
+            X_valid = np.vstack(all_test_data)
+            y_valid = np.concatenate(all_test_labels)
+            
+            logger = logging.getLogger("SERVER")
+            logger.debug(f"[UNLEARNING] Carregadas {len(X_valid)} amostras de validação de {len(all_test_data)} clientes (excluindo {excluded_clients})")
+            
+            # Limita ao tamanho configurado (se maior)
+            if len(X_valid) > validate_dataset_size:
+                X_valid = X_valid[-validate_dataset_size:]
+                y_valid = y_valid[-validate_dataset_size:]
+                logger.debug(f"[UNLEARNING] Truncado para {validate_dataset_size} amostras (limite configurado)")
+            
+            return X_valid, y_valid
+        else:
+            # Fallback: usa dataset completo se não houver partições
+            logger = logging.getLogger("SERVER")
+            logger.warning(f"[UNLEARNING] Fallback: partições não encontradas, usando dataset completo")
+            pass
+    
+    # [CLASSIF] Comportamento padrão: usa dataset completo
     data, label, _, _ = load_dataset()
 
     _, data_valid, _, label_valid = train_test_split(
@@ -468,7 +698,7 @@ def setup_logger(name, log_file, level=logging.INFO):
 
     # --- FORMATADOR PADRÃO PARA O ARQUIVO ---
     log_file_path = logs_folder  / log_file
-    file_handler = logging.FileHandler(log_file_path)
+    file_handler = logging.FileHandler(log_file_path, encoding='utf-8')  # [WINDOWS] UTF-8 encoding
     file_formatter = logging.Formatter(
         "%(asctime)s [%(levelname)s] [%(name)s] %(message)s"
     )
@@ -527,16 +757,27 @@ def get_process_cmd(proc):
         return None
 
 def find_target_processes(targets):
-    """Retorna um dicionário {target_string: [Process, ...]} para cada target encontrado."""
+    """Retorna um dicionário {target_string: [Process, ...]} para cada target encontrado.
+    
+    Para compatibilidade Windows/Linux, procura pelos componentes da string target
+    na linha de comando, ao invés de exigir correspondência exata.
+    """
     matches = {t: [] for t in targets}
     for proc in psutil.process_iter(attrs=['pid', 'cmdline']):
         cmd = get_process_cmd(proc)
         if not cmd:
             continue
         for t in targets:
+            # Busca exata ou flexível para compatibilidade Windows
             if t in cmd:
                 matches[t].append(proc)
                 break
+            # Para "fedt run server", verifica se os componentes estão presentes
+            elif t == "fedt run server":
+                cmd_lower = cmd.lower()
+                if "run" in cmd_lower and "server" in cmd_lower and "fedt" in cmd_lower:
+                    matches[t].append(proc)
+                    break
     return matches
 
 def kill_processes(processes, name):

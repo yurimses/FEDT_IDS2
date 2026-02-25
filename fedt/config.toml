@@ -4,22 +4,31 @@ results_folder = 'results'
 logs_folder = 'logs'
 scripts_path = 'scripts'
 client_script_path = 'fedt/client.py'
-dataset_path = 'ML-EdgeIIoT-FEDT.csv' # [CLASSIF]
+#dataset_path = 'ML-EdgeIIoT-FEDT.csv' # [CLASSIF]
 #dataset_path = 'ton_iot_preprocessed.csv' # [CLASSIF]
 #dataset_path = 'X-IIoTID_preprocessed.csv' # [CLASSIF]
 #dataset_path = 'wustl_iiot_preprocessed.csv'  # [CLASSIF]
 #dataset_path = 'cic_iot_preprocessed.csv' # [CLASSIF]
+dataset_path = 'adult_preprocessed.csv' # [CLASSIF] [Unlearning]
+#dataset_path = 'bank_full.csv' # [CLASSIF] [Unlearning]
+#dataset_path = 'creditcard.csv' # [CLASSIF] [Unlearning]
 
 [settings]
 number_of_jobs = 12
 number_of_clients = 10
-number_of_rounds = 20
+number_of_rounds = 40
 aggregation_strategy = "best_trees"
+# Estratégias disponíveis:
+# - 'random': seleciona árvores aleatoriamente
+# - 'best_trees': seleciona top 50% árvores por macro-F1
+# - 'threshold': seleciona árvores com MCC >= threshold
+# - 'best_forests': seleciona a melhor floresta completa
+# - 'class_coverage': garante cobertura por classe (recomendado para Non-IID)
 
 [settings.sequence]
 many_simulations = false
 number_of_simulations = 10
-aggregation_strategies = ['random', 'best_trees', 'threshold', 'best_forests']
+aggregation_strategies = ['random', 'best_trees', 'threshold', 'best_forests', 'class_coverage']
 
 [settings.client]
 timeout = 420
@@ -37,6 +46,10 @@ print_every_trees_sent = 50
 timeout = 360
 debug = true
 
+# Parâmetros para estratégia 'class_coverage'
+trees_per_class = 5  # número de árvores especialistas por classe
+total_trees_ratio = 0.3  # proporção total de árvores a manter
+
 [settings.classification]
 # [CLASSIF] Hiperparâmetros de poda para as árvores de decisão da RandomForest
 max_depth = 20  # [CLASSIF] profundidade máxima das árvores (pre-pruning)
@@ -47,17 +60,30 @@ ccp_alpha = 0.0  # [CLASSIF] parâmetro de poda por custo-complexidade (post-pru
 
 [dataset]
 train_test_split_size = 0.25
-label_target = "Attack_type_6"  # [CLASS]  # opções: "Attack_label", "Attack_type_6", "Attack_type" # EdgeIIoT
+#label_target = "Attack_type_6"  # [CLASS]  # opções: "Attack_label", "Attack_type_6", "Attack_type" # EdgeIIoT
 #label_target = "Attack_type_10" # opções: "Attack_label", "Attack_type_10" # TON_IOT
 #label_target = "Attack_type_9"  # opções: "Attack_label", "Attack_type_9", Attack_type_18 # X-IIoTID
 #label_target = "Attack_type_5"  # [CLASSIF] # opções: "Attack_label", WUSTL-IIoT preprocessed
 #label_target = "Attack_type_8"   # [CLASSIF] # CIC-IoT
+label_target = "income" # [CLASSIF] # adult
+#label_target = "y" # [CLASSIF] # bank
+#label_target = "Class" # [CLASSIF] # creditcard
+
 #partition_type = "iid"
-partition_type = "non_iid"  
-#partition_type = "non_iid_allclasses"  # [CLASSIF] non-IID mas garante todas as classes em todos os clientes
+#partition_type = "non_iid"  
+#partition_type = "non_iid_allclasses"  # [CLASSIF] non-IID mas garante todas as classes em todos os clientes (min de 10 amostras)
+partition_type = "dominant_client"  # [CLASSIF] Um cliente dominante com X% dos dados, resto em non_iid_allclasses
 non_iid_alpha = 0.3  # [CLASSIF] parâmetro alpha da Dirichlet para o particionamento non-iid
 min_samples_per_class = 10  # [CLASSIF] mínimo de amostras por classe/cliente (usado em non_iid_allclasses)
 partition_seed = 42  # Seed para replicabilidade do particionamento (IID e NON-IID) e do train/test split
+
+# [CLASSIF] Parâmetros para estratégia 'dominant_client'
+dominant_client_id = 0  # ID do cliente que terá a maior porcentagem dos dados
+dominant_client_percentage = 0.7  # Porcentagem de dados que o cliente dominante receberá (0.0 a 1.0, ex: 0.7 = 70%)
+
+# [UNLEARNING] Parâmetros para machine unlearning
+unlearning_enabled = true  # Ativa ou desativa o machine unlearning
+unlearning_round = 20  # Round após o qual o cliente dominante é esquecido e bloqueado
 
 [scripts]
 network_interface = "eth0"

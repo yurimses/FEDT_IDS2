@@ -1,0 +1,1242 @@
+{
+    "0": {
+        "trees_by_client": 10,
+        "first_server_serialise_trees_size": 8031,
+        "fit_time": 0.011048078536987305,
+        "client_serialise_trees_size": 8202,
+        "final_server_serialise_trees_size": 526075,
+        "f1_score": 0.5265567765567765,
+        "mcc": 0.3559342484071871,
+        "accuracy": 0.5319148936170213,
+        "precision": 0.65625,
+        "recall": 0.7027027027027027,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.5945945945945946,
+                0.40540540540540543
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 6.308770418167114,
+        "round_start_time": 1771877143.407083,
+        "round_end_time": 1771877149.7158535,
+        "evaluate_time": 0.03888678550720215,
+        "inference_time": 0.0076487064361572266
+    },
+    "1": {
+        "trees_by_client": 20,
+        "first_server_serialise_trees_size": 8029,
+        "fit_time": 0.0595395565032959,
+        "client_serialise_trees_size": 37018,
+        "final_server_serialise_trees_size": 1114241,
+        "f1_score": 0.6774509803921569,
+        "mcc": 0.5089292770208932,
+        "accuracy": 0.7021276595744681,
+        "precision": 0.7083333333333334,
+        "recall": 0.8108108108108107,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.3783783783783784,
+                0.6216216216216216
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 3.2134251594543457,
+        "round_start_time": 1771877165.0540574,
+        "round_end_time": 1771877168.2674825,
+        "evaluate_time": 0.04333353042602539,
+        "inference_time": 0.013260841369628906
+    },
+    "2": {
+        "trees_by_client": 30,
+        "first_server_serialise_trees_size": 16008,
+        "fit_time": 0.05933380126953125,
+        "client_serialise_trees_size": 56194,
+        "final_server_serialise_trees_size": 1094119,
+        "f1_score": 0.5070679434564523,
+        "mcc": 0.33861499473607876,
+        "accuracy": 0.5106382978723404,
+        "precision": 0.6515151515151515,
+        "recall": 0.6891891891891893,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.6216216216216216,
+                0.3783783783783784
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 3.561155080795288,
+        "round_start_time": 1771877183.4509768,
+        "round_end_time": 1771877187.012132,
+        "evaluate_time": 0.03590893745422363,
+        "inference_time": 0.011887550354003906
+    },
+    "3": {
+        "trees_by_client": 40,
+        "first_server_serialise_trees_size": 24172,
+        "fit_time": 0.07337307929992676,
+        "client_serialise_trees_size": 72740,
+        "final_server_serialise_trees_size": 2287795,
+        "f1_score": 0.6585956416464891,
+        "mcc": 0.4876862083736199,
+        "accuracy": 0.6808510638297872,
+        "precision": 0.7,
+        "recall": 0.7972972972972974,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.40540540540540543,
+                0.5945945945945946
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 4.188403367996216,
+        "round_start_time": 1771877202.1846392,
+        "round_end_time": 1771877206.3730426,
+        "evaluate_time": 0.05396294593811035,
+        "inference_time": 0.0233914852142334
+    },
+    "4": {
+        "trees_by_client": 50,
+        "first_server_serialise_trees_size": 32067,
+        "fit_time": 0.04866600036621094,
+        "client_serialise_trees_size": 32428,
+        "final_server_serialise_trees_size": 2227037,
+        "f1_score": 0.38185941043083904,
+        "mcc": 0.23545712017277254,
+        "accuracy": 0.3829787234042553,
+        "precision": 0.6282051282051282,
+        "recall": 0.6081081081081081,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.7837837837837838,
+                0.21621621621621623
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 5.254477262496948,
+        "round_start_time": 1771877221.480866,
+        "round_end_time": 1771877226.7353432,
+        "evaluate_time": 0.0465240478515625,
+        "inference_time": 0.022517681121826172
+    },
+    "5": {
+        "trees_by_client": 60,
+        "first_server_serialise_trees_size": 40285,
+        "fit_time": 0.13204360008239746,
+        "client_serialise_trees_size": 40707,
+        "final_server_serialise_trees_size": 3417275,
+        "f1_score": 0.40398550724637683,
+        "mcc": 0.253004703120028,
+        "accuracy": 0.40425531914893614,
+        "precision": 0.631578947368421,
+        "recall": 0.6216216216216216,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.7567567567567568,
+                0.24324324324324326
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 7.712225437164307,
+        "round_start_time": 1771877241.894955,
+        "round_end_time": 1771877249.6071804,
+        "evaluate_time": 0.10468649864196777,
+        "inference_time": 0.03900933265686035
+    },
+    "6": {
+        "trees_by_client": 70,
+        "first_server_serialise_trees_size": 48063,
+        "fit_time": 0.09743928909301758,
+        "client_serialise_trees_size": 48580,
+        "final_server_serialise_trees_size": 3252133,
+        "f1_score": 0.38185941043083904,
+        "mcc": 0.23545712017277254,
+        "accuracy": 0.3829787234042553,
+        "precision": 0.6282051282051282,
+        "recall": 0.6081081081081081,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.7837837837837838,
+                0.21621621621621623
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 8.22319507598877,
+        "round_start_time": 1771877264.7631855,
+        "round_end_time": 1771877272.9863806,
+        "evaluate_time": 0.06178641319274902,
+        "inference_time": 0.008263349533081055
+    },
+    "7": {
+        "trees_by_client": 80,
+        "first_server_serialise_trees_size": 56209,
+        "fit_time": 0.13420724868774414,
+        "client_serialise_trees_size": 56802,
+        "final_server_serialise_trees_size": 4050849,
+        "f1_score": 0.286240220892775,
+        "mcc": 0.1585604632001865,
+        "accuracy": 0.2978723404255319,
+        "precision": 0.6162790697674418,
+        "recall": 0.5540540540540541,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.8918918918918919,
+                0.10810810810810811
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 8.018412590026855,
+        "round_start_time": 1771877288.1579685,
+        "round_end_time": 1771877296.176381,
+        "evaluate_time": 0.05494332313537598,
+        "inference_time": 0.004418134689331055
+    },
+    "8": {
+        "trees_by_client": 90,
+        "first_server_serialise_trees_size": 64256,
+        "fit_time": 0.10022497177124023,
+        "client_serialise_trees_size": 171760,
+        "final_server_serialise_trees_size": 4985574,
+        "f1_score": 0.44655797101449274,
+        "mcc": 0.2873718541934519,
+        "accuracy": 0.44680851063829785,
+        "precision": 0.6388888888888888,
+        "recall": 0.6486486486486487,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.7027027027027027,
+                0.2972972972972973
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 8.955794095993042,
+        "round_start_time": 1771877311.256209,
+        "round_end_time": 1771877320.212003,
+        "evaluate_time": 0.0789639949798584,
+        "inference_time": 0.045823097229003906
+    },
+    "9": {
+        "trees_by_client": 100,
+        "first_server_serialise_trees_size": 71980,
+        "fit_time": 0.11689567565917969,
+        "client_serialise_trees_size": 189679,
+        "final_server_serialise_trees_size": 5560370,
+        "f1_score": 0.3590909090909091,
+        "mcc": 0.21747941810042,
+        "accuracy": 0.3617021276595745,
+        "precision": 0.625,
+        "recall": 0.5945945945945946,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.8108108108108109,
+                0.1891891891891892
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 9.794783592224121,
+        "round_start_time": 1771877335.372749,
+        "round_end_time": 1771877345.1675327,
+        "evaluate_time": 0.08204102516174316,
+        "inference_time": 0.055876970291137695
+    },
+    "10": {
+        "trees_by_client": 110,
+        "first_server_serialise_trees_size": 80529,
+        "fit_time": 0.11920452117919922,
+        "client_serialise_trees_size": 210110,
+        "final_server_serialise_trees_size": 5963390,
+        "f1_score": 0.4872727272727273,
+        "mcc": 0.32146326812001,
+        "accuracy": 0.48936170212765956,
+        "precision": 0.6470588235294118,
+        "recall": 0.6756756756756757,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.6486486486486487,
+                0.35135135135135137
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 13.320766925811768,
+        "round_start_time": 1771877360.354006,
+        "round_end_time": 1771877373.674773,
+        "evaluate_time": 0.05466461181640625,
+        "inference_time": 0.03942227363586426
+    },
+    "11": {
+        "trees_by_client": 120,
+        "first_server_serialise_trees_size": 88377,
+        "fit_time": 0.13652420043945312,
+        "client_serialise_trees_size": 89320,
+        "final_server_serialise_trees_size": 5847508,
+        "f1_score": 0.40398550724637683,
+        "mcc": 0.1645856983107952,
+        "accuracy": 0.40425531914893614,
+        "precision": 0.5795454545454546,
+        "recall": 0.5851351351351352,
+        "confusion_matrix": [
+            [
+                0.9,
+                0.1
+            ],
+            [
+                0.7297297297297297,
+                0.2702702702702703
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 12.470902919769287,
+        "round_start_time": 1771877388.7961812,
+        "round_end_time": 1771877401.2670841,
+        "evaluate_time": 0.05534553527832031,
+        "inference_time": 0.007896184921264648
+    },
+    "12": {
+        "trees_by_client": 130,
+        "first_server_serialise_trees_size": 96527,
+        "fit_time": 0.1311047077178955,
+        "client_serialise_trees_size": 241114,
+        "final_server_serialise_trees_size": 7083418,
+        "f1_score": 0.286240220892775,
+        "mcc": 0.1585604632001865,
+        "accuracy": 0.2978723404255319,
+        "precision": 0.6162790697674418,
+        "recall": 0.5540540540540541,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.8918918918918919,
+                0.10810810810810811
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 16.62658405303955,
+        "round_start_time": 1771877416.3601625,
+        "round_end_time": 1771877432.9867465,
+        "evaluate_time": 0.04833102226257324,
+        "inference_time": 0.0071408748626708984
+    },
+    "13": {
+        "trees_by_client": 140,
+        "first_server_serialise_trees_size": 104552,
+        "fit_time": 0.14864587783813477,
+        "client_serialise_trees_size": 105658,
+        "final_server_serialise_trees_size": 7874239,
+        "f1_score": 0.37275655775425676,
+        "mcc": -0.06536064526481745,
+        "accuracy": 0.3829787234042553,
+        "precision": 0.4717741935483871,
+        "recall": 0.46216216216216216,
+        "confusion_matrix": [
+            [
+                0.6,
+                0.4
+            ],
+            [
+                0.6756756756756757,
+                0.32432432432432434
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 13.14814805984497,
+        "round_start_time": 1771877448.0509446,
+        "round_end_time": 1771877461.1990926,
+        "evaluate_time": 0.09553122520446777,
+        "inference_time": 0.013375043869018555
+    },
+    "14": {
+        "trees_by_client": 150,
+        "first_server_serialise_trees_size": 112656,
+        "fit_time": 0.20683574676513672,
+        "client_serialise_trees_size": 287462,
+        "final_server_serialise_trees_size": 7520233,
+        "f1_score": 0.5070679434564523,
+        "mcc": 0.33861499473607876,
+        "accuracy": 0.5106382978723404,
+        "precision": 0.6515151515151515,
+        "recall": 0.6891891891891893,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.6216216216216216,
+                0.3783783783783784
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 13.361269235610962,
+        "round_start_time": 1771877476.2710857,
+        "round_end_time": 1771877489.632355,
+        "evaluate_time": 0.07694816589355469,
+        "inference_time": 0.06192636489868164
+    },
+    "15": {
+        "trees_by_client": 160,
+        "first_server_serialise_trees_size": 120241,
+        "fit_time": 0.16964221000671387,
+        "client_serialise_trees_size": 297800,
+        "final_server_serialise_trees_size": 8057056,
+        "f1_score": 0.5070679434564523,
+        "mcc": 0.33861499473607876,
+        "accuracy": 0.5106382978723404,
+        "precision": 0.6515151515151515,
+        "recall": 0.6891891891891893,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.6216216216216216,
+                0.3783783783783784
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 14.515965938568115,
+        "round_start_time": 1771877504.7509506,
+        "round_end_time": 1771877519.2669165,
+        "evaluate_time": 0.08355069160461426,
+        "inference_time": 0.06606864929199219
+    },
+    "16": {
+        "trees_by_client": 170,
+        "first_server_serialise_trees_size": 128779,
+        "fit_time": 0.17377328872680664,
+        "client_serialise_trees_size": 317345,
+        "final_server_serialise_trees_size": 8407588,
+        "f1_score": 0.31135531135531136,
+        "mcc": 0.17937400083354382,
+        "accuracy": 0.3191489361702128,
+        "precision": 0.6190476190476191,
+        "recall": 0.5675675675675675,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.8648648648648649,
+                0.13513513513513514
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 16.356549739837646,
+        "round_start_time": 1771877534.4215524,
+        "round_end_time": 1771877550.7781022,
+        "evaluate_time": 0.1045527458190918,
+        "inference_time": 0.010302305221557617
+    },
+    "17": {
+        "trees_by_client": 180,
+        "first_server_serialise_trees_size": 136282,
+        "fit_time": 0.19775724411010742,
+        "client_serialise_trees_size": 335064,
+        "final_server_serialise_trees_size": 9352467,
+        "f1_score": 0.4872727272727273,
+        "mcc": 0.32146326812001,
+        "accuracy": 0.48936170212765956,
+        "precision": 0.6470588235294118,
+        "recall": 0.6756756756756757,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.6486486486486487,
+                0.35135135135135137
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 16.87304162979126,
+        "round_start_time": 1771877565.8800473,
+        "round_end_time": 1771877582.753089,
+        "evaluate_time": 0.13232183456420898,
+        "inference_time": 0.08279180526733398
+    },
+    "18": {
+        "trees_by_client": 190,
+        "first_server_serialise_trees_size": 144386,
+        "fit_time": 0.19412851333618164,
+        "client_serialise_trees_size": 353909,
+        "final_server_serialise_trees_size": 11003911,
+        "f1_score": 0.38185941043083904,
+        "mcc": 0.23545712017277254,
+        "accuracy": 0.3829787234042553,
+        "precision": 0.6282051282051282,
+        "recall": 0.6081081081081081,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.7837837837837838,
+                0.21621621621621623
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 19.962461709976196,
+        "round_start_time": 1771877597.9259658,
+        "round_end_time": 1771877617.8884275,
+        "evaluate_time": 0.2659590244293213,
+        "inference_time": 0.15025973320007324
+    },
+    "19": {
+        "trees_by_client": 200,
+        "first_server_serialise_trees_size": 152625,
+        "fit_time": 0.36089444160461426,
+        "client_serialise_trees_size": 373692,
+        "final_server_serialise_trees_size": 10596876,
+        "f1_score": 0.4671201814058957,
+        "mcc": 0.3044077736591046,
+        "accuracy": 0.46808510638297873,
+        "precision": 0.6428571428571428,
+        "recall": 0.6621621621621622,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.6756756756756757,
+                0.32432432432432434
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 23.285552740097046,
+        "round_start_time": 1771877633.2380552,
+        "round_end_time": 1771877656.523608,
+        "evaluate_time": 0.1007847785949707,
+        "inference_time": 0.08489584922790527
+    },
+    "20": {
+        "trees_by_client": 210,
+        "first_server_serialise_trees_size": 160813,
+        "fit_time": 0.2733266353607178,
+        "client_serialise_trees_size": 385955,
+        "final_server_serialise_trees_size": 2502333,
+        "f1_score": 0.6211474632527264,
+        "mcc": 0.44743737014268287,
+        "accuracy": 0.6382978723404256,
+        "precision": 0.6851851851851851,
+        "recall": 0.7702702702702703,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.4594594594594595,
+                0.5405405405405406
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 12.307605266571045,
+        "round_start_time": 1771877671.7191675,
+        "round_end_time": 1771877684.0267727,
+        "evaluate_time": 0.10631036758422852,
+        "inference_time": 0.05200481414794922
+    },
+    "21": {
+        "trees_by_client": 220,
+        "first_server_serialise_trees_size": 168014,
+        "fit_time": 0.4367401599884033,
+        "client_serialise_trees_size": 169829,
+        "final_server_serialise_trees_size": 2488215,
+        "f1_score": 0.5265567765567765,
+        "mcc": 0.3559342484071871,
+        "accuracy": 0.5319148936170213,
+        "precision": 0.65625,
+        "recall": 0.7027027027027027,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.5945945945945946,
+                0.40540540540540543
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 12.021293878555298,
+        "round_start_time": 1771877699.1480277,
+        "round_end_time": 1771877711.1693215,
+        "evaluate_time": 0.1189413070678711,
+        "inference_time": 0.09496808052062988
+    },
+    "22": {
+        "trees_by_client": 230,
+        "first_server_serialise_trees_size": 176284,
+        "fit_time": 0.4219553470611572,
+        "client_serialise_trees_size": 178171,
+        "final_server_serialise_trees_size": 2521457,
+        "f1_score": 0.425531914893617,
+        "mcc": 0.2702702702702703,
+        "accuracy": 0.425531914893617,
+        "precision": 0.6351351351351351,
+        "recall": 0.6351351351351351,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.7297297297297297,
+                0.2702702702702703
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 13.001473665237427,
+        "round_start_time": 1771877726.424076,
+        "round_end_time": 1771877739.4255497,
+        "evaluate_time": 0.09377384185791016,
+        "inference_time": 0.07723116874694824
+    },
+    "23": {
+        "trees_by_client": 240,
+        "first_server_serialise_trees_size": 184522,
+        "fit_time": 0.3851325511932373,
+        "client_serialise_trees_size": 186497,
+        "final_server_serialise_trees_size": 2672931,
+        "f1_score": 0.3590909090909091,
+        "mcc": 0.21747941810042,
+        "accuracy": 0.3617021276595745,
+        "precision": 0.625,
+        "recall": 0.5945945945945946,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.8108108108108109,
+                0.1891891891891892
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 14.03571081161499,
+        "round_start_time": 1771877754.6689618,
+        "round_end_time": 1771877768.7046726,
+        "evaluate_time": 0.08296442031860352,
+        "inference_time": 0.01211404800415039
+    },
+    "24": {
+        "trees_by_client": 250,
+        "first_server_serialise_trees_size": 192390,
+        "fit_time": 0.38266825675964355,
+        "client_serialise_trees_size": 194474,
+        "final_server_serialise_trees_size": 2747319,
+        "f1_score": 0.6211474632527264,
+        "mcc": 0.44743737014268287,
+        "accuracy": 0.6382978723404256,
+        "precision": 0.6851851851851851,
+        "recall": 0.7702702702702703,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.4594594594594595,
+                0.5405405405405406
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 13.885931253433228,
+        "round_start_time": 1771877783.7819395,
+        "round_end_time": 1771877797.6678708,
+        "evaluate_time": 0.17062115669250488,
+        "inference_time": 0.12600135803222656
+    },
+    "25": {
+        "trees_by_client": 260,
+        "first_server_serialise_trees_size": 200847,
+        "fit_time": 0.36034369468688965,
+        "client_serialise_trees_size": 484780,
+        "final_server_serialise_trees_size": 2221510,
+        "f1_score": 0.31135531135531136,
+        "mcc": 0.17937400083354382,
+        "accuracy": 0.3191489361702128,
+        "precision": 0.6190476190476191,
+        "recall": 0.5675675675675675,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.8648648648648649,
+                0.13513513513513514
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 14.051840543746948,
+        "round_start_time": 1771877812.9380143,
+        "round_end_time": 1771877826.9898548,
+        "evaluate_time": 0.23258638381958008,
+        "inference_time": 0.029891490936279297
+    },
+    "26": {
+        "trees_by_client": 270,
+        "first_server_serialise_trees_size": 208208,
+        "fit_time": 0.4759953022003174,
+        "client_serialise_trees_size": 210446,
+        "final_server_serialise_trees_size": 3031820,
+        "f1_score": 0.425531914893617,
+        "mcc": 0.2702702702702703,
+        "accuracy": 0.425531914893617,
+        "precision": 0.6351351351351351,
+        "recall": 0.6351351351351351,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.7297297297297297,
+                0.2702702702702703
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 14.954936027526855,
+        "round_start_time": 1771877842.2130675,
+        "round_end_time": 1771877857.1680036,
+        "evaluate_time": 0.158294677734375,
+        "inference_time": 0.03494715690612793
+    },
+    "27": {
+        "trees_by_client": 280,
+        "first_server_serialise_trees_size": 216785,
+        "fit_time": 0.4349830150604248,
+        "client_serialise_trees_size": 219092,
+        "final_server_serialise_trees_size": 3184522,
+        "f1_score": 0.6398467432950192,
+        "mcc": 0.4672207382974543,
+        "accuracy": 0.6595744680851063,
+        "precision": 0.6923076923076923,
+        "recall": 0.7837837837837838,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.43243243243243246,
+                0.5675675675675675
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 15.54448127746582,
+        "round_start_time": 1771877872.3620129,
+        "round_end_time": 1771877887.9064941,
+        "evaluate_time": 0.18138599395751953,
+        "inference_time": 0.12507033348083496
+    },
+    "28": {
+        "trees_by_client": 290,
+        "first_server_serialise_trees_size": 224527,
+        "fit_time": 0.6676747798919678,
+        "client_serialise_trees_size": 226962,
+        "final_server_serialise_trees_size": 3259764,
+        "f1_score": 0.44655797101449274,
+        "mcc": 0.2873718541934519,
+        "accuracy": 0.44680851063829785,
+        "precision": 0.6388888888888888,
+        "recall": 0.6486486486486487,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.7027027027027027,
+                0.2972972972972973
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 16.934714794158936,
+        "round_start_time": 1771877903.1789749,
+        "round_end_time": 1771877920.1136897,
+        "evaluate_time": 0.14069604873657227,
+        "inference_time": 0.1194913387298584
+    },
+    "29": {
+        "trees_by_client": 300,
+        "first_server_serialise_trees_size": 232723,
+        "fit_time": 0.4500138759613037,
+        "client_serialise_trees_size": 235233,
+        "final_server_serialise_trees_size": 3351941,
+        "f1_score": 0.38185941043083904,
+        "mcc": 0.23545712017277254,
+        "accuracy": 0.3829787234042553,
+        "precision": 0.6282051282051282,
+        "recall": 0.6081081081081081,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.7837837837837838,
+                0.21621621621621623
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 16.452338457107544,
+        "round_start_time": 1771877935.3389711,
+        "round_end_time": 1771877951.7913096,
+        "evaluate_time": 0.18018889427185059,
+        "inference_time": 0.034235239028930664
+    },
+    "30": {
+        "trees_by_client": 310,
+        "first_server_serialise_trees_size": 241108,
+        "fit_time": 0.6467013359069824,
+        "client_serialise_trees_size": 243695,
+        "final_server_serialise_trees_size": 3528611,
+        "f1_score": 0.6398467432950192,
+        "mcc": 0.4672207382974543,
+        "accuracy": 0.6595744680851063,
+        "precision": 0.6923076923076923,
+        "recall": 0.7837837837837838,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.43243243243243246,
+                0.5675675675675675
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 17.148331880569458,
+        "round_start_time": 1771877966.9659624,
+        "round_end_time": 1771877984.1142943,
+        "evaluate_time": 0.18038201332092285,
+        "inference_time": 0.15073823928833008
+    },
+    "31": {
+        "trees_by_client": 320,
+        "first_server_serialise_trees_size": 248704,
+        "fit_time": 0.633164644241333,
+        "client_serialise_trees_size": 251363,
+        "final_server_serialise_trees_size": 3037620,
+        "f1_score": 0.5070679434564523,
+        "mcc": 0.33861499473607876,
+        "accuracy": 0.5106382978723404,
+        "precision": 0.6515151515151515,
+        "recall": 0.6891891891891893,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.6216216216216216,
+                0.3783783783783784
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 17.24965524673462,
+        "round_start_time": 1771877999.3891313,
+        "round_end_time": 1771878016.6387866,
+        "evaluate_time": 0.1377105712890625,
+        "inference_time": 0.025595664978027344
+    },
+    "32": {
+        "trees_by_client": 330,
+        "first_server_serialise_trees_size": 256888,
+        "fit_time": 0.674595832824707,
+        "client_serialise_trees_size": 259669,
+        "final_server_serialise_trees_size": 3634665,
+        "f1_score": 0.5265567765567765,
+        "mcc": 0.3559342484071871,
+        "accuracy": 0.5319148936170213,
+        "precision": 0.65625,
+        "recall": 0.7027027027027027,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.5945945945945946,
+                0.40540540540540543
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 17.976086139678955,
+        "round_start_time": 1771878031.828941,
+        "round_end_time": 1771878049.8050272,
+        "evaluate_time": 0.17076516151428223,
+        "inference_time": 0.14715790748596191
+    },
+    "33": {
+        "trees_by_client": 340,
+        "first_server_serialise_trees_size": 264911,
+        "fit_time": 0.7002270221710205,
+        "client_serialise_trees_size": 267778,
+        "final_server_serialise_trees_size": 3865614,
+        "f1_score": 0.5070679434564523,
+        "mcc": 0.33861499473607876,
+        "accuracy": 0.5106382978723404,
+        "precision": 0.6515151515151515,
+        "recall": 0.6891891891891893,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.6216216216216216,
+                0.3783783783783784
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 18.888757467269897,
+        "round_start_time": 1771878065.1140206,
+        "round_end_time": 1771878084.002778,
+        "evaluate_time": 0.20875835418701172,
+        "inference_time": 0.03518939018249512
+    },
+    "34": {
+        "trees_by_client": 350,
+        "first_server_serialise_trees_size": 273338,
+        "fit_time": 0.517453670501709,
+        "client_serialise_trees_size": 276288,
+        "final_server_serialise_trees_size": 3301603,
+        "f1_score": 0.5765765765765766,
+        "mcc": 0.3422895881591524,
+        "accuracy": 0.5957446808510638,
+        "precision": 0.6416666666666666,
+        "recall": 0.7067567567567568,
+        "confusion_matrix": [
+            [
+                0.9,
+                0.1
+            ],
+            [
+                0.4864864864864865,
+                0.5135135135135135
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 19.210408687591553,
+        "round_start_time": 1771878099.19014,
+        "round_end_time": 1771878118.4005487,
+        "evaluate_time": 0.19833970069885254,
+        "inference_time": 0.03329634666442871
+    },
+    "35": {
+        "trees_by_client": 360,
+        "first_server_serialise_trees_size": 280912,
+        "fit_time": 0.5918214321136475,
+        "client_serialise_trees_size": 283917,
+        "final_server_serialise_trees_size": 3428046,
+        "f1_score": 0.5765765765765766,
+        "mcc": 0.3422895881591524,
+        "accuracy": 0.5957446808510638,
+        "precision": 0.6416666666666666,
+        "recall": 0.7067567567567568,
+        "confusion_matrix": [
+            [
+                0.9,
+                0.1
+            ],
+            [
+                0.4864864864864865,
+                0.5135135135135135
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 19.29981756210327,
+        "round_start_time": 1771878133.5409892,
+        "round_end_time": 1771878152.8408067,
+        "evaluate_time": 0.13924956321716309,
+        "inference_time": 0.022431135177612305
+    },
+    "36": {
+        "trees_by_client": 370,
+        "first_server_serialise_trees_size": 288700,
+        "fit_time": 0.4597759246826172,
+        "client_serialise_trees_size": 291826,
+        "final_server_serialise_trees_size": 4049037,
+        "f1_score": 0.425531914893617,
+        "mcc": 0.2702702702702703,
+        "accuracy": 0.425531914893617,
+        "precision": 0.6351351351351351,
+        "recall": 0.6351351351351351,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.7297297297297297,
+                0.2702702702702703
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 20.680971384048462,
+        "round_start_time": 1771878167.9540198,
+        "round_end_time": 1771878188.6349912,
+        "evaluate_time": 0.18516039848327637,
+        "inference_time": 0.044029951095581055
+    },
+    "37": {
+        "trees_by_client": 380,
+        "first_server_serialise_trees_size": 297384,
+        "fit_time": 0.740929126739502,
+        "client_serialise_trees_size": 300559,
+        "final_server_serialise_trees_size": 4300047,
+        "f1_score": 0.6398467432950192,
+        "mcc": 0.4672207382974543,
+        "accuracy": 0.6595744680851063,
+        "precision": 0.6923076923076923,
+        "recall": 0.7837837837837838,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.43243243243243246,
+                0.5675675675675675
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 20.781671047210693,
+        "round_start_time": 1771878203.8420663,
+        "round_end_time": 1771878224.6237373,
+        "evaluate_time": 0.2310025691986084,
+        "inference_time": 0.16318869590759277
+    },
+    "38": {
+        "trees_by_client": 390,
+        "first_server_serialise_trees_size": 304751,
+        "fit_time": 0.5467038154602051,
+        "client_serialise_trees_size": 308047,
+        "final_server_serialise_trees_size": 3683659,
+        "f1_score": 0.5457892314772204,
+        "mcc": 0.3734894015132426,
+        "accuracy": 0.5531914893617021,
+        "precision": 0.6612903225806451,
+        "recall": 0.7162162162162162,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.5675675675675675,
+                0.43243243243243246
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 19.968241691589355,
+        "round_start_time": 1771878239.9470887,
+        "round_end_time": 1771878259.9153304,
+        "evaluate_time": 0.11548137664794922,
+        "inference_time": 0.03333401679992676
+    },
+    "39": {
+        "trees_by_client": 400,
+        "first_server_serialise_trees_size": 313852,
+        "fit_time": 0.5451328754425049,
+        "client_serialise_trees_size": 317226,
+        "final_server_serialise_trees_size": 3097441,
+        "f1_score": 0.40398550724637683,
+        "mcc": 0.253004703120028,
+        "accuracy": 0.40425531914893614,
+        "precision": 0.631578947368421,
+        "recall": 0.6216216216216216,
+        "confusion_matrix": [
+            [
+                1.0,
+                0.0
+            ],
+            [
+                0.7567567567567568,
+                0.24324324324324326
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "no",
+            "yes"
+        ],
+        "round_time": 20.400870084762573,
+        "round_start_time": 1771878275.0069919,
+        "round_end_time": 1771878295.407862,
+        "evaluate_time": 0.22442317008972168,
+        "inference_time": 0.1429450511932373
+    }
+}

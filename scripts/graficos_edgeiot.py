@@ -34,39 +34,25 @@ CONFUSION_MATRIX_COLORBAR_TICK_SIZE = 18
 
 # Arquivos dos clientes
 CLIENT_FILES = [
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-0/edgeiot/best_trees_client-id-0_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-1/edgeiot/best_trees_client-id-1_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-2/edgeiot/best_trees_client-id-2_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-3/edgeiot/best_trees_client-id-3_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-4/edgeiot/best_trees_client-id-4_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-5/edgeiot/best_trees_client-id-5_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-6/edgeiot/best_trees_client-id-6_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-7/edgeiot/best_trees_client-id-7_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-8/edgeiot/best_trees_client-id-8_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-9/edgeiot/best_trees_client-id-9_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-0/best_trees_client-id-0_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-1/best_trees_client-id-1_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-2/best_trees_client-id-2_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-3/best_trees_client-id-3_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-4/best_trees_client-id-4_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-5/best_trees_client-id-5_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-6/best_trees_client-id-6_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-7/best_trees_client-id-7_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-8/best_trees_client-id-8_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-9/best_trees_client-id-9_1.json"),
 ]
 
 # Arquivo do servidor
-SERVER_FILE = Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/server/edgeiot/best_trees_server_1.json")
+SERVER_FILE = Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/server/best_trees_server_1.json")
 # Arquivo de monitoramento de CPU/RAM IID
-CPU_FILE = Path("/home/yuri/FEDT_IDS2/logs/cpu_ram/ML-EdgeIIoT-FEDT/iid/best_trees/cpu_and_ram_yuri_best_trees_0.json")
-
-# Arquivos dos clientes NON-IID
-CLIENT_FILES_NONIID = [
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/noniid/client-id-0/edgeiot/best_trees_client-id-0_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/noniid/client-id-1/edgeiot/best_trees_client-id-1_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/noniid/client-id-2/edgeiot/best_trees_client-id-2_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/noniid/client-id-3/edgeiot/best_trees_client-id-3_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/noniid/client-id-4/edgeiot/best_trees_client-id-4_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/noniid/client-id-5/edgeiot/best_trees_client-id-5_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/noniid/client-id-6/edgeiot/best_trees_client-id-6_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/noniid/client-id-7/edgeiot/best_trees_client-id-7_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/noniid/client-id-8/edgeiot/best_trees_client-id-8_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/noniid/client-id-9/edgeiot/best_trees_client-id-9_1.json"),
-]
+CPU_FILE = Path("/home/yuri/FEDT_IDS2/logs/cpu_ram/bank_full/dominant_client/best_trees/cpu_and_ram_yuri_best_trees_0.json")
 
 # Pasta onde as figuras serão salvas
-FIG_DIR = Path("/home/yuri/FEDT_IDS2/figures/best_trees/edgeiot/")
+FIG_DIR = Path("/home/yuri/FEDT_IDS2/figures/best_trees/bank_full/dominant_client/")
 FIG_DIR.mkdir(parents=True, exist_ok=True)
 
 # ==========================
@@ -670,60 +656,6 @@ def plot_last_round_metrics_bar(client_files, output_dir: Path):
     plt.close()
 
 
-def plot_iid_vs_noniid_metrics_comparison(client_files_iid, client_files_noniid, target_round=40, output_dir: Path = None):
-    """Plota um gráfico de barras comparando métricas IID vs NON-IID no round especificado.
-    
-    Compara Accuracy, Recall, Precision e F1-score lado a lado.
-    Se o round não existir em algum dos cenários, usa o round mais próximo disponível.
-    """
-    metrics_iid = extract_metrics_at_round(client_files_iid, target_round)
-    metrics_noniid = extract_metrics_at_round(client_files_noniid, target_round)
-    
-    if metrics_iid is None or metrics_noniid is None:
-        print(f"Aviso: Dados não disponíveis para round {target_round} em IID ou NON-IID")
-        return
-    
-    acc_mean_iid, acc_std_iid, prec_mean_iid, prec_std_iid, rec_mean_iid, rec_std_iid, f1_mean_iid, f1_std_iid = metrics_iid
-    acc_mean_noniid, acc_std_noniid, prec_mean_noniid, prec_std_noniid, rec_mean_noniid, rec_std_noniid, f1_mean_noniid, f1_std_noniid = metrics_noniid
-    
-    labels = ["Accuracy", "Recall", "Precision", "F1-score"]
-    values_iid = [acc_mean_iid, rec_mean_iid, prec_mean_iid, f1_mean_iid]
-    errors_iid = [acc_std_iid, rec_std_iid, prec_std_iid, f1_std_iid]
-    values_noniid = [acc_mean_noniid, rec_mean_noniid, prec_mean_noniid, f1_mean_noniid]
-    errors_noniid = [acc_std_noniid, rec_std_noniid, prec_std_noniid, f1_std_noniid]
-    capped_errors_iid = [min(err, max(0.0, 1.0 - val + 1e-6)) for val, err in zip(values_iid, errors_iid)]
-    capped_errors_noniid = [min(err, max(0.0, 1.0 - val + 1e-6)) for val, err in zip(values_noniid, errors_noniid)]
-    
-    x = range(len(labels))
-    width = 0.35
-    
-    plt.figure(figsize=(10, 6))
-    
-    bars1 = plt.bar([i - width/2 for i in x], values_iid, width, yerr=capped_errors_iid, capsize=5,
-                    label="IID", color="#07a791", edgecolor="black", linewidth=1.0)
-    bars2 = plt.bar([i + width/2 for i in x], values_noniid, width, yerr=capped_errors_noniid, capsize=5,
-                    label="NON-IID", color="#FF9900", edgecolor="black", linewidth=1.0)
-    
-    # Adiciona valores nas barras (acima das barras de erro)
-    for bars, errors in [(bars1, capped_errors_iid), (bars2, capped_errors_noniid)]:
-        for bar, err in zip(bars, errors):
-            height = bar.get_height()
-            plt.text(bar.get_x() + bar.get_width() / 2, height + err + 0.01,
-                    f"{height:.2f}", ha="center", va="bottom")
-    
-    plt.ylabel("Score")
-    plt.xticks([i for i in x], labels)
-    plt.ylim(0.0, 1.08)
-    plt.legend()
-    plt.grid(True, linestyle="--", alpha=0.3, axis="y")
-    
-    if output_dir is None:
-        output_dir = FIG_DIR
-    
-    save_figure_pdf(plt, output_dir, f"fig13_iid_vs_noniid_round_{target_round}")
-    plt.close()
-
-
 def _plot_metric_boxplots_clients_by_round(  # [CLASSIF]
     rounds_data, selected_rounds, metric_key, metric_label, fig_name, output_dir: Path
 ):  # [CLASSIF]
@@ -1071,7 +1003,6 @@ def main():
     if cpu_rounds:
         plot_cpu_usage_per_round(cpu_rounds, client_cpu_per_round, server_cpu_per_round, FIG_DIR)
     plot_last_round_metrics_bar(CLIENT_FILES, FIG_DIR)
-    plot_iid_vs_noniid_metrics_comparison(CLIENT_FILES, CLIENT_FILES_NONIID, target_round=40, output_dir=FIG_DIR)
     plot_confusion_matrices_clients(CLIENT_FILES, FIG_DIR)
     plot_f1_and_accuracy_boxplots_clients_by_round(rounds_data, [10, 20, 30, 40], FIG_DIR)  # [CLASSIF]
 
