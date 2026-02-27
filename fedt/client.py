@@ -341,6 +341,44 @@ async def run():
             inference_time = time.time() - start_inference_time
             logger.debug(f"\nDuração do Round: {format_time(round_time)}\nTempo de treinamento: {format_time(fit_time)}\nTempo de avaliação: {format_time(evaluate_time)}\nTempo de inferência: {format_time(inference_time)}")
 
+            # [SHAP] Calcular SHAP values do cliente no último round (antes de deletar variáveis)
+            if round_idx == number_of_rounds - 1:
+                logger.info("[SHAP] Último round detectado. Calculando SHAP values para o cliente...")
+                
+                try:
+                    # Carregar nomes das features
+                    feature_names = utils.get_feature_names_from_dataset()
+                    if feature_names is None:
+                        logger.warning("[SHAP] Não foi possível obter nomes das features")
+                    else:
+                        # Calcular SHAP values para o modelo local
+                        shap_values_local, _ = utils.calculate_shap_values(
+                            client.local_model, 
+                            client.X_test, 
+                            max_samples=100
+                        )
+                        
+                        if shap_values_local is not None:
+                            # Criar pasta para salvar resultados SHAP
+                            shap_folder = result_file_path.parent / "shap"
+                            shap_folder.mkdir(parents=True, exist_ok=True)
+                            
+                            # Salvar gráficos de resumo SHAP (bar e beeswarm)
+                            summary_bar_path = shap_folder / f"client_{ID}_shap_summary_bar.png"
+                            summary_beeswarm_path = shap_folder / f"client_{ID}_shap_summary_beeswarm.png"
+                            utils.save_shap_summary(shap_values_local, feature_names, summary_bar_path, plot_type="bar")
+                            utils.save_shap_summary(shap_values_local, feature_names, summary_beeswarm_path, plot_type="beeswarm")
+                            
+                            # Salvar SHAP values em JSON
+                            shap_json_path = shap_folder / f"client_{ID}_shap_values.json"
+                            utils.save_shap_values_json(shap_values_local, feature_names, shap_json_path)
+                            
+                            logger.info("[SHAP] SHAP values do cliente calculados e salvos com sucesso!")
+                        else:
+                            logger.warning("[SHAP] Falha ao calcular SHAP values do cliente")
+                except Exception as e:
+                    logger.error(f"[SHAP] Erro ao calcular SHAP values do cliente: {e}")
+
             del server_model, client, server_trees_serialised, server_trees_deserialised
 
             metrics = {

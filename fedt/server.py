@@ -4,6 +4,7 @@ import time
 import json
 import os
 import gc
+import numpy as np
 
 import grpc
 import grpc.aio as grpc_aio
@@ -332,6 +333,11 @@ class FedT(fedT_pb2_grpc.FedTServicer):
 
                 if self.round >= number_of_rounds:
                     logger.warning(f"Encerrando treinamento em 5 segundos...")
+                    
+                    # [SHAP] Calcular SHAP values do modelo final antes de encerrar
+                    loop = asyncio.get_running_loop()
+                    await loop.run_in_executor(self.executor, self._calculate_server_shap)
+                    
                     self.shutdown_event.set()
                     return fedT_pb2.OK(ok=1)
                 else: 
@@ -380,6 +386,49 @@ class FedT(fedT_pb2_grpc.FedTServicer):
             self.clientes_esperados = number_of_clients - 1
         else:
             self.clientes_esperados = number_of_clients
+
+    def _calculate_server_shap(self):
+        """
+        Calcula e salva SHAP values para o modelo global do servidor no último round.
+        [SHAP]
+        """
+        logger.info("[SHAP] Iniciando cálculo de SHAP values para o modelo do servidor...")
+        
+        try:
+            # Carregar dados de teste para calcular SHAP
+            X_valid, _ = utils.load_server_side_validation_data(excluded_clients=self.blocked_clients if self.blocked_clients else None)
+            
+            # Obter nomes das features
+            feature_names = utils.get_feature_names_from_dataset()
+            if feature_names is None:
+                logger.warning("[SHAP] Não foi possível obter nomes das features")
+                return
+            
+            # Calcular SHAP values
+            shap_values, explainer = utils.calculate_shap_values(self.model, X_valid, max_samples=100)
+            
+            if shap_values is None:
+                logger.warning("[SHAP] Falha ao calcular SHAP values")
+                return
+            
+            # Criar pasta para salvar resultados SHAP
+            shap_folder = self.results_folder.parent / "shap"
+            shap_folder.mkdir(parents=True, exist_ok=True)
+            
+            # Salvar gráficos de resumo SHAP (bar e beeswarm)
+            summary_bar_path = shap_folder / "server_shap_summary_bar.png"
+            summary_beeswarm_path = shap_folder / "server_shap_summary_beeswarm.png"
+            utils.save_shap_summary(shap_values, feature_names, summary_bar_path, plot_type="bar")
+            utils.save_shap_summary(shap_values, feature_names, summary_beeswarm_path, plot_type="beeswarm")
+            
+            # Salvar SHAP values em JSON
+            shap_json_path = shap_folder / "server_shap_values.json"
+            utils.save_shap_values_json(shap_values, feature_names, shap_json_path)
+            
+            logger.info("[SHAP] SHAP values do servidor calculados e salvos com sucesso!")
+            
+        except Exception as e:
+            logger.error(f"[SHAP] Erro ao calcular SHAP values do servidor: {e}")
 
 
 async def run_server(input_aggregation_strategy=None):

@@ -787,5 +787,142 @@ def kill_processes(processes, name):
                 os.kill(proc.pid, signal.SIGINT)
 
 
+# ===== SHAP FUNCTIONS =====
+
+def calculate_shap_values(model: RandomForestClassifier, X_data: np.ndarray, 
+                         max_samples: int = 100) -> tuple:
+    """
+    Calcula SHAP values para explicabilidade do modelo RandomForest.
+    
+    Args:
+        model: Modelo RandomForestClassifier treinado
+        X_data: Dados para calcular SHAP values (features)
+        max_samples: Número máximo de amostras para usar (para eficiência)
+    
+    Returns:
+        tuple: (shap_values, explainer)
+    """
+    try:
+        import shap
+    except ImportError:
+        logging.error("SHAP não está instalado. Instale com: pip install shap")
+        return None, None
+    
+    # Limitar amostras para eficiência
+    if len(X_data) > max_samples:
+        sample_indices = np.random.choice(len(X_data), max_samples, replace=False)
+        X_sample = X_data[sample_indices]
+    else:
+        X_sample = X_data
+    
+    try:
+        # Usar TreeExplainer para RandomForest (mais eficiente que KernelExplainer)
+        explainer = shap.TreeExplainer(model)
+        shap_values = explainer.shap_values(X_sample)
+        
+        return shap_values, explainer
+    except Exception as e:
+        logging.error(f"Erro ao calcular SHAP values: {e}")
+        return None, None
+
+
+def save_shap_summary(shap_values, feature_names: list, output_path: Path, 
+                     plot_type: str = "bar"):
+    """
+    Salva gráfico de resumo SHAP (importância das features).
+    
+    Args:
+        shap_values: SHAP values calculados
+        feature_names: Nomes das features
+        output_path: Caminho para salvar a figura
+        plot_type: Tipo de plot ("bar", "beeswarm")
+    """
+    try:
+        import shap
+        import matplotlib.pyplot as plt
+    except ImportError:
+        logging.error("SHAP ou matplotlib não estão instalados")
+        return
+    
+    try:
+        plt.figure(figsize=(12, 8))
+        
+        # Para múltiplas classes (multi-output), usar a primeira classe ou média
+        if isinstance(shap_values, list):
+            # Multi-class case
+            shap_vals_to_plot = shap_values[0]
+        else:
+            shap_vals_to_plot = shap_values
+        
+        if plot_type == "bar":
+            shap.summary_plot(shap_vals_to_plot, feature_names=feature_names, 
+                            plot_type="bar", show=False)
+        else:
+            shap.summary_plot(shap_vals_to_plot, feature_names=feature_names, 
+                            show=False)
+        
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        plt.savefig(output_path, dpi=150, bbox_inches='tight')
+        plt.close()
+        
+        logging.info(f"SHAP summary plot salvo em: {output_path}")
+    except Exception as e:
+        logging.error(f"Erro ao salvar SHAP summary plot: {e}")
+
+
+def save_shap_values_json(shap_values, feature_names: list, output_path: Path):
+    """
+    Salva SHAP values em formato JSON para análise posterior.
+    
+    Args:
+        shap_values: SHAP values calculados
+        feature_names: Nomes das features
+        output_path: Caminho para salvar JSON
+    """
+    try:
+        import shap
+        
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        
+        # Converter para formato salável
+        if isinstance(shap_values, list):
+            # Multi-class case - salvar para cada classe
+            shap_data = {}
+            for class_idx, sv in enumerate(shap_values):
+                shap_data[f"class_{class_idx}"] = {
+                    "shap_values": sv.tolist() if hasattr(sv, 'tolist') else sv,
+                    "feature_names": feature_names
+                }
+        else:
+            shap_data = {
+                "shap_values": shap_values.tolist() if hasattr(shap_values, 'tolist') else shap_values,
+                "feature_names": feature_names
+            }
+        
+        import json
+        with open(output_path, 'w', encoding='utf-8') as f:
+            json.dump(shap_data, f, indent=2, ensure_ascii=False)
+        
+        logging.info(f"SHAP values salvos em: {output_path}")
+    except Exception as e:
+        logging.error(f"Erro ao salvar SHAP values JSON: {e}")
+
+
+def get_feature_names_from_dataset():
+    """
+    Obtém nomes das features do dataset (excluindo coluna de rótulo).
+    
+    Returns:
+        list: Nomes das features
+    """
+    try:
+        df = pd.read_csv(dataset_path, nrows=0)
+        feature_names = [col for col in df.columns if col != str(label_target)]
+        return feature_names
+    except Exception as e:
+        logging.error(f"Erro ao obter nomes das features: {e}")
+        return None
+
+
 if __name__ == "__main__":
     create_specific_result_folder("Client")
