@@ -819,6 +819,10 @@ def calculate_shap_values(model: RandomForestClassifier, X_data: np.ndarray,
         # Usar TreeExplainer para RandomForest (mais eficiente que KernelExplainer)
         explainer = shap.TreeExplainer(model)
         shap_values = explainer.shap_values(X_sample)
+
+        # Normalizar 
+        if isinstance(shap_values, np.ndarray) and shap_values.ndim == 3:
+            shap_values = [shap_values[:, :, i] for i in range(shap_values.shape[2])]
         
         return shap_values, explainer, X_sample
         
