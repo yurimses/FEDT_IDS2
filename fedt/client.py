@@ -352,7 +352,7 @@ async def run():
                         logger.warning("[SHAP] Não foi possível obter nomes das features")
                     else:
                         # Calcular SHAP values para o modelo local
-                        shap_values_local, _ = utils.calculate_shap_values(
+                        shap_values_local, _, X_sample_local = utils.calculate_shap_values(
                             client.local_model, 
                             client.X_test, 
                             max_samples=100
@@ -363,11 +363,24 @@ async def run():
                             shap_folder = result_file_path.parent / "shap"
                             shap_folder.mkdir(parents=True, exist_ok=True)
                             
-                            # Salvar gráficos de resumo SHAP (bar e beeswarm)
+                            # Salvar bar plot (agregado para multi-classe)
                             summary_bar_path = shap_folder / f"client_{ID}_shap_summary_bar.png"
-                            summary_beeswarm_path = shap_folder / f"client_{ID}_shap_summary_beeswarm.png"
-                            utils.save_shap_summary(shap_values_local, feature_names, summary_bar_path, plot_type="bar")
-                            utils.save_shap_summary(shap_values_local, feature_names, summary_beeswarm_path, plot_type="beeswarm")
+                            utils.save_shap_summary(shap_values_local, X_sample_local, feature_names, 
+                                                   summary_bar_path, plot_type="bar")
+                            
+                            # Salvar beeswarm plots
+                            if isinstance(shap_values_local, list):
+                                # Multi-classe: salvar um por classe
+                                for class_idx in range(len(shap_values_local)):
+                                    summary_beeswarm_path = shap_folder / f"client_{ID}_shap_summary_beeswarm_class_{class_idx}.png"
+                                    utils.save_shap_summary(shap_values_local, X_sample_local, feature_names, 
+                                                           summary_beeswarm_path, plot_type="beeswarm", 
+                                                           class_idx=class_idx)
+                            else:
+                                # Binário: um único beeswarm
+                                summary_beeswarm_path = shap_folder / f"client_{ID}_shap_summary_beeswarm.png"
+                                utils.save_shap_summary(shap_values_local, X_sample_local, feature_names, 
+                                                       summary_beeswarm_path, plot_type="beeswarm")
                             
                             # Salvar SHAP values em JSON
                             shap_json_path = shap_folder / f"client_{ID}_shap_values.json"

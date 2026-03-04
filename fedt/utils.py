@@ -800,13 +800,13 @@ def calculate_shap_values(model: RandomForestClassifier, X_data: np.ndarray,
         max_samples: Número máximo de amostras para usar (para eficiência)
     
     Returns:
-        tuple: (shap_values, explainer)
+        tuple: (shap_values, explainer, X_sample)
     """
     try:
         import shap
     except ImportError:
         logging.error("SHAP não está instalado. Instale com: pip install shap")
-        return None, None
+        return None, None, None
     
     # Limitar amostras para eficiência
     if len(X_data) > max_samples:
@@ -820,22 +820,25 @@ def calculate_shap_values(model: RandomForestClassifier, X_data: np.ndarray,
         explainer = shap.TreeExplainer(model)
         shap_values = explainer.shap_values(X_sample)
         
-        return shap_values, explainer
+        return shap_values, explainer, X_sample
+        
     except Exception as e:
         logging.error(f"Erro ao calcular SHAP values: {e}")
-        return None, None
+        return None, None, None
 
 
-def save_shap_summary(shap_values, feature_names: list, output_path: Path, 
-                     plot_type: str = "bar"):
+def save_shap_summary(shap_values, X_sample, feature_names: list, output_path: Path, 
+                     plot_type: str = "bar", class_idx: int = None):
     """
     Salva gráfico de resumo SHAP (importância das features).
     
     Args:
         shap_values: SHAP values calculados
+        X_sample: Dados de entrada usados para calcular SHAP (para visualizar gradiente)
         feature_names: Nomes das features
         output_path: Caminho para salvar a figura
         plot_type: Tipo de plot ("bar", "beeswarm")
+        class_idx: Para multi-classe, qual classe plotar (None = agregado)
     """
     try:
         import shap
@@ -847,10 +850,19 @@ def save_shap_summary(shap_values, feature_names: list, output_path: Path,
     try:
         plt.figure(figsize=(12, 8))
         
-        # Para múltiplas classes (multi-output), usar a primeira classe ou média
+        # Processar SHAP values (multi-classe ou binário)
         if isinstance(shap_values, list):
             # Multi-class case
-            shap_vals_to_plot = shap_values[0]
+            if class_idx is not None:
+                # Plotar classe específica
+                shap_vals_to_plot = shap_values[class_idx]
+            else:
+                # Para bar plot: agregar (média do abs(SHAP) entre classes)
+                if plot_type == "bar":
+                    shap_vals_to_plot = np.mean(np.abs(shap_values), axis=0)
+                else:
+                    # Para beeswarm sem class_idx especificado, usar classe 0
+                    shap_vals_to_plot = shap_values[0]
         else:
             shap_vals_to_plot = shap_values
         
@@ -858,7 +870,8 @@ def save_shap_summary(shap_values, feature_names: list, output_path: Path,
             shap.summary_plot(shap_vals_to_plot, feature_names=feature_names, 
                             plot_type="bar", show=False)
         else:
-            shap.summary_plot(shap_vals_to_plot, feature_names=feature_names, 
+            # Beeswarm com features para visualizar gradiente de cores
+            shap.summary_plot(shap_vals_to_plot, features=X_sample, feature_names=feature_names, 
                             show=False)
         
         output_path.parent.mkdir(parents=True, exist_ok=True)

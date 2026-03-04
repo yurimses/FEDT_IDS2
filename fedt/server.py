@@ -326,26 +326,28 @@ class FedT(fedT_pb2_grpc.FedTServicer):
                 with open(self.result_file_path, "w", encoding="utf-8") as f:
                     json.dump(data, f, indent=4, ensure_ascii=False)
 
-                await self._reset_server_async()
-
                 logger.warning(f"Round {self.round} finalizado")
-                self.round += 1
 
-                if self.round >= number_of_rounds:
-                    logger.warning(f"Encerrando treinamento em 5 segundos...")
-                    
-                    # [SHAP] Calcular SHAP values do modelo final antes de encerrar
+                # [SHAP] Verificar se é o último round
+                is_last_round = (self.round >= number_of_rounds - 1)
+                
+                if is_last_round:
+                    logger.warning("Encerrando treinamento...")
+                    # [SHAP] Calcular SHAP no modelo agregado FINAL (antes de resetar)
                     loop = asyncio.get_running_loop()
                     await loop.run_in_executor(self.executor, self._calculate_server_shap)
                     
                     self.shutdown_event.set()
                     return fedT_pb2.OK(ok=1)
-                else: 
-                    self.aggregation_realised = 0
-                    self.aggregation_done = asyncio.Event()
-                    self._supervisor_started = False
 
-                    logger.warning(f"Round {self.round} iniciado")
+                # Não é o último: avançar round e resetar para o PRÓXIMO round (com n_estimators correto)
+                self.round += 1
+                await self._reset_server_async()
+
+                self.aggregation_realised = 0
+                self.aggregation_done = asyncio.Event()
+                self._supervisor_started = False
+                logger.warning(f"Round {self.round} iniciado")
 
         return fedT_pb2.OK(ok=1)
 
@@ -405,7 +407,7 @@ class FedT(fedT_pb2_grpc.FedTServicer):
                 return
             
             # Calcular SHAP values
-            shap_values, explainer = utils.calculate_shap_values(self.model, X_valid, max_samples=100)
+            shap_values, explainer, X_sample = utils.calculate_shap_values(self.model, X_valid, max_samples=100)
             
             if shap_values is None:
                 logger.warning("[SHAP] Falha ao calcular SHAP values")
@@ -415,11 +417,23 @@ class FedT(fedT_pb2_grpc.FedTServicer):
             shap_folder = self.results_folder.parent / "shap"
             shap_folder.mkdir(parents=True, exist_ok=True)
             
-            # Salvar gráficos de resumo SHAP (bar e beeswarm)
+            # Salvar bar plot (agregado para multi-classe)
             summary_bar_path = shap_folder / "server_shap_summary_bar.png"
-            summary_beeswarm_path = shap_folder / "server_shap_summary_beeswarm.png"
-            utils.save_shap_summary(shap_values, feature_names, summary_bar_path, plot_type="bar")
-            utils.save_shap_summary(shap_values, feature_names, summary_beeswarm_path, plot_type="beeswarm")
+            utils.save_shap_summary(shap_values, X_sample, feature_names, summary_bar_path, plot_type="bar")
+            
+            # Salvar beeswarm plots
+            if isinstance(shap_values, list):
+                # Multi-classe: salvar um por classe
+                for class_idx in range(len(shap_values)):
+                    summary_beeswarm_path = shap_folder / f"server_shap_summary_beeswarm_class_{class_idx}.png"
+                    utils.save_shap_summary(shap_values, X_sample, feature_names, 
+                                           summary_beeswarm_path, plot_type="beeswarm", 
+                                           class_idx=class_idx)
+            else:
+                # Binário: um único beeswarm
+                summary_beeswarm_path = shap_folder / "server_shap_summary_beeswarm.png"
+                utils.save_shap_summary(shap_values, X_sample, feature_names, 
+                                       summary_beeswarm_path, plot_type="beeswarm")
             
             # Salvar SHAP values em JSON
             shap_json_path = shap_folder / "server_shap_values.json"
