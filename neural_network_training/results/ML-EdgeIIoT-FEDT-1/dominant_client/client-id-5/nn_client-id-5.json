@@ -1,0 +1,119 @@
+{
+    "1": {
+        "fit_time": 0.4429967403411865,
+        "train_loss": 1.356544554140246,
+        "num_train_samples": 4855,
+        "model_param_count": 78574,
+        "model_size_bytes": 314296,
+        "epochs": 5,
+        "batch_size": 64,
+        "learning_rate": 0.001,
+        "optimizer": "sgd",
+        "momentum": 0.9,
+        "device": "cpu",
+        "round_start_time": 1772223302.083988,
+        "target_labels": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+        ],
+        "input_features": 74,
+        "output_classes": 6,
+        "evaluate_time": 0.007642269134521484,
+        "inference_time": 0.007641315460205078,
+        "test_loss": 0.44059465870712744,
+        "accuracy": 0.7509469696969697,
+        "precision": 0.960058852704081,
+        "recall": 0.7509469696969697,
+        "f1_score": 0.8275257057968357,
+        "mcc": 0.663101035427398,
+        "confusion_matrix": [
+            [
+                0.9567307692307693,
+                0.0,
+                0.04326923076923077,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.3333333333333333,
+                0.16666666666666666,
+                0.5,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.051560379918588875,
+                0.0,
+                0.2835820895522388,
+                0.0,
+                0.6648575305291723,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "confusion_matrix_labels": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+        ],
+        "num_test_samples": 1056,
+        "round_end_time": 1772223305.31384,
+        "round_time": 0.007642269134521484
+    },
+    "2": {
+        "fit_time": 0.5130891799926758,
+        "train_loss": 0.388141207680275,
+        "num_train_samples": 4855,
+        "model_param_count": 78574,
+        "model_size_bytes": 314296,
+        "epochs": 5,
+        "batch_size": 64,
+        "learning_rate": 0.001,
+        "optimizer": "sgd",
+        "momentum": 0.9,
+        "device": "cpu",
+        "round_start_time": 1772223316.312482,
+        "target_labels": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+        ],
+        "input_features": 74,
+        "output_classes": 6
+    }
+}

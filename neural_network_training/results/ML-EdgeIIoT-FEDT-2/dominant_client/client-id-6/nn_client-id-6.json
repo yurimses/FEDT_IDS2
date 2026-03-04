@@ -1,0 +1,26 @@
+{
+    "1": {
+        "fit_time": 38.59036421775818,
+        "train_loss": 0.2462989424209892,
+        "num_train_samples": 8668,
+        "model_param_count": 78574,
+        "model_size_bytes": 314296,
+        "epochs": 200,
+        "batch_size": 64,
+        "learning_rate": 0.001,
+        "optimizer": "sgd",
+        "momentum": 0.9,
+        "device": "cpu",
+        "round_start_time": 1772223418.7482178,
+        "target_labels": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+        ],
+        "input_features": 74,
+        "output_classes": 6
+    }
+}
