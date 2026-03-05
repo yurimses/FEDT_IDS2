@@ -392,13 +392,15 @@ class FedT(fedT_pb2_grpc.FedTServicer):
     def _calculate_server_shap(self):
         """
         Calcula e salva SHAP values para o modelo global do servidor no último round.
-        [SHAP]
+        [SHAP] OTIMIZADO para consumo reduzido de memória.
         """
         logger.info("[SHAP] Iniciando cálculo de SHAP values para o modelo do servidor...")
         
         try:
             # Carregar dados de teste para calcular SHAP
+            logger.info("[SHAP] Carregando dados de validação...")
             X_valid, _ = utils.load_server_side_validation_data(excluded_clients=self.blocked_clients if self.blocked_clients else None)
+            logger.info(f"[SHAP] Dados carregados: {X_valid.shape[0]} amostras, {X_valid.shape[1]} features")
             
             # Obter nomes das features
             feature_names = utils.get_feature_names_from_dataset()
@@ -409,6 +411,10 @@ class FedT(fedT_pb2_grpc.FedTServicer):
             # Calcular SHAP values
             shap_values, explainer, X_sample = utils.calculate_shap_values(self.model, X_valid, max_samples=100)
             
+            # Liberar memória do array grande
+            del X_valid
+            gc.collect()
+            
             if shap_values is None:
                 logger.warning("[SHAP] Falha ao calcular SHAP values")
                 return
@@ -418,31 +424,45 @@ class FedT(fedT_pb2_grpc.FedTServicer):
             shap_folder.mkdir(parents=True, exist_ok=True)
             
             # Salvar bar plot (agregado para multi-classe)
+            logger.info("[SHAP] Gerando gráfico de importância geral...")
             summary_bar_path = shap_folder / "server_shap_summary_bar.png"
             utils.save_shap_summary(shap_values, X_sample, feature_names, summary_bar_path, plot_type="bar")
             
-            # Salvar beeswarm plots
+            # Salvar beeswarm plots (max 6 classes para economizar memória)
             if isinstance(shap_values, list):
-                # Multi-classe: salvar um por classe
-                for class_idx in range(len(shap_values)):
+                # Multi-classe: salvar um por classe (limite a 6 para economizar memória)
+                num_classes = min(len(shap_values), 6)
+                logger.info(f"[SHAP] Gerando gráficos por classe (mostrando {num_classes}/{len(shap_values)} classes)...")
+                for class_idx in range(num_classes):
                     summary_beeswarm_path = shap_folder / f"server_shap_summary_beeswarm_class_{class_idx}.png"
                     utils.save_shap_summary(shap_values, X_sample, feature_names, 
                                            summary_beeswarm_path, plot_type="beeswarm", 
                                            class_idx=class_idx)
             else:
                 # Binário: um único beeswarm
+                logger.info("[SHAP] Gerando gráfico beeswarm...")
                 summary_beeswarm_path = shap_folder / "server_shap_summary_beeswarm.png"
                 utils.save_shap_summary(shap_values, X_sample, feature_names, 
                                        summary_beeswarm_path, plot_type="beeswarm")
             
+            # Limpar memória antes de salvar JSON
+            del X_sample
+            gc.collect()
+            
             # Salvar SHAP values em JSON
+            logger.info("[SHAP] Salvando SHAP values em JSON...")
             shap_json_path = shap_folder / "server_shap_values.json"
             utils.save_shap_values_json(shap_values, feature_names, shap_json_path)
+            
+            # Limpeza final
+            del shap_values
+            gc.collect()
             
             logger.info("[SHAP] SHAP values do servidor calculados e salvos com sucesso!")
             
         except Exception as e:
             logger.error(f"[SHAP] Erro ao calcular SHAP values do servidor: {e}")
+            gc.collect()  # Limpar memória em caso de erro
 
 
 async def run_server(input_aggregation_strategy=None):

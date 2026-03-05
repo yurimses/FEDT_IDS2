@@ -31,6 +31,7 @@ from pathlib import Path
 import psutil
 
 import signal, os
+import gc
 
 def set_initial_params(model: RandomForestClassifier, X_train, y_train): # [CLASSIF]
     """
@@ -793,29 +794,38 @@ def calculate_shap_values(model: RandomForestClassifier, X_data: np.ndarray,
                          max_samples: int = 100) -> tuple:
     """
     Calcula SHAP values para explicabilidade do modelo RandomForest.
+    OTIMIZADO para consumo reduzido de memória.
     
     Args:
         model: Modelo RandomForestClassifier treinado
         X_data: Dados para calcular SHAP values (features)
-        max_samples: Número máximo de amostras para usar (para eficiência)
+        max_samples: Número máximo de amostras para usar (padrão: 100 para eficiência)
     
     Returns:
         tuple: (shap_values, explainer, X_sample)
     """
     try:
+        import matplotlib
+        matplotlib.use('Agg')  # Backend não-gráfico para ambientes sem display (servidor)
         import shap
     except ImportError:
         logging.error("SHAP não está instalado. Instale com: pip install shap")
         return None, None, None
     
-    # Limitar amostras para eficiência
-    if len(X_data) > max_samples:
-        sample_indices = np.random.choice(len(X_data), max_samples, replace=False)
-        X_sample = X_data[sample_indices]
-    else:
-        X_sample = X_data
-    
     try:
+        # Limitar amostras para eficiência
+        if len(X_data) > max_samples:
+            sample_indices = np.random.choice(len(X_data), max_samples, replace=False)
+            X_sample = X_data[sample_indices]
+            # Liberar memória do array grande
+            del X_data
+            gc.collect()
+        else:
+            X_sample = X_data
+        
+        logger = logging.getLogger("SERVER")
+        logger.info(f"[SHAP] Calculando SHAP values com {len(X_sample)} amostras e {X_sample.shape[1]} features...")
+        
         # Usar TreeExplainer para RandomForest (mais eficiente que KernelExplainer)
         explainer = shap.TreeExplainer(model)
         shap_values = explainer.shap_values(X_sample)
@@ -824,10 +834,12 @@ def calculate_shap_values(model: RandomForestClassifier, X_data: np.ndarray,
         if isinstance(shap_values, np.ndarray) and shap_values.ndim == 3:
             shap_values = [shap_values[:, :, i] for i in range(shap_values.shape[2])]
         
+        logger.info("[SHAP] SHAP values calculados com sucesso")
         return shap_values, explainer, X_sample
         
     except Exception as e:
         logging.error(f"Erro ao calcular SHAP values: {e}")
+        gc.collect()  # Limpar memória em caso de erro
         return None, None, None
 
 
@@ -835,6 +847,7 @@ def save_shap_summary(shap_values, X_sample, feature_names: list, output_path: P
                      plot_type: str = "bar", class_idx: int = None):
     """
     Salva gráfico de resumo SHAP (importância das features).
+    OTIMIZADO para reduzir consumo de memória.
     
     Args:
         shap_values: SHAP values calculados
@@ -845,6 +858,8 @@ def save_shap_summary(shap_values, X_sample, feature_names: list, output_path: P
         class_idx: Para multi-classe, qual classe plotar (None = agregado)
     """
     try:
+        import matplotlib
+        matplotlib.use('Agg')  # Backend não-gráfico para ambientes sem display (servidor)
         import shap
         import matplotlib.pyplot as plt
     except ImportError:
@@ -852,7 +867,11 @@ def save_shap_summary(shap_values, X_sample, feature_names: list, output_path: P
         return
     
     try:
-        plt.figure(figsize=(12, 8))
+        logger = logging.getLogger("SERVER")
+        logger.debug(f"[SHAP] Gerando gráfico {plot_type} para classe {class_idx}...")
+        
+        # Criar figura com menor tamanho para economizar memória
+        plt.figure(figsize=(10, 6))
         
         # Processar SHAP values (multi-classe ou binário)
         if isinstance(shap_values, list):
@@ -879,12 +898,16 @@ def save_shap_summary(shap_values, X_sample, feature_names: list, output_path: P
                             show=False)
         
         output_path.parent.mkdir(parents=True, exist_ok=True)
-        plt.savefig(output_path, dpi=150, bbox_inches='tight')
-        plt.close()
+        plt.savefig(output_path, dpi=100, bbox_inches='tight')  # DPI reduzido de 150 para 100
+        plt.close('all')  # Fecha todas as figuras na memória
+        gc.collect()  # Força coleta de lixo após cada gráfico
         
-        logging.info(f"SHAP summary plot salvo em: {output_path}")
+        logger.info(f"[SHAP] Gráfico salvo em: {output_path}")
     except Exception as e:
-        logging.error(f"Erro ao salvar SHAP summary plot: {e}")
+        logger = logging.getLogger("SERVER")
+        logger.error(f"[SHAP] Erro ao salvar gráfico: {e}")
+        plt.close('all')
+        gc.collect()
 
 
 def save_shap_values_json(shap_values, feature_names: list, output_path: Path):
