@@ -73,6 +73,14 @@ def get_model_parameters(model: RandomForestClassifier) -> list: # [CLASSIF]
     params = model.estimators_
     return params
 
+
+def _get_feature_columns(columns) -> list:  # [CLASSIF]
+    """[CLASSIF] Retorna as colunas de features seguindo a mesma regra do pipeline."""
+    return [
+        c for c in columns
+        if c != label_target and not (c.startswith("Attack_") and c != label_target)
+    ]
+
 def load_dataset():
     """
     ### Função:
@@ -100,12 +108,9 @@ def load_dataset():
         le = LabelEncoder()  # [CLASS]
         y = le.fit_transform(y_series.astype(str))  # [CLASS]
 
-    # [CLASSIF] Remove o target e quaisquer colunas auxiliares de rótulo "Attack_*"
-    drop_cols = [label_target] + [c for c in df.columns if c.startswith("Attack_") and c != label_target]  # [CLASSIF]
-    X = df.drop(columns=drop_cols, errors="ignore")  # [CLASSIF]
-
-    # [CLASSIF] Salva os nomes das features antes de converter para numpy
-    feature_names = list(X.columns)  # [CLASSIF]
+    # [CLASSIF] Mantém apenas colunas de features (mesma regra usada no SHAP)
+    feature_names = _get_feature_columns(df.columns)  # [CLASSIF]
+    X = df[feature_names].copy()  # [CLASSIF]
 
     # [CLASSIF] Garante que todas as features sejam numéricas (este dataset possui colunas categóricas como Protocol/Service)
     for col in X.columns:  # [CLASSIF]
@@ -790,8 +795,8 @@ def kill_processes(processes, name):
 
 # ===== SHAP FUNCTIONS =====
 
-def calculate_shap_values(model: RandomForestClassifier, X_data: np.ndarray, 
-                         max_samples: int = 100) -> tuple:
+def calculate_shap_values(model: RandomForestClassifier, X_data: np.ndarray,
+                         max_samples: int = 100, seed: int = None) -> tuple:
     """
     Calcula SHAP values para explicabilidade do modelo RandomForest.
     OTIMIZADO para consumo reduzido de memória.
@@ -800,6 +805,7 @@ def calculate_shap_values(model: RandomForestClassifier, X_data: np.ndarray,
         model: Modelo RandomForestClassifier treinado
         X_data: Dados para calcular SHAP values (features)
         max_samples: Número máximo de amostras para usar (padrão: 100 para eficiência)
+        seed: Seed para amostragem reprodutível de X_data (None = não determinístico)
     
     Returns:
         tuple: (shap_values, explainer, X_sample)
@@ -815,7 +821,8 @@ def calculate_shap_values(model: RandomForestClassifier, X_data: np.ndarray,
     try:
         # Limitar amostras para eficiência
         if len(X_data) > max_samples:
-            sample_indices = np.random.choice(len(X_data), max_samples, replace=False)
+            rng = np.random.default_rng(seed)
+            sample_indices = rng.choice(len(X_data), max_samples, replace=False)
             X_sample = X_data[sample_indices]
             # Liberar memória do array grande
             del X_data
@@ -844,7 +851,7 @@ def calculate_shap_values(model: RandomForestClassifier, X_data: np.ndarray,
 
 
 def save_shap_summary(shap_values, X_sample, feature_names: list, output_path: Path, 
-                     plot_type: str = "bar", class_idx: int = None):
+                     plot_type: str = "bar", class_idx: int = None, max_display: int = 20):
     """
     Salva gráfico de resumo SHAP (importância das features).
     OTIMIZADO para reduzir consumo de memória.
@@ -856,6 +863,7 @@ def save_shap_summary(shap_values, X_sample, feature_names: list, output_path: P
         output_path: Caminho para salvar a figura
         plot_type: Tipo de plot ("bar", "beeswarm")
         class_idx: Para multi-classe, qual classe plotar (None = agregado)
+        max_display: Número de features a exibir (0 = todas)
     """
     try:
         import matplotlib
@@ -888,14 +896,51 @@ def save_shap_summary(shap_values, X_sample, feature_names: list, output_path: P
                     shap_vals_to_plot = shap_values[0]
         else:
             shap_vals_to_plot = shap_values
+
+        if not feature_names:
+            logger.error("[SHAP] feature_names vazio ou inválido; abortando geração do gráfico")
+            plt.close('all')
+            gc.collect()
+            return
+
+        shap_feature_count = None
+        if hasattr(shap_vals_to_plot, "shape") and len(shap_vals_to_plot.shape) >= 2:
+            shap_feature_count = int(shap_vals_to_plot.shape[1])
+
+        x_feature_count = None
+        if hasattr(X_sample, "shape") and len(X_sample.shape) >= 2:
+            x_feature_count = int(X_sample.shape[1])
+
+        if shap_feature_count is not None and len(feature_names) != shap_feature_count:
+            logger.error(
+                f"[SHAP] Mismatch detectado: len(feature_names)={len(feature_names)} "
+                f"!= shap_features={shap_feature_count}. Abortando plot para evitar desalinhamento."
+            )
+            plt.close('all')
+            gc.collect()
+            return
+
+        if x_feature_count is not None and len(feature_names) != x_feature_count:
+            logger.error(
+                f"[SHAP] Mismatch detectado: len(feature_names)={len(feature_names)} "
+                f"!= X_sample_features={x_feature_count}. Abortando plot para evitar desalinhamento."
+            )
+            plt.close('all')
+            gc.collect()
+            return
+        
+        # Determinar quantas features exibir
+        n_display = None if max_display == 0 else max_display
         
         if plot_type == "bar":
             shap.summary_plot(shap_vals_to_plot, feature_names=feature_names, 
-                            plot_type="bar", show=False)
+                            plot_type="bar", show=False, max_display=n_display)
+            # Remove o xlabel padrão (mean(|SHAP value|) ...) para evitar corte
+            plt.xlabel("")
         else:
-            # Beeswarm com features para visualizar gradiente de cores
+            # Beeswarm com colorbar para visualizar gradiente de cores e com max_display
             shap.summary_plot(shap_vals_to_plot, features=X_sample, feature_names=feature_names, 
-                            show=False)
+                            show=False, max_display=n_display)
         
         output_path.parent.mkdir(parents=True, exist_ok=True)
         plt.savefig(output_path, dpi=100, bbox_inches='tight')  # DPI reduzido de 150 para 100
@@ -957,7 +1002,7 @@ def get_feature_names_from_dataset():
     """
     try:
         df = pd.read_csv(dataset_path, nrows=0)
-        feature_names = [col for col in df.columns if col != str(label_target)]
+        feature_names = _get_feature_columns(df.columns)
         return feature_names
     except Exception as e:
         logging.error(f"Erro ao obter nomes das features: {e}")

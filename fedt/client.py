@@ -16,8 +16,9 @@ from fedt.settings import (
     imported_aggregation_strategy, many_simulations,
     max_depth, min_samples_leaf, min_samples_split, max_features, ccp_alpha, # [CLASSIF]
     print_class_distribution,  # [CLASSIF]  
-    dataset_path, label_target,
-    dominant_client_id, unlearning_enabled, unlearning_round  # [UNLEARNING]
+    dataset_path, label_target, partition_seed,
+    dominant_client_id, unlearning_enabled, unlearning_round,  # [UNLEARNING]
+    max_classes_beeswarm, max_display_features  # [SHAP]
 )
 from fedt import utils
 from fedt.utils import create_specific_result_folder
@@ -355,7 +356,8 @@ async def run():
                         shap_values_local, _, X_sample_local = utils.calculate_shap_values(
                             client.local_model, 
                             client.X_test, 
-                            max_samples=100
+                            max_samples=100,
+                            seed=int(partition_seed) + int(ID),
                         )
                         
                         if shap_values_local is not None:
@@ -366,21 +368,25 @@ async def run():
                             # Salvar bar plot (agregado para multi-classe)
                             summary_bar_path = shap_folder / f"client_{ID}_shap_summary_bar.png"
                             utils.save_shap_summary(shap_values_local, X_sample_local, feature_names, 
-                                                   summary_bar_path, plot_type="bar")
+                                                   summary_bar_path, plot_type="bar", 
+                                                   max_display=max_display_features)
                             
-                            # Salvar beeswarm plots
+                            # Salvar beeswarm plots (limite configurável de classes)
                             if isinstance(shap_values_local, list):
-                                # Multi-classe: salvar um por classe
-                                for class_idx in range(len(shap_values_local)):
+                                # Multi-classe: salvar um por classe (limite configurável para economizar memória)
+                                total_classes = len(shap_values_local)
+                                num_classes = total_classes if max_classes_beeswarm == 0 else min(total_classes, max_classes_beeswarm)
+                                for class_idx in range(num_classes):
                                     summary_beeswarm_path = shap_folder / f"client_{ID}_shap_summary_beeswarm_class_{class_idx}.png"
                                     utils.save_shap_summary(shap_values_local, X_sample_local, feature_names, 
                                                            summary_beeswarm_path, plot_type="beeswarm", 
-                                                           class_idx=class_idx)
+                                                           class_idx=class_idx, max_display=max_display_features)
                             else:
                                 # Binário: um único beeswarm
                                 summary_beeswarm_path = shap_folder / f"client_{ID}_shap_summary_beeswarm.png"
                                 utils.save_shap_summary(shap_values_local, X_sample_local, feature_names, 
-                                                       summary_beeswarm_path, plot_type="beeswarm")
+                                                       summary_beeswarm_path, plot_type="beeswarm", 
+                                                       max_display=max_display_features)
                             
                             # Salvar SHAP values em JSON
                             shap_json_path = shap_folder / f"client_{ID}_shap_values.json"

@@ -15,7 +15,8 @@ from fedt.settings import (
     server_config, number_of_jobs, number_of_clients, 
     imported_aggregation_strategy, number_of_rounds, many_simulations,
     max_depth, min_samples_leaf, min_samples_split, max_features, ccp_alpha,  # [CLASSIF]
-    dominant_client_id, unlearning_enabled, unlearning_round  # [UNLEARNING]
+    dominant_client_id, unlearning_enabled, unlearning_round,  # [UNLEARNING]
+    max_classes_beeswarm, partition_seed, max_display_features  # [SHAP]
 )
 from fedt.fedforest import FedForest
 from fedt import utils
@@ -409,7 +410,13 @@ class FedT(fedT_pb2_grpc.FedTServicer):
                 return
             
             # Calcular SHAP values
-            shap_values, explainer, X_sample = utils.calculate_shap_values(self.model, X_valid, max_samples=100)
+            server_shap_seed = int(partition_seed) + 10000
+            shap_values, explainer, X_sample = utils.calculate_shap_values(
+                self.model,
+                X_valid,
+                max_samples=100,
+                seed=server_shap_seed,
+            )
             
             # Liberar memória do array grande
             del X_valid
@@ -426,24 +433,27 @@ class FedT(fedT_pb2_grpc.FedTServicer):
             # Salvar bar plot (agregado para multi-classe)
             logger.info("[SHAP] Gerando gráfico de importância geral...")
             summary_bar_path = shap_folder / "server_shap_summary_bar.png"
-            utils.save_shap_summary(shap_values, X_sample, feature_names, summary_bar_path, plot_type="bar")
+            utils.save_shap_summary(shap_values, X_sample, feature_names, summary_bar_path, 
+                                   plot_type="bar", max_display=max_display_features)
             
-            # Salvar beeswarm plots (max 6 classes para economizar memória)
+            # Salvar beeswarm plots (limite configurável de classes)
             if isinstance(shap_values, list):
-                # Multi-classe: salvar um por classe (limite a 6 para economizar memória)
-                num_classes = min(len(shap_values), 6)
-                logger.info(f"[SHAP] Gerando gráficos por classe (mostrando {num_classes}/{len(shap_values)} classes)...")
+                # Multi-classe: salvar um por classe (limite configurável para economizar memória)
+                total_classes = len(shap_values)
+                num_classes = total_classes if max_classes_beeswarm == 0 else min(total_classes, max_classes_beeswarm)
+                logger.info(f"[SHAP] Gerando gráficos por classe (mostrando {num_classes}/{total_classes} classes)...")
                 for class_idx in range(num_classes):
                     summary_beeswarm_path = shap_folder / f"server_shap_summary_beeswarm_class_{class_idx}.png"
                     utils.save_shap_summary(shap_values, X_sample, feature_names, 
                                            summary_beeswarm_path, plot_type="beeswarm", 
-                                           class_idx=class_idx)
+                                           class_idx=class_idx, max_display=max_display_features)
             else:
                 # Binário: um único beeswarm
                 logger.info("[SHAP] Gerando gráfico beeswarm...")
                 summary_beeswarm_path = shap_folder / "server_shap_summary_beeswarm.png"
                 utils.save_shap_summary(shap_values, X_sample, feature_names, 
-                                       summary_beeswarm_path, plot_type="beeswarm")
+                                       summary_beeswarm_path, plot_type="beeswarm", 
+                                       max_display=max_display_features)
             
             # Limpar memória antes de salvar JSON
             del X_sample

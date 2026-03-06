@@ -87,3 +87,12 @@ unlearning_round = 20  # Round após o qual o cliente dominante é esquecido e b
 
 [scripts]
 network_interface = "eth0"
+
+[shap]
+# Número máximo de classes para gerar gráficos beeswarm individuais (para economizar memória)
+# Para datasets com muitas classes (ex: TON-IoT com 10), defina um valor adequado
+max_classes_beeswarm = 6  # 0 = sem limite, gera para todas as classes
+
+# Número de features a exibir no gráfico SHAP (padrão SHAP: 20)
+# O gráfico mostra apenas as N features mais importantes
+max_display_features = 20  # 0 = todas as features
