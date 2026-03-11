@@ -4,6 +4,7 @@ import time
 import json
 import os
 import gc
+import numpy as np
 
 import grpc
 import grpc.aio as grpc_aio
@@ -14,7 +15,8 @@ from fedt.settings import (
     server_config, number_of_jobs, number_of_clients, 
     imported_aggregation_strategy, number_of_rounds, many_simulations,
     max_depth, min_samples_leaf, min_samples_split, max_features, ccp_alpha,  # [CLASSIF]
-    dominant_client_id, unlearning_enabled, unlearning_round  # [UNLEARNING]
+    dominant_client_id, unlearning_enabled, unlearning_round,  # [UNLEARNING]
+    max_classes_beeswarm, partition_seed, max_display_features  # [SHAP]
 )
 from fedt.fedforest import FedForest
 from fedt import utils
@@ -325,21 +327,28 @@ class FedT(fedT_pb2_grpc.FedTServicer):
                 with open(self.result_file_path, "w", encoding="utf-8") as f:
                     json.dump(data, f, indent=4, ensure_ascii=False)
 
-                await self._reset_server_async()
-
                 logger.warning(f"Round {self.round} finalizado")
-                self.round += 1
 
-                if self.round >= number_of_rounds:
-                    logger.warning(f"Encerrando treinamento em 5 segundos...")
+                # [SHAP] Verificar se é o último round
+                is_last_round = (self.round >= number_of_rounds - 1)
+                
+                if is_last_round:
+                    logger.warning("Encerrando treinamento...")
+                    # [SHAP] Calcular SHAP no modelo agregado FINAL (antes de resetar)
+                    loop = asyncio.get_running_loop()
+                    await loop.run_in_executor(self.executor, self._calculate_server_shap)
+                    
                     self.shutdown_event.set()
                     return fedT_pb2.OK(ok=1)
-                else: 
-                    self.aggregation_realised = 0
-                    self.aggregation_done = asyncio.Event()
-                    self._supervisor_started = False
 
-                    logger.warning(f"Round {self.round} iniciado")
+                # Não é o último: avançar round e resetar para o PRÓXIMO round (com n_estimators correto)
+                self.round += 1
+                await self._reset_server_async()
+
+                self.aggregation_realised = 0
+                self.aggregation_done = asyncio.Event()
+                self._supervisor_started = False
+                logger.warning(f"Round {self.round} iniciado")
 
         return fedT_pb2.OK(ok=1)
 
@@ -380,6 +389,90 @@ class FedT(fedT_pb2_grpc.FedTServicer):
             self.clientes_esperados = number_of_clients - 1
         else:
             self.clientes_esperados = number_of_clients
+
+    def _calculate_server_shap(self):
+        """
+        Calcula e salva SHAP values para o modelo global do servidor no último round.
+        [SHAP] OTIMIZADO para consumo reduzido de memória.
+        """
+        logger.info("[SHAP] Iniciando cálculo de SHAP values para o modelo do servidor...")
+        
+        try:
+            # Carregar dados de teste para calcular SHAP
+            logger.info("[SHAP] Carregando dados de validação...")
+            X_valid, _ = utils.load_server_side_validation_data(excluded_clients=self.blocked_clients if self.blocked_clients else None)
+            logger.info(f"[SHAP] Dados carregados: {X_valid.shape[0]} amostras, {X_valid.shape[1]} features")
+            
+            # Obter nomes das features
+            feature_names = utils.get_feature_names_from_dataset()
+            if feature_names is None:
+                logger.warning("[SHAP] Não foi possível obter nomes das features")
+                return
+            
+            # Calcular SHAP values
+            server_shap_seed = int(partition_seed) + 10000
+            shap_values, explainer, X_sample = utils.calculate_shap_values(
+                self.model,
+                X_valid,
+                max_samples=100,
+                seed=server_shap_seed,
+            )
+            
+            # Liberar memória do array grande
+            del X_valid
+            gc.collect()
+            
+            if shap_values is None:
+                logger.warning("[SHAP] Falha ao calcular SHAP values")
+                return
+            
+            # Criar pasta para salvar resultados SHAP
+            shap_folder = self.results_folder.parent / "shap"
+            shap_folder.mkdir(parents=True, exist_ok=True)
+            
+            # Salvar bar plot (agregado para multi-classe)
+            logger.info("[SHAP] Gerando gráfico de importância geral...")
+            summary_bar_path = shap_folder / "server_shap_summary_bar.png"
+            utils.save_shap_summary(shap_values, X_sample, feature_names, summary_bar_path, 
+                                   plot_type="bar", max_display=max_display_features)
+            
+            # Salvar beeswarm plots (limite configurável de classes)
+            if isinstance(shap_values, list):
+                # Multi-classe: salvar um por classe (limite configurável para economizar memória)
+                total_classes = len(shap_values)
+                num_classes = total_classes if max_classes_beeswarm == 0 else min(total_classes, max_classes_beeswarm)
+                logger.info(f"[SHAP] Gerando gráficos por classe (mostrando {num_classes}/{total_classes} classes)...")
+                for class_idx in range(num_classes):
+                    summary_beeswarm_path = shap_folder / f"server_shap_summary_beeswarm_class_{class_idx}.png"
+                    utils.save_shap_summary(shap_values, X_sample, feature_names, 
+                                           summary_beeswarm_path, plot_type="beeswarm", 
+                                           class_idx=class_idx, max_display=max_display_features)
+            else:
+                # Binário: um único beeswarm
+                logger.info("[SHAP] Gerando gráfico beeswarm...")
+                summary_beeswarm_path = shap_folder / "server_shap_summary_beeswarm.png"
+                utils.save_shap_summary(shap_values, X_sample, feature_names, 
+                                       summary_beeswarm_path, plot_type="beeswarm", 
+                                       max_display=max_display_features)
+            
+            # Limpar memória antes de salvar JSON
+            del X_sample
+            gc.collect()
+            
+            # Salvar SHAP values em JSON
+            logger.info("[SHAP] Salvando SHAP values em JSON...")
+            shap_json_path = shap_folder / "server_shap_values.json"
+            utils.save_shap_values_json(shap_values, feature_names, shap_json_path)
+            
+            # Limpeza final
+            del shap_values
+            gc.collect()
+            
+            logger.info("[SHAP] SHAP values do servidor calculados e salvos com sucesso!")
+            
+        except Exception as e:
+            logger.error(f"[SHAP] Erro ao calcular SHAP values do servidor: {e}")
+            gc.collect()  # Limpar memória em caso de erro
 
 
 async def run_server(input_aggregation_strategy=None):

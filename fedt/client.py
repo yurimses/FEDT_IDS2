@@ -16,8 +16,9 @@ from fedt.settings import (
     imported_aggregation_strategy, many_simulations,
     max_depth, min_samples_leaf, min_samples_split, max_features, ccp_alpha, # [CLASSIF]
     print_class_distribution,  # [CLASSIF]  
-    dataset_path, label_target,
-    dominant_client_id, unlearning_enabled, unlearning_round  # [UNLEARNING]
+    dataset_path, label_target, partition_seed,
+    dominant_client_id, unlearning_enabled, unlearning_round,  # [UNLEARNING]
+    max_classes_beeswarm, max_display_features  # [SHAP]
 )
 from fedt import utils
 from fedt.utils import create_specific_result_folder
@@ -340,6 +341,62 @@ async def run():
             )
             inference_time = time.time() - start_inference_time
             logger.debug(f"\nDuração do Round: {format_time(round_time)}\nTempo de treinamento: {format_time(fit_time)}\nTempo de avaliação: {format_time(evaluate_time)}\nTempo de inferência: {format_time(inference_time)}")
+
+            # [SHAP] Calcular SHAP values do cliente no último round (antes de deletar variáveis)
+            if round_idx == number_of_rounds - 1:
+                logger.info("[SHAP] Último round detectado. Calculando SHAP values para o cliente...")
+                
+                try:
+                    # Carregar nomes das features
+                    feature_names = utils.get_feature_names_from_dataset()
+                    if feature_names is None:
+                        logger.warning("[SHAP] Não foi possível obter nomes das features")
+                    else:
+                        # Calcular SHAP values para o modelo local
+                        shap_values_local, _, X_sample_local = utils.calculate_shap_values(
+                            client.local_model, 
+                            client.X_test, 
+                            max_samples=100,
+                            seed=int(partition_seed) + int(ID),
+                        )
+                        
+                        if shap_values_local is not None:
+                            # Criar pasta para salvar resultados SHAP
+                            shap_folder = result_file_path.parent / "shap"
+                            shap_folder.mkdir(parents=True, exist_ok=True)
+                            
+                            # Salvar bar plot (agregado para multi-classe)
+                            summary_bar_path = shap_folder / f"client_{ID}_shap_summary_bar.png"
+                            utils.save_shap_summary(shap_values_local, X_sample_local, feature_names, 
+                                                   summary_bar_path, plot_type="bar", 
+                                                   max_display=max_display_features)
+                            
+                            # Salvar beeswarm plots (limite configurável de classes)
+                            if isinstance(shap_values_local, list):
+                                # Multi-classe: salvar um por classe (limite configurável para economizar memória)
+                                total_classes = len(shap_values_local)
+                                num_classes = total_classes if max_classes_beeswarm == 0 else min(total_classes, max_classes_beeswarm)
+                                for class_idx in range(num_classes):
+                                    summary_beeswarm_path = shap_folder / f"client_{ID}_shap_summary_beeswarm_class_{class_idx}.png"
+                                    utils.save_shap_summary(shap_values_local, X_sample_local, feature_names, 
+                                                           summary_beeswarm_path, plot_type="beeswarm", 
+                                                           class_idx=class_idx, max_display=max_display_features)
+                            else:
+                                # Binário: um único beeswarm
+                                summary_beeswarm_path = shap_folder / f"client_{ID}_shap_summary_beeswarm.png"
+                                utils.save_shap_summary(shap_values_local, X_sample_local, feature_names, 
+                                                       summary_beeswarm_path, plot_type="beeswarm", 
+                                                       max_display=max_display_features)
+                            
+                            # Salvar SHAP values em JSON
+                            shap_json_path = shap_folder / f"client_{ID}_shap_values.json"
+                            utils.save_shap_values_json(shap_values_local, feature_names, shap_json_path)
+                            
+                            logger.info("[SHAP] SHAP values do cliente calculados e salvos com sucesso!")
+                        else:
+                            logger.warning("[SHAP] Falha ao calcular SHAP values do cliente")
+                except Exception as e:
+                    logger.error(f"[SHAP] Erro ao calcular SHAP values do cliente: {e}")
 
             del server_model, client, server_trees_serialised, server_trees_deserialised
 

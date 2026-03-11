@@ -218,3 +218,6 @@ X-IIoTID_preprocessed.csv
 # FEDT_IDS2 - Raw datasets
 bank_full.csv
 creditcard.csv
+
+# Ignorar arquivo de dados específico
+kuhar_preprocessed_fft.csv

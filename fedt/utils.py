@@ -31,6 +31,7 @@ from pathlib import Path
 import psutil
 
 import signal, os
+import gc
 
 def set_initial_params(model: RandomForestClassifier, X_train, y_train): # [CLASSIF]
     """
@@ -72,6 +73,14 @@ def get_model_parameters(model: RandomForestClassifier) -> list: # [CLASSIF]
     params = model.estimators_
     return params
 
+
+def _get_feature_columns(columns) -> list:  # [CLASSIF]
+    """[CLASSIF] Retorna as colunas de features seguindo a mesma regra do pipeline."""
+    return [
+        c for c in columns
+        if c != label_target and not (c.startswith("Attack_") and c != label_target)
+    ]
+
 def load_dataset():
     """
     ### Função:
@@ -99,12 +108,9 @@ def load_dataset():
         le = LabelEncoder()  # [CLASS]
         y = le.fit_transform(y_series.astype(str))  # [CLASS]
 
-    # [CLASSIF] Remove o target e quaisquer colunas auxiliares de rótulo "Attack_*"
-    drop_cols = [label_target] + [c for c in df.columns if c.startswith("Attack_") and c != label_target]  # [CLASSIF]
-    X = df.drop(columns=drop_cols, errors="ignore")  # [CLASSIF]
-
-    # [CLASSIF] Salva os nomes das features antes de converter para numpy
-    feature_names = list(X.columns)  # [CLASSIF]
+    # [CLASSIF] Mantém apenas colunas de features (mesma regra usada no SHAP)
+    feature_names = _get_feature_columns(df.columns)  # [CLASSIF]
+    X = df[feature_names].copy()  # [CLASSIF]
 
     # [CLASSIF] Garante que todas as features sejam numéricas (este dataset possui colunas categóricas como Protocol/Service)
     for col in X.columns:  # [CLASSIF]
@@ -175,21 +181,24 @@ def _partition_indices_dirichlet_allclasses(  # [CLASSIF]
     rng = np.random.default_rng(seed)  # [CLASSIF]
     y = np.asarray(y)  # [CLASSIF]
     classes = np.unique(y)  # [CLASSIF]
-    n_classes = len(classes)  # [CLASSIF]
+    requested_min_samples = max(2, int(min_samples_per_class))  # [CLASSIF]
+    floor_min_samples = 2  # [CLASSIF]
     
-    # [CLASSIF] Verificar se há amostras suficientes  # [CLASSIF]
+    # [CLASSIF] Verificar viabilidade por classe: tenta requested, senão fallback para piso=2.  # [CLASSIF]
+    min_per_class = {}  # [CLASSIF]
     for c in classes:  # [CLASSIF]
         n_samples_class = np.sum(y == c)  # [CLASSIF]
-        min_needed = min_samples_per_class * num_partitions  # [CLASSIF]
-        if n_samples_class < min_needed:  # [CLASSIF]
-            import warnings  # [CLASSIF]
-            warnings.warn(  # [CLASSIF]
-                f"Classe {c} tem apenas {n_samples_class} amostras, "  # [CLASSIF]
-                f"mas precisa de {min_needed} para garantir {min_samples_per_class} por partição. "  # [CLASSIF]
-                f"Reduzindo para {n_samples_class // num_partitions} amostras por partição.",  # [CLASSIF]
-                RuntimeWarning  # [CLASSIF]
-            )  # [CLASSIF]
-            min_samples_per_class = max(1, n_samples_class // num_partitions)  # [CLASSIF]
+        min_needed_requested = requested_min_samples * num_partitions  # [CLASSIF]
+        min_needed_floor = floor_min_samples * num_partitions  # [CLASSIF]
+        if n_samples_class >= min_needed_requested:  # [CLASSIF]
+            min_per_class[c] = requested_min_samples  # [CLASSIF]
+        elif n_samples_class >= min_needed_floor:  # [CLASSIF]
+            min_per_class[c] = floor_min_samples  # [CLASSIF]
+        else:  # [CLASSIF]
+            raise ValueError(  # [CLASSIF]
+                f"Classe {c} tem {n_samples_class} amostras, mas são necessárias ao menos "
+                f"{min_needed_floor} para garantir o piso mínimo de 2 por cliente em {num_partitions} clientes."
+            )
     
     # [CLASSIF] Fase 1: Distribuição Dirichlet base  # [CLASSIF]
     parts_indices = {pid: [] for pid in range(num_partitions)}  # [CLASSIF]
@@ -200,7 +209,7 @@ def _partition_indices_dirichlet_allclasses(  # [CLASSIF]
         n_c = len(cls_idx)  # [CLASSIF]
         
         # [CLASSIF] Reservar min_samples_per_class para cada partição primeiro  # [CLASSIF]
-        reserved_per_partition = min(min_samples_per_class, n_c // num_partitions)  # [CLASSIF]
+        reserved_per_partition = min(min_per_class[c], n_c // num_partitions)  # [CLASSIF]
         reserved_total = reserved_per_partition * num_partitions  # [CLASSIF]
         remaining = n_c - reserved_total  # [CLASSIF]
         
@@ -252,6 +261,8 @@ def _partition_indices_dominant_client(  # [CLASSIF]
     rng = np.random.default_rng(seed)  # [CLASSIF]
     y = np.asarray(y)  # [CLASSIF]
     classes = np.unique(y)  # [CLASSIF]
+    requested_min_samples = max(2, int(min_samples_per_class))  # [CLASSIF]
+    floor_min_samples = 2  # [CLASSIF]
     
     if dominant_client_id < 0 or dominant_client_id >= num_partitions:  # [CLASSIF]
         raise ValueError(  # [CLASSIF]
@@ -273,10 +284,26 @@ def _partition_indices_dominant_client(  # [CLASSIF]
         cls_idx = np.flatnonzero(y == c)  # [CLASSIF]
         cls_idx = rng.permutation(cls_idx)  # [CLASSIF]
         n_c = len(cls_idx)  # [CLASSIF]
+
+        # [CLASSIF] Tenta requested por classe; se não for viável, faz fallback para piso=2.
+        min_needed_requested = requested_min_samples * num_partitions  # [CLASSIF]
+        min_needed_floor = floor_min_samples * num_partitions  # [CLASSIF]
+        if n_c >= min_needed_requested:  # [CLASSIF]
+            class_min = requested_min_samples  # [CLASSIF]
+        elif n_c >= min_needed_floor:  # [CLASSIF]
+            class_min = floor_min_samples  # [CLASSIF]
+        else:  # [CLASSIF]
+            raise ValueError(  # [CLASSIF]
+                f"Classe {c} tem {n_c} amostras, mas são necessárias ao menos "
+                f"{min_needed_floor} para garantir o piso mínimo de 2 por cliente em {num_partitions} clientes."
+            )
         
         # [CLASSIF] Calcula quantas amostras da classe vão para o cliente dominante  # [CLASSIF]
-        n_dominant = max(1, int(np.round(n_c * dominant_percentage)))  # [CLASSIF]
-        n_dominant = min(n_dominant, n_c - 1)  # Garante pelo menos 1 amostra para os demais  # [CLASSIF]
+        n_dominant_target = int(np.round(n_c * dominant_percentage))  # [CLASSIF]
+        # [CLASSIF] Respeita mínimo no dominante e também reserva mínimo para os demais clientes.
+        n_dominant_min = class_min  # [CLASSIF]
+        n_dominant_max = n_c - class_min * (num_partitions - 1)  # [CLASSIF]
+        n_dominant = int(np.clip(n_dominant_target, n_dominant_min, n_dominant_max))  # [CLASSIF]
         
         # [CLASSIF] Aloca amostras para o cliente dominante  # [CLASSIF]
         dominant_indices.append(cls_idx[:n_dominant])  # [CLASSIF]
@@ -303,7 +330,7 @@ def _partition_indices_dominant_client(  # [CLASSIF]
             num_partitions=num_remaining_partitions,  # [CLASSIF]
             alpha=alpha,  # [CLASSIF]
             seed=seed + 1,  # [CLASSIF] Seed diferente para evitar duplicação  # [CLASSIF]
-            min_samples_per_class=min_samples_per_class,  # [CLASSIF]
+            min_samples_per_class=requested_min_samples,  # [CLASSIF]
         )  # [CLASSIF]
         
         # [CLASSIF] Mapeia índices locais (nos dados remanescentes) para índices globais  # [CLASSIF]
@@ -785,6 +812,222 @@ def kill_processes(processes, name):
         for proc in list(plist):
             if proc.name() == name:
                 os.kill(proc.pid, signal.SIGINT)
+
+
+# ===== SHAP FUNCTIONS =====
+
+def calculate_shap_values(model: RandomForestClassifier, X_data: np.ndarray,
+                         max_samples: int = 100, seed: int = None) -> tuple:
+    """
+    Calcula SHAP values para explicabilidade do modelo RandomForest.
+    OTIMIZADO para consumo reduzido de memória.
+    
+    Args:
+        model: Modelo RandomForestClassifier treinado
+        X_data: Dados para calcular SHAP values (features)
+        max_samples: Número máximo de amostras para usar (padrão: 100 para eficiência)
+        seed: Seed para amostragem reprodutível de X_data (None = não determinístico)
+    
+    Returns:
+        tuple: (shap_values, explainer, X_sample)
+    """
+    try:
+        import matplotlib
+        matplotlib.use('Agg')  # Backend não-gráfico para ambientes sem display (servidor)
+        import shap
+    except ImportError:
+        logging.error("SHAP não está instalado. Instale com: pip install shap")
+        return None, None, None
+    
+    try:
+        # Limitar amostras para eficiência
+        if len(X_data) > max_samples:
+            rng = np.random.default_rng(seed)
+            sample_indices = rng.choice(len(X_data), max_samples, replace=False)
+            X_sample = X_data[sample_indices]
+            # Liberar memória do array grande
+            del X_data
+            gc.collect()
+        else:
+            X_sample = X_data
+        
+        logger = logging.getLogger("SERVER")
+        logger.info(f"[SHAP] Calculando SHAP values com {len(X_sample)} amostras e {X_sample.shape[1]} features...")
+        
+        # Usar TreeExplainer para RandomForest (mais eficiente que KernelExplainer)
+        explainer = shap.TreeExplainer(model)
+        shap_values = explainer.shap_values(X_sample)
+
+        # Normalizar 
+        if isinstance(shap_values, np.ndarray) and shap_values.ndim == 3:
+            shap_values = [shap_values[:, :, i] for i in range(shap_values.shape[2])]
+        
+        logger.info("[SHAP] SHAP values calculados com sucesso")
+        return shap_values, explainer, X_sample
+        
+    except Exception as e:
+        logging.error(f"Erro ao calcular SHAP values: {e}")
+        gc.collect()  # Limpar memória em caso de erro
+        return None, None, None
+
+
+def save_shap_summary(shap_values, X_sample, feature_names: list, output_path: Path, 
+                     plot_type: str = "bar", class_idx: int = None, max_display: int = 20):
+    """
+    Salva gráfico de resumo SHAP (importância das features).
+    OTIMIZADO para reduzir consumo de memória.
+    
+    Args:
+        shap_values: SHAP values calculados
+        X_sample: Dados de entrada usados para calcular SHAP (para visualizar gradiente)
+        feature_names: Nomes das features
+        output_path: Caminho para salvar a figura
+        plot_type: Tipo de plot ("bar", "beeswarm")
+        class_idx: Para multi-classe, qual classe plotar (None = agregado)
+        max_display: Número de features a exibir (0 = todas)
+    """
+    try:
+        import matplotlib
+        matplotlib.use('Agg')  # Backend não-gráfico para ambientes sem display (servidor)
+        import shap
+        import matplotlib.pyplot as plt
+    except ImportError:
+        logging.error("SHAP ou matplotlib não estão instalados")
+        return
+    
+    try:
+        logger = logging.getLogger("SERVER")
+        logger.debug(f"[SHAP] Gerando gráfico {plot_type} para classe {class_idx}...")
+        
+        # Criar figura com menor tamanho para economizar memória
+        plt.figure(figsize=(10, 6))
+        
+        # Processar SHAP values (multi-classe ou binário)
+        if isinstance(shap_values, list):
+            # Multi-class case
+            if class_idx is not None:
+                # Plotar classe específica
+                shap_vals_to_plot = shap_values[class_idx]
+            else:
+                # Para bar plot: agregar (média do abs(SHAP) entre classes)
+                if plot_type == "bar":
+                    shap_vals_to_plot = np.mean(np.abs(shap_values), axis=0)
+                else:
+                    # Para beeswarm sem class_idx especificado, usar classe 0
+                    shap_vals_to_plot = shap_values[0]
+        else:
+            shap_vals_to_plot = shap_values
+
+        if not feature_names:
+            logger.error("[SHAP] feature_names vazio ou inválido; abortando geração do gráfico")
+            plt.close('all')
+            gc.collect()
+            return
+
+        shap_feature_count = None
+        if hasattr(shap_vals_to_plot, "shape") and len(shap_vals_to_plot.shape) >= 2:
+            shap_feature_count = int(shap_vals_to_plot.shape[1])
+
+        x_feature_count = None
+        if hasattr(X_sample, "shape") and len(X_sample.shape) >= 2:
+            x_feature_count = int(X_sample.shape[1])
+
+        if shap_feature_count is not None and len(feature_names) != shap_feature_count:
+            logger.error(
+                f"[SHAP] Mismatch detectado: len(feature_names)={len(feature_names)} "
+                f"!= shap_features={shap_feature_count}. Abortando plot para evitar desalinhamento."
+            )
+            plt.close('all')
+            gc.collect()
+            return
+
+        if x_feature_count is not None and len(feature_names) != x_feature_count:
+            logger.error(
+                f"[SHAP] Mismatch detectado: len(feature_names)={len(feature_names)} "
+                f"!= X_sample_features={x_feature_count}. Abortando plot para evitar desalinhamento."
+            )
+            plt.close('all')
+            gc.collect()
+            return
+        
+        # Determinar quantas features exibir
+        n_display = None if max_display == 0 else max_display
+        
+        if plot_type == "bar":
+            shap.summary_plot(shap_vals_to_plot, feature_names=feature_names, 
+                            plot_type="bar", show=False, max_display=n_display)
+            # Remove o xlabel padrão (mean(|SHAP value|) ...) para evitar corte
+            plt.xlabel("")
+        else:
+            # Beeswarm com colorbar para visualizar gradiente de cores e com max_display
+            shap.summary_plot(shap_vals_to_plot, features=X_sample, feature_names=feature_names, 
+                            show=False, max_display=n_display)
+        
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        plt.savefig(output_path, dpi=100, bbox_inches='tight')  # DPI reduzido de 150 para 100
+        plt.close('all')  # Fecha todas as figuras na memória
+        gc.collect()  # Força coleta de lixo após cada gráfico
+        
+        logger.info(f"[SHAP] Gráfico salvo em: {output_path}")
+    except Exception as e:
+        logger = logging.getLogger("SERVER")
+        logger.error(f"[SHAP] Erro ao salvar gráfico: {e}")
+        plt.close('all')
+        gc.collect()
+
+
+def save_shap_values_json(shap_values, feature_names: list, output_path: Path):
+    """
+    Salva SHAP values em formato JSON para análise posterior.
+    
+    Args:
+        shap_values: SHAP values calculados
+        feature_names: Nomes das features
+        output_path: Caminho para salvar JSON
+    """
+    try:
+        import shap
+        
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        
+        # Converter para formato salável
+        if isinstance(shap_values, list):
+            # Multi-class case - salvar para cada classe
+            shap_data = {}
+            for class_idx, sv in enumerate(shap_values):
+                shap_data[f"class_{class_idx}"] = {
+                    "shap_values": sv.tolist() if hasattr(sv, 'tolist') else sv,
+                    "feature_names": feature_names
+                }
+        else:
+            shap_data = {
+                "shap_values": shap_values.tolist() if hasattr(shap_values, 'tolist') else shap_values,
+                "feature_names": feature_names
+            }
+        
+        import json
+        with open(output_path, 'w', encoding='utf-8') as f:
+            json.dump(shap_data, f, indent=2, ensure_ascii=False)
+        
+        logging.info(f"SHAP values salvos em: {output_path}")
+    except Exception as e:
+        logging.error(f"Erro ao salvar SHAP values JSON: {e}")
+
+
+def get_feature_names_from_dataset():
+    """
+    Obtém nomes das features do dataset (excluindo coluna de rótulo).
+    
+    Returns:
+        list: Nomes das features
+    """
+    try:
+        df = pd.read_csv(dataset_path, nrows=0)
+        feature_names = _get_feature_columns(df.columns)
+        return feature_names
+    except Exception as e:
+        logging.error(f"Erro ao obter nomes das features: {e}")
+        return None
 
 
 if __name__ == "__main__":

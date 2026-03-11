@@ -85,6 +85,10 @@ ccp_alpha = config["settings"]["classification"]["ccp_alpha"]  # [CLASSIF] parâ
 
 network_interface = config["scripts"]["network_interface"]
 
+# [SHAP] Configurações para SHAP
+max_classes_beeswarm = config.get("shap", {}).get("max_classes_beeswarm", 6)  # [SHAP]
+max_display_features = config.get("shap", {}).get("max_display_features", 20)  # [SHAP]
+
 # [CLASSIF] Extração automática das classes do dataset
 def _get_all_labels():
     """[CLASSIF] Extrai automaticamente todas as classes únicas do dataset.

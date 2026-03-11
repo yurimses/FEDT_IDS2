@@ -1,0 +1,202 @@
+{
+    "0": {
+        "trees_by_client": 10,
+        "aggregation_time": 0.730482816696167,
+        "avg_execution_time": 24.24942545890808
+    },
+    "1": {
+        "trees_by_client": 20,
+        "aggregation_time": 0.9007000923156738,
+        "avg_execution_time": 5.468826198577881
+    },
+    "2": {
+        "trees_by_client": 30,
+        "aggregation_time": 0.9813685417175293,
+        "avg_execution_time": 7.141895747184753
+    },
+    "3": {
+        "trees_by_client": 40,
+        "aggregation_time": 1.2152509689331055,
+        "avg_execution_time": 8.349962949752808
+    },
+    "4": {
+        "trees_by_client": 50,
+        "aggregation_time": 1.3333051204681396,
+        "avg_execution_time": 9.202860164642335
+    },
+    "5": {
+        "trees_by_client": 60,
+        "aggregation_time": 1.3830029964447021,
+        "avg_execution_time": 10.679031777381898
+    },
+    "6": {
+        "trees_by_client": 70,
+        "aggregation_time": 1.513193130493164,
+        "avg_execution_time": 12.386650252342225
+    },
+    "7": {
+        "trees_by_client": 80,
+        "aggregation_time": 1.5748991966247559,
+        "avg_execution_time": 14.884176349639892
+    },
+    "8": {
+        "trees_by_client": 90,
+        "aggregation_time": 1.6942057609558105,
+        "avg_execution_time": 15.437270069122315
+    },
+    "9": {
+        "trees_by_client": 100,
+        "aggregation_time": 1.823207139968872,
+        "avg_execution_time": 17.846679830551146
+    },
+    "10": {
+        "trees_by_client": 110,
+        "aggregation_time": 1.8650829792022705,
+        "avg_execution_time": 21.549511194229126
+    },
+    "11": {
+        "trees_by_client": 120,
+        "aggregation_time": 2.0560789108276367,
+        "avg_execution_time": 22.25639145374298
+    },
+    "12": {
+        "trees_by_client": 130,
+        "aggregation_time": 2.232970714569092,
+        "avg_execution_time": 22.496521735191344
+    },
+    "13": {
+        "trees_by_client": 140,
+        "aggregation_time": 2.2354133129119873,
+        "avg_execution_time": 25.52961242198944
+    },
+    "14": {
+        "trees_by_client": 150,
+        "aggregation_time": 2.423279285430908,
+        "avg_execution_time": 26.8659925699234
+    },
+    "15": {
+        "trees_by_client": 160,
+        "aggregation_time": 2.486194610595703,
+        "avg_execution_time": 28.3426411151886
+    },
+    "16": {
+        "trees_by_client": 170,
+        "aggregation_time": 2.597623586654663,
+        "avg_execution_time": 27.97762186527252
+    },
+    "17": {
+        "trees_by_client": 180,
+        "aggregation_time": 2.8822195529937744,
+        "avg_execution_time": 31.575581669807434
+    },
+    "18": {
+        "trees_by_client": 190,
+        "aggregation_time": 2.9596147537231445,
+        "avg_execution_time": 33.02941644191742
+    },
+    "19": {
+        "trees_by_client": 200,
+        "aggregation_time": 2.9296622276306152,
+        "avg_execution_time": 33.489921355247496
+    },
+    "20": {
+        "trees_by_client": 210,
+        "aggregation_time": 2.301954984664917,
+        "avg_execution_time": 10.001731491088867
+    },
+    "21": {
+        "trees_by_client": 220,
+        "aggregation_time": 2.8164117336273193,
+        "avg_execution_time": 10.478280282020568
+    },
+    "22": {
+        "trees_by_client": 230,
+        "aggregation_time": 2.858548402786255,
+        "avg_execution_time": 10.937289118766785
+    },
+    "23": {
+        "trees_by_client": 240,
+        "aggregation_time": 2.976897954940796,
+        "avg_execution_time": 12.69680495262146
+    },
+    "24": {
+        "trees_by_client": 250,
+        "aggregation_time": 3.14473032951355,
+        "avg_execution_time": 12.901853322982788
+    },
+    "25": {
+        "trees_by_client": 260,
+        "aggregation_time": 3.2204506397247314,
+        "avg_execution_time": 13.334591913223267
+    },
+    "26": {
+        "trees_by_client": 270,
+        "aggregation_time": 3.3021860122680664,
+        "avg_execution_time": 13.383925437927246
+    },
+    "27": {
+        "trees_by_client": 280,
+        "aggregation_time": 3.396040678024292,
+        "avg_execution_time": 14.058797526359559
+    },
+    "28": {
+        "trees_by_client": 290,
+        "aggregation_time": 3.472852945327759,
+        "avg_execution_time": 13.106918573379517
+    },
+    "29": {
+        "trees_by_client": 300,
+        "aggregation_time": 3.6508212089538574,
+        "avg_execution_time": 15.494340682029724
+    },
+    "30": {
+        "trees_by_client": 310,
+        "aggregation_time": 3.691580295562744,
+        "avg_execution_time": 15.450260090827943
+    },
+    "31": {
+        "trees_by_client": 320,
+        "aggregation_time": 3.8027162551879883,
+        "avg_execution_time": 14.783269214630128
+    },
+    "32": {
+        "trees_by_client": 330,
+        "aggregation_time": 3.9368624687194824,
+        "avg_execution_time": 15.34673478603363
+    },
+    "33": {
+        "trees_by_client": 340,
+        "aggregation_time": 4.012778282165527,
+        "avg_execution_time": 16.28519265651703
+    },
+    "34": {
+        "trees_by_client": 350,
+        "aggregation_time": 4.106969118118286,
+        "avg_execution_time": 15.489214324951172
+    },
+    "35": {
+        "trees_by_client": 360,
+        "aggregation_time": 4.294609308242798,
+        "avg_execution_time": 17.596628975868224
+    },
+    "36": {
+        "trees_by_client": 370,
+        "aggregation_time": 4.266962289810181,
+        "avg_execution_time": 17.13537528514862
+    },
+    "37": {
+        "trees_by_client": 380,
+        "aggregation_time": 4.39037013053894,
+        "avg_execution_time": 19.540856313705444
+    },
+    "38": {
+        "trees_by_client": 390,
+        "aggregation_time": 4.495415210723877,
+        "avg_execution_time": 17.716733312606813
+    },
+    "39": {
+        "trees_by_client": 400,
+        "aggregation_time": 4.887842893600464,
+        "avg_execution_time": 17.94552345275879
+    }
+}

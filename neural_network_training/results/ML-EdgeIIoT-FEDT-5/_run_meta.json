@@ -1,0 +1,17 @@
+{
+  "dataset_name": "ML-EdgeIIoT-FEDT",
+  "partition_path": "/home/yuri/FEDT_IDS2/partitions/ML-EdgeIIoT-FEDT/dominant_client",
+  "partition_tag": "dominant_client",
+  "created_at_unix": 1772224189.2079809,
+  "args": {
+    "num_rounds": 40,
+    "num_clients": 10,
+    "epochs": 200,
+    "batch_size": 64,
+    "learning_rate": 0.001,
+    "label_col": "Attack_type_6",
+    "scaler": "global",
+    "optimizer": "sgd",
+    "momentum": 0.9
+  }
+}

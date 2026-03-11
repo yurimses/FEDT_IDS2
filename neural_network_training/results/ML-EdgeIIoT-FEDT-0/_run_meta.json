@@ -1,8 +1,8 @@
 {
   "dataset_name": "ML-EdgeIIoT-FEDT",
-  "partition_path": "/home/yuri/FEDT_IDS2/partitions/ML-EdgeIIoT-FEDT/iid",
-  "partition_tag": "iid",
-  "created_at_unix": 1772052400.029158,
+  "partition_path": "/home/yuri/FEDT_IDS2/partitions/ML-EdgeIIoT-FEDT/dominant_client",
+  "partition_tag": "dominant_client",
+  "created_at_unix": 1772223202.5759637,
   "args": {
     "num_rounds": 40,
     "num_clients": 10,
