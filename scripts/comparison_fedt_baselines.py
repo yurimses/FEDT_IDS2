@@ -21,26 +21,26 @@ plt.rcParams.update({
 
 # Arquivos dos clientes FEDT
 CLIENT_FILES_FEDT = [
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-0/best_trees_client-id-0_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-1/best_trees_client-id-1_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-2/best_trees_client-id-2_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-3/best_trees_client-id-3_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-4/best_trees_client-id-4_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-5/best_trees_client-id-5_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-6/best_trees_client-id-6_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-7/best_trees_client-id-7_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-8/best_trees_client-id-8_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-9/best_trees_client-id-9_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/non_iid_allclasses/client-id-0/best_trees_client-id-0_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/non_iid_allclasses/client-id-1/best_trees_client-id-1_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/non_iid_allclasses/client-id-2/best_trees_client-id-2_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/non_iid_allclasses/client-id-3/best_trees_client-id-3_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/non_iid_allclasses/client-id-4/best_trees_client-id-4_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/non_iid_allclasses/client-id-5/best_trees_client-id-5_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/non_iid_allclasses/client-id-6/best_trees_client-id-6_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/non_iid_allclasses/client-id-7/best_trees_client-id-7_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/non_iid_allclasses/client-id-8/best_trees_client-id-8_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/non_iid_allclasses/client-id-9/best_trees_client-id-9_1.json"),
 ]
 
 # Pasta onde as figuras serão salvas
-FIG_DIR = Path("/home/yuri/FEDT_IDS2/figures/comparisons/toniot_non_iid_allclasses")
+FIG_DIR = Path("/home/yuri/FEDT_IDS2/figures/comparisons/edgeiiot_non_iid_allclasses")
 FIG_DIR.mkdir(parents=True, exist_ok=True)
 
 # Baselines CSV paths
 BASELINES = {
-    "FeatureCloud": Path("/home/yuri/FEDT_IDS2/fedtxbaselines/featureCloud/resultados_toniot/non_iid_aggregated_metrics.csv"),
-    "Flex-Trees": Path("/home/yuri/FEDT_IDS2/fedtxbaselines/flex-trees/resultados_toniot/non_iid_aggregated_metrics.csv"),
+    "FeatureCloud": Path("/home/yuri/FEDT_IDS2/fedtxbaselines/featureCloud/resultados_edgeiot/non_iid_aggregated_metrics.csv"),
+    "Flex-Trees": Path("/home/yuri/FEDT_IDS2/fedtxbaselines/flex-trees/resultados_edgeiot/non_iid_aggregated_metrics.csv"),
 }
 
 # ==========================
