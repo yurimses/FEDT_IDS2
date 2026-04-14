@@ -9,9 +9,10 @@ import tomllib  # [CLASSIF]
 import pandas as pd  # [CLASSIF]
 from fedt.settings import dataset_path as SETTINGS_DATASET_PATH, label_target as SETTINGS_LABEL_TARGET  # [CLASSIF]
 
-AXIS_LABEL_SIZE = 14
+AXIS_LABEL_SIZE = 18
 AXIS_LABEL_WEIGHT = "bold"
-TICK_LABEL_SIZE = 14
+ANNOTATION_LABEL_SIZE = 18
+TICK_LABEL_SIZE = 18
 plt.rcParams.update({
     "axes.labelsize": AXIS_LABEL_SIZE,
     "axes.labelweight": AXIS_LABEL_WEIGHT,
@@ -20,12 +21,13 @@ plt.rcParams.update({
 })
 
 
-CONFUSION_MATRIX_CELL_SIZE = 8
-CONFUSION_MATRIX_TEXT_SIZE = 18
-CONFUSION_MATRIX_AXIS_LABEL_SIZE = 18 
-CONFUSION_MATRIX_TICK_LABEL_SIZE = 18   
+CONFUSION_MATRIX_CELL_SIZE = 12
+CONFUSION_MATRIX_MIN_INCH_PER_CLASS = 0.5
+CONFUSION_MATRIX_TEXT_SIZE = 26
+CONFUSION_MATRIX_AXIS_LABEL_SIZE = 26
+CONFUSION_MATRIX_TICK_LABEL_SIZE = 26
 CONFUSION_MATRIX_TITLE_SIZE = 18        
-CONFUSION_MATRIX_COLORBAR_TICK_SIZE = 18
+CONFUSION_MATRIX_COLORBAR_TICK_SIZE = 26
 
 
 # ==========================
@@ -34,25 +36,25 @@ CONFUSION_MATRIX_COLORBAR_TICK_SIZE = 18
 
 # Arquivos dos clientes
 CLIENT_FILES = [
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-0/best_trees_client-id-0_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-1/best_trees_client-id-1_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-2/best_trees_client-id-2_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-3/best_trees_client-id-3_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-4/best_trees_client-id-4_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-5/best_trees_client-id-5_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-6/best_trees_client-id-6_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-7/best_trees_client-id-7_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-8/best_trees_client-id-8_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/client-id-9/best_trees_client-id-9_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/iid/client-id-0/best_trees_client-id-0_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/iid/client-id-1/best_trees_client-id-1_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/iid/client-id-2/best_trees_client-id-2_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/iid/client-id-3/best_trees_client-id-3_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/iid/client-id-4/best_trees_client-id-4_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/iid/client-id-5/best_trees_client-id-5_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/iid/client-id-6/best_trees_client-id-6_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/iid/client-id-7/best_trees_client-id-7_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/iid/client-id-8/best_trees_client-id-8_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/iid/client-id-9/best_trees_client-id-9_1.json"),
 ]
 
 # Arquivo do servidor
-SERVER_FILE = Path("/home/yuri/FEDT_IDS2/results/best_trees/bank_full/dominant_client/server/best_trees_server_1.json")
+SERVER_FILE = Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/iid/server/best_trees_server_1.json")
 # Arquivo de monitoramento de CPU/RAM IID
-CPU_FILE = Path("/home/yuri/FEDT_IDS2/logs/cpu_ram/bank_full/dominant_client/best_trees/cpu_and_ram_yuri_best_trees_0.json")
+CPU_FILE = Path("/home/yuri/FEDT_IDS2/logs/cpu_ram/ton_iot_preprocessed/iid/best_trees/cpu_and_ram_yuri_best_trees_0.json")
 
 # Pasta onde as figuras serão salvas
-FIG_DIR = Path("/home/yuri/FEDT_IDS2/figures/best_trees/bank_full/dominant_client/")
+FIG_DIR = Path("/home/yuri/FEDT_IDS2/figures/best_trees/ton_iot_preprocessed/iid-test/")
 FIG_DIR.mkdir(parents=True, exist_ok=True)
 
 # ==========================
@@ -647,6 +649,7 @@ def plot_last_round_metrics_bar(client_files, output_dir: Path):
             f"{value:.2f}",
             ha="center",
             va="bottom",
+            fontsize=ANNOTATION_LABEL_SIZE,
         )
     plt.xticks(x, labels)
     plt.ylim(0.0, 1.08)
@@ -844,6 +847,47 @@ def _get_class_names_for_confusion(num_classes):  # [CLASSIF]
         return None  # [CLASSIF]
 
 
+def _normalize_confusion_matrix_rows(cm):
+    """Normaliza cada linha da matriz para que a soma seja 1.0 (quando possível)."""
+    normalized = []
+    for row in cm:
+        row_vals = [float(v) for v in row]
+        row_sum = sum(row_vals)
+        if row_sum > 0.0:
+            normalized.append([v / row_sum for v in row_vals])
+        else:
+            normalized.append(row_vals)
+    return normalized
+
+
+def _row_to_fixed_decimals_with_sum_one(row_vals, decimals=3):
+    """Converte uma linha para `decimals` casas mantendo soma exibida exatamente 1.0.
+
+    Usa o método do maior resto para distribuir as casas decimais.
+    """
+    scale = 10**decimals
+    scaled = [v * scale for v in row_vals]
+    base = [math.floor(v) for v in scaled]
+    remainder = int(scale - sum(base))
+
+    # Ordena por parte fracionária para distribuir o restante de forma estável.
+    fracs = sorted(
+        ((idx, scaled[idx] - base[idx]) for idx in range(len(row_vals))),
+        key=lambda x: x[1],
+        reverse=True,
+    )
+    for k in range(max(0, remainder)):
+        idx = fracs[k % len(fracs)][0]
+        base[idx] += 1
+
+    return [b / scale for b in base]
+
+
+def _sanitize_filename(text):
+    """Converte rótulo em nome de arquivo simples e seguro."""
+    return "".join(ch.lower() if ch.isalnum() else "_" for ch in str(text)).strip("_")
+
+
 def plot_confusion_matrices_clients(client_files, output_dir: Path):
     """Plota subplots com a matriz de confusão do último round de cada cliente.
 
@@ -865,6 +909,7 @@ def plot_confusion_matrices_clients(client_files, output_dir: Path):
         cm = m_last.get("confusion_matrix")
         if cm is None:
             continue
+        cm = _normalize_confusion_matrix_rows(cm)
 
         # [CLASSIF] Tenta obter nomes de classes diretamente do JSON (se existirem)
         if json_class_names is None:  # [CLASSIF]
@@ -894,11 +939,30 @@ def plot_confusion_matrices_clients(client_files, output_dir: Path):
     n = len(cms)
     cols = min(5, n)
     rows = math.ceil(n / cols)
+    num_classes = len(cms[0])
 
-    fig_width = CONFUSION_MATRIX_CELL_SIZE * cols
-    fig_height = (CONFUSION_MATRIX_CELL_SIZE + 0.5) * rows
+    # [CLASSIF] Prioriza nomes vindos do JSON; se não houver, usa heurística anterior
+    if isinstance(json_class_names, list) and len(json_class_names) == num_classes:  # [CLASSIF]
+        class_names = json_class_names  # [CLASSIF]
+    else:  # [CLASSIF]
+        class_names = _get_class_names_for_confusion(num_classes)  # [CLASSIF]
+
+    # Garante quadrados maiores em matrizes com muitas classes.
+    subplot_side = max(
+        CONFUSION_MATRIX_CELL_SIZE,
+        num_classes * CONFUSION_MATRIX_MIN_INCH_PER_CLASS,
+    )
+    # Mantem as configuracoes globais como referencia, mas limita a fonte ao espaco
+    # real da celula para evitar sobreposicao em datasets com muitas classes.
+    cell_points = (subplot_side / max(1, num_classes)) * 72.0
+    cm_text_size = min(CONFUSION_MATRIX_TEXT_SIZE, max(8, int(cell_points * 0.20)))
+    cm_tick_size = min(CONFUSION_MATRIX_TICK_LABEL_SIZE, max(8, int(cell_points * 0.34)))
+    cm_axis_size = min(CONFUSION_MATRIX_AXIS_LABEL_SIZE, max(10, cm_tick_size + 2))
+    cm_cbar_tick_size = min(CONFUSION_MATRIX_COLORBAR_TICK_SIZE, max(8, int(cell_points * 0.30)))
+
+    fig_width = subplot_side * cols
+    fig_height = (subplot_side + 0.5) * rows
     fig, axes = plt.subplots(rows, cols, figsize=(fig_width, fig_height))
-
 
     if rows == 1 and cols == 1:
         axes = [[axes]]
@@ -907,15 +971,6 @@ def plot_confusion_matrices_clients(client_files, output_dir: Path):
     elif cols == 1:
         axes = [[ax] for ax in axes]
 
-    num_classes = len(cms[0])
-
-    # [CLASSIF] Prioriza nomes vindos do JSON; se não houver, usa heurística anterior
-    if isinstance(json_class_names, list) and len(json_class_names) == num_classes:  # [CLASSIF]
-        class_names = json_class_names  # [CLASSIF]
-    else:  # [CLASSIF]
-        class_names = _get_class_names_for_confusion(num_classes)  # [CLASSIF]
-    middle_row = num_classes // 2  # [CLASSIF]
-
     ims = []
     for idx, cm in enumerate(cms):
         r = idx // cols
@@ -923,34 +978,40 @@ def plot_confusion_matrices_clients(client_files, output_dir: Path):
         ax = axes[r][c]
         im = ax.imshow(cm, vmin=0.0, vmax=1.0)
         ims.append(im)
-        ax.set_title(labels[idx], fontsize=CONFUSION_MATRIX_TITLE_SIZE, fontweight="bold")
-        ax.set_xlabel("Predicted", fontsize=CONFUSION_MATRIX_AXIS_LABEL_SIZE, fontweight="bold")
-        ax.set_ylabel("True", fontsize=CONFUSION_MATRIX_AXIS_LABEL_SIZE, fontweight="bold")
+        ax.set_xlabel("Predicted", fontsize=cm_axis_size, fontweight="bold")
+        ax.set_ylabel("True", fontsize=cm_axis_size, fontweight="bold")
         ax.set_xticks(range(num_classes))  # [CLASSIF]
         ax.set_yticks(range(num_classes))  # [CLASSIF]
+        ax.tick_params(axis="x", pad=12)
+        ax.tick_params(axis="y", pad=10)
         if class_names is not None:  # [CLASSIF]
             ax.set_xticklabels(
                 class_names, rotation=45, ha="right",
-                fontsize=CONFUSION_MATRIX_TICK_LABEL_SIZE, fontweight="bold"
+                fontsize=cm_tick_size, fontweight="bold"
             )  # [CLASSIF]
             ax.set_yticklabels(
-                class_names, fontsize=CONFUSION_MATRIX_TICK_LABEL_SIZE, fontweight="bold"
+                class_names, fontsize=cm_tick_size, fontweight="bold"
             )  # [CLASSIF]
+
+        displayed_cm = [
+            _row_to_fixed_decimals_with_sum_one(row, decimals=3)
+            for row in cm
+        ]
 
         # escreve o valor numérico em cada célula  # [CLASSIF]
         for i in range(num_classes):  # [CLASSIF]
             for j in range(num_classes):  # [CLASSIF]
-                val = cm[i][j]  # [CLASSIF]
+                val = displayed_cm[i][j]  # [CLASSIF]
                 # diagonal (classe correta) em preto, demais em branco  # [CLASSIF]
                 text_color = "black" if i == j else "white"  # [CLASSIF]
                 ax.text(  # [CLASSIF]
                     j,
                     i,
-                    f"{val:.2f}",
+                    f"{val:.3f}",
                     ha="center",
                     va="center",
                     color=text_color,
-                    fontsize=CONFUSION_MATRIX_TEXT_SIZE,
+                    fontsize=cm_text_size,
                 )  # [CLASSIF]
 
     # esconder eixos sobrando
@@ -964,13 +1025,67 @@ def plot_confusion_matrices_clients(client_files, output_dir: Path):
 
     cbar_ax = fig.add_axes([0.90, 0.15, 0.02, 0.7])
     cbar = fig.colorbar(ims[-1], cax=cbar_ax)
-    cbar.ax.tick_params(labelsize=CONFUSION_MATRIX_COLORBAR_TICK_SIZE)
+    cbar.ax.tick_params(labelsize=cm_cbar_tick_size)
     for t in cbar.ax.get_yticklabels():
         t.set_fontweight("bold")
 
-    # fig.suptitle("Confusion Matrices (last round of each client)")
     save_figure_pdf(fig, output_dir, "fig8_confusion_matrices_clients")
     plt.close(fig)
+
+    # Salva também uma figura por cliente em pasta dedicada.
+    indiv_dir = Path(output_dir) / "confusion_matrices_individual"
+    indiv_dir.mkdir(parents=True, exist_ok=True)
+
+    for idx, (cm, label) in enumerate(zip(cms, labels), start=1):
+        fig_i, ax_i = plt.subplots(1, 1, figsize=(subplot_side, subplot_side))
+        im_i = ax_i.imshow(cm, vmin=0.0, vmax=1.0)
+        ax_i.set_xlabel("Predicted", fontsize=cm_axis_size, fontweight="bold")
+        ax_i.set_ylabel("True", fontsize=cm_axis_size, fontweight="bold")
+        ax_i.set_xticks(range(num_classes))
+        ax_i.set_yticks(range(num_classes))
+        ax_i.tick_params(axis="x", pad=12)
+        ax_i.tick_params(axis="y", pad=10)
+        if class_names is not None:
+            ax_i.set_xticklabels(
+                class_names,
+                rotation=45,
+                ha="right",
+                fontsize=cm_tick_size,
+                fontweight="bold",
+            )
+            ax_i.set_yticklabels(
+                class_names,
+                fontsize=cm_tick_size,
+                fontweight="bold",
+            )
+
+        displayed_cm = [
+            _row_to_fixed_decimals_with_sum_one(row, decimals=3)
+            for row in cm
+        ]
+        for i in range(num_classes):
+            for j in range(num_classes):
+                val = displayed_cm[i][j]
+                text_color = "black" if i == j else "white"
+                ax_i.text(
+                    j,
+                    i,
+                    f"{val:.3f}",
+                    ha="center",
+                    va="center",
+                    color=text_color,
+                    fontsize=cm_text_size,
+                )
+
+        cbar_i = fig_i.colorbar(im_i, ax=ax_i, fraction=0.046, pad=0.04)
+        cbar_i.ax.tick_params(labelsize=cm_cbar_tick_size)
+        for t in cbar_i.ax.get_yticklabels():
+            t.set_fontweight("bold")
+
+        fig_i.tight_layout()
+        filename = f"cm_{idx:02d}_{_sanitize_filename(label)}"
+        save_figure_pdf(fig_i, indiv_dir, filename)
+        plt.close(fig_i)
 
 
 # ==========================
