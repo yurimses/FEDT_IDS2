@@ -36,25 +36,25 @@ CONFUSION_MATRIX_COLORBAR_TICK_SIZE = 26
 
 # Arquivos dos clientes
 CLIENT_FILES = [
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-0/best_trees_client-id-0_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-1/best_trees_client-id-1_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-2/best_trees_client-id-2_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-3/best_trees_client-id-3_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-4/best_trees_client-id-4_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-5/best_trees_client-id-5_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-6/best_trees_client-id-6_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-7/best_trees_client-id-7_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-8/best_trees_client-id-8_1.json"),
-    Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/client-id-9/best_trees_client-id-9_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-0/best_trees_client-id-0_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-1/best_trees_client-id-1_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-2/best_trees_client-id-2_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-3/best_trees_client-id-3_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-4/best_trees_client-id-4_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-5/best_trees_client-id-5_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-6/best_trees_client-id-6_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-7/best_trees_client-id-7_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-8/best_trees_client-id-8_1.json"),
+    Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/client-id-9/best_trees_client-id-9_1.json"),
 ]
 
 # Arquivo do servidor
-SERVER_FILE = Path("/home/yuri/FEDT_IDS2/results/best_trees/ton_iot_preprocessed/non_iid_allclasses/server/best_trees_server_1.json")
-# Arquivo de monitoramento de CPU/RAM NON_IID_ALLCLASSES
-CPU_FILE = Path("/home/yuri/FEDT_IDS2/logs/cpu_ram/ton_iot_preprocessed/non_iid_allclasses/best_trees/cpu_and_ram_yuri_best_trees_0.json")
+SERVER_FILE = Path("/home/yuri/FEDT_IDS2/results/best_trees/ML-EdgeIIoT-FEDT/iid/server/best_trees_server_1.json")
+# Arquivo de monitoramento de CPU/RAM IID
+CPU_FILE = Path("/home/yuri/FEDT_IDS2/logs/cpu_ram/ML-EdgeIIoT-FEDT/iid/best_trees/cpu_and_ram_yuri_best_trees_0.json")
 
 # Pasta onde as figuras serão salvas
-FIG_DIR = Path("/home/yuri/FEDT_IDS2/figures/best_trees/ton_iot_preprocessed/non-iid-test/")
+FIG_DIR = Path("/home/yuri/FEDT_IDS2/figures/best_trees/ML-EdgeIIoT-FEDT/iid_2/")
 FIG_DIR.mkdir(parents=True, exist_ok=True)
 
 # ==========================
@@ -280,10 +280,11 @@ def compute_cpu_usage_per_round(rounds_data, cpu_log_path: Path):
     dentro desse intervalo, calcula:
 
       - CPU média dos clientes: média das médias de cpu_percent por PID de cliente
+      - Desvio padrão dos clientes: desvio padrão das médias por PID no round
       - CPU média do servidor: média de todas as amostras de cpu_percent do servidor
     """
     if not cpu_log_path.exists() or not rounds_data:
-        return [], [], []
+        return [], [], [], []
 
     data = load_json(cpu_log_path)
     client_pids = data.get("--client-id", {})
@@ -291,6 +292,7 @@ def compute_cpu_usage_per_round(rounds_data, cpu_log_path: Path):
 
     rounds_int = sorted(rounds_data.keys())
     client_means = []
+    client_stds = []
     server_means = []
 
     for r in rounds_int:
@@ -298,19 +300,23 @@ def compute_cpu_usage_per_round(rounds_data, cpu_log_path: Path):
         ends = rounds_data[r]["round_end"]
         if not starts or not ends:
             client_means.append(0.0)
+            client_stds.append(0.0)
             server_means.append(0.0)
             continue
 
         start_r = min(starts)
         end_r = max(ends)
 
-        # clientes: média das médias por PID
+        # Clientes: calcula a média por PID ativo no intervalo do round
+        # e resume essas médias com mean/std. Isso representa a dispersão
+        # entre PIDs monitorados, que é a mesma unidade usada na média atual.
         per_pid_means = []
         for samples in client_pids.values():
             vals = [s["cpu_percent"] for s in samples if start_r <= s["timestamp"] <= end_r]
             if vals:
                 per_pid_means.append(mean(vals))
         client_means.append(mean(per_pid_means) if per_pid_means else 0.0)
+        client_stds.append(pstdev(per_pid_means) if len(per_pid_means) > 1 else 0.0)
 
         # servidor: média de todas as amostras no intervalo
         server_vals = []
@@ -319,7 +325,59 @@ def compute_cpu_usage_per_round(rounds_data, cpu_log_path: Path):
             server_vals.extend(vals)
         server_means.append(mean(server_vals) if server_vals else 0.0)
 
-    return rounds_int, client_means, server_means
+    return rounds_int, client_means, client_stds, server_means
+
+
+def compute_memory_usage_per_round(rounds_data, cpu_log_path: Path):
+    """Computa memória média por round para clientes e servidor.
+
+    Para cada round, usa o menor round_start_time e o maior round_end_time
+    entre os clientes para definir o intervalo [start_r, end_r] e,
+    dentro desse intervalo, calcula:
+
+      - Memória média dos clientes: média das médias de memory_mb por PID
+      - Desvio padrão dos clientes: desvio padrão das médias por PID no round
+      - Memória média do servidor: média de todas as amostras de memory_mb
+    """
+    if not cpu_log_path.exists() or not rounds_data:
+        return [], [], [], []
+
+    data = load_json(cpu_log_path)
+    client_pids = data.get("--client-id", {})
+    server_pids = data.get("fedt run server", {})
+
+    rounds_int = sorted(rounds_data.keys())
+    client_means = []
+    client_stds = []
+    server_means = []
+
+    for r in rounds_int:
+        starts = rounds_data[r]["round_start"]
+        ends = rounds_data[r]["round_end"]
+        if not starts or not ends:
+            client_means.append(0.0)
+            client_stds.append(0.0)
+            server_means.append(0.0)
+            continue
+
+        start_r = min(starts)
+        end_r = max(ends)
+
+        per_pid_means = []
+        for samples in client_pids.values():
+            vals = [s["memory_mb"] for s in samples if start_r <= s["timestamp"] <= end_r]
+            if vals:
+                per_pid_means.append(mean(vals))
+        client_means.append(mean(per_pid_means) if per_pid_means else 0.0)
+        client_stds.append(pstdev(per_pid_means) if len(per_pid_means) > 1 else 0.0)
+
+        server_vals = []
+        for samples in server_pids.values():
+            vals = [s["memory_mb"] for s in samples if start_r <= s["timestamp"] <= end_r]
+            server_vals.extend(vals)
+        server_means.append(mean(server_vals) if server_vals else 0.0)
+
+    return rounds_int, client_means, client_stds, server_means
 
 
 # ==========================
@@ -518,7 +576,7 @@ def plot_inference_time(rounds, infer_mean, infer_std, output_dir: Path):
 
 
 def plot_cpu_usage_per_round(rounds, client_cpu, server_cpu, output_dir: Path):
-    """Uso médio de CPU por round (clientes e servidor)."""
+    """Uso médio de CPU por round (clientes e servidor), sem desvio padrão."""
     if not rounds or not client_cpu or not server_cpu:
         return
 
@@ -532,6 +590,57 @@ def plot_cpu_usage_per_round(rounds, client_cpu, server_cpu, output_dir: Path):
     # plt.title("CPU usage per round")
     plt.legend()
     save_figure_pdf(plt, output_dir, "fig6_cpu_usage_per_round")
+    plt.close()
+
+
+def plot_cpu_usage_per_round_with_std(rounds, client_cpu, client_cpu_std, server_cpu, output_dir: Path):
+    """Uso médio de CPU por round com desvio padrão dos clientes."""
+    if not rounds or not client_cpu or not server_cpu:
+        return
+
+    round_labels = [r + 1 for r in rounds]
+
+    plt.figure()
+    plt.errorbar(round_labels, client_cpu, yerr=client_cpu_std, fmt="-o", capsize=5, label="Clients (mean)")
+    plt.plot(round_labels, server_cpu, "-s", label="Server")
+    plt.xlabel("Round")
+    plt.ylabel("CPU usage (%)")
+    plt.legend(loc="upper center", bbox_to_anchor=(0.5, 1.18), ncol=2)
+    save_figure_pdf(plt, output_dir, "fig6_cpu_usage_per_round_std_clients")
+    plt.close()
+
+
+def plot_memory_usage_per_round(rounds, client_mem, server_mem, output_dir: Path):
+    """Uso médio de memória por round (clientes e servidor), sem desvio padrão."""
+    if not rounds or not client_mem or not server_mem:
+        return
+
+    round_labels = [r + 1 for r in rounds]
+
+    plt.figure()
+    plt.plot(round_labels, client_mem, "-o", label="Clients (mean)")
+    plt.plot(round_labels, server_mem, "-s", label="Server")
+    plt.xlabel("Round")
+    plt.ylabel("Memory (MB)")
+    plt.legend()
+    save_figure_pdf(plt, output_dir, "fig4_memory_usage_per_round")
+    plt.close()
+
+
+def plot_memory_usage_per_round_with_std(rounds, client_mem, client_mem_std, server_mem, output_dir: Path):
+    """Uso médio de memória por round com desvio padrão dos clientes."""
+    if not rounds or not client_mem or not server_mem:
+        return
+
+    round_labels = [r + 1 for r in rounds]
+
+    plt.figure()
+    plt.errorbar(round_labels, client_mem, yerr=client_mem_std, fmt="-o", capsize=5, label="Clients (mean)")
+    plt.plot(round_labels, server_mem, "-s", label="Server")
+    plt.xlabel("Round")
+    plt.ylabel("Memory (MB)")
+    plt.legend(loc="upper center", bbox_to_anchor=(0.5, 1.18), ncol=2)
+    save_figure_pdf(plt, output_dir, "fig4_memory_usage_per_round_std_clients")
     plt.close()
 
 
@@ -1101,7 +1210,8 @@ def main():
 
     server_rounds, trees_by_client, aggregation_time, avg_exec_time = load_server_metrics(SERVER_FILE)
 
-    cpu_rounds, client_cpu_per_round, server_cpu_per_round = compute_cpu_usage_per_round(rounds_data, CPU_FILE)
+    cpu_rounds, client_cpu_per_round, client_cpu_std_per_round, server_cpu_per_round = compute_cpu_usage_per_round(rounds_data, CPU_FILE)
+    memory_rounds, client_memory_per_round, client_memory_std_per_round, server_memory_per_round = compute_memory_usage_per_round(rounds_data, CPU_FILE)
 
     plot_f1_and_accuracy(rounds, f1_mean, f1_std, acc_mean, acc_std, FIG_DIR)
     plot_f1_and_accuracy_per_client_and_mean(CLIENT_FILES, FIG_DIR)
@@ -1110,6 +1220,10 @@ def main():
     plot_inference_time(rounds, infer_mean, infer_std, FIG_DIR)
     if cpu_rounds:
         plot_cpu_usage_per_round(cpu_rounds, client_cpu_per_round, server_cpu_per_round, FIG_DIR)
+        plot_cpu_usage_per_round_with_std(cpu_rounds, client_cpu_per_round, client_cpu_std_per_round, server_cpu_per_round, FIG_DIR)
+    if memory_rounds:
+        plot_memory_usage_per_round(memory_rounds, client_memory_per_round, server_memory_per_round, FIG_DIR)
+        plot_memory_usage_per_round_with_std(memory_rounds, client_memory_per_round, client_memory_std_per_round, server_memory_per_round, FIG_DIR)
     plot_last_round_metrics_bar(CLIENT_FILES, FIG_DIR)
     plot_confusion_matrices_clients(CLIENT_FILES, FIG_DIR)
     plot_f1_and_accuracy_boxplots_clients_by_round(rounds_data, [10, 20, 30, 40], FIG_DIR)  # [CLASSIF]
