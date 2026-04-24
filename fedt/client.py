@@ -18,7 +18,7 @@ from fedt.settings import (
     print_class_distribution,  # [CLASSIF]  
     dataset_path, label_target, partition_seed,
     dominant_client_id, unlearning_enabled, unlearning_round,  # [UNLEARNING]
-    max_classes_beeswarm, max_display_features  # [SHAP]
+    xai_enabled, max_classes_beeswarm, max_display_features  # [SHAP]
 )
 from fedt import utils
 from fedt.utils import create_specific_result_folder
@@ -343,8 +343,10 @@ async def run():
             logger.debug(f"\nDuração do Round: {format_time(round_time)}\nTempo de treinamento: {format_time(fit_time)}\nTempo de avaliação: {format_time(evaluate_time)}\nTempo de inferência: {format_time(inference_time)}")
 
             # [SHAP] Calcular SHAP values do cliente no último round (antes de deletar variáveis)
-            if round_idx == number_of_rounds - 1:
+            # Só executa se xai_enabled está ativado
+            if round_idx == number_of_rounds - 1 and xai_enabled:
                 logger.info("[SHAP] Último round detectado. Calculando SHAP values para o cliente...")
+                shap_start_time = time.time()
                 
                 try:
                     # Carregar nomes das features
@@ -392,11 +394,14 @@ async def run():
                             shap_json_path = shap_folder / f"client_{ID}_shap_values.json"
                             utils.save_shap_values_json(shap_values_local, feature_names, shap_json_path)
                             
-                            logger.info("[SHAP] SHAP values do cliente calculados e salvos com sucesso!")
+                            shap_duration = time.time() - shap_start_time
+                            logger.info(f"[SHAP] SHAP values do cliente calculados e salvos com sucesso! (tempo: {format_time(shap_duration)})")
                         else:
                             logger.warning("[SHAP] Falha ao calcular SHAP values do cliente")
                 except Exception as e:
                     logger.error(f"[SHAP] Erro ao calcular SHAP values do cliente: {e}")
+            elif round_idx == number_of_rounds - 1 and not xai_enabled:
+                logger.info("[SHAP] Explicabilidade desativada via configuração (xai_enabled=false)")
 
             del server_model, client, server_trees_serialised, server_trees_deserialised
 

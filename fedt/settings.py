@@ -86,6 +86,7 @@ ccp_alpha = config["settings"]["classification"]["ccp_alpha"]  # [CLASSIF] parâ
 network_interface = config["scripts"]["network_interface"]
 
 # [SHAP] Configurações para SHAP
+xai_enabled = config.get("shap", {}).get("xai_enabled", True)  # [SHAP] Flag para ativar/desativar explicabilidade
 max_classes_beeswarm = config.get("shap", {}).get("max_classes_beeswarm", 6)  # [SHAP]
 max_display_features = config.get("shap", {}).get("max_display_features", 20)  # [SHAP]
 

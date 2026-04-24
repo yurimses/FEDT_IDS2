@@ -814,7 +814,33 @@ def kill_processes(processes, name):
                 os.kill(proc.pid, signal.SIGINT)
 
 
-# ===== SHAP FUNCTIONS =====
+
+def validate_shap_dependencies() -> bool:
+    """
+    Valida se as dependências necessárias para SHAP estão instaladas.
+    
+    Returns:
+        bool: True se todas as dependências estão disponíveis, False caso contrário
+    """
+    missing_packages = []
+    
+    try:
+        import shap
+    except ImportError:
+        missing_packages.append("shap")
+    
+    try:
+        import matplotlib
+    except ImportError:
+        missing_packages.append("matplotlib")
+    
+    if missing_packages:
+        logging.error(f"[SHAP] Pacotes faltando para Explainable AI: {', '.join(missing_packages)}")
+        logging.error("[SHAP] Instale com: pip install shap matplotlib")
+        return False
+    
+    return True
+
 
 def calculate_shap_values(model: RandomForestClassifier, X_data: np.ndarray,
                          max_samples: int = 100, seed: int = None) -> tuple:
@@ -829,14 +855,24 @@ def calculate_shap_values(model: RandomForestClassifier, X_data: np.ndarray,
         seed: Seed para amostragem reprodutível de X_data (None = não determinístico)
     
     Returns:
-        tuple: (shap_values, explainer, X_sample)
+        tuple: (shap_values, explainer, X_sample) ou (None, None, None) em caso de erro
     """
     try:
         import matplotlib
         matplotlib.use('Agg')  # Backend não-gráfico para ambientes sem display (servidor)
         import shap
-    except ImportError:
-        logging.error("SHAP não está instalado. Instale com: pip install shap")
+    except ImportError as e:
+        logging.error(f"[SHAP] Dependências faltando: {e}")
+        logging.error("[SHAP] Instale com: pip install shap matplotlib")
+        return None, None, None
+    
+    # Validar entrada
+    if X_data is None or len(X_data) == 0:
+        logging.error("[SHAP] X_data vazio ou None")
+        return None, None, None
+    
+    if model is None:
+        logging.error("[SHAP] Modelo é None")
         return None, None, None
     
     try:

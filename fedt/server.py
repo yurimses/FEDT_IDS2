@@ -16,7 +16,7 @@ from fedt.settings import (
     imported_aggregation_strategy, number_of_rounds, many_simulations,
     max_depth, min_samples_leaf, min_samples_split, max_features, ccp_alpha,  # [CLASSIF]
     dominant_client_id, unlearning_enabled, unlearning_round,  # [UNLEARNING]
-    max_classes_beeswarm, partition_seed, max_display_features  # [SHAP]
+    xai_enabled, max_classes_beeswarm, partition_seed, max_display_features  # [SHAP]
 )
 from fedt.fedforest import FedForest
 from fedt import utils
@@ -334,9 +334,12 @@ class FedT(fedT_pb2_grpc.FedTServicer):
                 
                 if is_last_round:
                     logger.warning("Encerrando treinamento...")
-                    # [SHAP] Calcular SHAP no modelo agregado FINAL (antes de resetar)
-                    loop = asyncio.get_running_loop()
-                    await loop.run_in_executor(self.executor, self._calculate_server_shap)
+                    # [SHAP] Calcular SHAP no modelo agregado FINAL se habilitado
+                    if xai_enabled:
+                        loop = asyncio.get_running_loop()
+                        await loop.run_in_executor(self.executor, self._calculate_server_shap)
+                    else:
+                        logger.info("[SHAP] Explicabilidade desativada via configuração (xai_enabled=false)")
                     
                     self.shutdown_event.set()
                     return fedT_pb2.OK(ok=1)
@@ -396,6 +399,7 @@ class FedT(fedT_pb2_grpc.FedTServicer):
         [SHAP] OTIMIZADO para consumo reduzido de memória.
         """
         logger.info("[SHAP] Iniciando cálculo de SHAP values para o modelo do servidor...")
+        shap_start_time = time.time()
         
         try:
             # Carregar dados de teste para calcular SHAP
@@ -410,6 +414,7 @@ class FedT(fedT_pb2_grpc.FedTServicer):
                 return
             
             # Calcular SHAP values
+            logger.info("[SHAP] Calculando SHAP values...")
             server_shap_seed = int(partition_seed) + 10000
             shap_values, explainer, X_sample = utils.calculate_shap_values(
                 self.model,
@@ -468,7 +473,8 @@ class FedT(fedT_pb2_grpc.FedTServicer):
             del shap_values
             gc.collect()
             
-            logger.info("[SHAP] SHAP values do servidor calculados e salvos com sucesso!")
+            shap_duration = time.time() - shap_start_time
+            logger.info(f"[SHAP] SHAP values do servidor calculados e salvos com sucesso! (tempo: {utils.format_time(shap_duration)})")
             
         except Exception as e:
             logger.error(f"[SHAP] Erro ao calcular SHAP values do servidor: {e}")
