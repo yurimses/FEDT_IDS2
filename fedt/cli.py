@@ -1,11 +1,13 @@
 import asyncio
 import argparse
 import time
+import inspect
 
 from fedt.server import run_server
 from fedt.run_clients import run_clients, run_clients_with_a_specific_strategy
 from fedt.settings import aggregation_strategies, number_of_simulations
 from fedt.utils import find_target_processes, kill_processes
+from fedt.utils import prepare_partitions
 
 import subprocess, signal, os
 from multiprocessing import Process
@@ -88,6 +90,18 @@ def run_server_and_clients():
     server_proc.wait()
     clients_proc.wait()
 
+
+def cmd_prepare_partitions(args):
+    summary = prepare_partitions()
+    print(
+        "Partições preparadas com sucesso: "
+        f"dataset={summary['dataset']}, partition_type={summary['partition_type']}, num_clients={summary['num_clients']}"
+    )
+
+
+def cmd_run_clients(args):
+    run_clients()
+
 def main():
     parser = argparse.ArgumentParser(
         description="fedt: Federated Learning for Decision Trees"
@@ -105,7 +119,7 @@ def main():
 
     # Subcomando: run clients
     run_clients_parser = run_subparsers.add_parser("clients", help="Roda os clientes")
-    run_clients_parser.set_defaults(func=run_clients)
+    run_clients_parser.set_defaults(func=cmd_run_clients)
 
     # Subcomando: run many-serverr
     run_many_server_parser = run_subparsers.add_parser(
@@ -123,10 +137,20 @@ def main():
     # Define o comportamento padrão de "run" sem subcomando
     run_parser.set_defaults(func=run_server_and_clients)
 
+    # Subcomando: prepare-partitions
+    prepare_parser = subparsers.add_parser(
+        "prepare-partitions",
+        help="Prepara partições train/test usando automaticamente os parâmetros do config.toml",
+    )
+    prepare_parser.set_defaults(func=cmd_prepare_partitions)
+
     args = parser.parse_args()
 
     if hasattr(args, "func"):
-        args.func()
+        if len(inspect.signature(args.func).parameters) == 0:
+            args.func()
+        else:
+            args.func(args)
     else:
         parser.print_help()
 

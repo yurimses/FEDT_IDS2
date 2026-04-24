@@ -1,0 +1,7212 @@
+{
+  "--client-id": {
+    "37311": [
+      {
+        "timestamp": 1777041476.662104,
+        "cpu_percent": 0.0,
+        "memory_mb": 93.83203125,
+        "num_threads": 23
+      },
+      {
+        "timestamp": 1777041477.195728,
+        "cpu_percent": 13.275,
+        "memory_mb": 153.015625,
+        "num_threads": 23
+      },
+      {
+        "timestamp": 1777041477.7112508,
+        "cpu_percent": 8.408333333333333,
+        "memory_mb": 188.93359375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041478.2248352,
+        "cpu_percent": 7.466666666666666,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041478.740712,
+        "cpu_percent": 0.15833333333333333,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041479.2828467,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041479.8004646,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041480.3213804,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041480.8662686,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041481.389754,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041481.9041667,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041482.4176397,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041482.9330814,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041483.4473755,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041483.9963286,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041484.5427926,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041485.0852547,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041485.6019216,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041486.1421297,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041486.6661594,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041487.2036178,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041487.719052,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041488.233361,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041488.7518442,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041489.3030603,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041489.853552,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041490.4041436,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041490.9537477,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041491.5041559,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041492.0179753,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041492.5315933,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041493.0453668,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041493.5597587,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041494.1081216,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041494.6541722,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041495.203846,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041495.7309546,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041496.2779102,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041496.7917128,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041497.3059506,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041497.8195882,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041498.3353057,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041498.8552191,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041499.3701692,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.69140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041499.8974159,
+        "cpu_percent": 5.8500000000000005,
+        "memory_mb": 197.0859375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041500.4128425,
+        "cpu_percent": 7.433333333333334,
+        "memory_mb": 198.5625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041500.9295154,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.5625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041501.4449682,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.5625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041501.9625502,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.5625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041502.499772,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.5625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041503.0502305,
+        "cpu_percent": 0.15,
+        "memory_mb": 198.5625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041503.5989814,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.5625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041504.1157875,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.5625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041504.6664183,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.5625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041505.2168238,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.5625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041505.7378392,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.5625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041506.2797484,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.5625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041506.7954705,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.5625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041507.3148708,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.5625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041507.8648093,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.5625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041508.3904915,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.5625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041508.943364,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.5625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041509.4920926,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.5625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041510.0409377,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.5625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041510.5719347,
+        "cpu_percent": 0.15833333333333333,
+        "memory_mb": 198.5625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041511.0970845,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.5625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041511.646178,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.5625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041512.1958308,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.5625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041512.7458,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.5625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041513.2708688,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.5625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041513.8200068,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.5625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041514.3667293,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.5625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041514.919371,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.5625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041515.4697845,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.56640625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041515.994397,
+        "cpu_percent": 8.416666666666666,
+        "memory_mb": 199.37890625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041516.510776,
+        "cpu_percent": 8.233333333333333,
+        "memory_mb": 199.5234375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041517.0280492,
+        "cpu_percent": 0.6416666666666667,
+        "memory_mb": 199.5234375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041517.5432274,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.5234375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041518.0634375,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.5234375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041518.5811133,
+        "cpu_percent": 3.216666666666667,
+        "memory_mb": 203.20703125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041519.1026893,
+        "cpu_percent": 3.516666666666667,
+        "memory_mb": 202.21875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041519.6275926,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.21875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041520.1790588,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.21875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041520.7265382,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.21875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041521.2747755,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.21875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041521.8299844,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.21875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041522.3792531,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.21875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041522.9000208,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.21875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041523.4498303,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.21875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041523.999625,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.21875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041524.5503716,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.21875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041525.1008608,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.21875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041525.6497815,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.21875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041526.1998217,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.21875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041526.736196,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.21875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041527.2853308,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.21875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041527.8353248,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.21875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041528.3855634,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.21875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041528.9030507,
+        "cpu_percent": 0.15833333333333333,
+        "memory_mb": 202.21875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041529.4546552,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.21875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041530.0048025,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.21875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041530.5549486,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.21875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041531.104303,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.21875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041531.6546814,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.21875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041532.2005124,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.21875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041532.7273955,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.21875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041533.2780714,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.21875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041533.8279734,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.21875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041534.351447,
+        "cpu_percent": 7.483333333333333,
+        "memory_mb": 202.9296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041534.869105,
+        "cpu_percent": 8.375,
+        "memory_mb": 203.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041535.391146,
+        "cpu_percent": 5.266666666666667,
+        "memory_mb": 203.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041535.9120553,
+        "cpu_percent": 0.0,
+        "memory_mb": 203.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041536.4295263,
+        "cpu_percent": 0.0,
+        "memory_mb": 203.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041536.9432945,
+        "cpu_percent": 0.0,
+        "memory_mb": 203.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041537.4580176,
+        "cpu_percent": 2.2666666666666666,
+        "memory_mb": 206.140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041537.9751525,
+        "cpu_percent": 5.158333333333333,
+        "memory_mb": 210.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041538.4902878,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041539.0059578,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041539.5515552,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041540.1085212,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041540.6607091,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041541.211452,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041541.7412035,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041542.2577934,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041542.778847,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041543.3271093,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041543.8445644,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041544.3626173,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041544.9115644,
+        "cpu_percent": 0.15,
+        "memory_mb": 210.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041545.4607596,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041546.0101464,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041546.524278,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041547.0754845,
+        "cpu_percent": 0.15,
+        "memory_mb": 210.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041547.59329,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041548.141519,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041548.6975927,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041549.2461135,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041549.761083,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041550.278708,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041550.8293874,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041551.3812528,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041551.9308488,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041552.4794405,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041553.0023615,
+        "cpu_percent": 1.1166666666666667,
+        "memory_mb": 210.29296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041553.525262,
+        "cpu_percent": 8.283333333333333,
+        "memory_mb": 210.40625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041554.0450842,
+        "cpu_percent": 8.333333333333334,
+        "memory_mb": 211.4453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041554.569383,
+        "cpu_percent": 8.583333333333334,
+        "memory_mb": 211.4453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041555.0926929,
+        "cpu_percent": 5.733333333333333,
+        "memory_mb": 204.58984375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041555.607161,
+        "cpu_percent": 0.0,
+        "memory_mb": 204.58984375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041556.125437,
+        "cpu_percent": 0.0,
+        "memory_mb": 204.58984375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041556.6424487,
+        "cpu_percent": 0.0,
+        "memory_mb": 204.58984375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041557.1566484,
+        "cpu_percent": 0.0,
+        "memory_mb": 204.58984375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041557.6820438,
+        "cpu_percent": 6.9750000000000005,
+        "memory_mb": 221.6796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041558.196647,
+        "cpu_percent": 1.9416666666666667,
+        "memory_mb": 217.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041558.711354,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041559.2480745,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041559.7709277,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041560.2865262,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041560.8375404,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041561.3841052,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041561.906791,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041562.455318,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041563.0069296,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041563.5233333,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041564.0756938,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041564.6249948,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041565.173592,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041565.735021,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041566.2856169,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041566.834479,
+        "cpu_percent": 0.15,
+        "memory_mb": 217.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041567.3840349,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041567.9338632,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041568.4791274,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041569.025337,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041569.573785,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041570.1236482,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041570.6731086,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041571.223205,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041571.7495646,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041572.2987657,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041572.8489661,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.0390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041573.3701456,
+        "cpu_percent": 6.558333333333334,
+        "memory_mb": 217.109375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041573.892534,
+        "cpu_percent": 8.291666666666666,
+        "memory_mb": 217.28125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041574.4154775,
+        "cpu_percent": 8.283333333333333,
+        "memory_mb": 217.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041574.939662,
+        "cpu_percent": 8.266666666666667,
+        "memory_mb": 217.53515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041575.4752612,
+        "cpu_percent": 3.266666666666667,
+        "memory_mb": 217.54296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041575.9899466,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.54296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041576.5052266,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.54296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041577.0208569,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.54296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041577.5351522,
+        "cpu_percent": 3.0749999999999997,
+        "memory_mb": 217.859375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041578.0514908,
+        "cpu_percent": 6.133333333333333,
+        "memory_mb": 223.09375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041578.5771444,
+        "cpu_percent": 0.0,
+        "memory_mb": 223.09375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041579.1246996,
+        "cpu_percent": 0.0,
+        "memory_mb": 223.09375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041579.6745198,
+        "cpu_percent": 0.0,
+        "memory_mb": 223.09375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041580.2234173,
+        "cpu_percent": 0.0,
+        "memory_mb": 223.09375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041580.7492177,
+        "cpu_percent": 0.0,
+        "memory_mb": 223.09375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041581.2991138,
+        "cpu_percent": 0.0,
+        "memory_mb": 223.09375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041581.8493085,
+        "cpu_percent": 0.0,
+        "memory_mb": 223.09375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041582.396327,
+        "cpu_percent": 0.0,
+        "memory_mb": 223.09375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041582.944395,
+        "cpu_percent": 0.0,
+        "memory_mb": 223.09375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041583.4949841,
+        "cpu_percent": 0.0,
+        "memory_mb": 223.09375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041584.0446525,
+        "cpu_percent": 0.0,
+        "memory_mb": 223.09375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041584.5911279,
+        "cpu_percent": 0.0,
+        "memory_mb": 223.09375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041585.1399667,
+        "cpu_percent": 0.0,
+        "memory_mb": 223.09375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041585.6886718,
+        "cpu_percent": 0.0,
+        "memory_mb": 223.09375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041586.237917,
+        "cpu_percent": 0.0,
+        "memory_mb": 223.09375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041586.7625203,
+        "cpu_percent": 0.0,
+        "memory_mb": 223.09375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041587.3107183,
+        "cpu_percent": 0.0,
+        "memory_mb": 223.09375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041587.8422494,
+        "cpu_percent": 0.0,
+        "memory_mb": 223.09375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041588.3900933,
+        "cpu_percent": 0.15,
+        "memory_mb": 223.09375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041588.9088054,
+        "cpu_percent": 0.0,
+        "memory_mb": 223.09375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041589.4555502,
+        "cpu_percent": 0.0,
+        "memory_mb": 223.09375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041590.0042968,
+        "cpu_percent": 0.0,
+        "memory_mb": 223.09375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041590.5537646,
+        "cpu_percent": 0.0,
+        "memory_mb": 223.09375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041591.103336,
+        "cpu_percent": 0.0,
+        "memory_mb": 223.09375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041591.6490598,
+        "cpu_percent": 0.0,
+        "memory_mb": 223.09375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041592.1769707,
+        "cpu_percent": 0.0,
+        "memory_mb": 223.09375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041592.7273078,
+        "cpu_percent": 0.0,
+        "memory_mb": 223.09375,
+        "num_threads": 39
+      }
+    ],
+    "37399": [
+      {
+        "timestamp": 1777041481.9042892,
+        "cpu_percent": 0.0,
+        "memory_mb": 122.3515625,
+        "num_threads": 23
+      },
+      {
+        "timestamp": 1777041482.4177592,
+        "cpu_percent": 8.441666666666666,
+        "memory_mb": 199.0703125,
+        "num_threads": 38
+      },
+      {
+        "timestamp": 1777041482.9332013,
+        "cpu_percent": 8.083333333333334,
+        "memory_mb": 189.64453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041483.4479682,
+        "cpu_percent": 4.858333333333333,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041483.9971383,
+        "cpu_percent": 0.15,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041484.5434158,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041485.0853727,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041485.6025238,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041486.1423147,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041486.6663165,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041487.2037287,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041487.7191615,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041488.2334888,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041488.7525191,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041489.3034184,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041489.8541563,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041490.4047134,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041490.9543598,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041491.504265,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041492.0180855,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041492.5317132,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041493.0454783,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041493.5606852,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041494.108706,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041494.654782,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041495.204245,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041495.731567,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041496.278025,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041496.7918181,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041497.3060648,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041497.8197043,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041498.3354473,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041498.8553314,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041499.3703878,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.66796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041499.8975415,
+        "cpu_percent": 5.691666666666666,
+        "memory_mb": 203.10546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041500.4129648,
+        "cpu_percent": 7.2749999999999995,
+        "memory_mb": 197.08203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041500.929628,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.08203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041501.445138,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.08203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041501.9630125,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.08203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041502.5003889,
+        "cpu_percent": 0.15833333333333333,
+        "memory_mb": 197.08203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041503.050804,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.08203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041503.5996027,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.08203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041504.1164083,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.08203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041504.6670322,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.08203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041505.2170472,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.08203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041505.7384732,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.08203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041506.2798653,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.08203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041506.7956538,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.08203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041507.3152735,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.08203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041507.8650525,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.08203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041508.3913121,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.08203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041508.9441752,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.08203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041509.4928277,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.08203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041510.0412183,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.08203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041510.5723577,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.08203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041511.097923,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.08203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041511.6467564,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.08203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041512.1965513,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.08203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041512.7459943,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.08203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041513.2714949,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.08203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041513.8205893,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.08203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041514.3673656,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.08203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041514.919999,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.08203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041515.4699357,
+        "cpu_percent": 0.3,
+        "memory_mb": 197.09765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041515.9945157,
+        "cpu_percent": 8.416666666666666,
+        "memory_mb": 197.30078125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041516.510936,
+        "cpu_percent": 7.258333333333333,
+        "memory_mb": 197.3046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041517.028163,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.3046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041517.5433793,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.3046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041518.0636754,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.3046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041518.5812764,
+        "cpu_percent": 3.3833333333333333,
+        "memory_mb": 200.37109375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041519.1028576,
+        "cpu_percent": 3.1916666666666664,
+        "memory_mb": 199.4296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041519.6282048,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.4296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041520.1796424,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.4296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041520.7271395,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.4296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041521.2753966,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.4296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041521.8305929,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.4296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041522.3793874,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.4296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041522.9006338,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.4296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041523.450496,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.4296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041524.0002697,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.4296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041524.550976,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.4296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041525.1015317,
+        "cpu_percent": 0.15,
+        "memory_mb": 199.4296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041525.6503887,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.4296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041526.2004664,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.4296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041526.7368095,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.4296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041527.2859418,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.4296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041527.835924,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.4296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041528.3861854,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.4296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041528.90364,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.4296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041529.4554589,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.4296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041530.0054283,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.4296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041530.5556133,
+        "cpu_percent": 0.15,
+        "memory_mb": 199.4296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041531.104935,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.4296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041531.6553118,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.4296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041532.2007258,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.4296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041532.7280004,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.4296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041533.2784617,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.4296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041533.8281288,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.4296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041534.3515663,
+        "cpu_percent": 7.483333333333333,
+        "memory_mb": 199.44921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041534.869267,
+        "cpu_percent": 8.366666666666667,
+        "memory_mb": 199.44921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041535.3912988,
+        "cpu_percent": 5.908333333333334,
+        "memory_mb": 199.453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041535.9121852,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041536.4296374,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041536.9434109,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041537.4582202,
+        "cpu_percent": 2.4250000000000003,
+        "memory_mb": 202.265625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041537.9752645,
+        "cpu_percent": 5.483333333333333,
+        "memory_mb": 206.6484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041538.490421,
+        "cpu_percent": 0.0,
+        "memory_mb": 206.6484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041539.006574,
+        "cpu_percent": 0.0,
+        "memory_mb": 206.6484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041539.5521638,
+        "cpu_percent": 0.0,
+        "memory_mb": 206.6484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041540.109156,
+        "cpu_percent": 0.0,
+        "memory_mb": 206.6484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041540.6613114,
+        "cpu_percent": 0.0,
+        "memory_mb": 206.6484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041541.211843,
+        "cpu_percent": 0.0,
+        "memory_mb": 206.6484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041541.7419636,
+        "cpu_percent": 0.0,
+        "memory_mb": 206.6484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041542.2580163,
+        "cpu_percent": 0.0,
+        "memory_mb": 206.6484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041542.779701,
+        "cpu_percent": 0.0,
+        "memory_mb": 206.6484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041543.3278193,
+        "cpu_percent": 0.0,
+        "memory_mb": 206.6484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041543.844691,
+        "cpu_percent": 0.0,
+        "memory_mb": 206.6484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041544.3632233,
+        "cpu_percent": 0.0,
+        "memory_mb": 206.6484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041544.9121704,
+        "cpu_percent": 0.0,
+        "memory_mb": 206.6484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041545.461393,
+        "cpu_percent": 0.0,
+        "memory_mb": 206.6484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041546.0102558,
+        "cpu_percent": 0.0,
+        "memory_mb": 206.6484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041546.5249655,
+        "cpu_percent": 0.15833333333333333,
+        "memory_mb": 206.6484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041547.0764387,
+        "cpu_percent": 0.0,
+        "memory_mb": 206.6484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041547.5939143,
+        "cpu_percent": 0.0,
+        "memory_mb": 206.6484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041548.142228,
+        "cpu_percent": 0.0,
+        "memory_mb": 206.6484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041548.6981895,
+        "cpu_percent": 0.0,
+        "memory_mb": 206.6484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041549.2462225,
+        "cpu_percent": 0.0,
+        "memory_mb": 206.6484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041549.7616487,
+        "cpu_percent": 0.0,
+        "memory_mb": 206.6484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041550.279113,
+        "cpu_percent": 0.0,
+        "memory_mb": 206.6484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041550.8303382,
+        "cpu_percent": 0.0,
+        "memory_mb": 206.6484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041551.381834,
+        "cpu_percent": 0.0,
+        "memory_mb": 206.6484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041551.931534,
+        "cpu_percent": 0.0,
+        "memory_mb": 206.6484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041552.4796135,
+        "cpu_percent": 0.0,
+        "memory_mb": 206.6484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041553.0025475,
+        "cpu_percent": 1.1166666666666667,
+        "memory_mb": 206.66015625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041553.5253994,
+        "cpu_percent": 8.283333333333333,
+        "memory_mb": 206.7734375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041554.045248,
+        "cpu_percent": 8.333333333333334,
+        "memory_mb": 206.77734375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041554.569566,
+        "cpu_percent": 8.424999999999999,
+        "memory_mb": 206.83984375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041555.0928128,
+        "cpu_percent": 6.691666666666666,
+        "memory_mb": 199.98046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041555.6073978,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.98046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041556.1255565,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.98046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041556.6425629,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.98046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041557.1568289,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.98046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041557.6821582,
+        "cpu_percent": 1.5833333333333333,
+        "memory_mb": 200.296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041558.1967587,
+        "cpu_percent": 0.8083333333333332,
+        "memory_mb": 201.3203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041558.711629,
+        "cpu_percent": 5.341666666666666,
+        "memory_mb": 212.875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041559.2482693,
+        "cpu_percent": 0.0,
+        "memory_mb": 212.875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041559.7710514,
+        "cpu_percent": 0.0,
+        "memory_mb": 212.875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041560.2871263,
+        "cpu_percent": 0.0,
+        "memory_mb": 212.875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041560.8382044,
+        "cpu_percent": 0.15,
+        "memory_mb": 212.875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041561.3843544,
+        "cpu_percent": 0.0,
+        "memory_mb": 212.875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041561.90743,
+        "cpu_percent": 0.0,
+        "memory_mb": 212.875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041562.4559495,
+        "cpu_percent": 0.0,
+        "memory_mb": 212.875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041563.0070646,
+        "cpu_percent": 0.15,
+        "memory_mb": 212.875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041563.5240126,
+        "cpu_percent": 0.0,
+        "memory_mb": 212.875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041564.0763361,
+        "cpu_percent": 0.0,
+        "memory_mb": 212.875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041564.6256187,
+        "cpu_percent": 0.0,
+        "memory_mb": 212.875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041565.1742456,
+        "cpu_percent": 0.0,
+        "memory_mb": 212.875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041565.7356167,
+        "cpu_percent": 0.0,
+        "memory_mb": 212.875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041566.2862282,
+        "cpu_percent": 0.0,
+        "memory_mb": 212.875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041566.8351467,
+        "cpu_percent": 0.0,
+        "memory_mb": 212.875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041567.384639,
+        "cpu_percent": 0.0,
+        "memory_mb": 212.875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041567.9345214,
+        "cpu_percent": 0.0,
+        "memory_mb": 212.875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041568.4797597,
+        "cpu_percent": 0.0,
+        "memory_mb": 212.875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041569.0259523,
+        "cpu_percent": 0.0,
+        "memory_mb": 212.875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041569.574576,
+        "cpu_percent": 0.0,
+        "memory_mb": 212.875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041570.1246285,
+        "cpu_percent": 0.0,
+        "memory_mb": 212.875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041570.674074,
+        "cpu_percent": 0.0,
+        "memory_mb": 212.875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041571.223542,
+        "cpu_percent": 0.0,
+        "memory_mb": 212.875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041571.7501724,
+        "cpu_percent": 0.0,
+        "memory_mb": 212.875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041572.2993627,
+        "cpu_percent": 0.0,
+        "memory_mb": 212.875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041572.8491845,
+        "cpu_percent": 0.0,
+        "memory_mb": 212.875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041573.3703058,
+        "cpu_percent": 0.0,
+        "memory_mb": 212.875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041573.8927083,
+        "cpu_percent": 5.108333333333333,
+        "memory_mb": 212.9140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041574.4156556,
+        "cpu_percent": 8.450000000000001,
+        "memory_mb": 212.9140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041574.9398494,
+        "cpu_percent": 8.266666666666667,
+        "memory_mb": 212.9140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041575.4753735,
+        "cpu_percent": 8.4,
+        "memory_mb": 212.921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041575.9900672,
+        "cpu_percent": 3.5583333333333336,
+        "memory_mb": 212.92578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041576.5053432,
+        "cpu_percent": 0.15833333333333333,
+        "memory_mb": 212.92578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041577.0209777,
+        "cpu_percent": 0.0,
+        "memory_mb": 212.92578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041577.5352786,
+        "cpu_percent": 3.0749999999999997,
+        "memory_mb": 213.203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041578.0516608,
+        "cpu_percent": 7.1000000000000005,
+        "memory_mb": 218.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041578.5777383,
+        "cpu_percent": 0.0,
+        "memory_mb": 218.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041579.1252987,
+        "cpu_percent": 0.0,
+        "memory_mb": 218.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041579.6751242,
+        "cpu_percent": 0.0,
+        "memory_mb": 218.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041580.22372,
+        "cpu_percent": 0.0,
+        "memory_mb": 218.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041580.7497935,
+        "cpu_percent": 0.0,
+        "memory_mb": 218.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041581.2996898,
+        "cpu_percent": 0.0,
+        "memory_mb": 218.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041581.8499076,
+        "cpu_percent": 0.0,
+        "memory_mb": 218.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041582.3969293,
+        "cpu_percent": 0.0,
+        "memory_mb": 218.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041582.9449923,
+        "cpu_percent": 0.15,
+        "memory_mb": 218.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041583.4955692,
+        "cpu_percent": 0.0,
+        "memory_mb": 218.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041584.0452838,
+        "cpu_percent": 0.0,
+        "memory_mb": 218.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041584.5917156,
+        "cpu_percent": 0.0,
+        "memory_mb": 218.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041585.1405756,
+        "cpu_percent": 0.0,
+        "memory_mb": 218.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041585.6892986,
+        "cpu_percent": 0.15,
+        "memory_mb": 218.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041586.2381175,
+        "cpu_percent": 0.0,
+        "memory_mb": 218.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041586.7631626,
+        "cpu_percent": 0.0,
+        "memory_mb": 218.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041587.311325,
+        "cpu_percent": 0.0,
+        "memory_mb": 218.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041587.84283,
+        "cpu_percent": 0.0,
+        "memory_mb": 218.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041588.390681,
+        "cpu_percent": 0.0,
+        "memory_mb": 218.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041588.9094687,
+        "cpu_percent": 0.0,
+        "memory_mb": 218.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041589.4563394,
+        "cpu_percent": 0.0,
+        "memory_mb": 218.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041590.00493,
+        "cpu_percent": 0.0,
+        "memory_mb": 218.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041590.5544598,
+        "cpu_percent": 0.0,
+        "memory_mb": 218.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041591.1039946,
+        "cpu_percent": 0.0,
+        "memory_mb": 218.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041591.6492636,
+        "cpu_percent": 0.0,
+        "memory_mb": 218.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041592.1775835,
+        "cpu_percent": 0.0,
+        "memory_mb": 218.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041592.7279112,
+        "cpu_percent": 0.0,
+        "memory_mb": 218.484375,
+        "num_threads": 39
+      }
+    ],
+    "37491": [
+      {
+        "timestamp": 1777041486.666448,
+        "cpu_percent": 0.0,
+        "memory_mb": 92.515625,
+        "num_threads": 23
+      },
+      {
+        "timestamp": 1777041487.2038295,
+        "cpu_percent": 20.316666666666666,
+        "memory_mb": 144.703125,
+        "num_threads": 23
+      },
+      {
+        "timestamp": 1777041487.719264,
+        "cpu_percent": 8.241666666666667,
+        "memory_mb": 188.12109375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041488.2336075,
+        "cpu_percent": 7.616666666666667,
+        "memory_mb": 190.63671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041488.7530968,
+        "cpu_percent": 0.15833333333333333,
+        "memory_mb": 190.63671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041489.3037527,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.63671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041489.8546946,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.63671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041490.4052665,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.63671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041490.9549105,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.63671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041491.5043664,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.63671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041492.0181868,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.63671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041492.5318265,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.63671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041493.0455825,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.63671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041493.5613086,
+        "cpu_percent": 0.15833333333333333,
+        "memory_mb": 190.63671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041494.1092896,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.63671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041494.655379,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.63671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041495.2045991,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.63671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041495.7321725,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.63671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041496.2781286,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.63671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041496.7919714,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.63671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041497.3061693,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.63671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041497.8198085,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.63671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041498.33558,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.63671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041498.8554363,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.63671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041499.370582,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.63671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041499.8976567,
+        "cpu_percent": 5.691666666666666,
+        "memory_mb": 197.01171875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041500.4130714,
+        "cpu_percent": 7.2749999999999995,
+        "memory_mb": 198.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041500.9297342,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041501.4452467,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041501.9634638,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041502.5009463,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041503.0513725,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041503.6001797,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041504.1169648,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041504.6675751,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041505.217234,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041505.7390726,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041506.279986,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041506.7958262,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041507.315704,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041507.8653023,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041508.3919091,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041508.9447467,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041509.4934165,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041510.041489,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041510.5726492,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041511.0985022,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041511.6473246,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041512.1974597,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041512.7461596,
+        "cpu_percent": 0.15,
+        "memory_mb": 198.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041513.2720585,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041513.8211796,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041514.3679705,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041514.9205832,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041515.4700801,
+        "cpu_percent": 0.3,
+        "memory_mb": 198.5078125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041515.994625,
+        "cpu_percent": 8.258333333333333,
+        "memory_mb": 199.52734375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041516.511155,
+        "cpu_percent": 7.908333333333334,
+        "memory_mb": 199.52734375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041517.0282726,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.52734375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041517.5435216,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.52734375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041518.0639086,
+        "cpu_percent": 0.0,
+        "memory_mb": 199.52734375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041518.5814247,
+        "cpu_percent": 1.2916666666666667,
+        "memory_mb": 200.25390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041519.1030293,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.25390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041519.6287513,
+        "cpu_percent": 4.758333333333334,
+        "memory_mb": 202.14453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041520.1802158,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.14453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041520.7276766,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.14453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041521.275907,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.14453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041521.8311877,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.14453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041522.3795142,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.14453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041522.9012363,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.14453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041523.4510944,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.14453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041524.000818,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.14453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041524.551521,
+        "cpu_percent": 0.15,
+        "memory_mb": 202.14453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041525.1021168,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.14453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041525.6509473,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.14453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041526.2010725,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.14453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041526.737423,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.14453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041527.286491,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.14453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041527.8364694,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.14453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041528.3867364,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.14453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041528.904219,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.14453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041529.456077,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.14453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041530.0059953,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.14453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041530.556259,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.14453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041531.105523,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.14453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041531.6558638,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.14453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041532.2009392,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.14453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041532.7285478,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.14453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041533.27882,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.14453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041533.8282788,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.14453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041534.3516738,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.14453125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041534.8694165,
+        "cpu_percent": 4.825,
+        "memory_mb": 202.15234375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041535.3914437,
+        "cpu_percent": 8.458333333333334,
+        "memory_mb": 202.9921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041535.9123137,
+        "cpu_percent": 6.558333333333334,
+        "memory_mb": 202.99609375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041536.4297397,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.99609375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041536.9435208,
+        "cpu_percent": 0.0,
+        "memory_mb": 202.99609375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041537.4583967,
+        "cpu_percent": 2.4250000000000003,
+        "memory_mb": 206.33203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041537.97537,
+        "cpu_percent": 4.833333333333333,
+        "memory_mb": 210.4765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041538.4905264,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.4765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041539.007183,
+        "cpu_percent": 0.15833333333333333,
+        "memory_mb": 210.4765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041539.5527046,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.4765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041540.1097085,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.4765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041540.661853,
+        "cpu_percent": 0.15,
+        "memory_mb": 210.4765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041541.2122304,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.4765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041541.742679,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.4765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041542.2581897,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.4765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041542.780482,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.4765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041543.3284948,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.4765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041543.844808,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.4765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041544.3637605,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.4765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041544.9127119,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.4765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041545.4619708,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.4765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041546.0103571,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.4765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041546.5255291,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.4765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041547.0773506,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.4765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041547.5944986,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.4765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041548.1430175,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.4765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041548.698721,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.4765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041549.2463253,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.4765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041549.7625482,
+        "cpu_percent": 0.15833333333333333,
+        "memory_mb": 210.4765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041550.2794747,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.4765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041550.830961,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.4765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041551.3824098,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.4765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041551.9321249,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.4765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041552.479781,
+        "cpu_percent": 0.0,
+        "memory_mb": 210.4765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041553.0027325,
+        "cpu_percent": 1.1166666666666667,
+        "memory_mb": 210.484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041553.5255272,
+        "cpu_percent": 8.291666666666666,
+        "memory_mb": 210.5234375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041554.045406,
+        "cpu_percent": 8.333333333333334,
+        "memory_mb": 211.11328125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041554.5697403,
+        "cpu_percent": 8.424999999999999,
+        "memory_mb": 211.11328125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041555.0929332,
+        "cpu_percent": 5.575,
+        "memory_mb": 204.25390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041555.6076243,
+        "cpu_percent": 0.0,
+        "memory_mb": 204.25390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041556.1256766,
+        "cpu_percent": 0.0,
+        "memory_mb": 204.25390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041556.642669,
+        "cpu_percent": 0.0,
+        "memory_mb": 204.25390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041557.1570127,
+        "cpu_percent": 0.0,
+        "memory_mb": 204.25390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041557.6822631,
+        "cpu_percent": 6.983333333333333,
+        "memory_mb": 221.34375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041558.1968632,
+        "cpu_percent": 1.7833333333333332,
+        "memory_mb": 216.69921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041558.7118945,
+        "cpu_percent": 0.0,
+        "memory_mb": 216.69921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041559.2484548,
+        "cpu_percent": 0.0,
+        "memory_mb": 216.69921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041559.7711532,
+        "cpu_percent": 0.0,
+        "memory_mb": 216.69921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041560.2876706,
+        "cpu_percent": 0.0,
+        "memory_mb": 216.69921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041560.83878,
+        "cpu_percent": 0.0,
+        "memory_mb": 216.69921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041561.3846169,
+        "cpu_percent": 0.0,
+        "memory_mb": 216.69921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041561.908009,
+        "cpu_percent": 0.0,
+        "memory_mb": 216.69921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041562.456625,
+        "cpu_percent": 0.0,
+        "memory_mb": 216.69921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041563.0071828,
+        "cpu_percent": 0.0,
+        "memory_mb": 216.69921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041563.5245862,
+        "cpu_percent": 0.0,
+        "memory_mb": 216.69921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041564.0769458,
+        "cpu_percent": 0.0,
+        "memory_mb": 216.69921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041564.6261914,
+        "cpu_percent": 0.0,
+        "memory_mb": 216.69921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041565.1749103,
+        "cpu_percent": 0.0,
+        "memory_mb": 216.69921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041565.7361963,
+        "cpu_percent": 0.0,
+        "memory_mb": 216.69921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041566.2867725,
+        "cpu_percent": 0.0,
+        "memory_mb": 216.69921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041566.8357394,
+        "cpu_percent": 0.0,
+        "memory_mb": 216.69921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041567.3852284,
+        "cpu_percent": 0.0,
+        "memory_mb": 216.69921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041567.9351397,
+        "cpu_percent": 0.0,
+        "memory_mb": 216.69921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041568.4804506,
+        "cpu_percent": 0.0,
+        "memory_mb": 216.69921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041569.0265074,
+        "cpu_percent": 0.0,
+        "memory_mb": 216.69921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041569.575307,
+        "cpu_percent": 0.0,
+        "memory_mb": 216.69921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041570.1253667,
+        "cpu_percent": 0.0,
+        "memory_mb": 216.69921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041570.674722,
+        "cpu_percent": 0.15,
+        "memory_mb": 216.69921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041571.2239144,
+        "cpu_percent": 0.0,
+        "memory_mb": 216.69921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041571.7507136,
+        "cpu_percent": 0.0,
+        "memory_mb": 216.69921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041572.2999232,
+        "cpu_percent": 0.0,
+        "memory_mb": 216.69921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041572.8493907,
+        "cpu_percent": 0.0,
+        "memory_mb": 216.69921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041573.3704631,
+        "cpu_percent": 6.558333333333334,
+        "memory_mb": 216.71484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041573.8928635,
+        "cpu_percent": 8.458333333333334,
+        "memory_mb": 217.28125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041574.4158351,
+        "cpu_percent": 8.283333333333333,
+        "memory_mb": 217.28515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041574.940037,
+        "cpu_percent": 8.424999999999999,
+        "memory_mb": 217.2890625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041575.4754791,
+        "cpu_percent": 2.8000000000000003,
+        "memory_mb": 217.296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041575.9901886,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041576.5054495,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041577.0210826,
+        "cpu_percent": 0.0,
+        "memory_mb": 217.296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041577.535399,
+        "cpu_percent": 2.9166666666666665,
+        "memory_mb": 217.48828125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041578.0518205,
+        "cpu_percent": 6.291666666666667,
+        "memory_mb": 222.73046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041578.5783665,
+        "cpu_percent": 0.0,
+        "memory_mb": 222.73046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041579.1259959,
+        "cpu_percent": 0.0,
+        "memory_mb": 222.73046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041579.6756647,
+        "cpu_percent": 0.0,
+        "memory_mb": 222.73046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041580.2240174,
+        "cpu_percent": 0.0,
+        "memory_mb": 222.73046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041580.7503624,
+        "cpu_percent": 0.0,
+        "memory_mb": 222.73046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041581.3002572,
+        "cpu_percent": 0.0,
+        "memory_mb": 222.73046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041581.850456,
+        "cpu_percent": 0.0,
+        "memory_mb": 222.73046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041582.3974779,
+        "cpu_percent": 0.0,
+        "memory_mb": 222.73046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041582.9455392,
+        "cpu_percent": 0.15,
+        "memory_mb": 222.73046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041583.4961438,
+        "cpu_percent": 0.0,
+        "memory_mb": 222.73046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041584.0458298,
+        "cpu_percent": 0.0,
+        "memory_mb": 222.73046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041584.5924087,
+        "cpu_percent": 0.0,
+        "memory_mb": 222.73046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041585.1411548,
+        "cpu_percent": 0.0,
+        "memory_mb": 222.73046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041585.6898513,
+        "cpu_percent": 0.0,
+        "memory_mb": 222.73046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041586.2383018,
+        "cpu_percent": 0.0,
+        "memory_mb": 222.73046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041586.7638066,
+        "cpu_percent": 0.0,
+        "memory_mb": 222.73046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041587.3118753,
+        "cpu_percent": 0.0,
+        "memory_mb": 222.73046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041587.843408,
+        "cpu_percent": 0.0,
+        "memory_mb": 222.73046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041588.3913941,
+        "cpu_percent": 0.0,
+        "memory_mb": 222.73046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041588.9100652,
+        "cpu_percent": 0.0,
+        "memory_mb": 222.73046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041589.4571157,
+        "cpu_percent": 0.0,
+        "memory_mb": 222.73046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041590.0057774,
+        "cpu_percent": 0.0,
+        "memory_mb": 222.73046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041590.5551343,
+        "cpu_percent": 0.0,
+        "memory_mb": 222.73046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041591.104568,
+        "cpu_percent": 0.0,
+        "memory_mb": 222.73046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041591.6494503,
+        "cpu_percent": 0.0,
+        "memory_mb": 222.73046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041592.1781666,
+        "cpu_percent": 0.0,
+        "memory_mb": 222.73046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041592.728464,
+        "cpu_percent": 0.0,
+        "memory_mb": 222.73046875,
+        "num_threads": 39
+      }
+    ],
+    "37592": [
+      {
+        "timestamp": 1777041492.0182898,
+        "cpu_percent": 0.0,
+        "memory_mb": 129.046875,
+        "num_threads": 23
+      },
+      {
+        "timestamp": 1777041492.5319505,
+        "cpu_percent": 8.433333333333334,
+        "memory_mb": 199.25,
+        "num_threads": 38
+      },
+      {
+        "timestamp": 1777041493.0456839,
+        "cpu_percent": 8.108333333333333,
+        "memory_mb": 189.6875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041493.56185,
+        "cpu_percent": 2.5833333333333335,
+        "memory_mb": 190.890625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041494.1098247,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.890625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041494.6559684,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.890625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041495.204956,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.890625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041495.7327387,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.890625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041496.2782285,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.890625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041496.7920969,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.890625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041497.3062723,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.890625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041497.8199186,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.890625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041498.3357093,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.890625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041498.8555377,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.890625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041499.3707771,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.890625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041499.8977654,
+        "cpu_percent": 5.691666666666666,
+        "memory_mb": 204.0546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041500.413201,
+        "cpu_percent": 8.083333333333334,
+        "memory_mb": 197.1796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041500.92984,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.1796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041501.4453504,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.1796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041501.963875,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.1796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041502.501472,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.1796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041503.0519187,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.1796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041503.6007073,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.1796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041504.1174915,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.1796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041504.6681256,
+        "cpu_percent": 0.15,
+        "memory_mb": 197.1796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041505.217413,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.1796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041505.7396364,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.1796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041506.280093,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.1796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041506.7960362,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.1796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041507.3161829,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.1796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041507.8655267,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.1796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041508.3926544,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.1796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041508.9453375,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.1796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041509.4940956,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.1796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041510.041722,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.1796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041510.5729449,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.1796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041511.099071,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.1796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041511.647854,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.1796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041512.1980956,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.1796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041512.7463155,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.1796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041513.2725863,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.1796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041513.8217103,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.1796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041514.368549,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.1796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041514.9211814,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.1796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041515.4702477,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.1796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041515.9947348,
+        "cpu_percent": 8.416666666666666,
+        "memory_mb": 198.3046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041516.511337,
+        "cpu_percent": 7.425,
+        "memory_mb": 198.3046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041517.0283744,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.3046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041517.5436802,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.3046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041518.0641336,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.3046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041518.5815687,
+        "cpu_percent": 3.6999999999999997,
+        "memory_mb": 201.47265625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041519.1031823,
+        "cpu_percent": 3.033333333333333,
+        "memory_mb": 200.5390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041519.6293137,
+        "cpu_percent": 0.15833333333333333,
+        "memory_mb": 200.5390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041520.180742,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.5390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041520.7282255,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.5390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041521.2763865,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.5390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041521.8317459,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.5390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041522.379636,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.5390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041522.9018042,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.5390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041523.4516592,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.5390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041524.0013926,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.5390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041524.55207,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.5390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041525.10265,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.5390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041525.651478,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.5390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041526.2016459,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.5390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041526.738035,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.5390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041527.2870529,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.5390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041527.8370378,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.5390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041528.3873103,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.5390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041528.904757,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.5390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041529.456616,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.5390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041530.0065231,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.5390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041530.5567975,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.5390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041531.106167,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.5390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041531.6564164,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.5390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041532.2011352,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.5390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041532.7290974,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.5390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041533.2792032,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.5390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041533.8284621,
+        "cpu_percent": 0.15,
+        "memory_mb": 200.5390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041534.3517818,
+        "cpu_percent": 7.325,
+        "memory_mb": 201.01953125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041534.8695672,
+        "cpu_percent": 8.366666666666667,
+        "memory_mb": 201.02734375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041535.391586,
+        "cpu_percent": 5.108333333333333,
+        "memory_mb": 201.0625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041535.912433,
+        "cpu_percent": 0.0,
+        "memory_mb": 201.0625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041536.4298391,
+        "cpu_percent": 0.0,
+        "memory_mb": 201.0625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041536.9436288,
+        "cpu_percent": 0.0,
+        "memory_mb": 201.0625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041537.4585385,
+        "cpu_percent": 1.1333333333333333,
+        "memory_mb": 201.2734375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041537.9754732,
+        "cpu_percent": 0.0,
+        "memory_mb": 201.2734375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041538.4906273,
+        "cpu_percent": 4.8500000000000005,
+        "memory_mb": 211.7421875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041539.0077198,
+        "cpu_percent": 0.8083333333333332,
+        "memory_mb": 208.2578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041539.5532537,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.2578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041540.110267,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.2578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041540.6624076,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.2578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041541.212588,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.2578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041541.7433217,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.2578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041542.258327,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.2578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041542.7810814,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.2578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041543.329062,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.2578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041543.844933,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.2578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041544.3643105,
+        "cpu_percent": 0.15833333333333333,
+        "memory_mb": 208.2578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041544.9132633,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.2578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041545.4625082,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.2578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041546.0104566,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.2578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041546.5260863,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.2578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041547.0782917,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.2578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041547.5950897,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.2578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041548.1436977,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.2578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041548.699269,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.2578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041549.2464254,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.2578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041549.763242,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.2578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041550.2798226,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.2578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041550.8315158,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.2578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041551.3829546,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.2578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041551.932664,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.2578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041552.4799564,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.2578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041553.0029082,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.2578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041553.5256343,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.2578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041554.04556,
+        "cpu_percent": 7.216666666666666,
+        "memory_mb": 208.36328125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041554.569914,
+        "cpu_percent": 8.424999999999999,
+        "memory_mb": 209.109375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041555.0930455,
+        "cpu_percent": 8.441666666666666,
+        "memory_mb": 209.11328125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041555.6077964,
+        "cpu_percent": 4.375,
+        "memory_mb": 209.11328125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041556.125788,
+        "cpu_percent": 0.0,
+        "memory_mb": 209.11328125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041556.6427715,
+        "cpu_percent": 0.0,
+        "memory_mb": 209.11328125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041557.1571856,
+        "cpu_percent": 0.0,
+        "memory_mb": 209.11328125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041557.6823647,
+        "cpu_percent": 7.141666666666667,
+        "memory_mb": 219.6328125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041558.196975,
+        "cpu_percent": 1.7833333333333332,
+        "memory_mb": 214.98828125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041558.7121952,
+        "cpu_percent": 0.0,
+        "memory_mb": 214.98828125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041559.248643,
+        "cpu_percent": 0.0,
+        "memory_mb": 214.98828125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041559.771252,
+        "cpu_percent": 0.0,
+        "memory_mb": 214.98828125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041560.2883456,
+        "cpu_percent": 0.0,
+        "memory_mb": 214.98828125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041560.8393657,
+        "cpu_percent": 0.0,
+        "memory_mb": 214.98828125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041561.3848927,
+        "cpu_percent": 0.0,
+        "memory_mb": 214.98828125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041561.9085364,
+        "cpu_percent": 0.0,
+        "memory_mb": 214.98828125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041562.4572227,
+        "cpu_percent": 0.0,
+        "memory_mb": 214.98828125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041563.0072927,
+        "cpu_percent": 0.0,
+        "memory_mb": 214.98828125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041563.5251544,
+        "cpu_percent": 0.0,
+        "memory_mb": 214.98828125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041564.077526,
+        "cpu_percent": 0.0,
+        "memory_mb": 214.98828125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041564.6267169,
+        "cpu_percent": 0.0,
+        "memory_mb": 214.98828125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041565.175535,
+        "cpu_percent": 0.0,
+        "memory_mb": 214.98828125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041565.7367373,
+        "cpu_percent": 0.0,
+        "memory_mb": 214.98828125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041566.2873337,
+        "cpu_percent": 0.0,
+        "memory_mb": 214.98828125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041566.8363447,
+        "cpu_percent": 0.0,
+        "memory_mb": 214.98828125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041567.3857708,
+        "cpu_percent": 0.0,
+        "memory_mb": 214.98828125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041567.9357214,
+        "cpu_percent": 0.0,
+        "memory_mb": 214.98828125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041568.4810488,
+        "cpu_percent": 0.15,
+        "memory_mb": 214.98828125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041569.0270805,
+        "cpu_percent": 0.0,
+        "memory_mb": 214.98828125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041569.575862,
+        "cpu_percent": 0.0,
+        "memory_mb": 214.98828125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041570.1259441,
+        "cpu_percent": 0.0,
+        "memory_mb": 214.98828125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041570.675313,
+        "cpu_percent": 0.0,
+        "memory_mb": 214.98828125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041571.2242115,
+        "cpu_percent": 0.0,
+        "memory_mb": 214.98828125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041571.7512698,
+        "cpu_percent": 0.0,
+        "memory_mb": 214.98828125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041572.3004515,
+        "cpu_percent": 0.0,
+        "memory_mb": 214.98828125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041572.8495853,
+        "cpu_percent": 0.0,
+        "memory_mb": 214.98828125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041573.3706205,
+        "cpu_percent": 6.716666666666666,
+        "memory_mb": 215.0,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041573.8930337,
+        "cpu_percent": 8.291666666666666,
+        "memory_mb": 215.8046875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041574.4160492,
+        "cpu_percent": 8.283333333333333,
+        "memory_mb": 215.80859375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041574.9402118,
+        "cpu_percent": 8.266666666666667,
+        "memory_mb": 215.9140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041575.475582,
+        "cpu_percent": 2.3333333333333335,
+        "memory_mb": 215.9140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041575.9903135,
+        "cpu_percent": 0.0,
+        "memory_mb": 215.9140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041576.5055554,
+        "cpu_percent": 0.0,
+        "memory_mb": 215.9140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041577.0211847,
+        "cpu_percent": 0.0,
+        "memory_mb": 215.9140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041577.5355122,
+        "cpu_percent": 3.2416666666666667,
+        "memory_mb": 216.19921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041578.051991,
+        "cpu_percent": 7.425,
+        "memory_mb": 221.60546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041578.579005,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.60546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041579.1265376,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.60546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041579.6762145,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.60546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041580.2243466,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.60546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041580.750905,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.60546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041581.300787,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.60546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041581.85101,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.60546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041582.3980324,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.60546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041582.9460938,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.60546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041583.4966662,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.60546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041584.0463903,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.60546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041584.5930092,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.60546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041585.1416852,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.60546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041585.690444,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.60546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041586.2384846,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.60546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041586.7644987,
+        "cpu_percent": 0.15833333333333333,
+        "memory_mb": 221.60546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041587.3124297,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.60546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041587.8439612,
+        "cpu_percent": 0.15833333333333333,
+        "memory_mb": 221.60546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041588.391975,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.60546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041588.910608,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.60546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041589.4577475,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.60546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041590.0065377,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.60546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041590.5557075,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.60546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041591.105228,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.60546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041591.64963,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.60546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041592.1786976,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.60546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041592.7290146,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.60546875,
+        "num_threads": 39
+      }
+    ],
+    "37690": [
+      {
+        "timestamp": 1777041496.7921958,
+        "cpu_percent": 0.0,
+        "memory_mb": 107.51171875,
+        "num_threads": 23
+      },
+      {
+        "timestamp": 1777041497.306373,
+        "cpu_percent": 8.266666666666667,
+        "memory_mb": 180.46484375,
+        "num_threads": 38
+      },
+      {
+        "timestamp": 1777041497.820021,
+        "cpu_percent": 8.275,
+        "memory_mb": 189.3125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041498.3358376,
+        "cpu_percent": 7.108333333333333,
+        "memory_mb": 191.19921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041498.855639,
+        "cpu_percent": 0.0,
+        "memory_mb": 191.19921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041499.371002,
+        "cpu_percent": 0.0,
+        "memory_mb": 191.19921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041499.8978703,
+        "cpu_percent": 0.9500000000000001,
+        "memory_mb": 191.75390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041500.4133396,
+        "cpu_percent": 0.0,
+        "memory_mb": 191.75390625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041500.9299548,
+        "cpu_percent": 4.358333333333333,
+        "memory_mb": 204.05859375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041501.4454896,
+        "cpu_percent": 5.008333333333334,
+        "memory_mb": 197.203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041501.9643703,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041502.5020053,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041503.052678,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041503.6012497,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041504.1180274,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041504.6686435,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041505.217594,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041505.7402117,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041506.2801983,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041506.7962053,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041507.3166451,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041507.8656998,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041508.39341,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041508.9458666,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041509.4946513,
+        "cpu_percent": 0.15,
+        "memory_mb": 197.203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041510.041939,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041510.5733397,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041511.0996003,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041511.6484075,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041512.198639,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041512.7464688,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041513.2731268,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041513.8222945,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041514.369138,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041514.9217436,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041515.470423,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041515.9948423,
+        "cpu_percent": 0.0,
+        "memory_mb": 197.203125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041516.511498,
+        "cpu_percent": 4.033333333333333,
+        "memory_mb": 197.44140625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041517.0284748,
+        "cpu_percent": 8.216666666666667,
+        "memory_mb": 198.11328125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041517.5438225,
+        "cpu_percent": 3.233333333333333,
+        "memory_mb": 198.11328125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041518.064325,
+        "cpu_percent": 0.0,
+        "memory_mb": 198.11328125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041518.5817246,
+        "cpu_percent": 3.5416666666666665,
+        "memory_mb": 201.75,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041519.1033385,
+        "cpu_percent": 3.1916666666666664,
+        "memory_mb": 200.765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041519.6298323,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041520.181286,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041520.7288365,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041521.2768548,
+        "cpu_percent": 0.15,
+        "memory_mb": 200.765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041521.8323312,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041522.3797793,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041522.9023921,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041523.4522512,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041524.002063,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041524.552585,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041525.1031995,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041525.6520314,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041526.2022383,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041526.7386055,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041527.287578,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041527.8375597,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041528.3878393,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041528.9053087,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041529.4571805,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041530.0070705,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041530.5573478,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041531.106725,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041531.656953,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041532.2013264,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041532.7296152,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041533.2796593,
+        "cpu_percent": 0.0,
+        "memory_mb": 200.765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041533.828665,
+        "cpu_percent": 0.15,
+        "memory_mb": 200.765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041534.3519092,
+        "cpu_percent": 7.325,
+        "memory_mb": 201.6328125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041534.8697157,
+        "cpu_percent": 8.366666666666667,
+        "memory_mb": 201.7890625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041535.3917272,
+        "cpu_percent": 5.425,
+        "memory_mb": 201.796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041535.912549,
+        "cpu_percent": 0.0,
+        "memory_mb": 201.796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041536.4299788,
+        "cpu_percent": 0.0,
+        "memory_mb": 201.796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041536.9437368,
+        "cpu_percent": 0.0,
+        "memory_mb": 201.796875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041537.4586844,
+        "cpu_percent": 2.591666666666667,
+        "memory_mb": 204.7734375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041537.975574,
+        "cpu_percent": 4.833333333333333,
+        "memory_mb": 208.921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041538.490784,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041539.008401,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041539.55378,
+        "cpu_percent": 0.15,
+        "memory_mb": 208.921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041540.1107876,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041540.6629536,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041541.2129593,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041541.743858,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041542.25846,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041542.781618,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041543.3295844,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041543.8450468,
+        "cpu_percent": 0.15833333333333333,
+        "memory_mb": 208.921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041544.365072,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041544.913784,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041545.4632697,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041546.0105543,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041546.5267103,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041547.0789046,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041547.5956893,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041548.1442795,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041548.6997788,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041549.2465239,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041549.7638626,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041550.280186,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041550.832078,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041551.383485,
+        "cpu_percent": 0.15,
+        "memory_mb": 208.921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041551.9332197,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041552.4801257,
+        "cpu_percent": 0.0,
+        "memory_mb": 208.921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041553.0030658,
+        "cpu_percent": 0.9583333333333334,
+        "memory_mb": 208.9296875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041553.5257413,
+        "cpu_percent": 8.450000000000001,
+        "memory_mb": 208.9609375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041554.045715,
+        "cpu_percent": 8.333333333333334,
+        "memory_mb": 209.67578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041554.5700688,
+        "cpu_percent": 8.424999999999999,
+        "memory_mb": 209.67578125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041555.0931556,
+        "cpu_percent": 6.375,
+        "memory_mb": 209.76171875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041555.6079426,
+        "cpu_percent": 0.0,
+        "memory_mb": 209.76171875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041556.1259093,
+        "cpu_percent": 0.0,
+        "memory_mb": 209.76171875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041556.642873,
+        "cpu_percent": 0.0,
+        "memory_mb": 209.76171875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041557.1573675,
+        "cpu_percent": 0.0,
+        "memory_mb": 209.76171875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041557.6824658,
+        "cpu_percent": 6.825,
+        "memory_mb": 220.03125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041558.197077,
+        "cpu_percent": 1.7833333333333332,
+        "memory_mb": 215.38671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041558.7126234,
+        "cpu_percent": 0.15833333333333333,
+        "memory_mb": 215.38671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041559.2488115,
+        "cpu_percent": 0.0,
+        "memory_mb": 215.38671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041559.771351,
+        "cpu_percent": 0.0,
+        "memory_mb": 215.38671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041560.288932,
+        "cpu_percent": 0.0,
+        "memory_mb": 215.38671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041560.839849,
+        "cpu_percent": 0.0,
+        "memory_mb": 215.38671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041561.3850815,
+        "cpu_percent": 0.0,
+        "memory_mb": 215.38671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041561.909086,
+        "cpu_percent": 0.0,
+        "memory_mb": 215.38671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041562.4579008,
+        "cpu_percent": 0.0,
+        "memory_mb": 215.38671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041563.0074046,
+        "cpu_percent": 0.0,
+        "memory_mb": 215.38671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041563.5256963,
+        "cpu_percent": 0.0,
+        "memory_mb": 215.38671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041564.07813,
+        "cpu_percent": 0.0,
+        "memory_mb": 215.38671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041564.6272638,
+        "cpu_percent": 0.0,
+        "memory_mb": 215.38671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041565.1761498,
+        "cpu_percent": 0.0,
+        "memory_mb": 215.38671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041565.7373035,
+        "cpu_percent": 0.0,
+        "memory_mb": 215.38671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041566.287857,
+        "cpu_percent": 0.0,
+        "memory_mb": 215.38671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041566.8369374,
+        "cpu_percent": 0.0,
+        "memory_mb": 215.38671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041567.386338,
+        "cpu_percent": 0.0,
+        "memory_mb": 215.38671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041567.9364002,
+        "cpu_percent": 0.0,
+        "memory_mb": 215.38671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041568.481599,
+        "cpu_percent": 0.15,
+        "memory_mb": 215.38671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041569.0276132,
+        "cpu_percent": 0.0,
+        "memory_mb": 215.38671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041569.5764332,
+        "cpu_percent": 0.0,
+        "memory_mb": 215.38671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041570.1264832,
+        "cpu_percent": 0.0,
+        "memory_mb": 215.38671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041570.6758423,
+        "cpu_percent": 0.0,
+        "memory_mb": 215.38671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041571.224437,
+        "cpu_percent": 0.0,
+        "memory_mb": 215.38671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041571.7517893,
+        "cpu_percent": 0.0,
+        "memory_mb": 215.38671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041572.3009923,
+        "cpu_percent": 0.0,
+        "memory_mb": 215.38671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041572.8498342,
+        "cpu_percent": 0.0,
+        "memory_mb": 215.38671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041573.3707685,
+        "cpu_percent": 6.716666666666666,
+        "memory_mb": 215.4921875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041573.8931925,
+        "cpu_percent": 8.291666666666666,
+        "memory_mb": 216.26171875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041574.4162142,
+        "cpu_percent": 8.283333333333333,
+        "memory_mb": 216.26171875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041574.9403903,
+        "cpu_percent": 8.424999999999999,
+        "memory_mb": 216.34765625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041575.4756846,
+        "cpu_percent": 3.891666666666667,
+        "memory_mb": 216.3515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041575.9904191,
+        "cpu_percent": 0.0,
+        "memory_mb": 216.3515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041576.505659,
+        "cpu_percent": 0.0,
+        "memory_mb": 216.3515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041577.0212848,
+        "cpu_percent": 0.0,
+        "memory_mb": 216.3515625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041577.5356424,
+        "cpu_percent": 3.2416666666666667,
+        "memory_mb": 216.546875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041578.052145,
+        "cpu_percent": 6.45,
+        "memory_mb": 221.96484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041578.5795696,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.96484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041579.1270905,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.96484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041579.6767337,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.96484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041580.2245772,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.96484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041580.7514365,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.96484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041581.3013346,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.96484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041581.8515372,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.96484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041582.398551,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.96484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041582.9466157,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.96484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041583.4972095,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.96484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041584.04694,
+        "cpu_percent": 0.15,
+        "memory_mb": 221.96484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041584.5935452,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.96484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041585.1423354,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.96484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041585.6911168,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.96484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041586.2387133,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.96484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041586.7650936,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.96484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041587.3129692,
+        "cpu_percent": 0.15,
+        "memory_mb": 221.96484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041587.8444846,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.96484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041588.3925097,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.96484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041588.9112272,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.96484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041589.4584765,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.96484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041590.0071907,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.96484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041590.556336,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.96484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041591.1058192,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.96484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041591.6498077,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.96484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041592.179253,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.96484375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041592.7295341,
+        "cpu_percent": 0.0,
+        "memory_mb": 221.96484375,
+        "num_threads": 39
+      }
+    ]
+  },
+  "fedt run server": {
+    "37193": [
+      {
+        "timestamp": 1777041468.7003143,
+        "cpu_percent": 0.0,
+        "memory_mb": 87.6953125,
+        "num_threads": 23
+      },
+      {
+        "timestamp": 1777041469.2135987,
+        "cpu_percent": 8.116666666666667,
+        "memory_mb": 152.93359375,
+        "num_threads": 23
+      },
+      {
+        "timestamp": 1777041469.727993,
+        "cpu_percent": 8.424999999999999,
+        "memory_mb": 194.58203125,
+        "num_threads": 38
+      },
+      {
+        "timestamp": 1777041470.2413273,
+        "cpu_percent": 7.141666666666667,
+        "memory_mb": 184.31640625,
+        "num_threads": 38
+      },
+      {
+        "timestamp": 1777041470.76218,
+        "cpu_percent": 0.15833333333333333,
+        "memory_mb": 184.31640625,
+        "num_threads": 38
+      },
+      {
+        "timestamp": 1777041471.3104792,
+        "cpu_percent": 0.0,
+        "memory_mb": 184.31640625,
+        "num_threads": 38
+      },
+      {
+        "timestamp": 1777041471.8483868,
+        "cpu_percent": 0.0,
+        "memory_mb": 184.31640625,
+        "num_threads": 38
+      },
+      {
+        "timestamp": 1777041472.3760753,
+        "cpu_percent": 0.0,
+        "memory_mb": 184.31640625,
+        "num_threads": 38
+      },
+      {
+        "timestamp": 1777041472.9165561,
+        "cpu_percent": 0.0,
+        "memory_mb": 184.31640625,
+        "num_threads": 38
+      },
+      {
+        "timestamp": 1777041473.4695685,
+        "cpu_percent": 0.0,
+        "memory_mb": 184.31640625,
+        "num_threads": 38
+      },
+      {
+        "timestamp": 1777041474.020774,
+        "cpu_percent": 0.0,
+        "memory_mb": 184.31640625,
+        "num_threads": 38
+      },
+      {
+        "timestamp": 1777041474.5668197,
+        "cpu_percent": 0.0,
+        "memory_mb": 184.31640625,
+        "num_threads": 38
+      },
+      {
+        "timestamp": 1777041475.1190727,
+        "cpu_percent": 0.0,
+        "memory_mb": 184.31640625,
+        "num_threads": 38
+      },
+      {
+        "timestamp": 1777041475.632662,
+        "cpu_percent": 0.0,
+        "memory_mb": 184.31640625,
+        "num_threads": 38
+      },
+      {
+        "timestamp": 1777041476.1477597,
+        "cpu_percent": 0.0,
+        "memory_mb": 184.31640625,
+        "num_threads": 38
+      },
+      {
+        "timestamp": 1777041476.6622465,
+        "cpu_percent": 0.0,
+        "memory_mb": 184.31640625,
+        "num_threads": 38
+      },
+      {
+        "timestamp": 1777041477.1958373,
+        "cpu_percent": 0.0,
+        "memory_mb": 184.31640625,
+        "num_threads": 38
+      },
+      {
+        "timestamp": 1777041477.7113643,
+        "cpu_percent": 0.0,
+        "memory_mb": 185.421875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041478.2249658,
+        "cpu_percent": 0.325,
+        "memory_mb": 187.30078125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041478.7421153,
+        "cpu_percent": 0.15833333333333333,
+        "memory_mb": 187.30078125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041479.282991,
+        "cpu_percent": 0.0,
+        "memory_mb": 187.30078125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041479.8007932,
+        "cpu_percent": 0.0,
+        "memory_mb": 187.30078125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041480.322002,
+        "cpu_percent": 0.0,
+        "memory_mb": 187.30078125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041480.8664353,
+        "cpu_percent": 0.0,
+        "memory_mb": 187.30078125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041481.3898642,
+        "cpu_percent": 0.0,
+        "memory_mb": 187.30078125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041481.9044075,
+        "cpu_percent": 0.0,
+        "memory_mb": 187.30078125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041482.4178722,
+        "cpu_percent": 0.0,
+        "memory_mb": 187.30078125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041482.933315,
+        "cpu_percent": 0.15833333333333333,
+        "memory_mb": 187.328125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041483.448516,
+        "cpu_percent": 0.15833333333333333,
+        "memory_mb": 188.8671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041483.9979322,
+        "cpu_percent": 0.0,
+        "memory_mb": 188.8671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041484.5440083,
+        "cpu_percent": 0.0,
+        "memory_mb": 188.8671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041485.0854847,
+        "cpu_percent": 0.0,
+        "memory_mb": 188.8671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041485.6031194,
+        "cpu_percent": 0.15833333333333333,
+        "memory_mb": 188.8671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041486.1424737,
+        "cpu_percent": 0.0,
+        "memory_mb": 188.8671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041486.6665783,
+        "cpu_percent": 0.0,
+        "memory_mb": 188.8671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041487.2039819,
+        "cpu_percent": 0.0,
+        "memory_mb": 188.8671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041487.7193642,
+        "cpu_percent": 0.15833333333333333,
+        "memory_mb": 188.90625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041488.2337248,
+        "cpu_percent": 0.325,
+        "memory_mb": 190.5234375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041488.7536373,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.5234375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041489.304107,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.5234375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041489.855246,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.5234375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041490.4057908,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.5234375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041490.955439,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.5234375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041491.504467,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.5234375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041492.0183911,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.5234375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041492.5320578,
+        "cpu_percent": 0.0,
+        "memory_mb": 190.5234375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041493.045784,
+        "cpu_percent": 0.15833333333333333,
+        "memory_mb": 190.53125,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041493.5624046,
+        "cpu_percent": 0.325,
+        "memory_mb": 192.2109375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041494.1104102,
+        "cpu_percent": 0.0,
+        "memory_mb": 192.2109375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041494.6565385,
+        "cpu_percent": 0.0,
+        "memory_mb": 192.2109375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041495.2053018,
+        "cpu_percent": 0.0,
+        "memory_mb": 192.2109375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041495.7333338,
+        "cpu_percent": 0.15833333333333333,
+        "memory_mb": 192.2109375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041496.2783291,
+        "cpu_percent": 0.0,
+        "memory_mb": 192.2109375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041496.792296,
+        "cpu_percent": 0.0,
+        "memory_mb": 192.2109375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041497.306476,
+        "cpu_percent": 0.0,
+        "memory_mb": 192.2109375,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041497.8201249,
+        "cpu_percent": 0.0,
+        "memory_mb": 192.22265625,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041498.335994,
+        "cpu_percent": 0.325,
+        "memory_mb": 194.01171875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041498.8557408,
+        "cpu_percent": 6.891666666666667,
+        "memory_mb": 244.51171875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041499.3712015,
+        "cpu_percent": 8.408333333333333,
+        "memory_mb": 312.3671875,
+        "num_threads": 39
+      },
+      {
+        "timestamp": 1777041499.8980057,
+        "cpu_percent": 10.125,
+        "memory_mb": 318.6484375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041500.413524,
+        "cpu_percent": 8.566666666666666,
+        "memory_mb": 318.6484375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041500.9300594,
+        "cpu_percent": 3.875,
+        "memory_mb": 322.3671875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041501.4456687,
+        "cpu_percent": 0.0,
+        "memory_mb": 322.3671875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041501.964791,
+        "cpu_percent": 0.0,
+        "memory_mb": 322.3671875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041502.5025268,
+        "cpu_percent": 0.0,
+        "memory_mb": 322.3671875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041503.0534525,
+        "cpu_percent": 0.0,
+        "memory_mb": 322.3671875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041503.6017704,
+        "cpu_percent": 0.0,
+        "memory_mb": 322.3671875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041504.1185515,
+        "cpu_percent": 0.0,
+        "memory_mb": 322.3671875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041504.669198,
+        "cpu_percent": 0.15,
+        "memory_mb": 322.3671875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041505.2177742,
+        "cpu_percent": 0.0,
+        "memory_mb": 322.3671875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041505.7407677,
+        "cpu_percent": 0.0,
+        "memory_mb": 322.3671875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041506.2803054,
+        "cpu_percent": 0.0,
+        "memory_mb": 322.3671875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041506.796365,
+        "cpu_percent": 0.0,
+        "memory_mb": 322.3671875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041507.3171103,
+        "cpu_percent": 0.0,
+        "memory_mb": 322.3671875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041507.865936,
+        "cpu_percent": 0.0,
+        "memory_mb": 322.3671875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041508.3939807,
+        "cpu_percent": 0.0,
+        "memory_mb": 322.3671875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041508.9464614,
+        "cpu_percent": 0.0,
+        "memory_mb": 322.3671875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041509.4952135,
+        "cpu_percent": 0.0,
+        "memory_mb": 322.3671875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041510.042147,
+        "cpu_percent": 0.0,
+        "memory_mb": 322.3671875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041510.5736759,
+        "cpu_percent": 0.0,
+        "memory_mb": 322.3671875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041511.1001594,
+        "cpu_percent": 0.0,
+        "memory_mb": 322.3671875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041511.6489568,
+        "cpu_percent": 0.0,
+        "memory_mb": 322.3671875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041512.1992285,
+        "cpu_percent": 0.0,
+        "memory_mb": 322.3671875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041512.7466245,
+        "cpu_percent": 0.0,
+        "memory_mb": 322.3671875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041513.273647,
+        "cpu_percent": 0.0,
+        "memory_mb": 322.3671875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041513.8228285,
+        "cpu_percent": 0.0,
+        "memory_mb": 322.3671875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041514.3697104,
+        "cpu_percent": 0.0,
+        "memory_mb": 322.3671875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041514.9223368,
+        "cpu_percent": 0.0,
+        "memory_mb": 322.3671875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041515.4706416,
+        "cpu_percent": 1.825,
+        "memory_mb": 322.3671875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041515.994972,
+        "cpu_percent": 0.15833333333333333,
+        "memory_mb": 322.3671875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041516.511609,
+        "cpu_percent": 1.45,
+        "memory_mb": 328.2421875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041517.028578,
+        "cpu_percent": 0.325,
+        "memory_mb": 331.26953125,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041517.5439768,
+        "cpu_percent": 4.8500000000000005,
+        "memory_mb": 333.80078125,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041518.064498,
+        "cpu_percent": 8.325000000000001,
+        "memory_mb": 342.48046875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041518.5818987,
+        "cpu_percent": 12.883333333333333,
+        "memory_mb": 349.84765625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041519.1034954,
+        "cpu_percent": 8.466666666666667,
+        "memory_mb": 349.8515625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041519.6303885,
+        "cpu_percent": 2.058333333333333,
+        "memory_mb": 352.25390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041520.1818054,
+        "cpu_percent": 0.0,
+        "memory_mb": 352.25390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041520.7297425,
+        "cpu_percent": 0.0,
+        "memory_mb": 352.25390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041521.277465,
+        "cpu_percent": 0.0,
+        "memory_mb": 352.25390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041521.832919,
+        "cpu_percent": 0.0,
+        "memory_mb": 352.25390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041522.3799248,
+        "cpu_percent": 0.0,
+        "memory_mb": 352.25390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041522.9029763,
+        "cpu_percent": 0.0,
+        "memory_mb": 352.25390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041523.4528165,
+        "cpu_percent": 0.0,
+        "memory_mb": 352.25390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041524.0026104,
+        "cpu_percent": 0.0,
+        "memory_mb": 352.25390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041524.553144,
+        "cpu_percent": 0.0,
+        "memory_mb": 352.25390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041525.1037326,
+        "cpu_percent": 0.0,
+        "memory_mb": 352.25390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041525.6525688,
+        "cpu_percent": 0.15,
+        "memory_mb": 352.25390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041526.2028115,
+        "cpu_percent": 0.0,
+        "memory_mb": 352.25390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041526.739205,
+        "cpu_percent": 0.0,
+        "memory_mb": 352.25390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041527.2881372,
+        "cpu_percent": 0.0,
+        "memory_mb": 352.25390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041527.838116,
+        "cpu_percent": 0.0,
+        "memory_mb": 352.25390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041528.388405,
+        "cpu_percent": 0.0,
+        "memory_mb": 352.25390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041528.9058406,
+        "cpu_percent": 0.15833333333333333,
+        "memory_mb": 352.25390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041529.4579585,
+        "cpu_percent": 0.0,
+        "memory_mb": 352.25390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041530.0077074,
+        "cpu_percent": 0.0,
+        "memory_mb": 352.25390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041530.5578752,
+        "cpu_percent": 0.0,
+        "memory_mb": 352.25390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041531.107289,
+        "cpu_percent": 0.0,
+        "memory_mb": 352.25390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041531.6574774,
+        "cpu_percent": 0.0,
+        "memory_mb": 352.25390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041532.201522,
+        "cpu_percent": 0.0,
+        "memory_mb": 352.25390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041532.7301686,
+        "cpu_percent": 0.0,
+        "memory_mb": 352.25390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041533.2801528,
+        "cpu_percent": 0.0,
+        "memory_mb": 352.25390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041533.8288314,
+        "cpu_percent": 0.6083333333333333,
+        "memory_mb": 352.25390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041534.3520598,
+        "cpu_percent": 0.9583333333333334,
+        "memory_mb": 352.2578125,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041534.8698716,
+        "cpu_percent": 0.48333333333333334,
+        "memory_mb": 352.26953125,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041535.3918703,
+        "cpu_percent": 2.2333333333333334,
+        "memory_mb": 353.21484375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041535.9126692,
+        "cpu_percent": 0.48333333333333334,
+        "memory_mb": 356.78125,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041536.4300795,
+        "cpu_percent": 6.6000000000000005,
+        "memory_mb": 356.78125,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041536.9438467,
+        "cpu_percent": 8.275,
+        "memory_mb": 357.83203125,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041537.4588053,
+        "cpu_percent": 15.208333333333334,
+        "memory_mb": 362.23046875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041537.9756887,
+        "cpu_percent": 8.383333333333333,
+        "memory_mb": 362.23046875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041538.4909143,
+        "cpu_percent": 3.4,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041539.00931,
+        "cpu_percent": 0.0,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041539.5543392,
+        "cpu_percent": 0.0,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041540.1113598,
+        "cpu_percent": 0.0,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041540.6634872,
+        "cpu_percent": 0.0,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041541.213319,
+        "cpu_percent": 0.0,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041541.744444,
+        "cpu_percent": 0.0,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041542.2585962,
+        "cpu_percent": 0.0,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041542.7821782,
+        "cpu_percent": 0.0,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041543.3301322,
+        "cpu_percent": 0.0,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041543.8451624,
+        "cpu_percent": 0.0,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041544.3656974,
+        "cpu_percent": 0.0,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041544.9143574,
+        "cpu_percent": 0.0,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041545.464097,
+        "cpu_percent": 0.0,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041546.0106547,
+        "cpu_percent": 0.0,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041546.5272808,
+        "cpu_percent": 0.0,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041547.0794575,
+        "cpu_percent": 0.15,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041547.5963113,
+        "cpu_percent": 0.0,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041548.144816,
+        "cpu_percent": 0.0,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041548.7003174,
+        "cpu_percent": 0.0,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041549.2466235,
+        "cpu_percent": 0.0,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041549.7644336,
+        "cpu_percent": 0.0,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041550.2805977,
+        "cpu_percent": 0.0,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041550.8326144,
+        "cpu_percent": 0.0,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041551.3840518,
+        "cpu_percent": 0.0,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041551.9337513,
+        "cpu_percent": 0.0,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041552.4802961,
+        "cpu_percent": 0.0,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041553.0032256,
+        "cpu_percent": 2.8666666666666667,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041553.525869,
+        "cpu_percent": 0.0,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041554.045869,
+        "cpu_percent": 1.125,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041554.5702903,
+        "cpu_percent": 0.0,
+        "memory_mb": 362.234375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041555.0932734,
+        "cpu_percent": 2.5500000000000003,
+        "memory_mb": 363.1796875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041555.608074,
+        "cpu_percent": 1.4583333333333333,
+        "memory_mb": 376.66015625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041556.1260219,
+        "cpu_percent": 8.208333333333334,
+        "memory_mb": 419.21875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041556.6429865,
+        "cpu_percent": 8.541666666666666,
+        "memory_mb": 479.58984375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041557.1586964,
+        "cpu_percent": 17.166666666666668,
+        "memory_mb": 483.546875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041557.6825814,
+        "cpu_percent": 8.891666666666667,
+        "memory_mb": 484.9765625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041558.1971812,
+        "cpu_percent": 7.45,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041558.7130404,
+        "cpu_percent": 0.0,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041559.2490077,
+        "cpu_percent": 0.0,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041559.771453,
+        "cpu_percent": 0.15833333333333333,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041560.2895029,
+        "cpu_percent": 0.0,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041560.8405166,
+        "cpu_percent": 0.15,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041561.3852463,
+        "cpu_percent": 0.0,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041561.9096143,
+        "cpu_percent": 0.0,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041562.4584856,
+        "cpu_percent": 0.0,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041563.0075169,
+        "cpu_percent": 0.0,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041563.5262754,
+        "cpu_percent": 0.0,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041564.078707,
+        "cpu_percent": 0.0,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041564.6277945,
+        "cpu_percent": 0.0,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041565.1767209,
+        "cpu_percent": 0.0,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041565.7378438,
+        "cpu_percent": 0.0,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041566.2884886,
+        "cpu_percent": 0.0,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041566.8375206,
+        "cpu_percent": 0.0,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041567.3869045,
+        "cpu_percent": 0.0,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041567.9369955,
+        "cpu_percent": 0.0,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041568.4821782,
+        "cpu_percent": 0.0,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041569.0281749,
+        "cpu_percent": 0.0,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041569.5770037,
+        "cpu_percent": 0.0,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041570.1270468,
+        "cpu_percent": 0.0,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041570.6764264,
+        "cpu_percent": 0.0,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041571.224657,
+        "cpu_percent": 0.0,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041571.752344,
+        "cpu_percent": 0.0,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041572.3015225,
+        "cpu_percent": 0.0,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041572.850038,
+        "cpu_percent": 0.9083333333333333,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041573.3709326,
+        "cpu_percent": 2.0833333333333335,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041573.893346,
+        "cpu_percent": 0.7999999999999999,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041574.4163783,
+        "cpu_percent": 0.0,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041574.9405694,
+        "cpu_percent": 0.0,
+        "memory_mb": 488.390625,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041575.4757888,
+        "cpu_percent": 3.266666666666667,
+        "memory_mb": 488.80078125,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041575.9905236,
+        "cpu_percent": 4.858333333333333,
+        "memory_mb": 522.58203125,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041576.505765,
+        "cpu_percent": 8.25,
+        "memory_mb": 646.796875,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041577.0213873,
+        "cpu_percent": 11.799999999999999,
+        "memory_mb": 603.83984375,
+        "num_threads": 43
+      },
+      {
+        "timestamp": 1777041577.5357745,
+        "cpu_percent": 16.849999999999998,
+        "memory_mb": 428.41015625,
+        "num_threads": 23
+      }
+    ]
+  }
+}

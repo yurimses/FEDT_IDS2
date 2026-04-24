@@ -16,8 +16,8 @@ dataset_path = 'ML-EdgeIIoT-FEDT.csv' # [CLASSIF]
 
 [settings]
 number_of_jobs = 12
-number_of_clients = 10
-number_of_rounds = 40
+number_of_clients = 5
+number_of_rounds = 5
 aggregation_strategy = "best_trees"
 # Estratégias disponíveis:
 # - 'random': seleciona árvores aleatoriamente
@@ -71,10 +71,10 @@ label_target = "Attack_type_6"  # [CLASS]  # opções: "Attack_label", "Attack_t
 #label_target = "Class" # [CLASSIF] # creditcard
 #label_target = "activity" # ku-har dataset
 
-#partition_type = "iid"
+partition_type = "iid"
 #partition_type = "non_iid"  
 #partition_type = "non_iid_allclasses"  # [CLASSIF] non-IID mas garante todas as classes em todos os clientes (min de 10 amostras)
-partition_type = "dominant_client"  # [CLASSIF] Um cliente dominante com X% dos dados, resto em non_iid_allclasses
+#partition_type = "dominant_client"  # [CLASSIF] Um cliente dominante com X% dos dados, resto em non_iid_allclasses
 non_iid_alpha = 0.3  # [CLASSIF] parâmetro alpha da Dirichlet para o particionamento non-iid
 min_samples_per_class = 10  # [CLASSIF] tenta este mínimo por classe/cliente; se inviável, faz fallback automático para piso 2; se nem 2 for viável, lança erro
 partition_seed = 42  # Seed para replicabilidade do particionamento (IID e NON-IID) e do train/test split

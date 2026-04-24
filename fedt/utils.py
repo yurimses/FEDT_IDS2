@@ -355,6 +355,163 @@ def _partition_indices_dominant_client(  # [CLASSIF]
     return parts  # [CLASSIF]
 
 
+def _normalize_partition_type(pt_value: str) -> str:  # [CLASSIF]
+    """[CLASSIF] Normaliza aliases de particionamento para uma chave canônica."""  # [CLASSIF]
+    pt = pt_value.lower() if isinstance(pt_value, str) else "iid"  # [CLASSIF]
+    if pt in ("iid",):  # [CLASSIF]
+        return "iid"  # [CLASSIF]
+    if pt in ("non-iid", "non_iid", "noniid"):  # [CLASSIF]
+        return "non_iid"  # [CLASSIF]
+    if pt in ("non-iid-allclasses", "non_iid_allclasses", "noniid_allclasses"):  # [CLASSIF]
+        return "non_iid_allclasses"  # [CLASSIF]
+    if pt in ("dominant-client", "dominant_client", "dominantclient"):  # [CLASSIF]
+        return "dominant_client"  # [CLASSIF]
+    raise ValueError(f"Tipo de particionamento inválido: {pt_value}")  # [CLASSIF]
+
+
+def _compute_local_partitions(y_subset: np.ndarray, num_clients: int, canonical_pt: str, seed: int):  # [CLASSIF]
+    """[CLASSIF] Calcula partições locais por cliente para um subset (train ou test)."""  # [CLASSIF]
+    if canonical_pt == "iid":  # [CLASSIF]
+        return _partition_indices_iid(len(y_subset), num_clients, seed=seed)  # [CLASSIF]
+    if canonical_pt == "non_iid":  # [CLASSIF]
+        return _partition_indices_dirichlet(  # [CLASSIF]
+            y=y_subset, num_partitions=num_clients, alpha=float(non_iid_alpha),  # [CLASSIF]
+            seed=seed, min_partition_size=1  # [CLASSIF]
+        )  # [CLASSIF]
+    if canonical_pt == "non_iid_allclasses":  # [CLASSIF]
+        return _partition_indices_dirichlet_allclasses(  # [CLASSIF]
+            y=y_subset, num_partitions=num_clients, alpha=float(non_iid_alpha),  # [CLASSIF]
+            seed=seed, min_samples_per_class=int(min_samples_per_class)  # [CLASSIF]
+        )  # [CLASSIF]
+    if canonical_pt == "dominant_client":  # [CLASSIF]
+        from fedt.settings import dominant_client_id as dce_id, dominant_client_percentage as dce_pct  # [CLASSIF]
+        return _partition_indices_dominant_client(  # [CLASSIF]
+            y=y_subset, num_partitions=num_clients,  # [CLASSIF]
+            dominant_client_id=int(dce_id), dominant_percentage=float(dce_pct),  # [CLASSIF]
+            alpha=float(non_iid_alpha), seed=seed,  # [CLASSIF]
+            min_samples_per_class=int(min_samples_per_class)  # [CLASSIF]
+        )  # [CLASSIF]
+    raise ValueError(f"Tipo de particionamento inválido: {canonical_pt}")  # [CLASSIF]
+
+
+def _load_partition_from_disk(client_id: int, canonical_pt: str):  # [CLASSIF]
+    """[CLASSIF] Carrega train/test de um cliente a partir de CSVs precomputados."""  # [CLASSIF]
+    dataset_name = Path(dataset_path).stem  # [CLASSIF]
+    partition_dir = partitions_folder / dataset_name / canonical_pt / f"client_{client_id}"  # [CLASSIF]
+    train_path = partition_dir / "train.csv"  # [CLASSIF]
+    test_path = partition_dir / "test.csv"  # [CLASSIF]
+
+    if not train_path.exists() or not test_path.exists():  # [CLASSIF]
+        return None  # [CLASSIF]
+
+    train_df = pd.read_csv(train_path)  # [CLASSIF]
+    test_df = pd.read_csv(test_path)  # [CLASSIF]
+    if train_df.shape[1] < 2 or test_df.shape[1] < 2:  # [CLASSIF]
+        raise ValueError(f"Partições inválidas para client_{client_id} em {partition_dir}")  # [CLASSIF]
+
+    y_col = train_df.columns[-1]  # [CLASSIF]
+    X_train = train_df.drop(columns=[y_col]).to_numpy(dtype=np.float32, copy=False)  # [CLASSIF]
+    y_train = train_df[y_col].to_numpy()  # [CLASSIF]
+    X_test = test_df.drop(columns=[y_col]).to_numpy(dtype=np.float32, copy=False)  # [CLASSIF]
+    y_test = test_df[y_col].to_numpy()  # [CLASSIF]
+
+    return X_train, y_train, X_test, y_test  # [CLASSIF]
+
+
+def prepare_partitions(partition_type_override: str | None = None, num_clients_override: int | None = None):  # [CLASSIF]
+    """
+    [CLASSIF] Gera e salva partições train/test para todos os clientes em uma única leitura do dataset.
+    """
+    num_clients = int(num_clients_override) if num_clients_override is not None else int(number_of_clients)  # [CLASSIF]
+    if num_clients <= 0:  # [CLASSIF]
+        raise ValueError("number_of_clients deve ser maior que zero")  # [CLASSIF]
+
+    canonical_pt = _normalize_partition_type(partition_type_override if partition_type_override is not None else partition_type)  # [CLASSIF]
+
+    X, y, feature_names, label_name = load_dataset()  # [CLASSIF]
+    y_arr = np.asarray(y)  # [CLASSIF]
+    n_samples = len(y_arr)  # [CLASSIF]
+
+    all_indices = np.arange(n_samples)  # [CLASSIF]
+    stratify_arg = y_arr  # [CLASSIF]
+    uniq, cnt = np.unique(y_arr, return_counts=True)  # [CLASSIF]
+    if uniq.size < 2 or np.min(cnt) < 2:  # [CLASSIF]
+        stratify_arg = None  # [CLASSIF]
+
+    train_indices_global, test_indices_global = train_test_split(  # [CLASSIF]
+        all_indices, test_size=0.2, stratify=stratify_arg, random_state=int(partition_seed)  # [CLASSIF]
+    )  # [CLASSIF]
+
+    y_train_global = y_arr[train_indices_global]  # [CLASSIF]
+    y_test_global = y_arr[test_indices_global]  # [CLASSIF]
+
+    train_local_partitions = _compute_local_partitions(  # [CLASSIF]
+        y_subset=y_train_global, num_clients=num_clients, canonical_pt=canonical_pt, seed=int(partition_seed)  # [CLASSIF]
+    )  # [CLASSIF]
+    test_local_partitions = _compute_local_partitions(  # [CLASSIF]
+        y_subset=y_test_global, num_clients=num_clients, canonical_pt=canonical_pt, seed=int(partition_seed) + 999  # [CLASSIF]
+    )  # [CLASSIF]
+
+    for cid in range(num_clients):  # [CLASSIF]
+        train_global_indices_client = train_indices_global[train_local_partitions[cid]]  # [CLASSIF]
+        test_global_indices_client = test_indices_global[test_local_partitions[cid]]  # [CLASSIF]
+
+        X_train = X[train_global_indices_client]  # [CLASSIF]
+        y_train = y_arr[train_global_indices_client]  # [CLASSIF]
+        X_test = X[test_global_indices_client]  # [CLASSIF]
+        y_test = y_arr[test_global_indices_client]  # [CLASSIF]
+
+        _save_partition(cid, X_train, y_train, X_test, y_test, canonical_pt, feature_names, label_name)  # [CLASSIF]
+
+    return {  # [CLASSIF]
+        "partition_type": canonical_pt,
+        "num_clients": num_clients,
+        "dataset": Path(dataset_path).name,
+    }
+
+
+def validate_prepared_partitions(expected_num_clients: int | None = None, partition_type_override: str | None = None):  # [CLASSIF]
+    """
+    [CLASSIF] Valida se as partições precomputadas existem e cobrem todos os clientes esperados.
+    Lança exceção em caso de ausência/inconsistência.
+    """
+    canonical_pt = _normalize_partition_type(partition_type_override if partition_type_override is not None else partition_type)  # [CLASSIF]
+    expected = int(expected_num_clients) if expected_num_clients is not None else int(number_of_clients)  # [CLASSIF]
+    if expected <= 0:  # [CLASSIF]
+        raise ValueError("expected_num_clients deve ser maior que zero")  # [CLASSIF]
+
+    dataset_name = Path(dataset_path).stem  # [CLASSIF]
+    partition_base = partitions_folder / dataset_name / canonical_pt  # [CLASSIF]
+    if not partition_base.exists():  # [CLASSIF]
+        raise FileNotFoundError(
+            f"Partições não encontradas em {partition_base}. Execute 'fedt prepare-partitions {canonical_pt} {expected}'."
+        )  # [CLASSIF]
+
+    client_dirs = sorted([p for p in partition_base.glob("client_*") if p.is_dir()])  # [CLASSIF]
+    if len(client_dirs) < expected:  # [CLASSIF]
+        raise RuntimeError(
+            "Quantidade insuficiente de partições: "
+            f"encontradas={len(client_dirs)}, esperadas={expected}, caminho={partition_base}."
+        )  # [CLASSIF]
+
+    missing_files = []  # [CLASSIF]
+    for client_id in range(expected):  # [CLASSIF]
+        cdir = partition_base / f"client_{client_id}"  # [CLASSIF]
+        train_path = cdir / "train.csv"  # [CLASSIF]
+        test_path = cdir / "test.csv"  # [CLASSIF]
+        metadata_path = cdir / "metadata.json"  # [CLASSIF]
+        if not train_path.exists() or not test_path.exists() or not metadata_path.exists():  # [CLASSIF]
+            missing_files.append(str(cdir))  # [CLASSIF]
+
+    if missing_files:  # [CLASSIF]
+        raise RuntimeError(
+            "Partições incompletas para alguns clientes (faltando train/test/metadata): "
+            + ", ".join(missing_files)
+        )  # [CLASSIF]
+
+    return {"partition_type": canonical_pt, "num_clients": expected, "path": str(partition_base)}  # [CLASSIF]
+
+
 def load_house_client(client_id: int):  # [CLASSIF]
     """
     [CLASSIF] Carrega a partição do dataset para um cliente específico (iid ou non-iid).
@@ -364,6 +521,13 @@ def load_house_client(client_id: int):  # [CLASSIF]
     2. Depois particiona cada subset (train e test) entre os clientes
     3. Isto garante zero sobreposição entre train/test e entre clientes
     """  # [CLASSIF]
+    canonical_pt = _normalize_partition_type(partition_type)  # [CLASSIF]
+
+    # [CLASSIF] Caminho preferencial: carrega partições precomputadas do disco.
+    loaded = _load_partition_from_disk(client_id, canonical_pt)  # [CLASSIF]
+    if loaded is not None:  # [CLASSIF]
+        return loaded  # [CLASSIF]
+
     X, y, feature_names, label_name = load_dataset()  # [CLASSIF]
 
     if client_id < 0 or client_id >= number_of_clients:  # [CLASSIF]
@@ -388,49 +552,18 @@ def load_house_client(client_id: int):  # [CLASSIF]
     )  # [CLASSIF]
     
     # [CLASSIF] PASSO 2: Particionar cada subset entre os clientes  # [CLASSIF]
-    pt = partition_type.lower() if isinstance(partition_type, str) else "iid"  # [CLASSIF]
+    pt = canonical_pt  # [CLASSIF]
     
     y_train_global = y_arr[train_indices_global]  # [CLASSIF]
     y_test_global = y_arr[test_indices_global]  # [CLASSIF]
     
     # [CLASSIF] Particiona índices RELATIVOS a cada subset  # [CLASSIF]
-    if pt == "iid":  # [CLASSIF]
-        train_local_partitions = _partition_indices_iid(len(y_train_global), number_of_clients, seed=int(partition_seed))  # [CLASSIF]
-        test_local_partitions = _partition_indices_iid(len(y_test_global), number_of_clients, seed=int(partition_seed) + 999)  # [CLASSIF]
-    elif pt in ("non-iid", "non_iid", "noniid"):  # [CLASSIF]
-        train_local_partitions = _partition_indices_dirichlet(  # [CLASSIF]
-            y=y_train_global, num_partitions=number_of_clients, alpha=float(non_iid_alpha),  # [CLASSIF]
-            seed=int(partition_seed), min_partition_size=1  # [CLASSIF]
-        )  # [CLASSIF]
-        test_local_partitions = _partition_indices_dirichlet(  # [CLASSIF]
-            y=y_test_global, num_partitions=number_of_clients, alpha=float(non_iid_alpha),  # [CLASSIF]
-            seed=int(partition_seed) + 999, min_partition_size=1  # [CLASSIF]
-        )  # [CLASSIF]
-    elif pt in ("non-iid-allclasses", "non_iid_allclasses", "noniid_allclasses"):  # [CLASSIF]
-        train_local_partitions = _partition_indices_dirichlet_allclasses(  # [CLASSIF]
-            y=y_train_global, num_partitions=number_of_clients, alpha=float(non_iid_alpha),  # [CLASSIF]
-            seed=int(partition_seed), min_samples_per_class=int(min_samples_per_class)  # [CLASSIF]
-        )  # [CLASSIF]
-        test_local_partitions = _partition_indices_dirichlet_allclasses(  # [CLASSIF]
-            y=y_test_global, num_partitions=number_of_clients, alpha=float(non_iid_alpha),  # [CLASSIF]
-            seed=int(partition_seed) + 999, min_samples_per_class=int(min_samples_per_class)  # [CLASSIF]
-        )  # [CLASSIF]
-    elif pt in ("dominant-client", "dominant_client", "dominantclient"):  # [CLASSIF]
-        from fedt.settings import dominant_client_id as dce_id, dominant_client_percentage as dce_pct  # [CLASSIF]
-        train_local_partitions = _partition_indices_dominant_client(  # [CLASSIF]
-            y=y_train_global, num_partitions=number_of_clients,  # [CLASSIF]
-            dominant_client_id=int(dce_id), dominant_percentage=float(dce_pct),  # [CLASSIF]
-            alpha=float(non_iid_alpha), seed=int(partition_seed),  # [CLASSIF]
-            min_samples_per_class=int(min_samples_per_class)  # [CLASSIF]
-        )  # [CLASSIF]
-        test_local_partitions = _partition_indices_dominant_client(  # [CLASSIF]
-            y=y_test_global, num_partitions=number_of_clients,  # [CLASSIF]
-            dominant_client_id=int(dce_id), dominant_percentage=float(dce_pct),  # [CLASSIF]
-            alpha=float(non_iid_alpha), seed=int(partition_seed) + 999,  # [CLASSIF]
-            min_samples_per_class=int(min_samples_per_class)  # [CLASSIF]
-        )  # [CLASSIF]
-    else:  # [CLASSIF]
-        raise ValueError(f"Tipo de particionamento inválido: {partition_type}")  # [CLASSIF]
+    train_local_partitions = _compute_local_partitions(  # [CLASSIF]
+        y_subset=y_train_global, num_clients=number_of_clients, canonical_pt=pt, seed=int(partition_seed)  # [CLASSIF]
+    )  # [CLASSIF]
+    test_local_partitions = _compute_local_partitions(  # [CLASSIF]
+        y_subset=y_test_global, num_clients=number_of_clients, canonical_pt=pt, seed=int(partition_seed) + 999  # [CLASSIF]
+    )  # [CLASSIF]
 
     # [CLASSIF] PASSO 3: Mapear índices locais para índices globais  # [CLASSIF]
     train_local_indices_client = train_local_partitions[client_id]  # [CLASSIF]

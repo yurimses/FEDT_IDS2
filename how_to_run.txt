@@ -1,5 +1,12 @@
-﻿fedt-cpu-ram --strategy best_trees --sim-number 0 --user yuri
+﻿# Preparar partições uma única vez (recomendado antes da simulação)
+# Usa automaticamente partition_type, number_of_clients e dataset do config.toml
+fedt prepare-partitions
 
+# Registrar consumo de memória e CPU presente em logs/
+fedt-cpu-ram --strategy best_trees --sim-number 0 --user yuri
+
+# Executar servidor
 fedt run server
 
+# Executar clientes de uma vez
 fedt run clients

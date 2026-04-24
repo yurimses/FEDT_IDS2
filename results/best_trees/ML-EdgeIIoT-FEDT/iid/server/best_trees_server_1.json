@@ -1,0 +1,27 @@
+{
+    "0": {
+        "trees_by_client": 10,
+        "aggregation_time": 0.997319221496582,
+        "avg_execution_time": 11.913211631774903
+    },
+    "1": {
+        "trees_by_client": 20,
+        "aggregation_time": 0.9180500507354736,
+        "avg_execution_time": 2.8686381340026856
+    },
+    "2": {
+        "trees_by_client": 30,
+        "aggregation_time": 1.033552646636963,
+        "avg_execution_time": 3.4312241077423096
+    },
+    "3": {
+        "trees_by_client": 40,
+        "aggregation_time": 1.2893664836883545,
+        "avg_execution_time": 4.392775535583496
+    },
+    "4": {
+        "trees_by_client": 50,
+        "aggregation_time": 1.162419319152832,
+        "avg_execution_time": 4.453228569030761
+    }
+}
